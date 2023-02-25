@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'admiralis',
   appName: 'front-ionic',
   webDir: 'build',
   bundledWebRuntime: false
