@@ -1,0 +1,30 @@
+ion-card {
+    --border-radius: 5px;
+    border: 1px solid black;
+    max-width: 390px;
+}
+
+ion-card-content {
+    background-color: #193549;
+    --color: #CCCCCC;
+    text-align: center;
+    font-family: "Courier New", serif;
+}
+
+ionn-card-content div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+ion-card-title {
+    --color: #FFC600;
+}
+
+ion-card-header {
+    background-color: #142C3E;
+    text-align: center;
+    border-bottom: 1px solid #FFC600;
+}
