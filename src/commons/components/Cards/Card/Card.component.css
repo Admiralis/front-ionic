@@ -11,12 +11,16 @@ ion-card-content {
     font-family: "Courier New", serif;
 }
 
-ionn-card-content div {
+ion-card-content div {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+}
+
+ion-card-content p {
+    padding-top: 3%;
 }
 
 ion-card-title {

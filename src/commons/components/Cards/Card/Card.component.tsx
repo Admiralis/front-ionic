@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle} from "@ionic/react";
+import {IonCard, IonCardContent, IonCardHeader, IonCardTitle} from "@ionic/react";
 import './Card.component.css';
 
 interface CardProps {
@@ -15,7 +15,9 @@ const CardComponent = (props: CardProps) => {
                 <IonCardTitle>{props.title}</IonCardTitle>
             </IonCardHeader>
             <IonCardContent>
-                {props.content}
+                <p>
+                    {props.content}
+                </p>
                 <div>
                     {props.children}
                 </div>
