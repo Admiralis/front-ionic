@@ -85,6 +85,26 @@ http://ionicframework.com/docs/theming/ */
     --ion-card-background: #1B2D3A;
     --ion-text-color: #CCCCCC;
     --ion-title-color: #FFC600;
+
+    /** Fonts **/
+}
+
+.card-content-md p {
+    font-size: 1.5em;
+}
+
+.ion-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ion-button {
+    font-size: 1em;
+    font-family: "Courier New", Courier, monospace;
+    text-transform: none;
+    font-weight: 700;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -242,6 +262,10 @@ http://ionicframework.com/docs/theming/ */
         --ion-card-background: #1B2D3A;
     }
 }
+
+/*
+Fonts
+*/
 
 @font-face {
     font-family: 'Roboto Mono', serif;
