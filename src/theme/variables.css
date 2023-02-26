@@ -85,8 +85,6 @@ http://ionicframework.com/docs/theming/ */
     --ion-card-background: #1B2D3A;
     --ion-text-color: #CCCCCC;
     --ion-title-color: #FFC600;
-
-    /** Fonts **/
 }
 
 .card-content-md p {
@@ -100,11 +98,54 @@ http://ionicframework.com/docs/theming/ */
     align-items: center;
 }
 
+/** Buttons **/
+
 ion-button {
     font-size: 1em;
     font-family: "Courier New", Courier, monospace;
     text-transform: none;
     font-weight: 700;
+    --border-radius: 5px;
+    margin: 10px;
+}
+
+/** Buttons Colors **/
+
+ion-button.green {
+    --background: #00CA56;
+    --color: #404040;
+}
+
+ion-button.red {
+    --background: #EB4B4D;
+    --color: #404040;
+}
+
+ion-button.yellow {
+    --background: #FFBD4C;
+    --color: #404040;
+}
+
+/** Buttons Sizes **/
+
+ion-button.small {
+    width: 135px;
+    height: 35px;
+}
+
+ion-button.medium {
+    width: 155px;
+    height: 40px;
+}
+
+ion-button.large {
+    width: 290px;
+    height: 35px;
+}
+
+ion-button.veryLarge {
+    width: 330px;
+    height: 40px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -276,3 +317,4 @@ Fonts
     font-family: 'Courier New', serif;
     src: url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Roboto+Mono&display=swap');
 }
+

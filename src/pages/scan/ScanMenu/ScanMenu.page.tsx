@@ -19,12 +19,12 @@ const ScanMenuContent = () => {
  */
 const ScanMenuActions = () => {
     return <>
-        <IonButton> Prêt individuel </IonButton>
-        <IonButton> Prêt collectif </IonButton>
-        <IonButton> Ajouter PC </IonButton>
-        <IonButton> Retour au stock </IonButton>
-        <IonButton> Editer PC </IonButton>
-        <IonButton> ¯\_(ツ)_/¯ </IonButton>
+        <IonButton className="green medium"> Prêt individuel </IonButton>
+        <IonButton className="green medium"> Prêt collectif </IonButton>
+        <IonButton className="green medium"> Ajouter PC </IonButton>
+        <IonButton className="green medium"> Retour au stock </IonButton>
+        <IonButton className="green medium"> Editer PC </IonButton>
+        <IonButton className="green medium"> ¯\_(ツ)_/¯ </IonButton>
     </>;
 }
 
