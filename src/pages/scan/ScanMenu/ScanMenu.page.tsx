@@ -1,7 +1,7 @@
 import React from 'react';
-import {IonButton, IonPage} from "@ionic/react";
+import {IonPage} from "@ionic/react";
 import {CardComponent} from "commons/components";
-
+import {ScanMenuActionsComponent} from "./ScanMenuActions/ScanMenuActions.component";
 
 
 /**
@@ -12,27 +12,12 @@ const ScanMenuContent = () => {
 }
 
 /**
- * Actions que peut faire l'utilisateur sur la page de menu
- * @return {JSX.Element}
- */
-const ScanMenuActions = () => {
-    return <>
-        <IonButton className="green medium"> Prêt individuel </IonButton>
-        <IonButton className="green medium"> Prêt collectif </IonButton>
-        <IonButton className="green medium"> Ajouter PC </IonButton>
-        <IonButton className="green medium"> Retour au stock </IonButton>
-        <IonButton className="green medium"> Editer PC </IonButton>
-        <IonButton className="green medium"> ¯\_(ツ)_/¯ </IonButton>
-    </>;
-}
-
-/**
  * Page de menu
  */
 const ScanMenuPage = () => {
     return (
         <IonPage>
-            <CardComponent title="Menu" content={<ScanMenuContent/>} actions={<ScanMenuActions/>} />
+            <CardComponent title="Menu" content={<ScanMenuContent/>} actions={<ScanMenuActionsComponent/>}/>
         </IonPage>
     );
 };
