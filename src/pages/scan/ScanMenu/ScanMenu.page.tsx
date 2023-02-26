@@ -1,6 +1,4 @@
 import React from 'react';
-
-import './ScanMenu.page.css';
 import {IonButton, IonPage} from "@ionic/react";
 import {CardComponent} from "commons/components";
 
