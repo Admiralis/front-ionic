@@ -16,9 +16,7 @@ export function CardContent(props: CardContentProps) {
             :
             <IonCardContent>
                 {props.content}
-                <div>
-                    {props.actions}
-                </div>
+                {props.actions}
             </IonCardContent>}
     </>;
 }
