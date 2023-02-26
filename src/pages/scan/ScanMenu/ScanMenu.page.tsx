@@ -1,8 +1,9 @@
 import React from 'react';
 
 import './ScanMenu.page.css';
-import CardComponent from "../../../commons/components/Cards/Card/Card.component";
 import {IonButton, IonPage} from "@ionic/react";
+import {CardComponent} from "commons/components";
+
 
 
 /**
@@ -33,7 +34,7 @@ const ScanMenuActions = () => {
 const ScanMenuPage = () => {
     return (
         <IonPage>
-            <CardComponent title="Menu"  subtitle="Coucou" content={<ScanMenuContent/>} actions={<ScanMenuActions/>} />
+            <CardComponent title="Menu" content={<ScanMenuContent/>} actions={<ScanMenuActions/>} />
         </IonPage>
     );
 };

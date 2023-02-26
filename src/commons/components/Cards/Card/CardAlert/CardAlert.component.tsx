@@ -1,11 +1,11 @@
-import AlertIconComponent from "../../../Icons/AlertIcon/AlertIcon.component";
+import { AlertIconComponent } from "commons/components";
 import React from "react";
 
 interface CardAlertProps {
     alert?: boolean;
 }
 
-export function CardAlert(props: CardAlertProps) {
+export function CardAlertComponent(props: CardAlertProps) {
     return <>
         {props.alert ?
             <div><AlertIconComponent/></div> :

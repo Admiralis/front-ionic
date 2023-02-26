@@ -2,8 +2,8 @@ import React from 'react';
 import {IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle} from "@ionic/react";
 import './Card.component.css';
 import {CardButtonsComponent} from "./CardButtons/CardButtons.component";
-import {CardAlert} from "./CardAlert/CardAlert.component";
-import {CardContent} from "./CardContent/CardContent.component";
+import {CardAlertComponent} from "./CardAlert/CardAlert.component";
+import {CardContentComponent} from "./CardContent/CardContent.component";
 
 interface CardProps {
     title: string;
@@ -27,12 +27,14 @@ const CardComponent = (props: CardProps) => {
                     <IonCardTitle>{props.title}</IonCardTitle>
                     <IonCardSubtitle>{props.subtitle}</IonCardSubtitle>
                 </div>
-                <CardAlert alert={props.alert}/>
+                <CardAlertComponent alert={props.alert}/>
             </IonCardHeader>
-            <CardContent collapsible={props.collapsible}
-                         collapsed={collapsed}
-                         content={props.content || <></>}
-                         actions={props.actions}/>
+            <CardContentComponent
+                collapsible={props.collapsible}
+                 collapsed={collapsed}
+                 content={props.content || <></>}
+                 actions={props.actions}
+            />
         </IonCard>
     );
 };

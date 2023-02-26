@@ -8,7 +8,7 @@ interface CardContentProps {
     actions?: React.ReactNode;
 }
 
-export function CardContent(props: CardContentProps) {
+export function CardContentComponent(props: CardContentProps) {
     return <>
         {props.collapsible && props.collapsed
             ?

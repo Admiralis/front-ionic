@@ -1,4 +1,4 @@
-import LinuxButtonComponent from "../../../Buttons/LinuxButton/LinuxButton.component";
+import { LinuxButtonComponent } from "commons/components";
 import React from "react";
 
 interface CardButtonsProps {
