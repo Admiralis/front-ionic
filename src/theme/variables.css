@@ -318,3 +318,13 @@ Fonts
     src: url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Roboto+Mono&display=swap');
 }
 
+body.scanner-active {
+    --background: transparent;
+    --ion-background-color: transparent;
+}
+
+.scanPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

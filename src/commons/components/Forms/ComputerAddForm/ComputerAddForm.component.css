@@ -1,0 +1,23 @@
+/** Inputs  **/
+
+.ascii-item {
+    font-family: "Courier New", Courier, monospace;
+    text-transform: none;
+    background-color: #303030;
+    margin: 3%;
+}
+
+.ascii-label {
+    color: #43BC3D;
+    --ion-text-color: #43BC3D;
+    text-align: end;
+    margin-left: 5%;
+}
+
+.ascii-input {
+    font-family: "Courier New", Courier, monospace;
+    text-transform: none;
+    --ion-background-color: #303030;
+    background-color: #303030;
+    text-align: start;
+}

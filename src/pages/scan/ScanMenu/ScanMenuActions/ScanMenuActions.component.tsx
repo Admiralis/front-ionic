@@ -16,7 +16,7 @@ export const ScanMenuActionsComponent = () => {
             label: "Prêt collectif"
         },
         {
-            path: "/scan/ajouter",
+            path: "/scan/add",
             label: "Ajouter PC"
         },
         {
