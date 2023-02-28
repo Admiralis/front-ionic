@@ -42,11 +42,17 @@ const CodeScannerComponent = (props: CodeScannerComponentProps) => {
         props.setScanning(false);
     }
 
+    const checkAvailable = () => {
+        if (isPlatform('mobileweb')) {
+            return false;
+        } else return isPlatform('android');
+    }
+
 
     return (
         <div>
             {
-                isPlatform('android') && <>
+                checkAvailable() && <>
                     {!props.scanning && <IonButton onClick={startScanning} className="green"><IonIcon
                         icon={scanCircleOutline}/></IonButton>}
                     {props.scanning && <IonButton onClick={stopScanning}>Stop</IonButton>}

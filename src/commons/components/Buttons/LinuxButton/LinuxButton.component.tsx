@@ -5,6 +5,8 @@ interface LinuxButtonProps {
     size?: "small"
 
     hidden?: boolean
+
+    small?: boolean
 }
 
 const LinuxButtonComponent = (props: LinuxButtonProps) => {
@@ -28,8 +30,8 @@ const LinuxButtonComponent = (props: LinuxButtonProps) => {
      * Si aucune taille n'est reçue, sera de 20px
      */
     const setSize = () => {
-        if (props.size === "small") {
-            return "10"
+        if (props.small) {
+            return "15"
         } else {
             return "20"
         }

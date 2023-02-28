@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle} from "@ionic/react";
-import './Card.component.css';
-import {CardButtonsComponent} from "./CardButtons/CardButtons.component";
-import {CardAlertComponent} from "./CardAlert/CardAlert.component";
-import {CardContentComponent} from "./CardContent/CardContent.component";
+import './Card.module.css';
+import {CardButtonsComponent} from "../components/CardButtons/CardButtons.component";
+import {CardAlertComponent} from "../components/CardAlert/CardAlert.component";
+import {CardContentComponent} from "../components/CardContent/CardContent.component";
 
 interface CardProps {
     title: string;
@@ -23,7 +23,7 @@ const CardComponent = (props: CardProps) => {
     return (
         <IonCard>
             <IonCardHeader onClick={handleCollapse}>
-                <CardButtonsComponent collapsible={props.collapsible} collapsed={collapsed}/>
+                <CardButtonsComponent collapsible={props.collapsible} collapsed={collapsed} />
                 <div>
                     <IonCardTitle>{props.title}</IonCardTitle>
                     <IonCardSubtitle>{props.subtitle}</IonCardSubtitle>

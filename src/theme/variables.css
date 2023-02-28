@@ -98,6 +98,13 @@ http://ionicframework.com/docs/theming/ */
     align-items: center;
 }
 
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 /** Buttons **/
 
 ion-button {

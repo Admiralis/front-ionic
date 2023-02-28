@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {IonButton, IonPage} from "@ionic/react";
+import {IonButton, IonContent, IonPage} from "@ionic/react";
 import CodeScannerComponent from "../../../commons/components/CodeScanner/CodeScanner.component";
 import {CardComponent} from "../../../commons/components";
 import './AddComputer.component.css'
 import {ComputerAddFormComponent} from "../../../commons/components/Forms/ComputerAddForm/ComputerAddFormComponent";
+import TinyCardComponent from "../../../commons/components/Cards/TinyCard/TinyCard.component";
 
 const AddComputerPage = () => {
 
@@ -19,18 +20,26 @@ const AddComputerPage = () => {
     }, [computerSerial])
 
     return (
-        <IonPage className="scanPage">
-            <CardComponent
-                title={"Ajouter un PC"}
-                content={
-                    <ComputerAddFormComponent
-                        computerSerial={computerSerial}
-                        setComputerSerial={setComputerSerial}
+        <IonPage>
+            <IonContent>
+                <div className="flex-container">
+                    <CardComponent
+                        title={"Ajouter un PC"}
+                        content={
+                            <ComputerAddFormComponent
+                                computerSerial={computerSerial}
+                                setComputerSerial={setComputerSerial}
+                            />
+                        }
+                        actions={<IonButton className="green">Ajouter PC</IonButton>}
                     />
-                }
-                actions={<IonButton className="green">Ajouter PC</IonButton>}
-            />
-            <CodeScannerComponent setComputerSerial={handleAddComputer} scanning={scanning} setScanning={setScanning}/>
+                    <span className="scan-button">
+
+                    <CodeScannerComponent setComputerSerial={handleAddComputer} scanning={scanning}
+                                          setScanning={setScanning}/>
+                    </span>
+                </div>
+            </IonContent>
         </IonPage>
     );
 };

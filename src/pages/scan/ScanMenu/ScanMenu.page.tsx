@@ -18,7 +18,7 @@ const ScanMenuContent = () => {
 const ScanMenuPage = () => {
     return (
         <IonPage>
-            <CardComponent title="Menu" content={<ScanMenuContent/>} actions={<ScanMenuActionsComponent/>}/>
+            <CardComponent title="Menu" content={<ScanMenuContent/>} actions={<ScanMenuActionsComponent/>} />
         </IonPage>
     );
 };
