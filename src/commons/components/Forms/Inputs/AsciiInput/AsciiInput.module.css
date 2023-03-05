@@ -1,0 +1,24 @@
+.asciiItem {
+    font-family: "Courier New", Courier, monospace;
+    text-transform: none;
+    background-color: #303030;
+    width: 90%;
+    height: 30px;
+    margin-top: 3%;
+}
+
+.asciiLabel {
+    color: #43BC3D;
+    --ion-text-color: #43BC3D;
+    text-align: end;
+    margin-left: 5%;
+}
+
+.asciiInput {
+    font-family: "Courier New", Courier, monospace;
+    text-transform: none;
+    --ion-background-color: #303030;
+    background-color: #303030;
+    text-align: start;
+    height: 30px;
+}

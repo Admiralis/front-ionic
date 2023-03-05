@@ -10,38 +10,54 @@ const AddComputerPage = () => {
 
     const [computerSerial, setComputerSerial] = useState("" as string);
     const [scanning, setScanning] = useState<boolean>(false);
+    const [newComputerInfo, setNewComputerInfo] = useState({
+        computerSerial: "",
+        computerCategory: "",
+        computerRam: "",
+        computerCpu: "",
+        computerState: ""
+    } as {
+        computerSerial: string;
+        computerCategory?: string;
+        computerRam?: string;
+        computerCpu?: string;
+        computerState?: string;
+    });
 
-    const handleAddComputer = (serialNumber: string) => {
-        setComputerSerial(serialNumber)
-        //TODO: Submit form
-    }
+const handleAddComputer = (serialNumber: string) => {
+    setComputerSerial(serialNumber)
+    //TODO: Submit form
+}
 
-    useEffect(() => {
-    }, [computerSerial])
+useEffect(() => {
+}, [computerSerial])
 
-    return (
-        <IonPage>
-            <IonContent>
-                <div className="flex-container">
-                    <CardComponent
-                        title={"Ajouter un PC"}
-                        content={
-                            <ComputerAddFormComponent
-                                computerSerial={computerSerial}
-                                setComputerSerial={setComputerSerial}
-                            />
-                        }
-                        actions={<IonButton className="green">Ajouter PC</IonButton>}
-                    />
-                    <span className="scan-button">
+return (
+    <IonPage>
+        <IonContent>
+            <div className="flex-container">
+                <CardComponent
+                    title={"Ajouter un PC"}
+                    content={
+                        <ComputerAddFormComponent
+                            computerSerial={computerSerial}
+                            setComputerSerial={setComputerSerial}
+                            newComputerInfo={newComputerInfo}
+                            setNewComputerInfo={setNewComputerInfo}
+                        />
+                    }
+                    actions={<IonButton className="green">Ajouter PC</IonButton>}
+                />
+                <span className="scan-button">
 
                     <CodeScannerComponent setComputerSerial={handleAddComputer} scanning={scanning}
                                           setScanning={setScanning}/>
                     </span>
-                </div>
-            </IonContent>
-        </IonPage>
-    );
-};
+            </div>
+        </IonContent>
+    </IonPage>
+);
+}
+;
 
 export default AddComputerPage;
