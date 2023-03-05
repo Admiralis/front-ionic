@@ -155,6 +155,10 @@ ion-button.veryLarge {
     height: 40px;
 }
 
+button {
+    background-color: transparent;
+}
+
 @media (prefers-color-scheme: dark) {
     /*
      * Dark Colors

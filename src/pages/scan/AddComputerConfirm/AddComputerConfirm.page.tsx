@@ -18,7 +18,7 @@ const AddComputerConfirmPage = () => {
 
     const location = useLocation<{ newComputerInfo: NewComputer }>();
 
-    const [computerSerial, setComputerSerial] = useState(location.state.newComputerInfo.computerSerial as string);
+    const [computerSerial, setComputerSerial] = useState(location.state.newComputerInfo.serial as string);
     const [newComputerInfo, setNewComputerInfo] = useState(location.state.newComputerInfo as NewComputer);
 
     return (

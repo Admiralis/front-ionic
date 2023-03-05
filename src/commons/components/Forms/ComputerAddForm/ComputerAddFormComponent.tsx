@@ -1,5 +1,4 @@
 import React from "react";
-import './ComputerAddForm.component.css'
 import {HorizontalDividerComponent, AsciiInputComponent} from "commons/components";
 import {NewComputer} from "commons/models";
 import {ComputerFormComponent} from "../ComputerForm/ComputerForm.component";
@@ -31,7 +30,7 @@ export const ComputerAddFormComponent = (props: ComputerAddFormComponentProps) =
                         props.setComputerSerial(e.detail.value!)
                         props.setNewComputerInfo({
                             ...props.newComputerInfo,
-                            computerSerial: e.detail.value!
+                            serial: e.detail.value!
                         })
                     }}
                 />

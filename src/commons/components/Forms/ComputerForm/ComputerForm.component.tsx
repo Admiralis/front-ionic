@@ -10,36 +10,36 @@ interface ComputerFormComponentProps {
 export const ComputerFormComponent = (props: ComputerFormComponentProps) => {
     return (
         <>
-            <AsciiInputComponent label="Catégorie" value={props.newComputerInfo.computerCategory || ""}
+            <AsciiInputComponent label="Catégorie" value={props.newComputerInfo.category || ""}
                                  onIonChange={(e: any) => {
 
                                      props.setNewComputerInfo({
                                          ...props.newComputerInfo,
-                                         computerCategory: e.detail.value!
+                                         category: e.detail.value!
                                      })
                                  }}
             />
-            <AsciiInputComponent label="RAM" value={props.newComputerInfo.computerRam || ""}
+            <AsciiInputComponent label="RAM" value={props.newComputerInfo.ram || ""}
                                  onIonChange={(e: any) => {
                                      props.setNewComputerInfo({
                                          ...props.newComputerInfo,
-                                         computerRam: e.detail.value!
+                                         ram: e.detail.value!
                                      })
                                  }}
             />
-            <AsciiInputComponent label="Processeur" value={props.newComputerInfo.computerCpu || ""}
+            <AsciiInputComponent label="Processeur" value={props.newComputerInfo.processor || ""}
                                  onIonChange={(e: any) => {
                                      props.setNewComputerInfo({
                                          ...props.newComputerInfo,
-                                         computerCpu: e.detail.value!
+                                         processor: e.detail.value!
                                      })
                                  }}
             />
-            <AsciiInputComponent label="Etat" value={props.newComputerInfo.computerCondition || ""}
+            <AsciiInputComponent label="Etat" value={props.newComputerInfo.condition || ""}
                                  onIonChange={(e: any) => {
                                      props.setNewComputerInfo({
                                          ...props.newComputerInfo,
-                                         computerCondition: e.detail.value!
+                                         condition: e.detail.value!
                                      })
                                  }}
             />
