@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {IonContent, IonPage} from "@ionic/react";
-import {CardComponent} from "../../../commons/components";
+import {CardComponent} from "commons/components";
 import {useLocation} from "react-router";
-import {NewComputer} from "../../../commons/models";
+import {NewComputer} from "commons/models";
 
 const ValidateComputerPage = () => {
 
