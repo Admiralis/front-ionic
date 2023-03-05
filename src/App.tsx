@@ -33,7 +33,7 @@ import './theme/variables.css';
 import React from "react";
 import ScanMenuPage from "./pages/scan/ScanMenu/ScanMenu.page";
 import AddComputerPage from "./pages/scan/AddComputer/AddComputer.page";
-import ValidateComputerPage from "./pages/scan/ValidateComputer/ValidateComputer.page";
+import AddComputerConfirmPage from "./pages/scan/AddComputerConfirm/AddComputerConfirm.page";
 
 setupIonicReact();
 
@@ -44,7 +44,7 @@ const App: React.FC = () => (
                     <IonRouterOutlet>
                         <Route exact path="/scan" component={ScanMenuPage}/>
                         <Route exact path="/scan/add" component={AddComputerPage}/>
-                        <Route exact path="/scan/add/confirm" component={ValidateComputerPage} />
+                        <Route exact path="/scan/add/confirm" component={AddComputerConfirmPage} />
                     </IonRouterOutlet>
                     <IonTabBar slot="bottom">
                         <IonTabButton tab="tab1" href="/tab1">
