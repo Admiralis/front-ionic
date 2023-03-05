@@ -1,8 +1,7 @@
 import React from "react";
 import './ComputerAddForm.component.css'
-import {AsciiInputComponent} from "../Inputs/AsciiInput/AsciiInput.component";
-import {HorizontalDividerComponent} from "../../index";
-import {NewComputer} from "../../../models";
+import {HorizontalDividerComponent, AsciiInputComponent} from "commons/components";
+import {NewComputer} from "commons/models";
 
 interface ComputerAddFormComponentProps {
     computerSerial: string;
