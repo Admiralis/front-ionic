@@ -4,25 +4,13 @@ import CodeScannerComponent from "../../../commons/components/CodeScanner/CodeSc
 import {CardComponent} from "../../../commons/components";
 import './AddComputer.component.css'
 import {ComputerAddFormComponent} from "../../../commons/components/Forms/ComputerAddForm/ComputerAddFormComponent";
-import TinyCardComponent from "../../../commons/components/Cards/TinyCard/TinyCard.component";
+import {NewComputer} from "commons/models";
 
 const AddComputerPage = () => {
 
     const [computerSerial, setComputerSerial] = useState("" as string);
     const [scanning, setScanning] = useState<boolean>(false);
-    const [newComputerInfo, setNewComputerInfo] = useState({
-        computerSerial: "",
-        computerCategory: "",
-        computerRam: "",
-        computerCpu: "",
-        computerState: ""
-    } as {
-        computerSerial: string;
-        computerCategory?: string;
-        computerRam?: string;
-        computerCpu?: string;
-        computerState?: string;
-    });
+    const [newComputerInfo, setNewComputerInfo] = useState<NewComputer>({} as NewComputer);
 
 const handleAddComputer = (serialNumber: string) => {
     setComputerSerial(serialNumber)
@@ -30,7 +18,7 @@ const handleAddComputer = (serialNumber: string) => {
 }
 
 useEffect(() => {
-}, [computerSerial])
+}, [computerSerial, newComputerInfo])
 
 return (
     <IonPage>

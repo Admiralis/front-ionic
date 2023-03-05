@@ -8,6 +8,7 @@ interface AsciiInputComponentProps {
     onIonChange: (e: CustomEvent) => void
 
     required?: boolean
+    placeholder?: string
 }
 
 export function AsciiInputComponent(props: AsciiInputComponentProps) {
@@ -16,7 +17,7 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
             <span className={style.asciiLabel}>{props.required && <span>*</span>}{props.label} &#62;_</span>
             <IonInput
                 value={props.value}
-                placeholder="Numéro de série"
+                placeholder={props.placeholder}
                 onIonChange={props.onIonChange}
                 className={style.asciiInput}
             />
