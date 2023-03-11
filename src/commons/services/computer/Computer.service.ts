@@ -35,6 +35,15 @@ class ComputerService {
             return await this.saveComputer(computer);
         }
     }
+
+    async computerExistsBySerial(serial: string): Promise<boolean> {
+        try {
+            await this.findComputerBySerial(serial);
+            return Promise.resolve(true);
+        } catch (e) {
+            return Promise.resolve(false);
+        }
+    }
 }
 
 export default new ComputerService();

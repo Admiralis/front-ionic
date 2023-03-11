@@ -7,6 +7,7 @@ import {ComputerAddFormComponent} from "commons/components/";
 import {NewComputer} from "commons/models";
 import {Simulate} from "react-dom/test-utils";
 import {useHistory, useLocation} from "react-router";
+import {ComputerService} from "../../../commons/services/computer";
 
 /**
  * Page d'ajout d'un PC
@@ -18,6 +19,7 @@ const AddComputerPage = () => {
     const [scanning, setScanning] = useState<boolean>(false);
     const [newComputerInfo, setNewComputerInfo] = useState<NewComputer>({} as NewComputer);
     const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
+    const [isComputerExisting, setIsComputerExisting] = useState<boolean>(false);
 
     const location = useLocation<{ reScan: boolean }>();
     const history = useHistory();
@@ -53,15 +55,32 @@ const AddComputerPage = () => {
     }, [autoSubmit])
 
     /**
+     * Retourne true si le PC existe déjà dans le BDD
+     */
+    const computerExists = (): void => {
+        ComputerService.computerExistsBySerial(computerSerial).then((computerExists) => {
+            if (computerExists) {
+                setIsComputerExisting(true);
+            }
+        });
+    }
+
+    /**
      * Soumet le formulaire et reset le champ "Serial Number"
      * Redirige vers la page de confirmation
      * @param e
      */
     const handleSubmit = (e: any) => {
         e.preventDefault();
+        setComputerSerial('');
         newComputerInfo.serial = computerSerial;
-        setComputerSerial('')
-        history.push('/scan/add/confirm', {newComputerState: newComputerInfo});
+        computerExists();
+        if (isComputerExisting) {
+            alert('Ce PC existe déjà dans la base de données');
+            setIsComputerExisting(false);
+        } else {
+            history.push('/scan/add/confirm', {newComputerState: newComputerInfo});
+        }
     }
 
     /**
@@ -69,7 +88,7 @@ const AddComputerPage = () => {
      * @param e
      */
     const handleKeyDown = (e: any) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && !isValidateButtonDisabled()) {
             handleSubmit(e);
         }
     }
