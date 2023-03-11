@@ -7,9 +7,13 @@ import {AddComputerFormConfirmComponent} from "./AddComputerFormConfirm/AddCompu
 import {ComputerService} from "commons/services/computer";
 
 const AddComputerFormActions = () => {
+    const router = useHistory();
+    const handleCancel = () => {
+        router.push('/scan/add');
+    };
     return (
         <>
-            <IonButton className="red" type="submit">Annuler</IonButton>
+            <IonButton className="red" onClick={handleCancel}>Annuler</IonButton>
             <IonButton className="green" type="submit">Valider</IonButton>
         </>
     );
@@ -24,7 +28,7 @@ const AddComputerConfirmPage = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         ComputerService.findOrCreateComputerBySerial(newComputerInfo).then(() => {
-            router.push('/scan/add', {newComputerInfo: newComputerInfo});
+            router.push('/scan/add');
         });
     }
 
