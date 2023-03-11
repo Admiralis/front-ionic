@@ -17,21 +17,24 @@ const AddComputerFormActions = () => {
 const AddComputerConfirmPage = () => {
 
     const location = useLocation<{ newComputerInfo: NewComputer }>();
-
-    const [computerSerial, setComputerSerial] = useState(location.state.newComputerInfo.serial as string);
     const [newComputerInfo, setNewComputerInfo] = useState(location.state.newComputerInfo as NewComputer);
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        console.log('Computer',newComputerInfo)
+    }
 
     return (
         <div>
             <IonPage>
                 <IonContent>
-                    <div className="flex-container">
+                    <form className="flex-container" onSubmit={handleSubmit}>
                         <CardComponent
                             title="Valider un PC"
                             content={<AddComputerFormConfirmComponent newComputerInfo={newComputerInfo} setNewComputerInfo={setNewComputerInfo} /> }
                             actions={<AddComputerFormActions />}
                         />
-                    </div>
+                    </form>
                 </IonContent>
             </IonPage>
         </div>

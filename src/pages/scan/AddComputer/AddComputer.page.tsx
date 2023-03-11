@@ -36,6 +36,10 @@ const AddComputerPage = () => {
         }
     }
 
+    const isValidateButtonDisabled = () => {
+        return computerSerial.length < 7;
+    }
+
     return (
         <IonPage>
             <IonContent onKeyDown={handleKeyDown}>
@@ -51,7 +55,7 @@ const AddComputerPage = () => {
                             />
                         }
                         actions={
-                            <IonButton className="green" type="submit" >
+                            <IonButton className="green" type="submit" disabled={isValidateButtonDisabled()}>
                                     Ajouter PC
                             </IonButton>
                         }

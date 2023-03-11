@@ -40,7 +40,8 @@ const LinuxButtonComponent = (props: LinuxButtonProps) => {
         }
     }
 
-    const handleClick = () => {
+    const handleClick = (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
         props.onClick && props.onClick()
     }
 

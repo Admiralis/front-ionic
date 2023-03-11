@@ -18,12 +18,6 @@ export const AddComputerFormConfirmComponent = (props: AddComputerFormConfirmCom
             <AsciiInputComponent
                 value={props.newComputerInfo.serial}
                 label="SerialNumber"
-                onIonChange={e => {
-                    props.setNewComputerInfo({
-                        ...props.newComputerInfo,
-                        serial: e.detail.value!
-                    })
-                }}
             />
             <CommentsComponent comments={props.newComputerInfo.comments}
                                setComments={(comments) => props.setNewComputerInfo(

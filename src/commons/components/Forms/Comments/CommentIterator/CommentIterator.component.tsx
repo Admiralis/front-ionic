@@ -1,5 +1,5 @@
 import ComputerComment from "../../../../models/computer/ComputerComment";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {LinuxButtonComponent} from "../../../Buttons";
 import {AsciiInputComponent} from "../../Inputs/AsciiInput/AsciiInput.component";
 import styles from "./CommentIterator.module.css";
@@ -17,14 +17,16 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
         props.setComments && props.setComments(props.comments || []);
     }, [])
 
-    const addComment = (comment: string) => {
-        props.setComments && props.setComments([...props.comments!, {content: comment} as ComputerComment])
+    const addComment = () => {
+        props.setComments && props.setComments([...props.comments!, {content: newComment} as ComputerComment])
         setNewComment("");
     }
 
     const removeComment = (index: number) => {
         props.setComments && props.setComments(props.comments!.filter((_, i) => i !== index))
     }
+
+    const [autoFocus, setAutoFocus] = useState(false);
 
     return (
         <>
@@ -51,10 +53,11 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
                 <AsciiInputComponent label="" value={newComment}
                                      onIonChange={(e: any) => setNewComment(e.target.value)}
                                      smallText
+                                     id="newCommentInput"
                 />
                 <LinuxButtonComponent
                     small
-                    onClick={() => addComment(newComment)}
+                    onClick={() => addComment()}
                 />
             </div>
         </>
