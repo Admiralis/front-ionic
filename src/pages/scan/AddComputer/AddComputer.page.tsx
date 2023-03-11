@@ -8,6 +8,7 @@ import {NewComputer} from "commons/models";
 import {Simulate} from "react-dom/test-utils";
 import {useHistory, useLocation} from "react-router";
 import {ComputerService} from "../../../commons/services/computer";
+import AlreadyExistsModalComponent from "./AlreadyExistsModal/AlreadyExistsModal.component";
 
 /**
  * Page d'ajout d'un PC
@@ -19,7 +20,7 @@ const AddComputerPage = () => {
     const [scanning, setScanning] = useState<boolean>(false);
     const [newComputerInfo, setNewComputerInfo] = useState<NewComputer>({} as NewComputer);
     const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
-    const [isComputerExisting, setIsComputerExisting] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(false);
 
     const location = useLocation<{ reScan: boolean }>();
     const history = useHistory();
@@ -35,7 +36,7 @@ const AddComputerPage = () => {
     }, [])
 
     useEffect(() => {
-        // Prévient les erreur lors des changements de page
+        // Prévient les erreurs lors des changements de page
         if (!location.state) {
             return;
         }
@@ -55,14 +56,35 @@ const AddComputerPage = () => {
     }, [autoSubmit])
 
     /**
-     * Retourne true si le PC existe déjà dans le BDD
+     * Vérifie si l'ordinateur existe
+     * Si oui, ouvre la modale
+     * Sinon, redirige vers la page de confirmation
      */
-    const computerExists = (): void => {
+    const checkIfExistsAndSend = (): void => {
         ComputerService.computerExistsBySerial(computerSerial).then((computerExists) => {
             if (computerExists) {
-                setIsComputerExisting(true);
+                openDialogAndReset();
+            } else {
+                goNextStep();
             }
         });
+    }
+
+    /**
+     * Ouvre la modale et reset le champ "Serial Number"
+     */
+    function openDialogAndReset() {
+        setComputerSerial('');
+        setOpen(true);
+    }
+
+    /**
+     * Redirige vers la page de confirmation
+     */
+    function goNextStep() {
+        newComputerInfo.serial = computerSerial;
+        setComputerSerial('');
+        history.push('/scan/add/confirm', {newComputerState: newComputerInfo});
     }
 
     /**
@@ -72,15 +94,7 @@ const AddComputerPage = () => {
      */
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        setComputerSerial('');
-        newComputerInfo.serial = computerSerial;
-        computerExists();
-        if (isComputerExisting) {
-            alert('Ce PC existe déjà dans la base de données');
-            setIsComputerExisting(false);
-        } else {
-            history.push('/scan/add/confirm', {newComputerState: newComputerInfo});
-        }
+        checkIfExistsAndSend();
     }
 
     /**
@@ -131,6 +145,7 @@ const AddComputerPage = () => {
                     </span>
                 </form>
             </IonContent>
+            <AlreadyExistsModalComponent isOpen={open} setIsOpen={setOpen}/>
         </IonPage>
     );
 };

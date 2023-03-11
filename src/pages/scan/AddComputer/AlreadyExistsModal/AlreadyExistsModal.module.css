@@ -1,0 +1,43 @@
+.modal {
+    height: 20%;
+    width: 80%;
+    margin: auto;
+    background-color: #193549;
+    border-radius: 5px;
+}
+
+.modal::part(backdrop) {
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+}
+
+.header {
+    color: #FFC600;
+    font-family: "Roboto", serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #FFC600;
+    background: #142C3E;
+}
+
+.body {
+    font-family: "Courier New", serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: #193549;
+}
+
+ion-modal {
+    --border-radius: 5px;
+    background: #193549;
+    border: 1px solid black;
+    box-shadow: 0 0 20px 2000px rgba(0, 0, 0, 0.7);
+}
+
+.buttonContainer {
+    margin: 0 10px 10px 10px;
+}
