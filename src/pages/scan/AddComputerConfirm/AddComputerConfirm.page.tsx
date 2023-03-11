@@ -21,7 +21,10 @@ const AddComputerConfirmPage = () => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log('Computer',newComputerInfo)
+        setNewComputerInfo({
+            ...newComputerInfo
+        } as NewComputer)
+        console.log(newComputerInfo)
     }
 
     return (

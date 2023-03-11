@@ -3,6 +3,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {LinuxButtonComponent} from "../../../Buttons";
 import {AsciiInputComponent} from "../../Inputs/AsciiInput/AsciiInput.component";
 import styles from "./CommentIterator.module.css";
+import {ellipse} from "ionicons/icons";
 
 interface CommentIteratorProps {
     comments?: ComputerComment[]
@@ -18,6 +19,9 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
     }, [])
 
     const addComment = () => {
+        if (newComment.trim().length === 0) {
+            return;
+        }
         props.setComments && props.setComments([...props.comments!, {content: newComment} as ComputerComment])
         setNewComment("");
     }
