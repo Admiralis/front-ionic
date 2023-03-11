@@ -2,9 +2,9 @@ import ComputerComment from "./ComputerComment";
 
 export default interface NewComputer {
     serial: string;
-    category?: string;
-    ram?: string;
-    processor?: string;
-    condition?: string;
-    comments?: ComputerComment[];
+    category: string | null;
+    ram: string| null;
+    processor: string| null;
+    condition: string| null;
+    comments: ComputerComment[];
 }

@@ -20,13 +20,22 @@ const AddComputerPage = () => {
     }
 
     useEffect(() => {
-    }, [computerSerial, newComputerInfo])
+        if (!newComputerInfo) {
+            setNewComputerInfo({} as NewComputer)
+        } else {
+            setNewComputerInfo(newComputerInfo)
+        }
+    }, [])
 
+    useEffect(() => {
+    }, [computerSerial, newComputerInfo])
 
     const history = useHistory();
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
+        newComputerInfo.serial = computerSerial;
+        setComputerSerial('')
         history.push('/scan/add/confirm', {newComputerInfo: newComputerInfo});
     }
 
@@ -56,7 +65,7 @@ const AddComputerPage = () => {
                         }
                         actions={
                             <IonButton className="green" type="submit" disabled={isValidateButtonDisabled()}>
-                                    Ajouter PC
+                                Ajouter PC
                             </IonButton>
                         }
                     />
