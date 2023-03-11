@@ -36,7 +36,7 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
                                 label=""
                                 value={comment.content}
                                 smallText
-                                noPrompt
+                                disabled
                             />
                             <LinuxButtonComponent
                                 color="red"
