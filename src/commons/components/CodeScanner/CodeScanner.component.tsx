@@ -7,6 +7,7 @@ interface CodeScannerComponentProps {
     setComputerSerial: (result: string) => void;
     setScanning: (scanning: boolean) => void;
     scanning: boolean;
+    setAutoSubmit: (autoSubmit: boolean) => void;
 }
 
 const CodeScannerComponent = (props: CodeScannerComponentProps) => {
@@ -28,6 +29,9 @@ const CodeScannerComponent = (props: CodeScannerComponentProps) => {
             if (result.hasContent && result.content) {
                 await stopScanning();
                 setScanResult(result.content);
+                setTimeout(() => {
+                props.setAutoSubmit(true);
+                }, 1000);
             }
         } else {
             await BarcodeScanner.openAppSettings();

@@ -13,6 +13,7 @@ const AddComputerPage = () => {
     const [computerSerial, setComputerSerial] = useState("" as string);
     const [scanning, setScanning] = useState<boolean>(false);
     const [newComputerInfo, setNewComputerInfo] = useState<NewComputer>({} as NewComputer);
+    const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
 
     const handleAddComputer = (serialNumber: string) => {
         setComputerSerial(serialNumber)
@@ -29,6 +30,13 @@ const AddComputerPage = () => {
 
     useEffect(() => {
     }, [computerSerial, newComputerInfo])
+
+    useEffect(() => {
+        if (autoSubmit) {
+            Simulate.submit(document.querySelector('form') as HTMLFormElement)
+            setAutoSubmit(false)
+        }
+    }, [autoSubmit])
 
     const history = useHistory();
 
@@ -71,8 +79,12 @@ const AddComputerPage = () => {
                     />
                     <span className="scan-button">
 
-                    <CodeScannerComponent setComputerSerial={handleAddComputer} scanning={scanning}
-                                          setScanning={setScanning}/>
+                    <CodeScannerComponent
+                        setComputerSerial={handleAddComputer}
+                        scanning={scanning}
+                        setScanning={setScanning}
+                        setAutoSubmit={setAutoSubmit}
+                    />
                     </span>
                 </form>
             </IonContent>
