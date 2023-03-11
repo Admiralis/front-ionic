@@ -20,15 +20,10 @@ const AddComputerPage = () => {
         //TODO: Submit form
     }
 
-    useEffect(() => {
-        if (!newComputerInfo) {
-            setNewComputerInfo({} as NewComputer)
-        } else {
-            setNewComputerInfo(newComputerInfo)
-        }
-    }, [])
+
 
     useEffect(() => {
+
     }, [computerSerial, newComputerInfo])
 
     useEffect(() => {

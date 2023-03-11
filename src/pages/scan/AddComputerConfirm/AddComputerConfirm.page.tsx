@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {CardComponent} from "commons/components";
 import {useHistory, useLocation} from "react-router";
@@ -9,7 +9,7 @@ import {ComputerService} from "commons/services/computer";
 const AddComputerFormActions = () => {
     const router = useHistory();
     const handleCancel = () => {
-        router.push('/scan/add');
+        router.push('/scan/add', {newComputerInfo: {}});
     };
     return (
         <>
@@ -25,10 +25,17 @@ const AddComputerConfirmPage = () => {
     const [newComputerInfo, setNewComputerInfo] = useState(location.state.newComputerInfo as NewComputer);
     const router = useHistory();
 
+    useEffect(() => {
+        setNewComputerInfo({
+            ...location.state.newComputerInfo,
+            comments: []
+        });
+    }, [location.state.newComputerInfo]);
+
     const handleSubmit = (e: any) => {
         e.preventDefault();
         ComputerService.findOrCreateComputerBySerial(newComputerInfo).then(() => {
-            router.push('/scan/add');
+            router.push('/scan/add', {newComputerInfo: {}});
         });
     }
 
