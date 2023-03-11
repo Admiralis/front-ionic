@@ -27,6 +27,9 @@ const AddComputerPage = () => {
     }, [])
 
     useEffect(() => {
+        if (!location.state) {
+            return;
+        }
         // Ouvre automatiquement la caméra si on vient de la page de confirmation
         if (isPlatform('android') && location.state.reScan) {
             setScanning(true);
