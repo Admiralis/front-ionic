@@ -31,7 +31,8 @@ export const AddComputerFormConfirmComponent = (props: AddComputerFormConfirmCom
                                        ...props.newComputerInfo,
                                        comments: comments
                                    }
-                               )}/>
+                               )}
+            />
         </div>
     )
 }
