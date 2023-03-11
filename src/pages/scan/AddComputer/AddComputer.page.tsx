@@ -40,6 +40,9 @@ const AddComputerPage = () => {
         if (!location.state) {
             return;
         }
+        if (isPlatform('mobileweb')) {
+            return;
+        }
         // Ouvre automatiquement la caméra si on vient de la page de confirmation
         if (isPlatform('android') && location.state.reScan) {
             setScanning(true);
