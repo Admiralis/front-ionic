@@ -12,11 +12,11 @@ interface CodeScannerComponentProps {
 
 const CodeScannerComponent = (props: CodeScannerComponentProps) => {
 
-    const [scanResult, setScanResult] = useState<string>("");
-
     useEffect(() => {
-        props.setComputerSerial(scanResult);
-    }, [scanResult])
+        if (isPlatform('android') && props.scanning) {
+            startScanning();
+        }
+    }, [props.scanning])
 
     const startScanning = async () => {
         const body = document.querySelector('body')
@@ -28,7 +28,7 @@ const CodeScannerComponent = (props: CodeScannerComponentProps) => {
             const result = await BarcodeScanner.startScan();
             if (result.hasContent && result.content) {
                 await stopScanning();
-                setScanResult(result.content);
+                props.setComputerSerial(result.content);
                 setTimeout(() => {
                 props.setAutoSubmit(true);
                 }, 1000);
@@ -47,6 +47,7 @@ const CodeScannerComponent = (props: CodeScannerComponentProps) => {
     }
 
     const checkAvailable = () => {
+
         if (isPlatform('mobileweb')) {
             return false;
         } else return isPlatform('android');

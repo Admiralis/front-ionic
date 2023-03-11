@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {IonButton, IonContent, IonPage} from "@ionic/react";
+import {IonButton, IonContent, IonPage, isPlatform} from "@ionic/react";
 import CodeScannerComponent from "../../../commons/components/CodeScanner/CodeScanner.component";
 import {CardComponent} from "../../../commons/components";
 import './AddComputer.component.css'
 import {ComputerAddFormComponent} from "commons/components/";
 import {NewComputer} from "commons/models";
 import {Simulate} from "react-dom/test-utils";
-import {useHistory} from "react-router";
+import {useHistory, useLocation} from "react-router";
 
 const AddComputerPage = () => {
 
@@ -15,26 +15,34 @@ const AddComputerPage = () => {
     const [newComputerInfo, setNewComputerInfo] = useState<NewComputer>({} as NewComputer);
     const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
 
-    const handleAddComputer = (serialNumber: string) => {
-        setComputerSerial(serialNumber)
-        //TODO: Submit form
-    }
-
-
+    const location = useLocation<{ reScan: boolean }>();
+    const history = useHistory();
 
     useEffect(() => {
 
-    }, [computerSerial, newComputerInfo])
+    }, [computerSerial, newComputerInfo]);
 
     useEffect(() => {
+        // Ouvre automatiquement la caméra si on vient de la page de confirmation
+        if (isPlatform('android') && location.state.reScan) {
+            setScanning(true);
+        }
+    }, [location.state]);
+
+    useEffect(() => {
+        // Soumet automatiquement le formulaire si un code a été scanné
         if (autoSubmit) {
             Simulate.submit(document.querySelector('form') as HTMLFormElement)
+            setScanning(false)
             setAutoSubmit(false)
         }
     }, [autoSubmit])
 
-    const history = useHistory();
-
+    /**
+     * Soumet le formulaire et reset le champ "Serial Number"
+     * Redirige vers la page de confirmation
+     * @param e
+     */
     const handleSubmit = (e: any) => {
         e.preventDefault();
         newComputerInfo.serial = computerSerial;
@@ -42,12 +50,19 @@ const AddComputerPage = () => {
         history.push('/scan/add/confirm', {newComputerInfo: newComputerInfo});
     }
 
+    /**
+     * Soumet le formulaire si la touche "Entrée" est pressée
+     * @param e
+     */
     const handleKeyDown = (e: any) => {
         if (e.key === 'Enter') {
             handleSubmit(e);
         }
     }
 
+    /**
+     * Est à true si le numéro de série est plus petit que 7 caractères
+     */
     const isValidateButtonDisabled = () => {
         return computerSerial.length < 7;
     }
@@ -75,7 +90,7 @@ const AddComputerPage = () => {
                     <span className="scan-button">
 
                     <CodeScannerComponent
-                        setComputerSerial={handleAddComputer}
+                        setComputerSerial={setComputerSerial}
                         scanning={scanning}
                         setScanning={setScanning}
                         setAutoSubmit={setAutoSubmit}

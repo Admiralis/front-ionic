@@ -35,7 +35,7 @@ const AddComputerConfirmPage = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         ComputerService.findOrCreateComputerBySerial(newComputerInfo).then(() => {
-            router.push('/scan/add', {newComputerInfo: {}});
+            router.push('/scan/add', {newComputerInfo: {}, reScan: true});
         });
     }
 
