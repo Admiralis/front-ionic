@@ -26,8 +26,6 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
         props.setComments && props.setComments(props.comments!.filter((_, i) => i !== index))
     }
 
-    const [autoFocus, setAutoFocus] = useState(false);
-
     return (
         <>
             {
@@ -53,7 +51,6 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
                 <AsciiInputComponent label="" value={newComment}
                                      onIonChange={(e: any) => setNewComment(e.target.value)}
                                      smallText
-                                     id="newCommentInput"
                 />
                 <LinuxButtonComponent
                     small
