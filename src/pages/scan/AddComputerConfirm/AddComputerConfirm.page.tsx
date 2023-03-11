@@ -9,7 +9,7 @@ import {ComputerService} from "commons/services/computer";
 const AddComputerFormActions = () => {
     const router = useHistory();
     const handleCancel = () => {
-        router.push('/scan/add', {newComputerInfo: {}});
+        router.push('/scan/add', {newComputerState: {} as NewComputer});
     };
     return (
         <>
@@ -21,16 +21,22 @@ const AddComputerFormActions = () => {
 
 const AddComputerConfirmPage = () => {
 
-    const location = useLocation<{ newComputerInfo: NewComputer }>();
-    const [newComputerInfo, setNewComputerInfo] = useState(location.state.newComputerInfo as NewComputer);
+    const location = useLocation<{ newComputerState: NewComputer }>();
+    const [newComputerInfo, setNewComputerInfo] = useState({} as NewComputer);
     const router = useHistory();
 
     useEffect(() => {
+
+        if (!location.state) {
+            return;
+        }
+
         setNewComputerInfo({
-            ...location.state.newComputerInfo,
+            ...location.state.newComputerState,
             comments: []
         });
-    }, [location.state.newComputerInfo]);
+
+    }, [location.state]);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();

@@ -51,7 +51,7 @@ const AddComputerPage = () => {
         e.preventDefault();
         newComputerInfo.serial = computerSerial;
         setComputerSerial('')
-        history.push('/scan/add/confirm', {newComputerInfo: newComputerInfo});
+        history.push('/scan/add/confirm', {newComputerState: newComputerInfo});
     }
 
     /**
