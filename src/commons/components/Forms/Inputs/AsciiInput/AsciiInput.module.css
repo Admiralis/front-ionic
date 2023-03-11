@@ -14,6 +14,14 @@
     margin-left: 5%;
 }
 
+.asciiSmallLabel {
+    font-size: 0.8em;
+    color: #43BC3D;
+    --ion-text-color: #43BC3D;
+    text-align: end;
+    margin-left: 5%;
+}
+
 .asciiInput {
     font-family: "Courier New", Courier, monospace;
     text-transform: none;
@@ -21,4 +29,22 @@
     background-color: #303030;
     text-align: start;
     height: 30px;
+}
+
+.asciiSmallInput {
+    font-size: 0.8em;
+    font-family: "Courier New", Courier, monospace;
+    text-transform: none;
+    --ion-background-color: #303030;
+    background-color: #303030;
+    text-align: start;
+    height: 30px;
+}
+
+.prompt {
+    font-size: 0.8em;
+}
+
+.littlePrompt {
+    font-size: 0.6em;
 }

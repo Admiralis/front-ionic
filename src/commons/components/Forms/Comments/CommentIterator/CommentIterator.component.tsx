@@ -1,5 +1,5 @@
 import ComputerComment from "../../../../models/computer/ComputerComment";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {LinuxButtonComponent} from "../../../Buttons";
 import {AsciiInputComponent} from "../../Inputs/AsciiInput/AsciiInput.component";
 import styles from "./CommentIterator.module.css";
@@ -12,10 +12,14 @@ interface CommentIteratorProps {
 export const CommentIteratorComponent = (props: CommentIteratorProps) => {
     const [newComment, setNewComment] = useState("" as string);
 
+    useEffect(() => {
+        setNewComment("");
+        props.setComments && props.setComments(props.comments || []);
+    }, [])
+
     const addComment = (comment: string) => {
-        props.setComments && props.setComments([...props.comments!, {content: comment}])
-        console.log("New comment", comment)
-        console.log("Comments", props.comments)
+        props.setComments && props.setComments([...props.comments!, {content: comment} as ComputerComment])
+        setNewComment("");
     }
 
     const removeComment = (index: number) => {
@@ -27,16 +31,27 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
             {
                 props.comments && props.comments.map((comment, index) => {
                     return (
-                        <span key={index} className={styles.commentBox}>
-                        <p>{comment.content}</p>
-                        <LinuxButtonComponent color="red" small/>
-                    </span>
+                        <div key={index} className={styles.commentBox}>
+                            <AsciiInputComponent
+                                label=""
+                                value={comment.content}
+                                smallText
+                                noPrompt
+                            />
+                            <LinuxButtonComponent
+                                color="red"
+                                small
+                                onClick={() => removeComment(index)}
+                            />
+                        </div>
                     )
                 })
             }
             <div className={styles.commentBox}>
-                <AsciiInputComponent label="Commentaire" value={newComment}
-                                     onIonChange={(e: any) => setNewComment(e.target.value)}/>
+                <AsciiInputComponent label="" value={newComment}
+                                     onIonChange={(e: any) => setNewComment(e.target.value)}
+                                     smallText
+                />
                 <LinuxButtonComponent
                     small
                     onClick={() => addComment(newComment)}
