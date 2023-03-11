@@ -19,8 +19,12 @@ const AddComputerPage = () => {
     const history = useHistory();
 
     useEffect(() => {
-
+        setComputerSerial(computerSerial.toUpperCase());
     }, [computerSerial, newComputerInfo]);
+
+    useEffect(() => {
+        location.state = {reScan: false};
+    }, [])
 
     useEffect(() => {
         // Ouvre automatiquement la caméra si on vient de la page de confirmation
@@ -33,7 +37,7 @@ const AddComputerPage = () => {
         // Soumet automatiquement le formulaire si un code a été scanné
         if (autoSubmit) {
             Simulate.submit(document.querySelector('form') as HTMLFormElement)
-            setScanning(false)
+            setScanning(false);
             setAutoSubmit(false)
         }
     }, [autoSubmit])
