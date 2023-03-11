@@ -8,6 +8,10 @@ import {NewComputer} from "commons/models";
 import {Simulate} from "react-dom/test-utils";
 import {useHistory, useLocation} from "react-router";
 
+/**
+ * Page d'ajout d'un PC
+ * Permet de remplir les champs du formulaire et de scanner le code-barres du PC
+ */
 const AddComputerPage = () => {
 
     const [computerSerial, setComputerSerial] = useState("" as string);
@@ -19,6 +23,8 @@ const AddComputerPage = () => {
     const history = useHistory();
 
     useEffect(() => {
+        // Met le numéro de série en toute majuscule
+        // La double dépendance assure le bon rafraichissement des données
         setComputerSerial(computerSerial.toUpperCase());
     }, [computerSerial, newComputerInfo]);
 
@@ -27,6 +33,7 @@ const AddComputerPage = () => {
     }, [])
 
     useEffect(() => {
+        // Prévient les erreur lors des changements de page
         if (!location.state) {
             return;
         }

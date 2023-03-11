@@ -19,6 +19,10 @@ const AddComputerFormActions = () => {
     );
 }
 
+/**
+ * Page de confirmation de l'ajout d'un PC
+ * Reprend les informations du formulaire '/add' et permet d'y ajouter des commentaires au PC
+ */
 const AddComputerConfirmPage = () => {
 
     const location = useLocation<{ newComputerState: NewComputer }>();
@@ -38,6 +42,11 @@ const AddComputerConfirmPage = () => {
 
     }, [location.state]);
 
+    /**
+     * Soumet le formulaire et redirige vers la page de scan
+     * Passe le paramètre "reScan" à true pour ouvrir automatiquement la caméra sur Android
+     * @param e
+     */
     const handleSubmit = (e: any) => {
         e.preventDefault();
         ComputerService.findOrCreateComputerBySerial(newComputerInfo).then(() => {

@@ -13,11 +13,15 @@ interface CodeScannerComponentProps {
 const CodeScannerComponent = (props: CodeScannerComponentProps) => {
 
     useEffect(() => {
+        // Si true, on ouvre la caméra (Android uniquement)
         if (isPlatform('android') && props.scanning) {
             startScanning();
         }
     }, [props.scanning])
 
+    /**
+     * Scan le code-barre et affecte le résultat au state computerSerial du parent
+     */
     const startScanning = async () => {
         const body = document.querySelector('body')
         body?.classList.add('scanner-active');
@@ -38,6 +42,9 @@ const CodeScannerComponent = (props: CodeScannerComponentProps) => {
         }
     };
 
+    /**
+     * Arrête le scan et réaffiche le fond de l'application
+     */
     const stopScanning = async () => {
         const body = document.querySelector('body')
         body?.classList.remove('scanner-active');
@@ -46,6 +53,9 @@ const CodeScannerComponent = (props: CodeScannerComponentProps) => {
         props.setScanning(false);
     }
 
+    /**
+     * Vérifie si la plateforme est Android
+     */
     const checkAvailable = () => {
 
         if (isPlatform('mobileweb')) {
