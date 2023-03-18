@@ -32,33 +32,38 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import React from "react";
 import ScanMenuPage from "./pages/scan/ScanMenu/ScanMenu.page";
+import AddComputerPage from "./pages/scan/AddComputer/AddComputer.page";
+import AddComputerConfirmPage from "./pages/scan/AddComputerConfirm/AddComputerConfirm.page";
 
 setupIonicReact();
 
 const App: React.FC = () => (
-    <IonApp>
-        <IonReactRouter>
-            <IonTabs>
-                <IonRouterOutlet>
-                    <Route exact path="/scan" component={ScanMenuPage} />
-                </IonRouterOutlet>
-                <IonTabBar slot="bottom">
-                    <IonTabButton tab="tab1" href="/tab1">
-                        <IonIcon aria-hidden="true" icon={laptop}/>
-                        <IonLabel>Parc</IonLabel>
-                    </IonTabButton>
-                    <IonTabButton tab="scan" href="/scan">
-                        <IonIcon aria-hidden="true" icon={barcode}/>
-                        <IonLabel>Scanner</IonLabel>
-                    </IonTabButton>
-                    <IonTabButton tab="tab3" href="/tab3">
-                        <IonIcon aria-hidden="true" icon={settings}/>
-                        <IonLabel>Paramètres</IonLabel>
-                    </IonTabButton>
-                </IonTabBar>
-            </IonTabs>
-        </IonReactRouter>
-    </IonApp>
-);
+        <IonApp>
+            <IonReactRouter>
+                <IonTabs>
+                    <IonRouterOutlet>
+                        <Route exact path="/scan" component={ScanMenuPage}/>
+                        <Route exact path="/scan/add" component={AddComputerPage}/>
+                        <Route exact path="/scan/add/confirm" component={AddComputerConfirmPage} />
+                    </IonRouterOutlet>
+                    <IonTabBar slot="bottom">
+                        <IonTabButton tab="tab1" href="/tab1">
+                            <IonIcon aria-hidden="true" icon={laptop}/>
+                            <IonLabel>Parc</IonLabel>
+                        </IonTabButton>
+                        <IonTabButton tab="scan" href="/scan">
+                            <IonIcon aria-hidden="true" icon={barcode}/>
+                            <IonLabel>Scanner</IonLabel>
+                        </IonTabButton>
+                        <IonTabButton tab="tab3" href="/tab3">
+                            <IonIcon aria-hidden="true" icon={settings}/>
+                            <IonLabel>Paramètres</IonLabel>
+                        </IonTabButton>
+                    </IonTabBar>
+                </IonTabs>
+            </IonReactRouter>
+        </IonApp>
+    )
+;
 
 export default App;

@@ -98,6 +98,13 @@ http://ionicframework.com/docs/theming/ */
     align-items: center;
 }
 
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 /** Buttons **/
 
 ion-button {
@@ -146,6 +153,10 @@ ion-button.large {
 ion-button.veryLarge {
     width: 330px;
     height: 40px;
+}
+
+button {
+    background-color: transparent;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -318,3 +329,13 @@ Fonts
     src: url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Roboto+Mono&display=swap');
 }
 
+body.scanner-active {
+    --background: transparent;
+    --ion-background-color: transparent;
+}
+
+.scanPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

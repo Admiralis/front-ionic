@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@capacitor-community/barcode-scanner": "^3.0.1",
     "@capacitor/android": "4.7.0",
     "@capacitor/app": "4.1.1",
     "@capacitor/camera": "^4.1.4",
@@ -12,6 +13,8 @@
     "@capacitor/keyboard": "4.1.1",
     "@capacitor/preferences": "^4.0.2",
     "@capacitor/status-bar": "4.1.1",
+    "@ionic-native/barcode-scanner": "^5.36.0",
+    "@ionic-native/core": "^5.36.0",
     "@ionic/pwa-elements": "^3.1.1",
     "@ionic/react": "^6.0.0",
     "@ionic/react-router": "^6.0.0",
@@ -51,7 +54,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
     "eject": "react-scripts eject",
-    "dev": "ionic capacitor run android -l --external"
+    "dev": "ionic capacitor run android -l --external --consolelogs"
   },
   "eslintConfig": {
     "extends": [
