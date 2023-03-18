@@ -4,6 +4,7 @@ import './Card.module.css';
 import {CardButtonsComponent} from "../components/CardButtons/CardButtons.component";
 import {CardAlertComponent} from "../components/CardAlert/CardAlert.component";
 import {CardContentComponent} from "../components/CardContent/CardContent.component";
+import styles from "../TinyCard/TinyCard.module.css";
 
 interface CardProps {
     title: string;
@@ -12,9 +13,11 @@ interface CardProps {
     subtitle?: string;
     collapsible?: boolean;
     alert?: boolean;
+    tiny?: boolean;
 }
 
 const CardComponent = (props: CardProps) => {
+    const {title, subtitle, content, actions, collapsible, alert, tiny} = props;
     const [collapsed, setCollapsed] = React.useState(false);
     const handleCollapse = () => {
         setCollapsed(!collapsed);
@@ -22,19 +25,19 @@ const CardComponent = (props: CardProps) => {
 
     return (
         <IonCard>
-            <IonCardHeader onClick={handleCollapse}>
-                <CardButtonsComponent collapsible={props.collapsible} collapsed={collapsed} />
+            <IonCardHeader onClick={handleCollapse} className={tiny ? styles.header : ''}>
+                <CardButtonsComponent collapsible={collapsible} collapsed={collapsed} small={tiny} />
                 <div>
-                    <IonCardTitle>{props.title}</IonCardTitle>
-                    <IonCardSubtitle>{props.subtitle}</IonCardSubtitle>
+                    <IonCardTitle className={tiny ? styles.title : ''}>{title}</IonCardTitle>
+                    tiny && <IonCardSubtitle>{subtitle}</IonCardSubtitle>
                 </div>
-                <CardAlertComponent alert={props.alert}/>
+                <CardAlertComponent alert={alert} small={tiny}/>
             </IonCardHeader>
             <CardContentComponent
-                collapsible={props.collapsible}
+                collapsible={collapsible}
                  collapsed={collapsed}
-                 content={props.content || <></>}
-                 actions={props.actions}
+                 content={content || <></>}
+                 actions={actions}
             />
         </IonCard>
     );

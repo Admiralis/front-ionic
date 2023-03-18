@@ -9,6 +9,7 @@ import {Simulate} from "react-dom/test-utils";
 import {useHistory, useLocation} from "react-router";
 import {ComputerService} from "../../../commons/services/computer";
 import AlreadyExistsModalComponent from "./AlreadyExistsModal/AlreadyExistsModal.component";
+import useComputers from "../../../commons/hooks/computers/useComputers";
 
 /**
  * Page d'ajout d'un PC
@@ -24,6 +25,11 @@ const AddComputerPage = () => {
 
     const location = useLocation<{ reScan: boolean }>();
     const history = useHistory();
+
+    const {computers, isLoading, error} = useComputers();
+    useEffect(() => {
+        console.log('computers hook : ', computers);
+    })
 
     useEffect(() => {
         // Met le numéro de série en toute majuscule
