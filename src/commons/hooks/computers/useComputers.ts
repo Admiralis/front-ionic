@@ -1,4 +1,4 @@
-import {Computer} from "../../models";
+import {Computer, NewComputer} from "../../models";
 import {useEffect, useState} from "react";
 import computerService from "../../services/computer/Computer.service";
 
@@ -18,12 +18,10 @@ const useComputers = () => {
         })
     }, [])
 
-    const addComputer = (computer: Computer) => {
-        setComputers([...computers, computer])
-
-        computerService.saveComputer(computer).then((computer) => {
+    const addComputer = (newComputer: NewComputer) => {
+        computerService.saveComputer(newComputer).then((newComputer) => {
             setError(null)
-            setComputers([...computers, computer])
+            setComputers([...computers, newComputer])
         }).catch((e) => {
             setError(e.message)
         })

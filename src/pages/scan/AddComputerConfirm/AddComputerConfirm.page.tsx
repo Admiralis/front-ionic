@@ -5,6 +5,7 @@ import {useHistory, useLocation} from "react-router";
 import {NewComputer} from "commons/models";
 import {AddComputerFormConfirmComponent} from "./AddComputerFormConfirm/AddComputerFormConfirm.component";
 import {ComputerService} from "commons/services/computer";
+import useComputers from "../../../commons/hooks/computers/useComputers";
 
 const AddComputerFormActions = () => {
     const router = useHistory();
@@ -28,6 +29,7 @@ const AddComputerConfirmPage = () => {
     const location = useLocation<{ newComputerState: NewComputer }>();
     const [newComputerInfo, setNewComputerInfo] = useState({} as NewComputer);
     const router = useHistory();
+    const {addComputer} = useComputers();
 
     useEffect(() => {
 
@@ -49,9 +51,8 @@ const AddComputerConfirmPage = () => {
      */
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        ComputerService.findOrCreateComputerBySerial(newComputerInfo).then(() => {
-            router.push('/scan/add', {reScan: true});
-        });
+        addComputer(newComputerInfo);
+        router.push('/scan/add', {reScan: true});
     }
 
     return (

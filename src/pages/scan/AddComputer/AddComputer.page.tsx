@@ -26,11 +26,6 @@ const AddComputerPage = () => {
     const location = useLocation<{ reScan: boolean }>();
     const history = useHistory();
 
-    const {computers, isLoading, error} = useComputers();
-    useEffect(() => {
-        console.log('computers hook : ', computers);
-    })
-
     useEffect(() => {
         // Met le numéro de série en toute majuscule
         // La double dépendance assure le bon rafraichissement des données
