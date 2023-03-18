@@ -10,6 +10,13 @@ interface CommentsComponentProps {
 
 export const CommentsComponent = (props: CommentsComponentProps) => {
     return (
-        <TinyCardComponent title={"Commentaires"} content={<CommentIteratorComponent comments={props.comments} setComments={props.setComments}/>}/>
+        <TinyCardComponent
+            title={"Commentaires"}
+            content={
+            <CommentIteratorComponent
+                comments={props.comments}
+                setComments={props.setComments}
+            />}
+        />
     )
 }

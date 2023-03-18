@@ -29,11 +29,13 @@
     align-items: center;
     height: 100%;
     background: #193549;
+    font-size: 1.5em;
 }
 
 ion-modal {
     --border-radius: 5px;
     background: #193549;
+    color: #CCCCCC;
     border: 1px solid black;
     box-shadow: 0 0 20px 2000px rgba(0, 0, 0, 0.7);
 }

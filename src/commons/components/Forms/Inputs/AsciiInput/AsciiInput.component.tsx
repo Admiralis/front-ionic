@@ -11,6 +11,7 @@ interface AsciiInputComponentProps {
     placeholder?: string
     smallText?: boolean
     disabled?: boolean
+    onBlur?: (e: any) => void
 }
 
 /**
@@ -36,6 +37,7 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
                 onIonChange={props.onIonChange}
                 className={props.smallText ? style.asciiSmallInput : style.asciiInput}
                 disabled={props.onIonChange === undefined}
+                onBlur={props.onBlur}
             />
         </div>
     );

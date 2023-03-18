@@ -30,6 +30,13 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
         props.setComments && props.setComments(props.comments!.filter((_, i) => i !== index))
     }
 
+    const handleBlur = () => {
+        if (newComment.trim().length === 0) {
+            return;
+        }
+        addComment();
+    }
+
     return (
         <>
             {
@@ -55,6 +62,7 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
                 <AsciiInputComponent label="" value={newComment}
                                      onIonChange={(e: any) => setNewComment(e.target.value)}
                                      smallText
+                                     onBlur={handleBlur}
                 />
                 <LinuxButtonComponent
                     small
