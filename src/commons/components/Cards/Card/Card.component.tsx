@@ -29,7 +29,7 @@ const CardComponent = (props: CardProps) => {
                 <CardButtonsComponent collapsible={collapsible} collapsed={collapsed} small={tiny} />
                 <div>
                     <IonCardTitle className={tiny ? styles.title : ''}>{title}</IonCardTitle>
-                    tiny && <IonCardSubtitle>{subtitle}</IonCardSubtitle>
+                    <IonCardSubtitle>{subtitle}</IonCardSubtitle>
                 </div>
                 <CardAlertComponent alert={alert} small={tiny}/>
             </IonCardHeader>
