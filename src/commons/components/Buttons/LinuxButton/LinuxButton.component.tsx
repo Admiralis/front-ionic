@@ -12,6 +12,14 @@ interface LinuxButtonProps {
     onClick?: () => void
 }
 
+/**
+ * Bouton avec un style 'Linux'
+ * @param props.color Couleur du bouton. Peut être "red", "yellow" ou "green". Par défaut, sera "green"
+ * @param props.size Taille du bouton. Peut être "small" ou "big". Par défaut, sera "big"
+ * @param props.hidden Si le bouton doit être caché ou non. Par défaut, sera "false"
+ * @param props.onClick Fonction à exécuter lors du clic sur le bouton
+ * @constructor
+ */
 const LinuxButtonComponent = (props: LinuxButtonProps) => {
 
     /**

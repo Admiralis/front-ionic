@@ -10,6 +10,14 @@ interface CodeScannerComponentProps {
     setAutoSubmit: (autoSubmit: boolean) => void;
 }
 
+/**
+ * Composant permettant de scanner un code-barre d'ordinateur. Ne fonctionne QUE sur Android
+ * @param props.setComputerSerial Fonction permettant de mettre à jour le state computerSerial du parent
+ * @param props.setScanning Fonction permettant de mettre à jour le state scanning du parent. True si la caméra est ouverte, false sinon
+ * @param props.scanning True si la caméra est ouverte, false sinon
+ * @param props.setAutoSubmit Fonction permettant de mettre à jour le state autoSubmit du parent. True si le formulaire doit être soumis automatiquement, false sinon. Sera utilisé pour soumettre automatiquement le formulaire après le scan
+ * @constructor
+ */
 const CodeScannerComponent = (props: CodeScannerComponentProps) => {
 
     useEffect(() => {

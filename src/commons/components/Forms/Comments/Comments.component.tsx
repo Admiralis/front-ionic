@@ -9,6 +9,11 @@ interface CommentsComponentProps {
     setComments?: (comments: ComputerComment[]) => void;
 }
 
+/**
+ * Composant permettant d'afficher le composant commentaires dans une carte
+ * @param props
+ * @constructor
+ */
 export const CommentsComponent = (props: CommentsComponentProps) => {
     return (
         <CardComponent
