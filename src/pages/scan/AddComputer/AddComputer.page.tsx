@@ -10,6 +10,7 @@ import {useHistory, useLocation} from "react-router";
 import {ComputerService} from "../../../commons/services/computer";
 import AlreadyExistsModalComponent from "./AlreadyExistsModal/AlreadyExistsModal.component";
 import useComputers from "../../../commons/hooks/computers/useComputers";
+import {submitOnEnter} from "../../../commons/utils";
 
 /**
  * Page d'ajout d'un PC
@@ -102,16 +103,6 @@ const AddComputerPage = () => {
     }
 
     /**
-     * Soumet le formulaire si la touche "Entrée" est pressée
-     * @param e
-     */
-    const handleKeyDown = (e: any) => {
-        if (e.key === 'Enter' && !isValidateButtonDisabled()) {
-            handleSubmit(e);
-        }
-    }
-
-    /**
      * Est à true si le numéro de série est plus petit que 7 caractères
      */
     const isValidateButtonDisabled = () => {
@@ -120,7 +111,7 @@ const AddComputerPage = () => {
 
     return (
         <IonPage>
-            <IonContent onKeyDown={handleKeyDown}>
+            <IonContent onKeyDown={submitOnEnter}>
                 <form className="flex-container" onSubmit={handleSubmit}>
                     <CardComponent
                         title={"Ajouter un PC"}
