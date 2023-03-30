@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {AsciiInputComponent, CardComponent, CodeScannerComponent} from "commons/components";
+import useComputer from "../../../commons/hooks/computers/useComputer";
 
 
 const EditComputerPage = () => {
@@ -9,10 +10,17 @@ const EditComputerPage = () => {
     const [scanning, setScanning] = useState<boolean>(false);
     const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
 
+
+    const {computer, isLoading, error} = useComputer(computerSerial);
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        computer ? console.log(computer) : console.log(error);
+    };
+
     return (
         <IonPage>
             <IonContent>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <CardComponent
                         title="Scannez le PC"
                         content={
@@ -39,22 +47,3 @@ const EditComputerPage = () => {
 };
 
 export default EditComputerPage;
-
-interface FindComputerBySerialComponentProps {
-    computerSerial: string;
-    setComputerSerial: (computerSerial: string) => void;
-
-}
-
-const FindComputerBySerialComponent = (props: FindComputerBySerialComponentProps) => {
-    const {computerSerial, setComputerSerial} = props;
-    return (
-        <AsciiInputComponent
-            value={computerSerial}
-            label="SerialNumber"
-            onIonChange={e => {
-                setComputerSerial(e.detail.value!)
-            }}
-        />
-    );
-};

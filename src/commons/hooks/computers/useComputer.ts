@@ -9,12 +9,16 @@ const useComputer = (serial: string) => {
     const [error, setError] = React.useState<string | null>(null);
 
     useEffect(() => {
-        computerService.findComputerBySerial(serial).then((computer) => {
-            setComputer(computer);
-        }).catch((e) => {
-            setError(e.message)
-        }).finally(() => setIsLoading(false));
-    }, []);
+        if (serial !== computer?.serial) {
+            setIsLoading(true);
+            setComputer(null);
+            computerService.findComputerBySerial(serial).then((computer) => {
+                setComputer(computer);
+            }).catch((e) => {
+                setError(e.message)
+            }).finally(() => setIsLoading(false));
+        }
+    }, [serial]);
 
 
     return {computer, isLoading, error};
