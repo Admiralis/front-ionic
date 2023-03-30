@@ -24,7 +24,7 @@ export const ScanMenuActionsComponent = () => {
             label: "Retour au stock"
         },
         {
-            path: "/scan/editer",
+            path: "/scan/edit",
             label: "Editer PC"
         },
         {
