@@ -11,6 +11,7 @@ import {ComputerService} from "../../../commons/services/computer";
 import AlreadyExistsModalComponent from "./AlreadyExistsModal/AlreadyExistsModal.component";
 import useComputers from "../../../commons/hooks/computers/useComputers";
 import {submitOnEnter} from "../../../commons/utils";
+import useAutoRescan from "../../../commons/hooks/scan/useAutoRescan";
 
 /**
  * Page d'ajout d'un PC
@@ -24,32 +25,19 @@ const AddComputerPage = () => {
     const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
 
-    const location = useLocation<{ reScan: boolean }>();
     const history = useHistory();
+
+    const {autoScan} = useAutoRescan();
+
+    useEffect(() => {
+        setScanning(autoScan);
+    }, [autoScan])
 
     useEffect(() => {
         // Met le numéro de série en toute majuscule
         // La double dépendance assure le bon rafraichissement des données
         setComputerSerial(computerSerial.toUpperCase());
     }, [computerSerial, newComputerInfo]);
-
-    useEffect(() => {
-        location.state = {reScan: false};
-    }, [])
-
-    useEffect(() => {
-        // Prévient les erreurs lors des changements de page
-        if (!location.state) {
-            return;
-        }
-        if (isPlatform('mobileweb')) {
-            return;
-        }
-        // Ouvre automatiquement la caméra si on vient de la page de confirmation
-        if (isPlatform('android') && location.state.reScan) {
-            setScanning(true);
-        }
-    }, [location.state]);
 
     useEffect(() => {
         // Soumet automatiquement le formulaire si un code a été scanné
