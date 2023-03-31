@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
-import {IonButton, IonContent, IonModal, IonTitle, IonToolbar} from "@ionic/react";
+import {IonModal} from "@ionic/react";
 import styles from './SimpleModal.module.css';
-import {LinuxButtonComponent} from "commons/components";
+import {LinuxButtonComponent} from "commons/components/index";
 
 interface AlreadyExistsModalComponentProps {
     isOpen: boolean;

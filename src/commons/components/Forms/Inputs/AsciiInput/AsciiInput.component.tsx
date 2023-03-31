@@ -1,5 +1,5 @@
 import {IonInput} from "@ionic/react";
-import React, {useEffect} from "react";
+import React from "react";
 import style from './AsciiInput.module.css'
 
 interface AsciiInputComponentProps {

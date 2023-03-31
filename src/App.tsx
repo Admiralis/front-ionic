@@ -31,10 +31,10 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import React from "react";
-import ScanMenuPage from "./pages/scan/ScanMenu/ScanMenu.page";
-import AddComputerPage from "./pages/scan/AddComputer/AddComputer.page";
-import EditComputerPage from "./pages/scan/EditComputer/EditComputer.page";
-import FindComputerPage from "./pages/scan/FindComputer/FindComputer.page";
+import ScanMenuPage from "./features/computer/ScanMenu/ScanMenu.page";
+import AddComputerPage from "./features/computer/AddComputer/AddComputer.page";
+import EditComputerPage from "./features/computer/EditComputer/EditComputer.page";
+import FindComputerPage from "./features/computer/FindComputer/FindComputer.page";
 
 setupIonicReact();
 

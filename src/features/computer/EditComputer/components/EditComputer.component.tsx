@@ -1,8 +1,8 @@
-import {ComputerFormComponent} from "../../../../commons/components/Forms/ComputerForm/ComputerForm.component";
-import {AsciiInputComponent} from "../../../../commons/components";
+import {ComputerFormComponent} from "commons/components/Forms/ComputerForm/ComputerForm.component";
+import {AsciiInputComponent} from "commons/components";
 import React from "react";
-import {NewComputer} from "../../../../commons/models";
-import {CommentsComponent} from "../../../../commons/components/Forms/Comments/Comments.component";
+import {NewComputer} from "commons/models";
+import {CommentsComponent} from "commons/components/Forms/Comments/Comments.component";
 
 interface AddComputerFormConfirmComponentProps {
     newComputerInfo: NewComputer

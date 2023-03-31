@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {AsciiInputComponent, CardComponent, CodeScannerComponent} from "commons/components";
-import SimpleModalComponent from "../AddComputer/AlreadyExistsModal/SimpleModal.component";
+import SimpleModalComponent from "commons/components/Modals/SimpleModal/SimpleModal.component";
 import {useHistory, useLocation} from "react-router";
 import {isValidateButtonDisabled, submitOnEnter} from "commons/utils";
 import {ComputerService} from "commons/services/computer";

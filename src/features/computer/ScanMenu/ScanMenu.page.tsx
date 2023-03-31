@@ -2,7 +2,6 @@ import React from 'react';
 import {IonPage} from "@ionic/react";
 import {CardComponent} from "commons/components";
 import {ScanMenuActionsComponent} from "./ScanMenuActions/ScanMenuActions.component";
-import CodeScannerComponent from "../../../commons/components/CodeScanner/CodeScanner.component";
 
 
 /**

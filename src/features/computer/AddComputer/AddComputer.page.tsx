@@ -8,7 +8,7 @@ import {NewComputer} from "commons/models";
 import {Simulate} from "react-dom/test-utils";
 import {useHistory, useLocation} from "react-router";
 import {ComputerService} from "commons/services/computer";
-import SimpleModalComponent from "./AlreadyExistsModal/SimpleModal.component";
+import SimpleModalComponent from "commons/components/Modals/SimpleModal/SimpleModal.component";
 import {isValidateButtonDisabled, submitOnEnter} from "commons/utils";
 import useAutoRescan from "commons/hooks/scan/useAutoRescan";
 
@@ -33,7 +33,7 @@ const AddComputerPage = () => {
         if (location.state) {
             setComputerSerial(location.state.newComputerSerial);
         }
-    }, [])
+    }, [location.state])
 
     useEffect(() => {
         setScanning(autoScan);

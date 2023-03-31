@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle} from "@ionic/react";
 import './Card.module.css';
 import {CardButtonsComponent} from "../components/CardButtons/CardButtons.component";
