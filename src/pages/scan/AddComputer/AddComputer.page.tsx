@@ -8,7 +8,7 @@ import {NewComputer} from "commons/models";
 import {Simulate} from "react-dom/test-utils";
 import {useHistory, useLocation} from "react-router";
 import {ComputerService} from "../../../commons/services/computer";
-import AlreadyExistsModalComponent from "./AlreadyExistsModal/AlreadyExistsModal.component";
+import SimpleModalComponent from "./AlreadyExistsModal/SimpleModal.component";
 import useComputers from "../../../commons/hooks/computers/useComputers";
 import {submitOnEnter} from "../../../commons/utils";
 import useAutoRescan from "../../../commons/hooks/scan/useAutoRescan";
@@ -25,9 +25,16 @@ const AddComputerPage = () => {
     const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
 
-    const history = useHistory();
-
     const {autoScan} = useAutoRescan();
+    const history = useHistory();
+    const location = useLocation<{newComputerSerial: string }>();
+
+
+    useEffect(() => {
+        if (location.state) {
+            setComputerSerial(location.state.newComputerSerial);
+        }
+    }, [])
 
     useEffect(() => {
         setScanning(autoScan);
@@ -36,7 +43,7 @@ const AddComputerPage = () => {
     useEffect(() => {
         // Met le numéro de série en toute majuscule
         // La double dépendance assure le bon rafraichissement des données
-        setComputerSerial(computerSerial.toUpperCase());
+        computerSerial && setComputerSerial(computerSerial.toUpperCase());
     }, [computerSerial, newComputerInfo]);
 
     useEffect(() => {
@@ -76,8 +83,8 @@ const AddComputerPage = () => {
      */
     function goNextStep() {
         newComputerInfo.serial = computerSerial;
-        setComputerSerial('');
         history.push('/scan/add/confirm', {newComputerState: newComputerInfo});
+        setComputerSerial('');
     }
 
     /**
@@ -94,6 +101,9 @@ const AddComputerPage = () => {
      * Est à true si le numéro de série est plus petit que 7 caractères
      */
     const isValidateButtonDisabled = () => {
+        if (!computerSerial) {
+            return true;
+        }
         return computerSerial.length < 7;
     }
 
@@ -128,7 +138,7 @@ const AddComputerPage = () => {
                     </span>
                 </form>
             </IonContent>
-            <AlreadyExistsModalComponent isOpen={open} setIsOpen={setOpen}/>
+            <SimpleModalComponent isOpen={open} setIsOpen={setOpen} content={<p>Le PC existe déjà</p>} title={<p>Ooops !</p>}/>
         </IonPage>
     );
 };
