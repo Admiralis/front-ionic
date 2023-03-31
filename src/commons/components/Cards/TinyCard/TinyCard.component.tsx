@@ -3,7 +3,7 @@ import {IonCard, IonCardHeader, IonCardTitle} from "@ionic/react";
 import {CardButtonsComponent} from "../components/CardButtons/CardButtons.component";
 import {CardAlertComponent} from "../components/CardAlert/CardAlert.component";
 import {CardContentComponent} from "../components/CardContent/CardContent.component";
-import styles from './TinyCard.module.css'
+import styles from '../Card/TinyCard.module.css'
 
 
 interface TinyCardProps {

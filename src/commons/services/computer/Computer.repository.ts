@@ -1,6 +1,4 @@
-import {Computer} from "commons/models";
-import ComputerComment from "../../models/computer/ComputerComment";
-import {NewComputer} from "commons/models";
+import {Computer, NewComputer} from "commons/models";
 
 const computers: Computer[] = [
     {
@@ -85,12 +83,21 @@ class ComputerRepository {
      * @param newComputer
      */
     save(newComputer: NewComputer): Promise<Computer> {
-        const computer: Computer = {
-            ...newComputer,
-            id: (computers.length + 1).toString(),
+        const index = computers.findIndex(c => c.serial === newComputer.serial);
+        if (index > -1) {
+            computers[index] = {
+                id: computers[index].id,
+                ...newComputer,
+            };
+            return Promise.resolve(computers[index]);
+        } else {
+            const computer = {
+                ...newComputer,
+                id: (computers.length + 1).toString(),
+            }
+            computers.push(computer);
+            return Promise.resolve(computer);
         }
-        computers.push(computer);
-        return Promise.resolve(computer);
     }
 
     /**
@@ -109,7 +116,7 @@ class ComputerRepository {
      * @param computer
      */
     update(id: string, computer: Computer): Promise<Computer> {
-        const index = computers.findIndex(c => c.id === id);
+        const index = computers.findIndex(computer => computer.id === id);
         computers[index] = computer;
         return Promise.resolve(computer);
     }

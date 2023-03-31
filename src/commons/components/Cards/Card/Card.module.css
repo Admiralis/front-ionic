@@ -1,7 +1,7 @@
 ion-card {
     --border-radius: 5px;
     border: 1px solid black;
-    width: 390px;
+    max-width: 380px;
 }
 
 ion-card-content {

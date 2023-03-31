@@ -12,13 +12,15 @@ interface AddComputerFormConfirmComponentProps {
 
 export const AddComputerFormConfirmComponent = (props: AddComputerFormConfirmComponentProps) => {
     return (
-        <div className="container">
-            <ComputerFormComponent newComputerInfo={props.newComputerInfo}
-                                   setNewComputerInfo={props.setNewComputerInfo}/>
-            <AsciiInputComponent
-                value={props.newComputerInfo.serial}
-                label="SerialNumber"
-            />
+        <>
+            <div className="container">
+                <ComputerFormComponent newComputerInfo={props.newComputerInfo}
+                                       setNewComputerInfo={props.setNewComputerInfo}/>
+                <AsciiInputComponent
+                    value={props.newComputerInfo.serial}
+                    label="SerialNumber"
+                />
+            </div>
             <CommentsComponent comments={props.newComputerInfo.comments}
                                setComments={(comments) => props.setNewComputerInfo(
                                    {
@@ -27,6 +29,6 @@ export const AddComputerFormConfirmComponent = (props: AddComputerFormConfirmCom
                                    }
                                )}
             />
-        </div>
+        </>
     )
 }

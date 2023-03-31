@@ -46,8 +46,6 @@ const AddComputerConfirmPage = () => {
         } else {
             setNewComputerInfo(location.state.newComputerState);
         }
-
-
     }, [location.state]);
 
     /**
