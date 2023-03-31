@@ -47,6 +47,8 @@ const App: React.FC = () => (
                         <Route exact path="/scan/add" component={AddComputerPage}/>
                         <Route exact path="/scan/add/confirm" component={AddComputerConfirmPage} />
                         <Route exact path="/scan/edit" component={FindComputerPage} />
+                        <Route exact path="/scan/edit/:id" component={AddComputerConfirmPage} />
+                        <Redirect exact from="/" to="/scan"/>
                     </IonRouterOutlet>
                     <IonTabBar slot="bottom">
                         <IonTabButton tab="tab1" href="/tab1">
