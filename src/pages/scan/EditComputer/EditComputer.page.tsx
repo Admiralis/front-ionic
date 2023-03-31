@@ -3,7 +3,7 @@ import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {CardComponent} from "commons/components";
 import {useHistory, useLocation} from "react-router";
 import {NewComputer} from "commons/models";
-import {AddComputerFormConfirmComponent} from "./AddComputerFormConfirm/AddComputerFormConfirm.component";
+import {EditComputerComponent} from "./components/EditComputer.component";
 import {ComputerService} from "commons/services/computer";
 import useComputers from "../../../commons/hooks/computers/useComputers";
 
@@ -25,7 +25,7 @@ const AddComputerFormActions = () => {
  * Page de confirmation de l'ajout d'un PC
  * Reprend les informations du formulaire '/add' et permet d'y ajouter des commentaires au PC
  */
-const AddComputerConfirmPage = () => {
+const EditComputerPage = () => {
 
     const location = useLocation<{ newComputerState: NewComputer, comeFrom: string }>();
     const [newComputerInfo, setNewComputerInfo] = useState({} as NewComputer);
@@ -66,8 +66,8 @@ const AddComputerConfirmPage = () => {
                     <form className="flex-container" onSubmit={handleSubmit}>
                         <CardComponent
                             title="Valider un PC"
-                            content={<AddComputerFormConfirmComponent newComputerInfo={newComputerInfo}
-                                                                      setNewComputerInfo={setNewComputerInfo}/>}
+                            content={<EditComputerComponent newComputerInfo={newComputerInfo}
+                                                            setNewComputerInfo={setNewComputerInfo}/>}
                             actions={<AddComputerFormActions/>}
                         />
                     </form>
@@ -77,4 +77,4 @@ const AddComputerConfirmPage = () => {
     );
 };
 
-export default AddComputerConfirmPage;
+export default EditComputerPage;

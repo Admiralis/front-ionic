@@ -10,7 +10,7 @@ interface AddComputerFormConfirmComponentProps {
 }
 
 
-export const AddComputerFormConfirmComponent = (props: AddComputerFormConfirmComponentProps) => {
+export const EditComputerComponent = (props: AddComputerFormConfirmComponentProps) => {
     return (
         <>
             <div className="container">
