@@ -1,5 +1,5 @@
 .modal {
-    height: 20%;
+    height: 30%;
     width: 80%;
     margin: auto;
     background-color: #193549;
@@ -42,4 +42,11 @@ ion-modal {
 
 .buttonContainer {
     margin: 0 10px 10px 10px;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #142C3E;
 }

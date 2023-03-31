@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle} from "@ionic/react";
 import './Card.module.css';
 import {CardButtonsComponent} from "../components/CardButtons/CardButtons.component";
 import {CardAlertComponent} from "../components/CardAlert/CardAlert.component";
 import {CardContentComponent} from "../components/CardContent/CardContent.component";
-import styles from "../TinyCard/TinyCard.module.css";
+import styles from "./TinyCard.module.css";
 
 interface CardProps {
     title: string;

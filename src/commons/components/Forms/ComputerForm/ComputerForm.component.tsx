@@ -1,5 +1,5 @@
-import {NewComputer} from "../../../models";
-import {AsciiInputComponent} from "../../index";
+import {NewComputer} from "commons/models";
+import {AsciiInputComponent} from "commons/components";
 import React from "react";
 
 interface ComputerFormComponentProps {

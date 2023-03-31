@@ -31,9 +31,10 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import React from "react";
-import ScanMenuPage from "./pages/scan/ScanMenu/ScanMenu.page";
-import AddComputerPage from "./pages/scan/AddComputer/AddComputer.page";
-import AddComputerConfirmPage from "./pages/scan/AddComputerConfirm/AddComputerConfirm.page";
+import ScanMenuPage from "./features/computer/ScanMenu/ScanMenu.page";
+import AddComputerPage from "./features/computer/AddComputer/AddComputer.page";
+import EditComputerPage from "./features/computer/EditComputer/EditComputer.page";
+import FindComputerPage from "./features/computer/FindComputer/FindComputer.page";
 
 setupIonicReact();
 
@@ -44,7 +45,10 @@ const App: React.FC = () => (
                     <IonRouterOutlet>
                         <Route exact path="/scan" component={ScanMenuPage}/>
                         <Route exact path="/scan/add" component={AddComputerPage}/>
-                        <Route exact path="/scan/add/confirm" component={AddComputerConfirmPage} />
+                        <Route exact path="/scan/add/confirm" component={EditComputerPage} />
+                        <Route exact path="/scan/edit" component={FindComputerPage} />
+                        <Route exact path="/scan/edit/:id" component={EditComputerPage} />
+                        <Redirect exact from="/" to="/scan"/>
                     </IonRouterOutlet>
                     <IonTabBar slot="bottom">
                         <IonTabButton tab="tab1" href="/tab1">

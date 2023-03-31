@@ -15,9 +15,14 @@ import HorizontalDividerComponent from "./UiElements/HorizontalDivider/Horizonta
 import {ComputerAddFormComponent} from "./Forms/ComputerAddForm/ComputerAddFormComponent";
 import {AsciiInputComponent} from "./Forms/Inputs/AsciiInput/AsciiInput.component";
 
+// Scan
+import CodeScannerComponent from "./CodeScanner/CodeScanner.component";
+
 export { CardComponent }
 export { LinuxButtonComponent }
 export { AlertIconComponent }
 export { HorizontalDividerComponent }
 
 export { ComputerAddFormComponent, AsciiInputComponent }
+
+export { CodeScannerComponent }

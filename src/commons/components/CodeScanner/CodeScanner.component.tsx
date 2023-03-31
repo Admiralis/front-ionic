@@ -1,7 +1,7 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {BarcodeScanner} from "@capacitor-community/barcode-scanner";
 import {IonButton, IonIcon, isPlatform} from "@ionic/react";
-import {scan, scanCircle, scanCircleOutline} from "ionicons/icons";
+import {scanCircleOutline} from "ionicons/icons";
 
 interface CodeScannerComponentProps {
     setComputerSerial: (result: string) => void;

@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {IonButton, IonContent, IonPage, isPlatform} from "@ionic/react";
-import CodeScannerComponent from "../../../commons/components/CodeScanner/CodeScanner.component";
-import {CardComponent} from "../../../commons/components";
+import {IonButton, IonContent, IonPage} from "@ionic/react";
+import CodeScannerComponent from "commons/components/CodeScanner/CodeScanner.component";
+import {CardComponent} from "commons/components";
 import './AddComputer.component.css'
 import {ComputerAddFormComponent} from "commons/components/";
 import {NewComputer} from "commons/models";
 import {Simulate} from "react-dom/test-utils";
 import {useHistory, useLocation} from "react-router";
-import {ComputerService} from "../../../commons/services/computer";
-import AlreadyExistsModalComponent from "./AlreadyExistsModal/AlreadyExistsModal.component";
-import useComputers from "../../../commons/hooks/computers/useComputers";
+import {ComputerService} from "commons/services/computer";
+import SimpleModalComponent from "commons/components/Modals/SimpleModal/SimpleModal.component";
+import {isValidateButtonDisabled, submitOnEnter} from "commons/utils";
+import useAutoRescan from "commons/hooks/scan/useAutoRescan";
 
 /**
  * Page d'ajout d'un PC
@@ -23,32 +24,26 @@ const AddComputerPage = () => {
     const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
 
-    const location = useLocation<{ reScan: boolean }>();
+    const {autoScan} = useAutoRescan();
     const history = useHistory();
+    const location = useLocation<{newComputerSerial: string, comeFrom: string }>();
+
+
+    useEffect(() => {
+        if (location.state) {
+            setComputerSerial(location.state.newComputerSerial);
+        }
+    }, [location.state])
+
+    useEffect(() => {
+        setScanning(autoScan);
+    }, [autoScan])
 
     useEffect(() => {
         // Met le numéro de série en toute majuscule
         // La double dépendance assure le bon rafraichissement des données
-        setComputerSerial(computerSerial.toUpperCase());
+        computerSerial && setComputerSerial(computerSerial.toUpperCase());
     }, [computerSerial, newComputerInfo]);
-
-    useEffect(() => {
-        location.state = {reScan: false};
-    }, [])
-
-    useEffect(() => {
-        // Prévient les erreurs lors des changements de page
-        if (!location.state) {
-            return;
-        }
-        if (isPlatform('mobileweb')) {
-            return;
-        }
-        // Ouvre automatiquement la caméra si on vient de la page de confirmation
-        if (isPlatform('android') && location.state.reScan) {
-            setScanning(true);
-        }
-    }, [location.state]);
 
     useEffect(() => {
         // Soumet automatiquement le formulaire si un code a été scanné
@@ -87,8 +82,8 @@ const AddComputerPage = () => {
      */
     function goNextStep() {
         newComputerInfo.serial = computerSerial;
+        history.push('/scan/add/confirm', {newComputerState: newComputerInfo, comeFrom: location.pathname});
         setComputerSerial('');
-        history.push('/scan/add/confirm', {newComputerState: newComputerInfo});
     }
 
     /**
@@ -101,26 +96,9 @@ const AddComputerPage = () => {
         checkIfExistsAndSend();
     }
 
-    /**
-     * Soumet le formulaire si la touche "Entrée" est pressée
-     * @param e
-     */
-    const handleKeyDown = (e: any) => {
-        if (e.key === 'Enter' && !isValidateButtonDisabled()) {
-            handleSubmit(e);
-        }
-    }
-
-    /**
-     * Est à true si le numéro de série est plus petit que 7 caractères
-     */
-    const isValidateButtonDisabled = () => {
-        return computerSerial.length < 7;
-    }
-
     return (
         <IonPage>
-            <IonContent onKeyDown={handleKeyDown}>
+            <IonContent onKeyDown={submitOnEnter}>
                 <form className="flex-container" onSubmit={handleSubmit}>
                     <CardComponent
                         title={"Ajouter un PC"}
@@ -133,7 +111,7 @@ const AddComputerPage = () => {
                             />
                         }
                         actions={
-                            <IonButton className="green" type="submit" disabled={isValidateButtonDisabled()}>
+                            <IonButton className="green" type="submit" disabled={isValidateButtonDisabled(computerSerial, 7)}>
                                 Ajouter PC
                             </IonButton>
                         }
@@ -149,7 +127,7 @@ const AddComputerPage = () => {
                     </span>
                 </form>
             </IonContent>
-            <AlreadyExistsModalComponent isOpen={open} setIsOpen={setOpen}/>
+            <SimpleModalComponent isOpen={open} setIsOpen={setOpen} content={<p>Le PC existe déjà</p>} title={<p>Ooops !</p>}/>
         </IonPage>
     );
 };

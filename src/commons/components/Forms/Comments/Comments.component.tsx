@@ -1,8 +1,7 @@
-import ComputerComment from "../../../models/computer/ComputerComment";
-import TinyCardComponent from "../../Cards/TinyCard/TinyCard.component";
+import ComputerComment from "commons/models/computer/ComputerComment";
 import React from "react";
 import {CommentIteratorComponent} from "./CommentIterator/CommentIterator.component";
-import {CardComponent} from "../../Cards";
+import {CardComponent} from "commons/components/Cards";
 
 interface CommentsComponentProps {
     comments?: ComputerComment[]
