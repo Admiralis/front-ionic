@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {AsciiInputComponent, CardComponent, CodeScannerComponent} from "commons/components";
-import useComputer from "../../../commons/hooks/computers/useComputer";
+import useComputer from "commons/hooks/computers/useComputer";
 import SimpleModalComponent from "../AddComputer/AlreadyExistsModal/SimpleModal.component";
 import {useHistory} from "react-router";
+import {isValidateButtonDisabled} from "commons/utils";
 
 
 const FindComputerPage = () => {
@@ -28,16 +29,6 @@ const FindComputerPage = () => {
     useEffect(() => {
         setSearch('');
     }, []);
-
-    /**
-     * Est à true si le numéro de série est plus petit que 7 caractères
-     */
-    const isValidateButtonDisabled = () => {
-        if (!search) {
-            return true;
-        }
-        return search.length < 7;
-    }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -69,7 +60,7 @@ const FindComputerPage = () => {
                             <IonButton
                                 className="green"
                                 type="submit"
-                                disabled={isValidateButtonDisabled()}
+                                disabled={isValidateButtonDisabled(search, 7)}
                             >
                                 Valider
                             </IonButton>}

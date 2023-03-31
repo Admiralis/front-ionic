@@ -1,17 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {IonButton, IonContent, IonPage, isPlatform} from "@ionic/react";
-import CodeScannerComponent from "../../../commons/components/CodeScanner/CodeScanner.component";
-import {CardComponent} from "../../../commons/components";
+import {IonButton, IonContent, IonPage} from "@ionic/react";
+import CodeScannerComponent from "commons/components/CodeScanner/CodeScanner.component";
+import {CardComponent} from "commons/components";
 import './AddComputer.component.css'
 import {ComputerAddFormComponent} from "commons/components/";
 import {NewComputer} from "commons/models";
 import {Simulate} from "react-dom/test-utils";
 import {useHistory, useLocation} from "react-router";
-import {ComputerService} from "../../../commons/services/computer";
+import {ComputerService} from "commons/services/computer";
 import SimpleModalComponent from "./AlreadyExistsModal/SimpleModal.component";
-import useComputers from "../../../commons/hooks/computers/useComputers";
-import {submitOnEnter} from "../../../commons/utils";
-import useAutoRescan from "../../../commons/hooks/scan/useAutoRescan";
+import {isValidateButtonDisabled, submitOnEnter} from "commons/utils";
+import useAutoRescan from "commons/hooks/scan/useAutoRescan";
 
 /**
  * Page d'ajout d'un PC
@@ -97,16 +96,6 @@ const AddComputerPage = () => {
         checkIfExistsAndSend();
     }
 
-    /**
-     * Est à true si le numéro de série est plus petit que 7 caractères
-     */
-    const isValidateButtonDisabled = () => {
-        if (!computerSerial) {
-            return true;
-        }
-        return computerSerial.length < 7;
-    }
-
     return (
         <IonPage>
             <IonContent onKeyDown={submitOnEnter}>
@@ -122,7 +111,7 @@ const AddComputerPage = () => {
                             />
                         }
                         actions={
-                            <IonButton className="green" type="submit" disabled={isValidateButtonDisabled()}>
+                            <IonButton className="green" type="submit" disabled={isValidateButtonDisabled(computerSerial, 7)}>
                                 Ajouter PC
                             </IonButton>
                         }
