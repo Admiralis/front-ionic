@@ -38,10 +38,15 @@ const AddComputerConfirmPage = () => {
             return;
         }
 
-        setNewComputerInfo({
-            ...location.state.newComputerState,
-            comments: []
-        });
+        if (!location.state.newComputerState?.comments) {
+            setNewComputerInfo({
+                ...location.state.newComputerState,
+                comments: []
+            });
+        } else {
+            setNewComputerInfo(location.state.newComputerState);
+        }
+
 
     }, [location.state]);
 
