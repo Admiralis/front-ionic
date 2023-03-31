@@ -3,7 +3,7 @@ import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {AsciiInputComponent, CardComponent, CodeScannerComponent} from "commons/components";
 import useComputer from "commons/hooks/computers/useComputer";
 import SimpleModalComponent from "../AddComputer/AlreadyExistsModal/SimpleModal.component";
-import {useHistory} from "react-router";
+import {useHistory, useLocation} from "react-router";
 import {isValidateButtonDisabled} from "commons/utils";
 
 
@@ -13,11 +13,10 @@ const FindComputerPage = () => {
     const [scanning, setScanning] = useState<boolean>(false);
     const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
-    const [search, setSearch] = useState<string>('');
+    const [search, setSearch] = useState("" as string);
 
     const {computer, isLoading, error} = useComputer(computerSerial);
-
-
+    const location = useLocation<{newComputerSerial: string, comeFrom: string }>();
     const router = useHistory();
 
     useEffect(() => {
@@ -28,11 +27,13 @@ const FindComputerPage = () => {
 
     useEffect(() => {
         setSearch('');
+        setComputerSerial('');
     }, []);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setComputerSerial(search);
+        setSearch('')
         if (!computer) {
             setOpen(true);
         }
@@ -83,7 +84,7 @@ const FindComputerPage = () => {
                         <IonButton
                             onClick={
                                 () => {
-                                    router.push('/scan/add', {newComputerSerial: computerSerial});
+                                    router.push('/scan/add/confirm', {newComputerState: {serial: computerSerial}, comeFrom: location.pathname });
                                     setOpen(false);
                                 }
                             }

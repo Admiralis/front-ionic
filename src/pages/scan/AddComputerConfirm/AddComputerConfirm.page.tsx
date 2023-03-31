@@ -9,8 +9,9 @@ import useComputers from "../../../commons/hooks/computers/useComputers";
 
 const AddComputerFormActions = () => {
     const router = useHistory();
+    const location = useLocation<{ comeFrom: string }>();
     const handleCancel = () => {
-        router.push('/scan/add', {newComputerState: {} as NewComputer});
+        router.push(location.state.comeFrom, {newComputerState: {} as NewComputer});
     };
     return (
         <>
@@ -26,7 +27,7 @@ const AddComputerFormActions = () => {
  */
 const AddComputerConfirmPage = () => {
 
-    const location = useLocation<{ newComputerState: NewComputer }>();
+    const location = useLocation<{ newComputerState: NewComputer, comeFrom: string }>();
     const [newComputerInfo, setNewComputerInfo] = useState({} as NewComputer);
     const router = useHistory();
     const {addComputer} = useComputers();
@@ -52,7 +53,7 @@ const AddComputerConfirmPage = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         addComputer(newComputerInfo);
-        router.push('/scan/add', {reScan: true});
+        router.push(location.state.comeFrom, {reScan: true});
     }
 
     return (
