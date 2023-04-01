@@ -6,7 +6,6 @@ interface AsciiInputComponentProps {
     label: string
     value: string
     onIonChange?: (e: CustomEvent) => void
-
     required?: boolean
     placeholder?: string
     smallText?: boolean

@@ -9,6 +9,7 @@ interface AlreadyExistsModalComponentProps {
     title: React.ReactNode;
     content: React.ReactNode;
     actions?: React.ReactNode;
+    height?: string;
 }
 
 const SimpleModalComponent = (props: AlreadyExistsModalComponentProps) => {
@@ -19,7 +20,7 @@ const SimpleModalComponent = (props: AlreadyExistsModalComponentProps) => {
     }
 
     return (
-        <IonModal isOpen={props.isOpen} className={styles.modal}>
+        <IonModal isOpen={props.isOpen} className={styles.modal} style={{height: props.height}}>
             <div className={styles.header}>
                     <span className={styles.buttonContainer} >
                     <LinuxButtonComponent color="red" onClick={() => props.setIsOpen(false)}/>

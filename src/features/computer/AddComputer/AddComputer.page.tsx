@@ -99,7 +99,7 @@ const AddComputerPage = () => {
     return (
         <IonPage>
             <IonContent onKeyDown={submitOnEnter}>
-                <form className="flex-container" onSubmit={handleSubmit}>
+                <form className="flex-container" onSubmit={handleSubmit} onKeyDown={submitOnEnter}>
                     <CardComponent
                         title={"Ajouter un PC"}
                         content={
