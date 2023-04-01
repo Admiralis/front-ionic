@@ -12,7 +12,7 @@ export const ScanMenuActionsComponent = () => {
             label: "Prêt individuel"
         },
         {
-            path: "/scan/collectif",
+            path: "/scan/course",
             label: "Prêt collectif"
         },
         {
