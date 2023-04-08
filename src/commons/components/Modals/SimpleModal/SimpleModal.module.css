@@ -37,7 +37,8 @@ ion-modal {
     border: 1px solid black;
     box-shadow: 0 0 20px 2000px rgba(0, 0, 0, 0.7);
     --max-height: 40%;
-    --max-width: 40%
+    --max-width: 40%;
+    --min-width: 360px;
 }
 
 .buttonContainer {

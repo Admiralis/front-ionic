@@ -14,7 +14,6 @@ const AddCourseConfirmPage = () => {
     return (
         <IonPage>
             <IonContent>
-
                 <form className="flex-container">
                     <CardComponent
                         title="Valider"
