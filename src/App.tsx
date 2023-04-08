@@ -36,6 +36,7 @@ import AddComputerPage from "./features/computer/AddComputer/AddComputer.page";
 import EditComputerPage from "./features/computer/EditComputer/EditComputer.page";
 import FindComputerPage from "./features/computer/FindComputer/FindComputer.page";
 import AddCoursePage from "./features/course/AddCourse/AddCourse.page";
+import AddCourseConfirmPage from "./features/course/AddCourseConfirm/AddCourseConfirm.page";
 
 setupIonicReact();
 
@@ -50,6 +51,7 @@ const App: React.FC = () => (
                         <Route exact path="/scan/edit" component={FindComputerPage} />
                         <Route exact path="/scan/edit/:id" component={EditComputerPage} />
                         <Route exact path="/scan/course" component={AddCoursePage} />
+                        <Route exact path="/scan/course/confirm" component={AddCourseConfirmPage} />
                         <Redirect exact from="/" to="/scan"/>
                     </IonRouterOutlet>
                     <IonTabBar slot="bottom">
