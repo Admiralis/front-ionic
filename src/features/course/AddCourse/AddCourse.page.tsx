@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {IonButton, IonContent, IonPage} from "@ionic/react";
-import {CardComponent} from "../../../commons/components";
+import {CardComponent, UnknownComputerModalComponent} from "../../../commons/components";
 import {Course} from "../../../commons/models";
 import AddCourseComponent from "./AddCourse.component";
-import {isValidateButtonDisabled} from "../../../commons/utils";
+import {isValidateButtonDisabled, submitOnEnter} from "../../../commons/utils";
 import {useHistory, useLocation} from "react-router";
 import useAutoRescan from "../../../commons/hooks/scan/useAutoRescan";
 import {Simulate} from "react-dom/test-utils";
+import {ComputerService} from "../../../commons/services/computer";
 
 const AddCoursePage = () => {
 
@@ -17,9 +18,9 @@ const AddCoursePage = () => {
     const [scanning, setScanning] = useState<boolean>(false);
 
 
-    const location = useLocation<{newComputerSerial: string, comeFrom: string }>();
+    const location = useLocation<{ newComputerSerial: string, comeFrom: string }>();
     const {autoScan} = useAutoRescan();
-    const history = useHistory();
+    const router = useHistory();
 
     useEffect(() => {
         setScanning(autoScan);
@@ -49,13 +50,19 @@ const AddCoursePage = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(course);
+        ComputerService.findComputerBySerial(computerSerial).then((computer) => {
+            console.log('found :', computer)
+            console.log('course :', course)
+            setComputerSerial('');
+        }).catch(() => {
+            setOpen(true)
+        })
     }
 
     return (
         <IonPage>
             <IonContent>
-                <form className="flex-container" onSubmit={handleSubmit}>
+                <form className="flex-container" onSubmit={handleSubmit} onKeyDown={submitOnEnter}>
                     <CardComponent
                         title="Prêt collectif"
                         content={<AddCourseComponent newCourseInfo={course}
@@ -71,6 +78,25 @@ const AddCoursePage = () => {
                     />
                 </form>
             </IonContent>
+            <UnknownComputerModalComponent
+                open={open}
+                setIsOpen={setOpen}
+                onComputerAdd={() => {
+                    console.log('add computer')
+                    router.push('/scan/add/confirm', {
+                        newComputerState: {serial: computerSerial},
+                        comeFrom: location.pathname
+                    });
+                    setOpen(false);
+                    setComputerSerial('');
+                }
+                }
+                onCancel={() => {
+                    console.log('cancel')
+                    setOpen(false);
+                    setComputerSerial('');
+                }}
+            />
         </IonPage>
     );
 };

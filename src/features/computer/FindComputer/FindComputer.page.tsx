@@ -75,20 +75,21 @@ const FindComputerPage = () => {
                     setAutoSubmit={setAutoSubmit}
                 />
             </IonContent>
-            <UnknownComputerModalComponent open={open}
-                                      isOpen={setOpen}
-                                      onComputerAdd={() => {
-                                          router.push('/scan/add/confirm', {
-                                              newComputerState: {serial: computerSerial},
-                                              comeFrom: location.pathname
-                                          });
-                                          setOpen(false);
-                                          setComputerSerial('');
-                                      }}
-                                      onCancel={() => {
-                                          setOpen(false);
-                                          setComputerSerial('');
-                                      }}
+            <UnknownComputerModalComponent
+                open={open}
+                setIsOpen={setOpen}
+                onComputerAdd={() => {
+                    router.push('/scan/add/confirm', {
+                        newComputerState: {serial: computerSerial},
+                        comeFrom: location.pathname
+                    });
+                    setOpen(false);
+                    setComputerSerial('');
+                }}
+                onCancel={() => {
+                    setOpen(false);
+                    setComputerSerial('');
+                }}
             />
         </IonPage>
     );
