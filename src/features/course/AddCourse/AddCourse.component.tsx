@@ -10,6 +10,11 @@ interface AddCourseComponentProps {
     setComputerSerial: (computerSerial: string) => void;
 }
 
+/**
+ * Composant formulaire de création de cours
+ * @param props
+ * @constructor
+ */
 const AddCourseComponent = (props: AddCourseComponentProps) => {
     const {newCourseInfo, setNewCourseInfo, computerSerial, setComputerSerial} = props;
     return (

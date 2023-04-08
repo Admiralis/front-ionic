@@ -39,10 +39,6 @@ const AddCoursePage = () => {
     }, [computerSerial]);
 
     useEffect(() => {
-        setComputerSerial(computerSerial.toUpperCase());
-    }, [computerSerial])
-
-    useEffect(() => {
         // Soumet automatiquement le formulaire si un code a été scanné
         if (autoSubmit) {
             Simulate.submit(document.querySelector('form') as HTMLFormElement)
