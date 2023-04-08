@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Course} from "../../../models";
 import {AsciiInputComponent} from "../Inputs/AsciiInput/AsciiInput.component";
-import {IonDatetime, IonModal} from "@ionic/react";
 import {AsciiDatePickerComponent} from "../Inputs/AsciiDate/AsciiDate.component";
 
 interface CourseFormComponentProps {
@@ -9,6 +8,12 @@ interface CourseFormComponentProps {
     setNewCourseInfo: (newCourseInfo: Course) => void;
 }
 
+/**
+ * Composant formulaire de création de cours
+ * @param props newCourseInfo: Course : informations du cours à créer
+ * @param props setNewCourseInfo: (newCourseInfo: Course) => void : fonction de mise à jour des informations du cours à créer
+ * @constructor
+ */
 const CourseFormComponent = (props: CourseFormComponentProps) => {
     const {newCourseInfo = {} as Course, setNewCourseInfo} = props
 

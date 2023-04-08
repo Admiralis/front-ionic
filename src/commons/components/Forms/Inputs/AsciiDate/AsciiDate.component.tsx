@@ -14,6 +14,16 @@ interface AsciiDatePickerComponentProps {
     max?: string
 }
 
+/**
+ * Composant de sélection de date au format ASCII
+ * Fait apparaitre un input ascii et un bouton de sélection de date
+ * @param props - label : string : label du champ
+ * @param props - value : Date : date sélectionnée
+ * @param props - onChange : (e: any) => void : fonction de mise à jour de la date sélectionnée
+ * @param props - required : boolean : indique si le champ est obligatoire // False si non renseigné
+ * @param props (facultatif) - min : string : date minimale de sélection
+ * @param props (facultatif) - max : string : date maximale de sélection
+ */
 export const AsciiDatePickerComponent = (props: AsciiDatePickerComponentProps) => {
 
     const [isDatePickerOpen, setDatePickerOpen] = useState<boolean>(false)
