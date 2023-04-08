@@ -14,25 +14,26 @@ interface AlreadyExistsModalComponentProps {
 
 const SimpleModalComponent = (props: AlreadyExistsModalComponentProps) => {
     const modal = useRef<HTMLIonModalElement>(null);
+    const {isOpen, setIsOpen, title, content, actions, height} = props;
 
     function dismiss() {
         modal.current?.dismiss();
     }
 
     return (
-        <IonModal isOpen={props.isOpen} className={styles.modal} style={{height: props.height}}>
+        <IonModal isOpen={isOpen} className={styles.modal} style={{height: height}} showBackdrop onBlur={() => setIsOpen(false)} >
             <div className={styles.header}>
                     <span className={styles.buttonContainer} >
-                    <LinuxButtonComponent color="red" onClick={() => props.setIsOpen(false)}/>
+                    <LinuxButtonComponent color="red" onClick={() => setIsOpen(false)}/>
                     </span>
-                {props.title}
+                {title}
                 <span className={styles.buttonContainer} ></span>
             </div>
             <div className={styles.body}>
-                {props.content}
+                {content}
             </div>
             <div className={styles.footer}>
-                {props.actions}
+                {actions}
             </div>
         </IonModal>
     );

@@ -1,4 +1,4 @@
-import {IonInput} from "@ionic/react";
+ import {IonInput} from "@ionic/react";
 import React from "react";
 import style from './AsciiInput.module.css'
 

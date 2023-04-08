@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Course} from "../../../models";
 import {AsciiInputComponent} from "../Inputs/AsciiInput/AsciiInput.component";
 import {IonDatetime, IonModal} from "@ionic/react";
-import {AsciiDatePickerComponent} from "../../components/Forms/Inputs/AsciiDate/AsciiDate.component";
+import {AsciiDatePickerComponent} from "../Inputs/AsciiDate/AsciiDate.component";
 
 interface CourseFormComponentProps {
     newCourseInfo: Course;
@@ -31,9 +31,11 @@ const CourseFormComponent = (props: CourseFormComponentProps) => {
                     startDate: new Date(e.detail.value?.slice(0, 10) as string)
                 })
             }}
+            required
         />
         <AsciiDatePickerComponent
             label="Fin"
+            min={newCourseInfo.startDate && newCourseInfo.startDate.toISOString()}
             value={newCourseInfo.endDate}
             onChange={(e) => {
                 setNewCourseInfo({

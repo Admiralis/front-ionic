@@ -1,21 +1,24 @@
 import React, {useEffect, useState} from "react";
-import {AsciiInputComponent} from "../../../../Forms/Inputs/AsciiInput/AsciiInput.component";
+import {AsciiInputComponent} from "../AsciiInput/AsciiInput.component";
 import {IonButton, IonButtons, IonDatetime, IonIcon} from "@ionic/react";
 import {calendar} from "ionicons/icons";
-import SimpleModalComponent from "../../../../Modals/SimpleModal/SimpleModal.component";
+import SimpleModalComponent from "../../../Modals/SimpleModal/SimpleModal.component";
+import styles from './AsciiDate.module.css'
 
 interface AsciiDatePickerComponentProps {
     label: string
     value: Date | null
     onChange: (e: any) => void
     required?: boolean
+    min?: string
+    max?: string
 }
 
 export const AsciiDatePickerComponent = (props: AsciiDatePickerComponentProps) => {
 
     const [isDatePickerOpen, setDatePickerOpen] = useState<boolean>(false)
 
-    const {label, value, onChange, required} = props
+    const {label, value, onChange, required, min, max} = props
 
     useEffect(() => {
         setDatePickerOpen(false)
@@ -39,8 +42,7 @@ export const AsciiDatePickerComponent = (props: AsciiDatePickerComponentProps) =
                 <SimpleModalComponent
                     isOpen={isDatePickerOpen}
                     setIsOpen={setDatePickerOpen}
-                    title="Date de début"
-                    height="35%"
+                    title={label}
                     content={
                         <IonDatetime id="date"
                                      presentation="date"
@@ -52,6 +54,10 @@ export const AsciiDatePickerComponent = (props: AsciiDatePickerComponentProps) =
                                      size="cover"
                                      doneText="Valider"
                                      cancelText="Annuler"
+                                     onIonBlur={() => setDatePickerOpen(false)}
+                                     style={{width: '80%'}}
+                                     min={min || undefined}
+                                     max={max || undefined}
                         />
                     }
                 />
