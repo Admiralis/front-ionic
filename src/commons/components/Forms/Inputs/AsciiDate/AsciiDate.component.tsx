@@ -43,7 +43,7 @@ export const AsciiDatePickerComponent = (props: AsciiDatePickerComponentProps) =
                                  required={required}
             />
                 <IonButtons>
-                    <IonButton onClick={() => setDatePickerOpen(true)}>
+                    <IonButton onClick={() => setDatePickerOpen(true)} className="icon" icon-only >
                         <IonIcon icon={calendar}></IonIcon>
                     </IonButton>
                 </IonButtons>

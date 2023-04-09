@@ -50,9 +50,8 @@ const AddCoursePage = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        console.log('submit', computerSerial)
         ComputerService.findComputerBySerial(computerSerial).then((computer) => {
-            console.log('found :', computer)
-            console.log('course :', course)
             router.push('/scan/course/confirm', {
                 newComputerState: computer,
                 newCourseState: course,
@@ -60,6 +59,8 @@ const AddCoursePage = () => {
             })
             setComputerSerial('');
         }).catch(() => {
+            console.log('not found', computerSerial)
+            console.log('course :', course)
             setOpen(true)
         })
     }

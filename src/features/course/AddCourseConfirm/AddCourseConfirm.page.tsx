@@ -47,48 +47,42 @@ const AddCourseConfirmPage = () => {
             <IonContent>
                 <form className="flex-container">
                     <CardComponent
-                        title="Valider"
+                        tiny
+                        title="Prêt collectif"
                         content={
-                            <>
-                                <CardComponent
-                                    title="Informations sur l'ordinateur"
-                                    content={
-                                        <EditComputerComponent
-                                            newComputerInfo={computer}
-                                            setNewComputerInfo={() => {
-                                                setComputer(computer)
-                                            }}
-                                        />
-                                    }
-                                    tiny
+                            <div>
+                                <CourseFormComponent
+                                    newCourseInfo={course}
+                                    setNewCourseInfo={() => {
+                                        setCourse(course)
+                                    }}
                                 />
-                                <CardComponent
-                                    title="Informations sur le prêt"
-                                    content={
-                                        <div>
-                                            <CourseFormComponent
-                                                newCourseInfo={course}
-                                                setNewCourseInfo={() => {
-                                                    setCourse(course)
-                                                }}
-                                            />
-                                        </div>
-                                    }
-                                    tiny
-                                />
-
-                            </>
+                            </div>
                         }
-                        actions={
-                            <>
-                                <div>
-                                    <IonButton className="yellow large" expand="block" onClick={handleSubmitAndFinish} >Terminer</IonButton>
-                                </div>
-                                <div>
-                                    <IonButton className="red" onClick={handleCancel} > Annuler </IonButton>
-                                    <IonButton className="green" onClick={handleSubmitAndReScan}> PC Suivant </IonButton>
-                                </div>
-                            </>
+                    />
+                    <CardComponent
+                        tiny
+                        title="Ordinateur"
+                        content={
+                            <EditComputerComponent
+                                newComputerInfo={computer}
+                                setNewComputerInfo={() => {
+                                    setComputer(computer)
+                                }}
+                            />
+                        }
+                    />
+                    <CardComponent
+                        tiny
+                        title="Actions"
+                        content={
+                            <div>
+                            <IonButton className="yellow large" expand="block"
+                                       onClick={handleSubmitAndFinish}>Terminer</IonButton>
+                            <IonButton className="red" onClick={handleCancel}> Annuler </IonButton>
+                            <IonButton className="green" onClick={handleSubmitAndReScan}> PC
+                                Suivant </IonButton>
+                            </div>
                         }
                     />
                 </form>

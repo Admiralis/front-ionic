@@ -157,6 +157,12 @@ ion-button.veryLarge {
     height: 4em;
 }
 
+ion-button.icon {
+    width: 3em;
+    height: 3em;
+    padding-top: 5px;
+}
+
 button {
     background-color: transparent;
 }
