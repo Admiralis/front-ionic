@@ -27,7 +27,7 @@ interface CardProps {
  * @param props?.tiny Version petite de la carte. False par défaut
  * @constructor
  */
-const CardComponent = (props: CardProps) => {
+export default function CardComponent  (props: CardProps) {
     const {title, subtitle, content, actions, collapsible, alert, tiny} = props;
     const [collapsed, setCollapsed] = React.useState(false);
     const handleCollapse = () => {
@@ -53,5 +53,3 @@ const CardComponent = (props: CardProps) => {
         </IonCard>
     );
 };
-
-export default CardComponent;
