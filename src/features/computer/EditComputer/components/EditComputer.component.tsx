@@ -3,10 +3,11 @@ import {AsciiInputComponent} from "commons/components";
 import React from "react";
 import {NewComputer} from "commons/models";
 import {CommentsComponent} from "commons/components/Forms/Comments/Comments.component";
+import {Computer} from "../../../../commons/models";
 
 interface AddComputerFormConfirmComponentProps {
-    newComputerInfo: NewComputer
-    setNewComputerInfo: (newComputerInfo: NewComputer) => void;
+    newComputerInfo: NewComputer | Computer;
+    setNewComputerInfo: (newComputerInfo: NewComputer | Computer) => void;
 }
 
 
