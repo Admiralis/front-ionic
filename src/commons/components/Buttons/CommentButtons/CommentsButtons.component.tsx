@@ -11,7 +11,7 @@ const CommentsButtonsComponent = (props: CommentsButtonsComponentProps) => {
     const {action, onClick} = props;
 
     return (
-        <button onClick={onClick} style={{marginTop: "4%"}}>
+        <button onClick={onClick} style={{marginTop: "4%", marginLeft: '3%'}}>
             {action === 'remove' &&
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" >
                     <path
