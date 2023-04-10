@@ -1,6 +1,9 @@
 import React, {useEffect} from 'react';
 import LoanService from "../../services/loan/Loan.service";
 
+/**
+ * Hook permettant de récupérer la liste des prêts et d'en ajouter
+ */
 const useLoans = () => {
 
     const [loans, setLoans] = React.useState<any[]>([]);

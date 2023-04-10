@@ -2,6 +2,9 @@ import { Course } from 'commons/models';
 import React, {useEffect} from 'react';
 import CourseService from "../../services/course/Course.service";
 
+/**
+ * Hook permettant de récupérer la liste des cours et d'en ajouter
+ */
 const UseCourses = () => {
 
     const [courses, setCourses] = React.useState<Course[]>([]);

@@ -12,6 +12,10 @@ import {LoanType} from "../../../commons/models/loan/LoanType";
 import useLoans from "../../../commons/hooks/loans/useLoans";
 import {add} from "ionicons/icons";
 
+/**
+ * Page de création d'un prêt collectif
+ * @constructor
+ */
 const CreateCollectiveLoanPage = () => {
 
     const [computer, setComputer] = useState({} as Computer);

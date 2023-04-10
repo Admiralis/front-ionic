@@ -11,6 +11,10 @@ import {ComputerService} from "../../../commons/services/computer";
 import CourseService from "../../../commons/services/course/Course.service";
 import useCourses from "../../../commons/hooks/courses/useCourses";
 
+/**
+ * Page de création de cours
+ * @constructor
+ */
 const AddCoursePage = () => {
 
     const [course, setCourse] = React.useState({} as Course)
@@ -51,6 +55,10 @@ const AddCoursePage = () => {
         }
     }, [autoSubmit])
 
+    /**
+     * Créé un cours s'il n'exista pas déjà, sinon le récupère puis redirige vers la page de confirmation si le matériel existe bien
+     * @param event
+     */
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 

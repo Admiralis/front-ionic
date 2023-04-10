@@ -2,6 +2,10 @@ import React, {useEffect} from 'react';
 import Student from "../../models/student/Student.model";
 import StudentService from "../../services/student/Student.service";
 
+/**
+ * Hook permettant de récupérer la liste des étudiants et d'en ajouter
+ * @constructor
+ */
 const UseStudents = () => {
     const [students, setStudents] = React.useState<Student[]>([]);
     const [isLoading, setIsLoading] = React.useState<boolean>(true);

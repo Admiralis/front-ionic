@@ -9,6 +9,14 @@ interface UnknownComputerModalComponentProps {
     onCancel: () => void
 }
 
+/**
+ * Modale qui affiche un message d'erreur si le PC n'existe pas
+ * @param props - open : boolean : indique si la modal est ouverte
+ * @param props - setIsOpen : (isOpen: boolean) => void : fonction de mise à jour de l'état d'ouverture de la modal
+ * @param props - onComputerAdd : () => void : fonction de création du PC
+ * @param props - onCancel : () => void : fonction d'annulation de la création du PC
+ * @constructor
+ */
 const UnknownComputerModalComponent = (props: UnknownComputerModalComponentProps) => {
     const {open, setIsOpen, onComputerAdd, onCancel} = props;
 
