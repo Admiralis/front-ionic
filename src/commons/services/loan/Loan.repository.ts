@@ -21,7 +21,7 @@ const loans: Loan[] = [
         id: "1",
         start: new Date("2023-04-01"),
         end: new Date("2023-06-30"),
-        deposit: DepositState.PENDING,
+        deposit: DepositState.UNNECESSARY,
         loanType: LoanType.COLLECTIVE,
         loanStatus: LoanStatus.IN_PROGRESS,
         computer: {
@@ -44,7 +44,7 @@ const loans: Loan[] = [
         id: "2",
         start: new Date("2023-04-01"),
         end: new Date("2023-06-30"),
-        deposit: DepositState.PENDING,
+        deposit: DepositState.UNNECESSARY,
         loanType: LoanType.COLLECTIVE,
         loanStatus: LoanStatus.IN_PROGRESS,
         computer: {
@@ -61,7 +61,7 @@ const loans: Loan[] = [
         id: "2",
         start: new Date("2023-04-01"),
         end: new Date("2023-06-30"),
-        deposit: DepositState.PENDING,
+        deposit: DepositState.UNNECESSARY,
         loanType: LoanType.COLLECTIVE,
         loanStatus: LoanStatus.IN_PROGRESS,
         computer: {
@@ -144,12 +144,13 @@ class LoanRepository {
     }
 
     save(loan: Loan): Promise<Loan> {
-        let index = loans.findIndex(l => l.id === loan.id);
+        let index = loans.findIndex(l => l.computer.id === loan.computer.id && l.loanStatus === LoanStatus.IN_PROGRESS );
         if (index !== -1) {
-            loans[index] = loan;
-            return Promise.resolve(loan);
+            return Promise.reject(`Loan with computer id ${loan.computer?.id} already exists`);
         }
-        return Promise.reject(`Loan with id ${loan.id} not found`);
+        loan.id = (loans.length + 1).toString();
+        loans.push(loan);
+        return Promise.resolve(loan);
     }
 
     replace(loan: Loan): Promise<Loan> {

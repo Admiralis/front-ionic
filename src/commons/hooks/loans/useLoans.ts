@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import LoanService from "../../services/loan/Loan.service";
 
-const UseLoans = () => {
+const useLoans = () => {
 
     const [loans, setLoans] = React.useState<any[]>([]);
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
@@ -34,4 +34,4 @@ const UseLoans = () => {
 
 };
 
-export default UseLoans;
+export default useLoans;

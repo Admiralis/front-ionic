@@ -43,6 +43,19 @@ const computers: Computer[] = [
         condition: null,
         comments: []
     },
+    {
+        id: "5",
+        serial: "AAAAAAA",
+        category: "Dev",
+        ram: "32GB",
+        processor: "i7",
+        condition: "Neuf",
+        comments: [
+            {
+                content: "Charger non fourni"
+            }
+        ]
+    }
 ]
 
 class ComputerRepository {

@@ -1,17 +1,26 @@
 import React, {useEffect, useState} from 'react';
-import {IonButton, IonButtons, IonContent, IonPage} from "@ionic/react";
+import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {useHistory, useLocation} from "react-router";
-import {Computer, Course, NewComputer} from "../../../commons/models";
+import {Computer, Course} from "../../../commons/models";
 import {EditComputerComponent} from "../../computer/EditComputer/components/EditComputer.component";
 import {CardComponent} from "../../../commons/components";
 import CourseFormComponent from "../../../commons/components/Forms/CourseForm/CourseForm.component";
+import Loan from "../../../commons/models/loan/Loan.model";
+import {DepositState} from "../../../commons/models/loan/DepositState";
+import {LoanStatus} from "../../../commons/models/loan/LoanStatus";
+import {LoanType} from "../../../commons/models/loan/LoanType";
+import useLoans from "../../../commons/hooks/loans/useLoans";
+import {add} from "ionicons/icons";
 
-const AddCourseConfirmPage = () => {
+const CreateCollectiveLoanPage = () => {
+
+    const [computer, setComputer] = useState({} as Computer);
+    const [course, setCourse] = useState({} as Course);
+    const [loan, setLoan] = useState({} as Loan)
 
     const router = useHistory();
     const location = useLocation<{ comeFrom: string, newComputerState: Computer, newCourseState: Course }>();
-    const [computer, setComputer] = useState({} as Computer);
-    const [course, setCourse] = useState({} as Course);
+    const {addLoan, loans} = useLoans()
 
     useEffect(() => {
         if (!location.state) {
@@ -28,13 +37,28 @@ const AddCourseConfirmPage = () => {
 
     }, [location.state]);
 
+    useEffect(() => {
+        setLoan({
+            start: course.startDate,
+            end: course.endDate ? course.endDate : undefined,
+            deposit: DepositState.UNNECESSARY,
+            loanStatus: LoanStatus.IN_PROGRESS,
+            loanType: LoanType.COLLECTIVE,
+            course: course,
+            computer: computer
+        })
+    }, [computer, course])
+
     const handleCancel = () => {
         router.push(location.state.comeFrom, {reScan: true});
     };
 
     const handleSubmitAndReScan = (e: any) => {
         e.preventDefault();
-        router.push(location.state.comeFrom, {reScan: true});
+        addLoan(loan)
+        console.log('loan : ', loan)
+        console.log('loans : ', loans)
+        // router.push(location.state.comeFrom, {reScan: true});
     }
 
     const handleSubmitAndFinish = (e: any) => {
@@ -95,4 +119,4 @@ const AddCourseConfirmPage = () => {
     );
 };
 
-export default AddCourseConfirmPage;
+export default CreateCollectiveLoanPage;
