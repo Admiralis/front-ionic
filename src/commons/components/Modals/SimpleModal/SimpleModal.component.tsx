@@ -21,7 +21,7 @@ const SimpleModalComponent = (props: AlreadyExistsModalComponentProps) => {
     }
 
     return (
-        <IonModal isOpen={isOpen} className={styles.modal} style={{height: height}} showBackdrop onBlur={() => setIsOpen(false)} >
+        <IonModal isOpen={isOpen} className={styles.modal} style={{height: height}} showBackdrop onIonModalDidDismiss={() => setIsOpen(false)} >
             <div className={styles.header}>
                     <span className={styles.buttonContainer} >
                     <LinuxButtonComponent color="red" onClick={() => setIsOpen(false)}/>

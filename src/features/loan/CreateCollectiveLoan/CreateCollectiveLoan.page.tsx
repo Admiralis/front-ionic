@@ -3,7 +3,7 @@ import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {useHistory, useLocation} from "react-router";
 import {Computer, Course} from "../../../commons/models";
 import {EditComputerComponent} from "../../computer/EditComputer/components/EditComputer.component";
-import {CardComponent} from "../../../commons/components";
+import {CardComponent, SimpleModalComponent} from "../../../commons/components";
 import CourseFormComponent from "../../../commons/components/Forms/CourseForm/CourseForm.component";
 import Loan from "../../../commons/models/loan/Loan.model";
 import {DepositState} from "../../../commons/models/loan/DepositState";
@@ -17,10 +17,11 @@ const CreateCollectiveLoanPage = () => {
     const [computer, setComputer] = useState({} as Computer);
     const [course, setCourse] = useState({} as Course);
     const [loan, setLoan] = useState({} as Loan)
+    const [showModal, setShowModal] = useState(false);
 
     const router = useHistory();
     const location = useLocation<{ comeFrom: string, newComputerState: Computer, newCourseState: Course }>();
-    const {addLoan, loans} = useLoans()
+    const {addLoan, error} = useLoans()
 
     useEffect(() => {
         if (!location.state) {
@@ -49,6 +50,10 @@ const CreateCollectiveLoanPage = () => {
         })
     }, [computer, course])
 
+    useEffect(() => {
+        error && setShowModal(true)
+    }, [error])
+
     const handleCancel = () => {
         router.push(location.state.comeFrom, {reScan: true});
     };
@@ -56,9 +61,7 @@ const CreateCollectiveLoanPage = () => {
     const handleSubmitAndReScan = (e: any) => {
         e.preventDefault();
         addLoan(loan)
-        console.log('loan : ', loan)
-        console.log('loans : ', loans)
-        // router.push(location.state.comeFrom, {reScan: true});
+        router.push(location.state.comeFrom, {reScan: true});
     }
 
     const handleSubmitAndFinish = (e: any) => {
@@ -115,6 +118,14 @@ const CreateCollectiveLoanPage = () => {
                     />
                 </form>
             </IonContent>
+            <SimpleModalComponent
+                isOpen={showModal}
+                setIsOpen={setShowModal}
+                title="Oops"
+                content={
+                <p>{error}</p>
+            }
+            />
         </IonPage>
     );
 };

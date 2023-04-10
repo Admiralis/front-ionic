@@ -31,6 +31,14 @@ class CourseService {
         return await CourseRepository.replace(course);
     }
 
+    async findCourseByLabelAndStartDate(label: string, startDate: Date): Promise<Course> {
+        const course = CourseRepository.findByLabelAndStartDate(label, startDate);
+        if (course === undefined) {
+            throw new Error("Ce cours n'existe pas");
+        }
+        return Promise.resolve(course);
+    }
+
 }
 
 export default new CourseService();

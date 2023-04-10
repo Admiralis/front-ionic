@@ -64,7 +64,6 @@ export const AsciiDatePickerComponent = (props: AsciiDatePickerComponentProps) =
                                      size="cover"
                                      doneText="Valider"
                                      cancelText="Annuler"
-                                     onIonBlur={() => {return}} // Hack to prevent the modal from closing when the user clicks on the datepicker
                                      style={{width: '80%'}}
                                      min={min || undefined}
                                      max={max || undefined}

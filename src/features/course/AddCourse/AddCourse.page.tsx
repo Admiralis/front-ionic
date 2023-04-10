@@ -8,6 +8,8 @@ import {useHistory, useLocation} from "react-router";
 import useAutoRescan from "../../../commons/hooks/scan/useAutoRescan";
 import {Simulate} from "react-dom/test-utils";
 import {ComputerService} from "../../../commons/services/computer";
+import CourseService from "../../../commons/services/course/Course.service";
+import useCourses from "../../../commons/hooks/courses/useCourses";
 
 const AddCoursePage = () => {
 
@@ -21,6 +23,7 @@ const AddCoursePage = () => {
     const location = useLocation<{ newComputerSerial: string, comeFrom: string }>();
     const {autoScan} = useAutoRescan();
     const router = useHistory();
+    const {addCourse, courses} = useCourses();
 
     useEffect(() => {
         setScanning(autoScan);
@@ -29,8 +32,8 @@ const AddCoursePage = () => {
     useEffect(() => {
         setCourse({
             ...course,
-            startDate: new Date()
-        })
+            startDate: new Date(),
+        } as Course)
     }, [])
 
     useEffect(() => {
@@ -50,7 +53,15 @@ const AddCoursePage = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log('submit', computerSerial)
+
+        CourseService.findCourseByLabelAndStartDate(course.label, course.startDate).then((foundCourse) => {
+            setCourse(foundCourse)
+            console.log("Course found", foundCourse)
+        }).catch(() => {
+            addCourse(course)
+            console.log(courses)
+        })
+
         ComputerService.findComputerBySerial(computerSerial).then((computer) => {
             router.push('/scan/course/confirm', {
                 newComputerState: computer,
@@ -59,8 +70,6 @@ const AddCoursePage = () => {
             })
             setComputerSerial('');
         }).catch(() => {
-            console.log('not found', computerSerial)
-            console.log('course :', course)
             setOpen(true)
         })
     }
@@ -88,7 +97,6 @@ const AddCoursePage = () => {
                 open={open}
                 setIsOpen={setOpen}
                 onComputerAdd={() => {
-                    console.log('add computer')
                     router.push('/scan/add/confirm', {
                         newComputerState: {serial: computerSerial},
                         comeFrom: '/scan/course/confirm'
@@ -98,7 +106,6 @@ const AddCoursePage = () => {
                 }
                 }
                 onCancel={() => {
-                    console.log('cancel')
                     setOpen(false);
                     setComputerSerial('');
                 }}

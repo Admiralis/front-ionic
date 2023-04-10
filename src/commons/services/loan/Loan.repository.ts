@@ -144,9 +144,16 @@ class LoanRepository {
     }
 
     save(loan: Loan): Promise<Loan> {
+        let duplicatedLoan = loans.find(l => l.computer.id === loan.computer.id && l.loanStatus === LoanStatus.IN_PROGRESS && l.course?.id === loan.course?.id );
         let index = loans.findIndex(l => l.computer.id === loan.computer.id && l.loanStatus === LoanStatus.IN_PROGRESS );
+        if (duplicatedLoan) {
+            throw new Error(`Loan with id ${duplicatedLoan.id} already exists`);
+        }
         if (index !== -1) {
-            return Promise.reject(`Loan with computer id ${loan.computer?.id} already exists`);
+            const oldLoan = loans[index];
+            oldLoan.loanStatus = LoanStatus.FINISHED;
+            oldLoan.end = new Date();
+            loans[index] = oldLoan;
         }
         loan.id = (loans.length + 1).toString();
         loans.push(loan);

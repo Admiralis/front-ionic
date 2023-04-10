@@ -46,7 +46,7 @@ const courses: Course[] = [
     {
         id: "7",
         label: "POE Node.js",
-        startDate: new Date("2020-07-01"),
+        startDate: new Date("2023-07-01"),
         endDate: null,
         place: null
     },
@@ -138,6 +138,14 @@ class CourseRepository {
         if (index > -1) {
             const course = courses[index];
             courses.splice(index, 1);
+            return Promise.resolve(course);
+        }
+        return Promise.reject(new Error("Course not found"));
+    }
+
+    findByLabelAndStartDate(label: string, startDate: Date): Promise<Course> {
+        const course = courses.find(course => course.label === label && course.startDate === startDate);
+        if (course) {
             return Promise.resolve(course);
         }
         return Promise.reject(new Error("Course not found"));
