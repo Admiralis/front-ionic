@@ -1,7 +1,7 @@
 import ComputerComment from "./ComputerComment";
 
 export default interface Computer {
-    id: string;
+    id?: string;
     serial: string;
     category: string | null;
     ram: string | null;

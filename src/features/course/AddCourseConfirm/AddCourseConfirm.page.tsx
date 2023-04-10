@@ -53,9 +53,7 @@ const AddCourseConfirmPage = () => {
                             <div>
                                 <CourseFormComponent
                                     newCourseInfo={course}
-                                    setNewCourseInfo={() => {
-                                        setCourse(course)
-                                    }}
+                                    setNewCourseInfo={setCourse}
                                 />
                             </div>
                         }
@@ -66,9 +64,7 @@ const AddCourseConfirmPage = () => {
                         content={
                             <EditComputerComponent
                                 newComputerInfo={computer}
-                                setNewComputerInfo={() => {
-                                    setComputer(computer)
-                                }}
+                                setNewComputerInfo={setComputer}
                             />
                         }
                     />
