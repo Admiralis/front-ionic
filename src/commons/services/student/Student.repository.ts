@@ -28,12 +28,12 @@ const students: Student[] = [
     {
         id: "3",
         firstName: "Jack",
-        lastName: "React",
+        lastName: "Angular",
         course: {
             id: "5",
             label: "POE React",
-            startDate: new Date("2020-01-01"),
-            endDate: null,
+            startDate: new Date("2023-04-01"),
+            endDate: new Date("2023-06-30"),
             place: "Salle 3"
         }
 

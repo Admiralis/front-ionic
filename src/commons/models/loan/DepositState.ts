@@ -1,5 +1,5 @@
 export enum DepositState {
-    'PENDING' = 'PENDING',
+    'PENDING' = 'UNNECESSARY',
     'PAID' = 'PAID',
     'REFUNDED' = 'NOT_PAID',
 }

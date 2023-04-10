@@ -4,28 +4,28 @@ const courses: Course[] = [
     {
         id: "1",
         label: "POE Java",
-        startDate: new Date("2019-01-01"),
-        endDate: new Date("2019-03-31"),
+        startDate: new Date("2023-01-01"),
+        endDate: new Date("2023-03-31"),
         place: "Salle 2"
     },
     {
         id: "2",
         label: "IDP Angular",
-        startDate: new Date("2019-04-01"),
-        endDate: new Date("2019-06-30"),
+        startDate: new Date("2023-04-01"),
+        endDate: new Date("2023-06-30"),
         place: "Inicio - Arobase"
     },
     {
         id: "3",
         label: "POE Big Data",
-        startDate: new Date("2019-07-01"),
-        endDate: new Date("2019-09-30"),
+        startDate: new Date("2023-07-01"),
+        endDate: new Date("2023-09-30"),
         place: "Salle 6"
     },
     {
         id: "4",
         label: "IDP JavaScript",
-        startDate: new Date("2019-10-01"),
+        startDate: new Date("2023-10-01"),
         endDate: null,
         place: null
     },
