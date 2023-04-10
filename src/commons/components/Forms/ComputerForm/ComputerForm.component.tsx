@@ -1,10 +1,11 @@
 import {NewComputer} from "commons/models";
 import {AsciiInputComponent} from "commons/components";
 import React from "react";
+import {Computer} from "../../../models";
 
 interface ComputerFormComponentProps {
-    newComputerInfo: NewComputer
-    setNewComputerInfo: (newComputerInfo: NewComputer) => void;
+    newComputerInfo: NewComputer | Computer;
+    setNewComputerInfo: (newComputerInfo: NewComputer | Computer) => void;
 }
 
 export const ComputerFormComponent = (props: ComputerFormComponentProps) => {

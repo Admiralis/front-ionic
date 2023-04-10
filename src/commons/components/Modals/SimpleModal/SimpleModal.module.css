@@ -1,8 +1,6 @@
 .modal {
-    height: 30%;
-    width: 80%;
     margin: auto;
-    background-color: #193549;
+    background-color: transparent;
     border-radius: 5px;
 }
 
@@ -27,9 +25,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
     background: #193549;
     font-size: 1.5em;
+    height: 100%
 }
 
 ion-modal {
@@ -38,6 +36,9 @@ ion-modal {
     color: #CCCCCC;
     border: 1px solid black;
     box-shadow: 0 0 20px 2000px rgba(0, 0, 0, 0.7);
+    --max-height: 40%;
+    --max-width: 40%;
+    --min-width: 360px;
 }
 
 .buttonContainer {

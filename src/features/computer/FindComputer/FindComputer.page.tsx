@@ -1,11 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {IonButton, IonContent, IonPage} from "@ionic/react";
-import {AsciiInputComponent, CardComponent, CodeScannerComponent} from "commons/components";
+import {
+    AsciiInputComponent,
+    CardComponent,
+    CodeScannerComponent,
+    UnknownComputerModalComponent
+} from "commons/components";
 import SimpleModalComponent from "commons/components/Modals/SimpleModal/SimpleModal.component";
 import {useHistory, useLocation} from "react-router";
 import {isValidateButtonDisabled, submitOnEnter} from "commons/utils";
 import {ComputerService} from "commons/services/computer";
-
 
 const FindComputerPage = () => {
 
@@ -71,42 +75,21 @@ const FindComputerPage = () => {
                     setAutoSubmit={setAutoSubmit}
                 />
             </IonContent>
-            <SimpleModalComponent
-                isOpen={open}
+            <UnknownComputerModalComponent
+                open={open}
                 setIsOpen={setOpen}
-                content={<p>Ce PC n'existe pas !</p>}
-                title={<p>¯\_(ツ)_/¯</p>}
-                actions={
-                    <>
-                        <IonButton
-                            onClick={
-                                () => {
-                                    router.push('/scan/add/confirm', {
-                                        newComputerState: {serial: computerSerial},
-                                        comeFrom: location.pathname
-                                    });
-                                    setOpen(false);
-                                    setComputerSerial('');
-                                }
-                            }
-                            className="green"
-                        >
-                            Ajouter
-                        </IonButton>
-                        <IonButton
-                            onClick={
-                                () => {
-                                    setOpen(false);
-                                    setComputerSerial('');
-                                }
-                            }
-                            className="yellow"
-                        >
-                            Igonrer
-                        </IonButton>
-                    </>
-
-                }
+                onComputerAdd={() => {
+                    router.push('/scan/add/confirm', {
+                        newComputerState: {serial: computerSerial},
+                        comeFrom: location.pathname
+                    });
+                    setOpen(false);
+                    setComputerSerial('');
+                }}
+                onCancel={() => {
+                    setOpen(false);
+                    setComputerSerial('');
+                }}
             />
         </IonPage>
     );

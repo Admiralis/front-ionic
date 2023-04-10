@@ -9,29 +9,41 @@ interface AlreadyExistsModalComponentProps {
     title: React.ReactNode;
     content: React.ReactNode;
     actions?: React.ReactNode;
+    height?: string;
 }
 
+/**
+ * Composant de modal simple
+ * @param props - isOpen : boolean : indique si la modal est ouverte
+ * @param props - setIsOpen : (isOpen: boolean) => void : fonction de mise à jour de l'état d'ouverture de la modal
+ * @param props - title : React.ReactNode : titre de la modal
+ * @param props - content : React.ReactNode : contenu de la modal
+ * @param props (facultatif) - actions : React.ReactNode : actions de la modal
+ * @param props (facultatif) - height : string : hauteur de la modal
+ * @constructor
+ */
 const SimpleModalComponent = (props: AlreadyExistsModalComponentProps) => {
     const modal = useRef<HTMLIonModalElement>(null);
+    const {isOpen, setIsOpen, title, content, actions, height} = props;
 
     function dismiss() {
         modal.current?.dismiss();
     }
 
     return (
-        <IonModal isOpen={props.isOpen} className={styles.modal}>
+        <IonModal isOpen={isOpen} className={styles.modal} style={{height: height}} showBackdrop onIonModalDidDismiss={() => setIsOpen(false)} >
             <div className={styles.header}>
                     <span className={styles.buttonContainer} >
-                    <LinuxButtonComponent color="red" onClick={() => props.setIsOpen(false)}/>
+                    <LinuxButtonComponent color="red" onClick={() => setIsOpen(false)}/>
                     </span>
-                {props.title}
+                {title}
                 <span className={styles.buttonContainer} ></span>
             </div>
             <div className={styles.body}>
-                {props.content}
+                {content}
             </div>
             <div className={styles.footer}>
-                {props.actions}
+                {actions}
             </div>
         </IonModal>
     );

@@ -108,12 +108,14 @@ http://ionicframework.com/docs/theming/ */
 /** Buttons **/
 
 ion-button {
-    font-size: 1em;
+    font-size: 0.8em;
     font-family: "Courier New", Courier, monospace;
     text-transform: none;
     font-weight: 700;
     --border-radius: 5px;
     margin: 10px;
+    width: 8em;
+    height: 2.5em;
 }
 
 /** Buttons Colors **/
@@ -136,23 +138,29 @@ ion-button.yellow {
 /** Buttons Sizes **/
 
 ion-button.small {
-    width: 135px;
+    width: 1.5em;
     height: 35px;
 }
 
 ion-button.medium {
-    width: 155px;
-    height: 40px;
+    width: 8.5em;
+    height: 2.5em;
 }
 
 ion-button.large {
-    width: 290px;
-    height: 35px;
+    width: 15.5em;
+    height: 2.5em;
 }
 
 ion-button.veryLarge {
     width: 330px;
-    height: 40px;
+    height: 4em;
+}
+
+ion-button.icon {
+    width: 3em;
+    height: 3em;
+    padding-top: 5px;
 }
 
 button {
@@ -321,12 +329,14 @@ Fonts
 
 @font-face {
     font-family: 'Roboto Mono', serif;
-    src: url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+    /*src: url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');*/
+    src: url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Roboto+Mono&display=swap');
 }
 
 @font-face {
     font-family: 'Courier New', serif;
-    src: url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Roboto+Mono&display=swap');
+    src: url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+    /*src: url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Roboto+Mono&display=swap');*/
 }
 
 body.scanner-active {

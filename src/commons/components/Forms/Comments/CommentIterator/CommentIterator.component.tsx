@@ -4,6 +4,7 @@ import {LinuxButtonComponent} from "../../../Buttons";
 import {AsciiInputComponent} from "../../Inputs/AsciiInput/AsciiInput.component";
 import styles from "./CommentIterator.module.css";
 import {ellipse} from "ionicons/icons";
+import CommentsButtonsComponent from "../../../Buttons/CommentButtons/CommentsButtons.component";
 
 interface CommentIteratorProps {
     comments?: ComputerComment[]
@@ -66,9 +67,8 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
                                 smallText
                                 disabled
                             />
-                            <LinuxButtonComponent
-                                color="red"
-                                small
+                            <CommentsButtonsComponent
+                                action="remove"
                                 onClick={() => removeComment(index)}
                             />
                         </div>
@@ -81,8 +81,8 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
                                      smallText
                                      onBlur={handleBlur}
                 />
-                <LinuxButtonComponent
-                    small
+                <CommentsButtonsComponent
+                    action="add"
                     onClick={() => addComment()}
                 />
             </div>

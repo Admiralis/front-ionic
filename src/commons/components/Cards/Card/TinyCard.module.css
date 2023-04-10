@@ -1,7 +1,7 @@
 .card {
     --border-radius: 5px;
     border: 1px solid black;
-    width : 370px;
+    width : 100%;
 }
 
 .content {

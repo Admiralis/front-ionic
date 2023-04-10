@@ -18,6 +18,11 @@ import {AsciiInputComponent} from "./Forms/Inputs/AsciiInput/AsciiInput.componen
 // Scan
 import CodeScannerComponent from "./CodeScanner/CodeScanner.component";
 
+// Modales
+
+import SimpleModalComponent from "./Modals/SimpleModal/SimpleModal.component";
+import UnknownComputerModalComponent from "./Modals/UnknownComputerModal/UnknownComputerModal.component";
+
 export { CardComponent }
 export { LinuxButtonComponent }
 export { AlertIconComponent }
@@ -26,3 +31,5 @@ export { HorizontalDividerComponent }
 export { ComputerAddFormComponent, AsciiInputComponent }
 
 export { CodeScannerComponent }
+
+export { SimpleModalComponent, UnknownComputerModalComponent }

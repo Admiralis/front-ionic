@@ -6,11 +6,16 @@ import {NewComputer} from "commons/models";
 import {EditComputerComponent} from "./components/EditComputer.component";
 import useComputers from "commons/hooks/computers/useComputers";
 
-const AddComputerFormActions = () => {
+interface AddComputerFormConfirmComponentProps {
+    origin: string;
+}
+const AddComputerFormActions = (props: AddComputerFormConfirmComponentProps) => {
+
+    const {origin} = props;
+
     const router = useHistory();
-    const location = useLocation<{ comeFrom: string }>();
     const handleCancel = () => {
-        router.push(location.state.comeFrom, {newComputerState: {} as NewComputer});
+        router.push(origin, {newComputerState: {} as NewComputer});
     };
     return (
         <>
@@ -28,6 +33,7 @@ const EditComputerPage = () => {
 
     const location = useLocation<{ newComputerState: NewComputer, comeFrom: string }>();
     const [newComputerInfo, setNewComputerInfo] = useState({} as NewComputer);
+    const [origin, setOrigin] = useState<string>('');
     const router = useHistory();
     const {addComputer} = useComputers();
 
@@ -45,6 +51,13 @@ const EditComputerPage = () => {
         } else {
             setNewComputerInfo(location.state.newComputerState);
         }
+
+        if (location.state.comeFrom) {
+            setOrigin(location.state.comeFrom);
+        } else {
+            setOrigin('');
+        }
+
     }, [location.state]);
 
     /**
@@ -55,7 +68,7 @@ const EditComputerPage = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         addComputer(newComputerInfo);
-        router.push(location.state.comeFrom, {reScan: true});
+        router.push(origin , {reScan: true});
     }
 
     return (
@@ -67,7 +80,7 @@ const EditComputerPage = () => {
                             title="Valider un PC"
                             content={<EditComputerComponent newComputerInfo={newComputerInfo}
                                                             setNewComputerInfo={setNewComputerInfo}/>}
-                            actions={<AddComputerFormActions/>}
+                            actions={<AddComputerFormActions origin={origin} />}
                         />
                     </form>
                 </IonContent>

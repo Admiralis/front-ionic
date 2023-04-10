@@ -29,6 +29,7 @@ ion-card-title {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    font-family: 'Roboto Mono', serif;
 }
 
 ion-card-subtitle {
@@ -36,6 +37,7 @@ ion-card-subtitle {
     font-size: small;
     font-style: italic;
     font-weight: 100;
+    font-family: 'Roboto Mono', serif;
 }
 
 ion-card-header {

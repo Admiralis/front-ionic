@@ -12,7 +12,7 @@ export const ScanMenuActionsComponent = () => {
             label: "Prêt individuel"
         },
         {
-            path: "/scan/collectif",
+            path: "/scan/course",
             label: "Prêt collectif"
         },
         {
@@ -21,7 +21,7 @@ export const ScanMenuActionsComponent = () => {
         },
         {
             path: "/scan/retour",
-            label: "Retour au stock"
+            label: "Retour stock"
         },
         {
             path: "/scan/edit",
