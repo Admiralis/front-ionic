@@ -6,6 +6,12 @@ interface CommentsButtonsComponentProps {
     onClick?: () => void;
 }
 
+/**
+ * Composant bouton d'ajout ou de suppression de commentaire
+ * @param props action: 'add' | 'remove' : action à effectuer. Change l'apparence du bouton
+ * @param props onClick?: () => void : fonction à exécuter au clic
+ * @constructor
+ */
 const CommentsButtonsComponent = (props: CommentsButtonsComponentProps) => {
 
     const {action, onClick} = props;
