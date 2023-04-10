@@ -3,6 +3,7 @@
     text-transform: none;
     background-color: #303030;
     width: 90%;
+    min-width: 250px;
     height: 30px;
     margin-top: 3%;
 }
