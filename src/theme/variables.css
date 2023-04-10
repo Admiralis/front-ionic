@@ -329,12 +329,14 @@ Fonts
 
 @font-face {
     font-family: 'Roboto Mono', serif;
-    src: url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+    /*src: url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');*/
+    src: url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Roboto+Mono&display=swap');
 }
 
 @font-face {
     font-family: 'Courier New', serif;
-    src: url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Roboto+Mono&display=swap');
+    src: url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+    /*src: url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Roboto+Mono&display=swap');*/
 }
 
 body.scanner-active {

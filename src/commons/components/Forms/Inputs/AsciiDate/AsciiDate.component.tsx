@@ -30,9 +30,9 @@ export const AsciiDatePickerComponent = (props: AsciiDatePickerComponentProps) =
 
     const {label, value, onChange, required, min, max} = props
 
-    useEffect(() => {
-        setDatePickerOpen(false)
-    }, [onChange])
+    // useEffect(() => {
+    //     setDatePickerOpen(false)
+    // }, [onChange])
 
     return (
         <>
@@ -64,7 +64,7 @@ export const AsciiDatePickerComponent = (props: AsciiDatePickerComponentProps) =
                                      size="cover"
                                      doneText="Valider"
                                      cancelText="Annuler"
-                                     onIonBlur={() => setDatePickerOpen(false)}
+                                     onIonBlur={() => {return}} // Hack to prevent the modal from closing when the user clicks on the datepicker
                                      style={{width: '80%'}}
                                      min={min || undefined}
                                      max={max || undefined}

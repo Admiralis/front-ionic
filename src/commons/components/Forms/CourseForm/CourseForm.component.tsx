@@ -41,6 +41,7 @@ const CourseFormComponent = (props: CourseFormComponentProps) => {
         <AsciiDatePickerComponent
             label="Fin"
             min={newCourseInfo.startDate && newCourseInfo.startDate.toISOString()}
+            max={new Date(new Date(newCourseInfo.startDate && newCourseInfo.startDate.toISOString()).setFullYear(new Date().getFullYear() + 3)).toISOString()}
             value={newCourseInfo.endDate}
             onChange={(e) => {
                 setNewCourseInfo({
