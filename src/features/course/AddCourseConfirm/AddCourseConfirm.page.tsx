@@ -77,11 +77,19 @@ const AddCourseConfirmPage = () => {
                         title="Actions"
                         content={
                             <div>
-                            <IonButton className="yellow large" expand="block"
-                                       onClick={handleSubmitAndFinish}>Terminer</IonButton>
-                            <IonButton className="red" onClick={handleCancel}> Annuler </IonButton>
-                            <IonButton className="green" onClick={handleSubmitAndReScan}> PC
-                                Suivant </IonButton>
+                                <IonButton className="yellow large"
+                                           expand="block"
+                                           onClick={handleSubmitAndFinish}>
+                                    Terminer
+                                </IonButton>
+                                <div>
+                                    <IonButton className="red" onClick={handleCancel}>
+                                        Annuler
+                                    </IonButton>
+                                    <IonButton className="green" onClick={handleSubmitAndReScan}>
+                                        PC Suivant
+                                    </IonButton>
+                                </div>
                             </div>
                         }
                     />

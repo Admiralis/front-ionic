@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './CommentsButtons.module.scss';
 
 interface CommentsButtonsComponentProps {
     action: 'add' | 'remove';
@@ -10,9 +11,9 @@ const CommentsButtonsComponent = (props: CommentsButtonsComponentProps) => {
     const {action, onClick} = props;
 
     return (
-        <button onClick={onClick} >
+        <button onClick={onClick} style={{marginTop: "4%"}}>
             {action === 'remove' &&
-                <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" >
                     <path
                         d="M18.9767 9C18.9767 13.9706 14.9339 18 9.94675 18C4.95962 18 0.916748 13.9706 0.916748 9C0.916748 4.02944 4.95962 0 9.94675 0C14.9339 0 18.9767 4.02944 18.9767 9Z"
                         fill="#EB4B4D"/>
@@ -24,7 +25,7 @@ const CommentsButtonsComponent = (props: CommentsButtonsComponentProps) => {
             {
                 action === 'add' &&
                 (
-                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M18.9767 9C18.9767 13.9706 14.9339 18 9.94675 18C4.95962 18 0.916748 13.9706 0.916748 9C0.916748 4.02944 4.95962 0 9.94675 0C14.9339 0 18.9767 4.02944 18.9767 9Z"
                             fill="#43BC3D"/>
