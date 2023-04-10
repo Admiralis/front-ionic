@@ -56,6 +56,20 @@ const courses: Course[] = [
         startDate: new Date("2020-10-01"),
         endDate: new Date("2020-12-31"),
         place: null
+    },
+    {
+        id: "9",
+        label: "POE Admin Linux",
+        startDate: new Date("2021-01-01"),
+        endDate: null,
+        place: null
+    },
+    {
+        id: "10",
+        label: "POE Windows Server",
+        startDate: new Date("2021-04-01"),
+        endDate: null,
+        place: null
     }
 ]
 

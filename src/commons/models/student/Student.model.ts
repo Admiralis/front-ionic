@@ -4,7 +4,7 @@ interface Student {
     id?: string;
     firstName: string;
     lastName: string;
-    course: Course;
+    course?: Course;
 }
 
 export default Student;
