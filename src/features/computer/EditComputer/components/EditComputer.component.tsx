@@ -1,6 +1,6 @@
 import {ComputerFormComponent} from "commons/components/Forms/ComputerForm/ComputerForm.component";
 import {AsciiInputComponent} from "commons/components";
-import React from "react";
+import React, {useEffect} from "react";
 import {NewComputer} from "commons/models";
 import {CommentsComponent} from "commons/components/Forms/Comments/Comments.component";
 import {Computer} from "../../../../commons/models";
@@ -12,6 +12,11 @@ interface AddComputerFormConfirmComponentProps {
 
 
 export const EditComputerComponent = (props: AddComputerFormConfirmComponentProps) => {
+
+    useEffect(() => {
+
+    }, [props])
+
     return (
         <>
             <div className="container">

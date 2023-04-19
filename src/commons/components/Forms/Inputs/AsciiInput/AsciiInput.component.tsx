@@ -1,5 +1,5 @@
- import {IonInput} from "@ionic/react";
-import React from "react";
+ import {IonInput, useIonViewDidEnter} from "@ionic/react";
+import React, {useEffect, useRef} from "react";
 import style from './AsciiInput.module.css'
 
 interface AsciiInputComponentProps {
@@ -11,6 +11,7 @@ interface AsciiInputComponentProps {
     smallText?: boolean
     disabled?: boolean
     onBlur?: (e: any) => void
+    autoFocus?: boolean
 }
 
 /**
@@ -22,9 +23,23 @@ interface AsciiInputComponentProps {
  * @param props.placeholder - Texte à afficher dans le champ lorsqu'il est vide
  * @param props.smallText - Si passé, réduit la taille du texte dans l'input
  * @param props.disabled - Si passé, affiche un "$" à la place du ">" dans le prompt et désactive l'input
+ * @param props.autoFocus - Si passé, focus l'input au chargement de la page
  * @constructor
  */
 export function AsciiInputComponent(props: AsciiInputComponentProps) {
+
+
+    // Hook de Ionic qui s'exécute à l'affichage du composant.
+    // Focus l'input si props.autoFocus est passé
+    useIonViewDidEnter(() => {
+        if (props.autoFocus) {
+            const input = document.querySelector('ion-input')
+            input?.setFocus()
+        }
+    })
+
+
+
 
     return (
         <div className={style.asciiItem}>
