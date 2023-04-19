@@ -29,7 +29,6 @@ function EndLoanPage() {
             loans.map((loan) => {
                 if (loan.loanStatus === "IN_PROGRESS") {
                     setLoan(loan);
-                    console.log(loan)
                 }
             })
         });
@@ -62,6 +61,16 @@ function EndLoanPage() {
                                         setNewCourseInfo={() => {
                                         }}
                                     />
+                                }
+                            />
+                        )
+                    }
+                    {
+                        !loan.course && !loan.student && (
+                            <CardComponent
+                                title="Aucun prêt en cours"
+                                content={
+                                    <p>Le PC n'est pas prêté</p>
                                 }
                             />
                         )

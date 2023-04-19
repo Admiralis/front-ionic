@@ -1,5 +1,11 @@
 import ComputerComment from "./ComputerComment";
 
+export enum ComputerStatus {
+    AVAILABLE = "AVAILABLE",
+    IN_USE = "IN_USE",
+    UNAVAILABLE = "UNAVAILABLE"
+}
+
 export default interface Computer {
     id?: string;
     serial: string;
@@ -8,5 +14,6 @@ export default interface Computer {
     processor: string | null;
     condition: string | null;
     comments: ComputerComment[];
+    status?: ComputerStatus;
 
 }

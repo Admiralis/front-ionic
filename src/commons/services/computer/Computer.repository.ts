@@ -1,4 +1,5 @@
 import {Computer, NewComputer} from "commons/models";
+import {ComputerStatus} from "../../models/computer/Computer.model";
 
 const computers: Computer[] = [
     {
@@ -14,7 +15,8 @@ const computers: Computer[] = [
             },
             {
                 content: "Touche clavier 'INSER' HS"
-            }]
+            }],
+        status: ComputerStatus.IN_USE
     },
     {
         id: "2",
@@ -23,7 +25,8 @@ const computers: Computer[] = [
         ram: "32GB",
         processor: "i7",
         condition: "Neuf",
-        comments: []
+        comments: [],
+        status: ComputerStatus.IN_USE
     },
     {
         id: "3",
@@ -32,7 +35,8 @@ const computers: Computer[] = [
         ram: "8GB",
         processor: "i3",
         condition: null,
-        comments: []
+        comments: [],
+        status: ComputerStatus.IN_USE
     },
     {
         id: "4",
@@ -41,7 +45,8 @@ const computers: Computer[] = [
         ram: null,
         processor: null,
         condition: null,
-        comments: []
+        comments: [],
+        status: ComputerStatus.IN_USE
     },
     {
         id: "5",
@@ -54,7 +59,22 @@ const computers: Computer[] = [
             {
                 content: "Charger non fourni"
             }
-        ]
+        ],
+        status: ComputerStatus.AVAILABLE
+    },
+    {
+        id: "6",
+        serial: "BBBBBBB",
+        category: "Dev",
+        ram: "32GB",
+        processor: "i7",
+        condition: "Neuf",
+        comments: [
+            {
+                content: "HS"
+            }
+        ],
+        status: ComputerStatus.UNAVAILABLE
     }
 ]
 
