@@ -105,6 +105,19 @@ http://ionicframework.com/docs/theming/ */
     align-items: center;
 }
 
+.sticky {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #193549;
+    padding: 10px;
+    border-top:  1px solid #FFC600;
+}
+
 /** Buttons **/
 
 ion-button {

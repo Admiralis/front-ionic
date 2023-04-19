@@ -8,6 +8,7 @@ import useLoans from "../../../commons/hooks/loans/useLoans";
 import LoanService from "../../../commons/services/loan/Loan.service";
 import Loan from "../../../commons/models/loan/Loan.model";
 import CourseFormComponent from "../../../commons/components/Forms/CourseForm/CourseForm.component";
+import style from "./EndLoan.module.css";
 
 function EndLoanPage() {
     const location = useLocation<{ computer: NewComputer, comeFrom: string }>();
@@ -45,16 +46,10 @@ function EndLoanPage() {
                     <CardComponent
                         title="Retour au stock"
                         content={
-                        <EditComputerComponent
+                            <EditComputerComponent
                                 newComputerInfo={computer}
                                 setNewComputerInfo={setComputer}
                             />
-                        }
-                        actions={
-                            <IonButtons>
-                                <IonButton className="red" onClick={() => router.push(origin)}>Annuler</IonButton>
-                                <IonButton className="green" type="submit">Valider</IonButton>
-                            </IonButtons>
                         }
                     />
                     {
@@ -64,13 +59,20 @@ function EndLoanPage() {
                                 content={
                                     <CourseFormComponent
                                         newCourseInfo={loan.course}
-                                        setNewCourseInfo={() => {}}
+                                        setNewCourseInfo={() => {
+                                        }}
                                     />
                                 }
                             />
                         )
                     }
+                    <IonButtons className="sticky">
+                        <IonButton className="red"
+                                   onClick={() => router.push(origin)}>Retour</IonButton>
+                        <IonButton className="green" type="submit">Clôturer</IonButton>
+                    </IonButtons>
                 </form>
+                <div className={style.padding} />
             </IonContent>
         </IonPage>
     );
