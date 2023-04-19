@@ -39,9 +39,6 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
         }
     }, [])
 
-
-
-
     return (
         <div className={style.asciiItem}>
             <span className={props.smallText ? style.asciiSmallLabel : style.asciiLabel}>

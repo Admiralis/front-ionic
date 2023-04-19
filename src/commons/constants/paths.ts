@@ -1,11 +1,14 @@
 export enum COMPUTER_PATHS {
+    ROOT = "/computer",
     NEW_COMPUTER = "/computer/new",
-    EDIT_COMPUTER = "/computer/:id/edit",
+    EDIT_COMPUTER = "/computer/edit",
 }
 
 export enum LOAN_PATHS {
-    NEW_LOAN = "/loan/new",
-    EDIT_LOAN = "/loan/:id/edit",
+    ROOT = "/loan",
+    NEW = "/loan/new",
+    EDIT = "/loan/edit",
+    END = "/loan/end",
 }
 
 export enum STUDENT_PATHS {
@@ -13,6 +16,11 @@ export enum STUDENT_PATHS {
 }
 
 export enum COURSE_PATHS {
-    NEW_COURSE = "/course/new",
-    EDIT_COURSE = "/course/:id/edit",
+    ROOT = "/course",
+    NEW = "/course/new",
+    EDIT = "/course/edit",
+}
+
+export enum SCAN_PATHS {
+    ROOT = "/scan",
 }
