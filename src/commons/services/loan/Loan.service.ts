@@ -77,6 +77,14 @@ class LoanService {
         return await LoanRepository.replace(loan);
     }
 
+    async endLoan(loan: Loan): Promise<Loan> {
+        if (loan.id) {
+            return await LoanRepository.endLoan(loan.id);
+        }
+        throw new Error("Loan not found");
+    }
+
+
 }
 
 export default new LoanService();

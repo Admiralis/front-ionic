@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {IonButton, IonButtons, IonContent, IonPage} from "@ionic/react";
 import {useHistory, useLocation} from "react-router";
-import {Computer, NewComputer} from "../../../commons/models";
+import {Computer} from "../../../commons/models";
 import {EditComputerComponent} from "../../computer/EditComputer/components/EditComputer.component";
 import {CardComponent} from "../../../commons/components";
 import useLoans from "../../../commons/hooks/loans/useLoans";
@@ -17,6 +17,7 @@ function EndLoanPage() {
     const [loan, setLoan] = useState({} as Loan);
 
     const router = useHistory();
+    const {endLoan, loans} = useLoans();
 
     useEffect(() => {
         if (!location.state) return;
@@ -36,6 +37,8 @@ function EndLoanPage() {
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
+        endLoan(loan)
+        router.push(origin)
     }
 
     return (

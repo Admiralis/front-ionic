@@ -4,7 +4,8 @@ import {LoanType} from "../../models/loan/LoanType";
 import {LoanStatus} from "../../models/loan/LoanStatus";
 import Course from "../../models/course/Course.model";
 import Student from "../../models/student/Student.model";
-import Computer from "../../models/computer/Computer.model";
+import Computer, {ComputerStatus} from "../../models/computer/Computer.model";
+import computerRepository from "../computer/Computer.repository";
 
 // id?: string;
 // start: Date;
@@ -165,8 +166,8 @@ class LoanRepository {
     }
 
     save(loan: Loan): Promise<Loan> {
-        let duplicatedLoan = loans.find(l => l.computer.id === loan.computer.id && l.loanStatus === LoanStatus.IN_PROGRESS && l.course?.id === loan.course?.id );
-        let index = loans.findIndex(l => l.computer.id === loan.computer.id && l.loanStatus === LoanStatus.IN_PROGRESS );
+        let duplicatedLoan = loans.find(l => l.computer.id === loan.computer.id && l.loanStatus === LoanStatus.IN_PROGRESS && l.course?.id === loan.course?.id);
+        let index = loans.findIndex(l => l.computer.id === loan.computer.id && l.loanStatus === LoanStatus.IN_PROGRESS);
         if (duplicatedLoan) {
             throw new Error(`Loan with id ${duplicatedLoan.id} already exists`);
         }
@@ -194,6 +195,24 @@ class LoanRepository {
         let index = loans.findIndex(l => l.id === id);
         if (index !== -1) {
             return Promise.resolve(loans.splice(index, 1)[0]);
+        }
+        return Promise.reject(`Loan with id ${id} not found`);
+    }
+
+    endLoan(id: string): Promise<Loan> {
+        let index = loans.findIndex(l => l.id === id);
+        if (index !== -1) {
+            const loan = loans[index];
+            loan.loanStatus = LoanStatus.FINISHED;
+            loan.end = new Date();
+            loans[index] = loan;
+
+            loan.computer.id && computerRepository.findById(loan.computer.id).then(computer => {
+                computer.status = ComputerStatus.AVAILABLE;
+                computerRepository.replace(computer);
+            })
+
+            return Promise.resolve(loan);
         }
         return Promise.reject(`Loan with id ${id} not found`);
     }
