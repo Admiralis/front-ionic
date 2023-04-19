@@ -33,10 +33,11 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
     // Focus l'input si props.autoFocus est passé
     useIonViewDidEnter(() => {
         if (props.autoFocus) {
-            const input = document.querySelector('ion-input')
-            input?.setFocus()
+            const input: HTMLIonInputElement | null = document.querySelector(` #${props.label}`)
+            console.log(input)
+            if (input?.id === props.label ) input?.setFocus()
         }
-    })
+    }, [])
 
 
 
@@ -46,6 +47,7 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
             <span className={props.smallText ? style.asciiSmallLabel : style.asciiLabel}>
                 {props.required && <span>*</span>}{props.label}{props.disabled ? <span className={props.smallText? style.littlePrompt : style.prompt }>$ </span> : <span className={props.smallText? style.littlePrompt : style.prompt }>&#62;_ </span>}</span>
             <IonInput
+                id={props.label}
                 value={props.value}
                 placeholder={props.placeholder}
                 onIonChange={props.onIonChange}

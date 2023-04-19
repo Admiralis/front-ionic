@@ -6,7 +6,7 @@ import {CommentsComponent} from "commons/components/Forms/Comments/Comments.comp
 import {Computer} from "../../../../commons/models";
 
 interface AddComputerFormConfirmComponentProps {
-    newComputerInfo: NewComputer | Computer;
+    newComputerInfo: Computer;
     setNewComputerInfo: (newComputerInfo: NewComputer | Computer) => void;
 }
 
@@ -23,7 +23,7 @@ export const EditComputerComponent = (props: AddComputerFormConfirmComponentProp
                 <ComputerFormComponent newComputerInfo={props.newComputerInfo}
                                        setNewComputerInfo={props.setNewComputerInfo}/>
                 <AsciiInputComponent
-                    value={props.newComputerInfo.serial}
+                    value={props.newComputerInfo.serial || ''}
                     label="SerialNumber"
                 />
             </div>

@@ -11,7 +11,7 @@ import CourseFormComponent from "../../../commons/components/Forms/CourseForm/Co
 import style from "./EndLoan.module.css";
 
 function EndLoanPage() {
-    const location = useLocation<{ computer: NewComputer, comeFrom: string }>();
+    const location = useLocation<{ computer: Computer, comeFrom: string }>();
     const [computer, setComputer] = useState({} as Computer);
     const [origin, setOrigin] = useState<string>('');
     const [loan, setLoan] = useState({} as Loan);
@@ -68,9 +68,9 @@ function EndLoanPage() {
                     {
                         !loan.course && !loan.student && (
                             <CardComponent
-                                title="Aucun prêt en cours"
+                                title="Prêt en cours"
                                 content={
-                                    <p>Le PC n'est pas prêté</p>
+                                    <p>Aucun prêt en cours</p>
                                 }
                             />
                         )

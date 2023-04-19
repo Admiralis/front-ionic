@@ -30,6 +30,7 @@ const AddCourseComponent = (props: AddCourseComponentProps) => {
                     onIonChange={e => {
                         setComputerSerial(e.detail.value!)
                     }}
+                    autoFocus
                 />
             </div>
     );

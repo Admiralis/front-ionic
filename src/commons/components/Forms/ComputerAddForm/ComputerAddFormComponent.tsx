@@ -33,6 +33,7 @@ export const ComputerAddFormComponent = (props: ComputerAddFormComponentProps) =
                             serial: e.detail.value!
                         })
                     }}
+                    autoFocus
                 />
             </div>
         </>
