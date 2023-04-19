@@ -38,6 +38,13 @@ const loans: Loan[] = [
                 {
                     content: "Touche clavier 'INSER' HS"
                 }]
+        },
+        course: {
+            id: "2",
+            label: "IDP Angular",
+            startDate: new Date("2023-04-01"),
+            endDate: new Date("2023-06-30"),
+            place: "Inicio - Arobase"
         }
     },
     {
@@ -55,6 +62,13 @@ const loans: Loan[] = [
             processor: "i7",
             condition: "Neuf",
             comments: []
+        },
+        course: {
+            id: "2",
+            label: "IDP Angular",
+            startDate: new Date("2023-04-01"),
+            endDate: new Date("2023-06-30"),
+            place: "Inicio - Arobase"
         }
     },
     {
@@ -72,6 +86,13 @@ const loans: Loan[] = [
             processor: "i3",
             condition: null,
             comments: []
+        },
+        course: {
+            id: "2",
+            label: "IDP Angular",
+            startDate: new Date("2023-04-01"),
+            endDate: new Date("2023-06-30"),
+            place: "Inicio - Arobase"
         }
     },
     {

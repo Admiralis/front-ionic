@@ -71,6 +71,7 @@ const AddCoursePage = () => {
         })
 
         ComputerService.findComputerBySerial(computerSerial).then((computer) => {
+            console.log("Computer found", computer)
             router.push('/scan/course/confirm', {
                 newComputerState: computer,
                 newCourseState: course,
@@ -78,7 +79,9 @@ const AddCoursePage = () => {
             })
             setComputerSerial('');
         }).catch(() => {
+            console.log("pas trouvé", computerSerial)
             setOpen(true)
+            setComputerSerial('');
         })
     }
 

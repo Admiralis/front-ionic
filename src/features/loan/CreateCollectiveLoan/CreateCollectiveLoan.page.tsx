@@ -22,6 +22,7 @@ const CreateCollectiveLoanPage = () => {
     const [course, setCourse] = useState({} as Course);
     const [loan, setLoan] = useState({} as Loan)
     const [showModal, setShowModal] = useState(false);
+    const [origin, setOrigin] = useState<string>('');
 
     const router = useHistory();
     const location = useLocation<{ comeFrom: string, newComputerState: Computer, newCourseState: Course }>();
@@ -39,6 +40,8 @@ const CreateCollectiveLoanPage = () => {
         if (location.state.newCourseState) {
             setCourse(location.state.newCourseState);
         }
+
+        setOrigin(location.state.comeFrom)
 
     }, [location.state]);
 
@@ -59,18 +62,18 @@ const CreateCollectiveLoanPage = () => {
     }, [error])
 
     const handleCancel = () => {
-        router.push(location.state.comeFrom, {reScan: true});
+        router.push(origin, {reScan: true});
     };
 
     const handleSubmitAndReScan = (e: any) => {
         e.preventDefault();
         addLoan(loan)
-        router.push(location.state.comeFrom, {reScan: true});
+        router.push(origin, {reScan: true});
     }
 
     const handleSubmitAndFinish = (e: any) => {
         e.preventDefault();
-        router.push(location.state.comeFrom);
+        router.push(origin);
     }
 
     return (
