@@ -61,25 +61,17 @@ const AddCoursePage = () => {
      */
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        addCourse(course)
 
-        CourseService.findCourseByLabelAndStartDate(course.label, course.startDate).then((foundCourse) => {
-            setCourse(foundCourse)
-            console.log("Course found", foundCourse)
-        }).catch(() => {
-            addCourse(course)
-            console.log(courses)
-        })
 
         ComputerService.findComputerBySerial(computerSerial).then((computer) => {
-            console.log("Computer found", computer)
             router.push('/scan/course/confirm', {
-                newComputerState: computer,
+                computer: computer,
                 newCourseState: course,
                 comeFrom: location.pathname
             })
             setComputerSerial('');
         }).catch(() => {
-            console.log("pas trouvé", computerSerial)
             setOpen(true)
             setComputerSerial('');
         })
@@ -109,8 +101,8 @@ const AddCoursePage = () => {
                 setIsOpen={setOpen}
                 onComputerAdd={() => {
                     router.push('/scan/add/confirm', {
-                        newComputerState: {serial: computerSerial},
-                        comeFrom: '/scan/course/confirm'
+                        computer: {serialNumber: computerSerial},
+                        comeFrom: '/scan/course'
                     });
                     setOpen(false);
                     setComputerSerial('');

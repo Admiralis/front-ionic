@@ -33,7 +33,7 @@ const FindComputerPage = () => {
             if (location.pathname === '/scan/edit') {
                 router.push(
                     `/scan/edit/${computerSerial}`,
-                    {newComputerState: computer, comeFrom: location.pathname}
+                    {computer: computer, comeFrom: location.pathname}
                 );
             } else if (location.pathname === '/scan/stock') {
                 router.push(
@@ -88,7 +88,7 @@ const FindComputerPage = () => {
                 setIsOpen={setOpen}
                 onComputerAdd={() => {
                     router.push('/scan/add/confirm', {
-                        newComputerState: {serial: computerSerial},
+                        computer: {serialNumber: computerSerial},
                         comeFrom: location.pathname
                     });
                     setOpen(false);

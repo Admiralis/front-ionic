@@ -61,7 +61,7 @@ class CourseService {
      * @param startDate
      */
     async findCourseByLabelAndStartDate(label: string, startDate: Date): Promise<Course> {
-        const course = CourseRepository.findByLabelAndStartDate(label, startDate);
+        const course: Promise<Course> = CourseRepository.findByLabelAndStartDate(label, startDate);
         if (course === undefined) {
             throw new Error("Ce cours n'existe pas");
         }

@@ -15,7 +15,7 @@ const AddComputerFormActions = (props: AddComputerFormConfirmComponentProps) => 
 
     const router = useHistory();
     const handleCancel = () => {
-        router.push(origin, {newComputerState: {} as NewComputer});
+        router.push(origin, {computer: {} as NewComputer});
     };
     return (
         <>
@@ -31,7 +31,7 @@ const AddComputerFormActions = (props: AddComputerFormConfirmComponentProps) => 
  */
 const EditComputerPage = () => {
 
-    const location = useLocation<{ newComputerState: NewComputer, comeFrom: string }>();
+    const location = useLocation<{ computer: NewComputer, comeFrom: string }>();
     const [newComputerInfo, setNewComputerInfo] = useState({} as NewComputer);
     const [origin, setOrigin] = useState<string>('');
     const router = useHistory();
@@ -43,13 +43,13 @@ const EditComputerPage = () => {
             return;
         }
 
-        if (!location.state.newComputerState?.comments) {
+        if (!location.state.computer?.comments) {
             setNewComputerInfo({
-                ...location.state.newComputerState,
+                ...location.state.computer,
                 comments: []
             });
         } else {
-            setNewComputerInfo(location.state.newComputerState);
+            setNewComputerInfo(location.state.computer);
         }
 
         if (location.state.comeFrom) {
@@ -57,6 +57,9 @@ const EditComputerPage = () => {
         } else {
             setOrigin('');
         }
+
+        console.log(location.state.computer)
+        console.log(newComputerInfo)
 
     }, [location.state]);
 
