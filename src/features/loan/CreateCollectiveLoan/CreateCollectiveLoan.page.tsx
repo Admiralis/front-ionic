@@ -25,7 +25,7 @@ const CreateCollectiveLoanPage = () => {
     const [origin, setOrigin] = useState<string>('');
 
     const router = useHistory();
-    const location = useLocation<{ comeFrom: string, computer: Computer, newCourseState: Course }>();
+    const location = useLocation<{ comeFrom: string, computer: Computer, course: Course }>();
     const {addLoan, error} = useLoans()
 
     useEffect(() => {
@@ -37,8 +37,8 @@ const CreateCollectiveLoanPage = () => {
             setComputer(location.state.computer);
         }
 
-        if (location.state.newCourseState) {
-            setCourse(location.state.newCourseState);
+        if (location.state.course) {
+            setCourse(location.state.course);
         }
 
         setOrigin(location.state.comeFrom)

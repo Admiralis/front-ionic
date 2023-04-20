@@ -26,12 +26,12 @@ const AddComputerPage = () => {
 
     const {autoScan} = useAutoRescan();
     const history = useHistory();
-    const location = useLocation<{newComputerSerial: string, comeFrom: string }>();
+    const location = useLocation<{serialNumber: string, comeFrom: string }>();
 
 
     useEffect(() => {
         if (location.state) {
-            setComputerSerial(location.state.newComputerSerial);
+            setComputerSerial(location.state.serialNumber);
         }
     }, [location.state])
 

@@ -24,7 +24,7 @@ const AddCoursePage = () => {
     const [scanning, setScanning] = useState<boolean>(false);
 
 
-    const location = useLocation<{ newComputerSerial: string, comeFrom: string }>();
+    const location = useLocation<{ serialNumber: string, comeFrom: string }>();
     const {autoScan} = useAutoRescan();
     const router = useHistory();
     const {addCourse, courses} = useCourses();
@@ -67,13 +67,12 @@ const AddCoursePage = () => {
         ComputerService.findComputerBySerial(computerSerial).then((computer) => {
             router.push('/scan/course/confirm', {
                 computer: computer,
-                newCourseState: course,
+                course: course,
                 comeFrom: location.pathname
             })
             setComputerSerial('');
         }).catch(() => {
             setOpen(true)
-            setComputerSerial('');
         })
     }
 
@@ -102,7 +101,8 @@ const AddCoursePage = () => {
                 onComputerAdd={() => {
                     router.push('/scan/add/confirm', {
                         computer: {serialNumber: computerSerial},
-                        comeFrom: '/scan/course'
+                        course: course,
+                        comeFrom: router.location.pathname
                     });
                     setOpen(false);
                     setComputerSerial('');

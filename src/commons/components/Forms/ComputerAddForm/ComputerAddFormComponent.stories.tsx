@@ -14,7 +14,7 @@ export const Classique: (args: any) => JSX.Element = (args: any) => {
     return <ComputerAddFormComponent
         computerSerial={args.computerSerial || '123456789'}
         newComputerInfo={args.newComputerInfo || {
-            serial: '123456789',
+            serialNumber: '123456789',
             category: 'PC',
             ram: '8',
             processor: 'Intel Core i5',
