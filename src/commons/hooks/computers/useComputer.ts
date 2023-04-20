@@ -9,7 +9,7 @@ const useComputer = (serial: string) => {
     const [error, setError] = React.useState<string | null>(null);
 
     useEffect(() => {
-        if (serial !== computer?.serial) {
+        if (serial !== computer?.serialNumber) {
             setIsLoading(true);
             setComputer(null);
             computerService.findComputerBySerial(serial).then((computer) => {

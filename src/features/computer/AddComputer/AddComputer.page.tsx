@@ -81,7 +81,7 @@ const AddComputerPage = () => {
      * Redirige vers la page de confirmation
      */
     function goNextStep() {
-        newComputerInfo.serial = computerSerial;
+        newComputerInfo.serialNumber = computerSerial;
         history.push('/scan/add/confirm', {newComputerState: newComputerInfo, comeFrom: location.pathname});
         setComputerSerial('');
     }

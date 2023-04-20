@@ -8,7 +8,7 @@ export enum ComputerStatus {
 
 export default interface Computer {
     id?: string;
-    serial: string;
+    serialNumber: string;
     category: string | null;
     ram: string | null;
     processor: string | null;

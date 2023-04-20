@@ -5,7 +5,7 @@ import {LoanStatus} from "../../models/loan/LoanStatus";
 import Course from "../../models/course/Course.model";
 import Student from "../../models/student/Student.model";
 import Computer, {ComputerStatus} from "../../models/computer/Computer.model";
-import computerRepository from "../computer/Computer.repository";
+import computerRepository from "../computer/Computer.repository.mock";
 
 // id?: string;
 // start: Date;
@@ -27,7 +27,7 @@ const loans: Loan[] = [
         loanStatus: LoanStatus.IN_PROGRESS,
         computer: {
             id: "1",
-            serial: "ABCDEFG",
+            serialNumber: "ABCDEFG",
             category: "Dev",
             ram: "16GB",
             processor: "i5",
@@ -57,7 +57,7 @@ const loans: Loan[] = [
         loanStatus: LoanStatus.IN_PROGRESS,
         computer: {
             id: "2",
-            serial: "HIJKLMN",
+            serialNumber: "HIJKLMN",
             category: "Admin",
             ram: "32GB",
             processor: "i7",
@@ -81,7 +81,7 @@ const loans: Loan[] = [
         loanStatus: LoanStatus.IN_PROGRESS,
         computer: {
             id: "3",
-            serial: "OPQRSTU",
+            serialNumber: "OPQRSTU",
             category: "Bureautique",
             ram: "8GB",
             processor: "i3",
@@ -117,7 +117,7 @@ const loans: Loan[] = [
         },
         computer: {
             id: "4",
-            serial: "VWXYZAB",
+            serialNumber: "VWXYZAB",
             category: null,
             ram: null,
             processor: null,

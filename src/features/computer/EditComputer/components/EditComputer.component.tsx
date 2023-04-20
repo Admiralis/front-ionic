@@ -23,7 +23,7 @@ export const EditComputerComponent = (props: AddComputerFormConfirmComponentProp
                 <ComputerFormComponent newComputerInfo={props.newComputerInfo}
                                        setNewComputerInfo={props.setNewComputerInfo}/>
                 <AsciiInputComponent
-                    value={props.newComputerInfo.serial || ''}
+                    value={props.newComputerInfo.serialNumber || ''}
                     label="SerialNumber"
                 />
             </div>

@@ -1,168 +1,64 @@
-import {Computer, NewComputer} from "commons/models";
-import {ComputerStatus} from "../../models/computer/Computer.model";
-
-const computers: Computer[] = [
-    {
-        id: "1",
-        serial: "ABCDEFG",
-        category: "Dev",
-        ram: "16GB",
-        processor: "i5",
-        condition: "Usé",
-        comments: [
-            {
-                content: "Griffe sur l'écran"
-            },
-            {
-                content: "Touche clavier 'INSER' HS"
-            }],
-        status: ComputerStatus.IN_USE
-    },
-    {
-        id: "2",
-        serial: "HIJKLMN",
-        category: "Admin",
-        ram: "32GB",
-        processor: "i7",
-        condition: "Neuf",
-        comments: [],
-        status: ComputerStatus.IN_USE
-    },
-    {
-        id: "3",
-        serial: "OPQRSTU",
-        category: "Bureautique",
-        ram: "8GB",
-        processor: "i3",
-        condition: null,
-        comments: [],
-        status: ComputerStatus.IN_USE
-    },
-    {
-        id: "4",
-        serial: "VWXYZAB",
-        category: null,
-        ram: null,
-        processor: null,
-        condition: null,
-        comments: [],
-        status: ComputerStatus.IN_USE
-    },
-    {
-        id: "5",
-        serial: "AAAAAAA",
-        category: "Dev",
-        ram: "32GB",
-        processor: "i7",
-        condition: "Neuf",
-        comments: [
-            {
-                content: "Charger non fourni"
-            }
-        ],
-        status: ComputerStatus.AVAILABLE
-    },
-    {
-        id: "6",
-        serial: "BBBBBBB",
-        category: "Dev",
-        ram: "32GB",
-        processor: "i7",
-        condition: "Neuf",
-        comments: [
-            {
-                content: "HS"
-            }
-        ],
-        status: ComputerStatus.UNAVAILABLE
-    }
-]
+import {Computer} from "../../models";
 
 class ComputerRepository {
+    private url = 'http://localhost/api/computers';
 
-    /**
-     * Retourne tous les ordinateurs
-     */
-    findAll(): Promise<Computer[]> {
-        return Promise.resolve(computers);
+    async findAll(): Promise<Computer[]> {
+        const response = await fetch(this.url);
+        return await response.json();
     }
 
-    /**
-     * Retourne un ordinateur par son id
-     * @param id
-     */
-    findById(id: string): Promise<Computer> {
-        let computer = computers.find(computer => computer.id === id);
-        if (computer) {
-            return Promise.resolve(computer);
-        }
-        return Promise.reject(new Error("Computer not found"));
+    async findById(id: string): Promise<Computer> {
+        const response = await fetch(`${this.url}/${id}`);
+        return await response.json();
     }
 
-    /**
-     * Retourne un ordinateur par son numéro de série
-     * @param serial
-     */
-    findBySerial(serial: string): Promise<Computer> {
-        let computer = computers.find(computer => computer.serial === serial);
-        if (computer) {
-            return Promise.resolve(computer);
-        }
-        return Promise.reject(new Error("Computer not found"));
+    async findBySerial(serial: string): Promise<Computer> {
+        const response = await fetch(`${this.url}/search?serialNumber=${serial}`);
+        return await response.json();
     }
 
-    /**
-     * Retourne tous les ordinateurs par leur catégorie
-     * @param newComputer
-     */
-    save(newComputer: NewComputer): Promise<Computer> {
-        const index = computers.findIndex(c => c.serial === newComputer.serial);
-        if (index > -1) {
-            computers[index] = {
-                id: computers[index].id,
-                ...newComputer,
-            };
-            return Promise.resolve(computers[index]);
-        } else {
-            const computer = {
-                ...newComputer,
-                id: (computers.length + 1).toString(),
-            }
-            computers.push(computer);
-            return Promise.resolve(computer);
-        }
+    async save(computer: Computer): Promise<Computer> {
+        const response = await fetch(this.url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(computer)
+        });
+        return await response.json();
     }
 
-    /**
-     * Remplace l'ordinateur par celui passé en paramètre
-     * @param computer
-     */
-    replace(computer: Computer): Promise<Computer> {
-        const index = computers.findIndex(c => c.id === computer.id);
-        computers[index] = computer;
-        return Promise.resolve(computer);
+    async replace(computer: Computer): Promise<Computer> {
+        const response = await fetch(`${this.url}/${computer.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(computer)
+        });
+        return await response.json();
     }
 
-    /**
-     * Met à jour l'ordinateur par celui passé en paramètre
-     * @param id
-     * @param computer
-     */
-    update(id: string, computer: Computer): Promise<Computer> {
-        const index = computers.findIndex(computer => computer.id === id);
-        computers[index] = computer;
-        return Promise.resolve(computer);
+    async update(computer: Computer): Promise<Computer> {
+        const response = await fetch(`${this.url}/${computer.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(computer)
+        });
+        return await response.json();
     }
 
-    /**
-     * Supprime l'ordinateur par son id
-     * @param id
-     */
-    deleteById(id: string): Promise<void> {
-        const index = computers.findIndex(computer => computer.id === id);
-        computers.splice(index, 1);
-        return Promise.resolve();
+    async deleteById(id: string): Promise<void> {
+        await fetch(`${this.url}/${id}`, {
+            method: 'DELETE',
+        });
     }
-};
 
-export default Object.freeze(new ComputerRepository());
+
+}
+
+export default new ComputerRepository();
+
