@@ -69,10 +69,6 @@ const EditComputerPage = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         addComputer(newComputerInfo);
-        if (origin === '/scan/course') {
-            router.push('/scan/course/confirm', {reScan: true, course: location.state.course, computer: newComputerInfo});
-            return;
-        }
         router.push(origin , {reScan: true});
     }
 

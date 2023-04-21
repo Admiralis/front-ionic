@@ -105,7 +105,6 @@ const AddCoursePage = () => {
                         comeFrom: router.location.pathname
                     });
                     setOpen(false);
-                    setComputerSerial('');
                 }
                 }
                 onCancel={() => {
