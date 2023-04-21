@@ -73,7 +73,8 @@ const CreateCollectiveLoanPage = () => {
 
     const handleSubmitAndFinish = (e: any) => {
         e.preventDefault();
-        router.push(origin);
+        addLoan(loan)
+        router.push("/");
     }
 
     return (

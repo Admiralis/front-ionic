@@ -26,13 +26,9 @@ function EndLoanPage() {
     }, [location.state]);
 
     useEffect(() => {
-        computer.id && LoanService.findLoanByComputerId(computer.id).then((loans) => {
-            loans.map((loan) => {
-                if (loan.loanStatus === "IN_PROGRESS") {
-                    setLoan(loan);
-                }
-            })
-        });
+        computer.id && LoanService.findByComputerIdAndInProgressStatus(computer.id).then(loan => {
+            setLoan(loan);
+        })
     }, [computer]);
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
