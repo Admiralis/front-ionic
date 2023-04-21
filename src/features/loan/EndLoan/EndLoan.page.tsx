@@ -11,6 +11,9 @@ import CourseFormComponent from "../../../commons/components/Forms/CourseForm/Co
 import style from "./EndLoan.module.css";
 import {ComputerStatus} from "../../../commons/models/computer/Computer.model";
 
+/**
+ * Page de clôture de prêt
+ */
 function EndLoanPage() {
     const location = useLocation<{ computer: Computer, comeFrom: string }>();
     const [computer, setComputer] = useState({} as Computer);
@@ -32,6 +35,10 @@ function EndLoanPage() {
         })
     }, [computer]);
 
+    /**
+     * Envoi la requête de clôture de prêt et redirige vers la page de recherche d'ordinateur.
+     * @param e
+     */
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         endLoan(loan)
