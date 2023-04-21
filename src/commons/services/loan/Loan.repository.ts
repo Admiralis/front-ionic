@@ -2,31 +2,55 @@ import Loan from "../../models/loan/Loan.model";
 
 class LoanRepository {
     url = "http://localhost/api/loans";
+
+    /**
+     * Récupère la liste des prêts
+     */
     async findAll(): Promise<Loan[]> {
         const response = await fetch(this.url);
         return await response.json();
     }
 
+    /**
+     * Récupère un prêt par son id
+     * @param id
+     */
     async findById(id: string): Promise<Loan> {
         const response = await fetch(`${this.url}/${id}`);
         return await response.json();
     }
 
+    /**
+     * Récupère tous les prêts concernant un étudiant
+     * @param studentId
+     */
     async findByStudentId(studentId: string): Promise<Loan[]> {
         const response = await fetch(`${this.url}/student/${studentId}`);
         return await response.json();
     }
 
+    /**
+     * Récupère tous les prêts concernant un ordinateur
+     * @param computerId
+     */
     async findByComputerId(computerId: string): Promise<Loan[]> {
         const response = await fetch(`${this.url}/computer/${computerId}`);
         return await response.json();
     }
 
+    /**
+     * Récupère tous les prêts concernant un cours
+     * @param courseId
+     */
     async findByCourseId(courseId: string): Promise<Loan[]> {
         const response = await fetch(`${this.url}/course/${courseId}`);
         return await response.json();
     }
 
+    /**
+     * Récupère le prêt en cours pour un ordinateur spécifique
+     * @param computerId
+     */
     async findByComputerIdAndInProgressStatus(computerId: string): Promise<Loan> {
         const response = await fetch(`${this.url}/computer/${computerId}/in-progress`);
         if (response.status === 204) {
