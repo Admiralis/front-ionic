@@ -29,11 +29,17 @@ class LoanRepository {
 
     async findByComputerIdAndInProgressStatus(computerId: string): Promise<Loan> {
         const response = await fetch(`${this.url}/computer/${computerId}/in-progress`);
+        if (response.status === 204) {
+            return {} as Loan;
+        }
         return await response.json();
     }
 
     async findByCourseIdAndInProgressStatus(courseId: string): Promise<Loan> {
         const response = await fetch(`${this.url}/course/${courseId}/in-progress`);
+        if (response.status === 204) {
+            return {} as Loan;
+        }
         return await response.json();
     }
 

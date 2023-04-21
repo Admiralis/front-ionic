@@ -41,7 +41,7 @@ class LoanService {
             loans.forEach(loan => this.convertDates(loan));
             return loans;
         }
-        throw new Error("Loan not found");
+        return [] as Loan[];
     }
 
     /**
@@ -54,7 +54,7 @@ class LoanService {
             loans.forEach(loan => this.convertDates(loan));
             return loans;
         }
-        throw new Error("Loan not found");
+        return [] as Loan[];
     }
 
     async findByComputerIdAndInProgressStatus(computerId: string): Promise<Loan> {
@@ -63,7 +63,7 @@ class LoanService {
             this.convertDates(loan);
             return loan;
         }
-        throw new Error("Loan not found");
+        return {} as Loan;
     }
 
     /**
@@ -76,7 +76,7 @@ class LoanService {
             loans.forEach(loan => this.convertDates(loan));
             return loans;
         }
-        throw new Error("Loan not found");
+        return [] as Loan[];
     }
 
     /**

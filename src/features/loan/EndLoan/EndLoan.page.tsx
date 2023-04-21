@@ -77,7 +77,7 @@ function EndLoanPage() {
                     <IonButtons className="sticky">
                         <IonButton className="red"
                                    onClick={() => router.push(origin)}>Retour</IonButton>
-                        <IonButton className="green" type="submit">Clôturer</IonButton>
+                        <IonButton className="green" type="submit" disabled >Clôturer</IonButton>
                     </IonButtons>
                 </form>
                 <div className={style.padding} />
