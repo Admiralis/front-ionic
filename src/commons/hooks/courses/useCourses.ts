@@ -24,13 +24,16 @@ const UseCourses = () => {
 
     /**
      * Ajoute un cours à la liste
-     * @param course
+     * @param newCourse
      */
-    const addCourse = (course: Course) => {
+    const addCourse = (newCourse: Course) => {
         setIsLoading(true);
-        CourseService.saveCourse(course).then(course => {
+        CourseService.saveCourse(newCourse).then(course => {
             setError(null);
-            setCourses([...courses, course]);
+            const newCourses =  courses.filter(c => c.id !== course.id);
+            newCourses.push(course);
+            setCourses(newCourses);
+            return course;
         }).catch(error => {
             setError(error.message);
         }).finally(() => {

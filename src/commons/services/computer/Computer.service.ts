@@ -1,6 +1,7 @@
 import { Computer } from "commons/models";
-import ComputerRepository from "./Computer.repository";
+// import ComputerRepository from "./Computer.repository.mock";
 import {NewComputer} from "../../models";
+import ComputerRepository from "./Computer.repository";
 
 class ComputerService {
 
@@ -30,7 +31,7 @@ class ComputerService {
 
     async findOrCreateComputerBySerial(computer: NewComputer): Promise<Computer> {
         try {
-            return await this.findComputerBySerial(computer.serial);
+            return await this.findComputerBySerial(computer.serialNumber);
         } catch (e) {
             return await this.saveComputer(computer);
         }

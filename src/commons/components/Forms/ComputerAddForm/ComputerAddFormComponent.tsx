@@ -30,9 +30,10 @@ export const ComputerAddFormComponent = (props: ComputerAddFormComponentProps) =
                         props.setComputerSerial(e.detail.value!)
                         props.setNewComputerInfo({
                             ...props.newComputerInfo,
-                            serial: e.detail.value!
+                            serialNumber: e.detail.value!
                         })
                     }}
+                    autoFocus
                 />
             </div>
         </>

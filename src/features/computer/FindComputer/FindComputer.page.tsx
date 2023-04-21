@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {
     AsciiInputComponent,
@@ -17,7 +17,7 @@ const FindComputerPage = () => {
     const [scanning, setScanning] = useState<boolean>(false);
     const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
-    const location = useLocation<{ newComputerSerial: string, comeFrom: string }>();
+    const location = useLocation();
     const router = useHistory();
 
     useEffect(() => {
@@ -30,10 +30,17 @@ const FindComputerPage = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         ComputerService.findComputerBySerial(computerSerial).then((computer) => {
-            router.push(
-                `/scan/edit/${computerSerial}`,
-                {newComputerState: computer, comeFrom: location.pathname}
-            );
+            if (location.pathname === '/scan/edit') {
+                router.push(
+                    `/scan/edit/${computerSerial}`,
+                    {computer: computer, comeFrom: location.pathname}
+                );
+            } else if (location.pathname === '/scan/stock') {
+                router.push(
+                    `/scan/stock/${computerSerial}`,
+                    {computer: computer, comeFrom: location.pathname}
+                );
+            }
             setComputerSerial('');
         }).catch(() => {
             setOpen(true)
@@ -43,7 +50,7 @@ const FindComputerPage = () => {
     return (
         <IonPage>
             <IonContent>
-                <form onSubmit={handleSubmit} className="flex-container" onKeyDown={submitOnEnter}>
+                <form onSubmit={handleSubmit} className="flex-container">
                     <CardComponent
                         title="Scannez le PC"
                         content={
@@ -55,6 +62,7 @@ const FindComputerPage = () => {
                                     onIonChange={e => {
                                         setComputerSerial(e.detail.value!);
                                     }}
+                                    autoFocus
                                 />
                             </>
                         }
@@ -80,7 +88,7 @@ const FindComputerPage = () => {
                 setIsOpen={setOpen}
                 onComputerAdd={() => {
                     router.push('/scan/add/confirm', {
-                        newComputerState: {serial: computerSerial},
+                        computer: {serialNumber: computerSerial},
                         comeFrom: location.pathname
                     });
                     setOpen(false);

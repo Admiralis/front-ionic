@@ -7,8 +7,8 @@ import {LoanStatus} from "./LoanStatus";
 
 interface Loan {
     id?: string;
-    start: Date;
-    end?: Date;
+    startDate: Date;
+    endDate?: Date;
     deposit: DepositState;
     loanType: LoanType;
     loanStatus: LoanStatus;

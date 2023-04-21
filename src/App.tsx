@@ -37,6 +37,7 @@ import EditComputerPage from "./features/computer/EditComputer/EditComputer.page
 import FindComputerPage from "./features/computer/FindComputer/FindComputer.page";
 import AddCoursePage from "./features/course/AddCourse/AddCourse.page";
 import CreateCollectiveLoanPage from "./features/loan/CreateCollectiveLoan/CreateCollectiveLoan.page";
+import EndLoanPage from "./features/loan/EndLoan/EndLoan.page";
 
 setupIonicReact();
 
@@ -45,13 +46,20 @@ const App: React.FC = () => (
             <IonReactRouter>
                 <IonTabs>
                     <IonRouterOutlet>
+
                         <Route exact path="/scan" component={ScanMenuPage}/>
                         <Route exact path="/scan/add" component={AddComputerPage}/>
                         <Route exact path="/scan/add/confirm" component={EditComputerPage} />
+
                         <Route exact path="/scan/edit" component={FindComputerPage} />
                         <Route exact path="/scan/edit/:id" component={EditComputerPage} />
+
                         <Route exact path="/scan/course" component={AddCoursePage} />
                         <Route exact path="/scan/course/confirm" component={CreateCollectiveLoanPage} />
+
+                        <Route exact path="/scan/stock" component={FindComputerPage} />
+                        <Route exact path="/scan/stock/:id" component={EndLoanPage} />
+
                         <Redirect exact from="/" to="/scan"/>
                     </IonRouterOutlet>
                     <IonTabBar slot="bottom">

@@ -22,9 +22,10 @@ const CreateCollectiveLoanPage = () => {
     const [course, setCourse] = useState({} as Course);
     const [loan, setLoan] = useState({} as Loan)
     const [showModal, setShowModal] = useState(false);
+    const [origin, setOrigin] = useState<string>('');
 
     const router = useHistory();
-    const location = useLocation<{ comeFrom: string, newComputerState: Computer, newCourseState: Course }>();
+    const location = useLocation<{ comeFrom: string, computer: Computer, course: Course }>();
     const {addLoan, error} = useLoans()
 
     useEffect(() => {
@@ -32,20 +33,22 @@ const CreateCollectiveLoanPage = () => {
             return;
         }
 
-        if (location.state.newComputerState) {
-            setComputer(location.state.newComputerState);
+        if (location.state.computer) {
+            setComputer(location.state.computer);
         }
 
-        if (location.state.newCourseState) {
-            setCourse(location.state.newCourseState);
+        if (location.state.course) {
+            setCourse(location.state.course);
         }
+
+        setOrigin(location.state.comeFrom)
 
     }, [location.state]);
 
     useEffect(() => {
         setLoan({
-            start: course.startDate,
-            end: course.endDate ? course.endDate : undefined,
+            startDate: course.startDate,
+            endDate: course.endDate ? course.endDate : undefined,
             deposit: DepositState.UNNECESSARY,
             loanStatus: LoanStatus.IN_PROGRESS,
             loanType: LoanType.COLLECTIVE,
@@ -59,18 +62,19 @@ const CreateCollectiveLoanPage = () => {
     }, [error])
 
     const handleCancel = () => {
-        router.push(location.state.comeFrom, {reScan: true});
+        router.push(origin, {reScan: true});
     };
 
     const handleSubmitAndReScan = (e: any) => {
         e.preventDefault();
         addLoan(loan)
-        router.push(location.state.comeFrom, {reScan: true});
+        router.push(origin, {reScan: true});
     }
 
     const handleSubmitAndFinish = (e: any) => {
         e.preventDefault();
-        router.push(location.state.comeFrom);
+        addLoan(loan)
+        router.push("/");
     }
 
     return (

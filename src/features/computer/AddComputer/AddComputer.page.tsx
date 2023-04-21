@@ -26,12 +26,12 @@ const AddComputerPage = () => {
 
     const {autoScan} = useAutoRescan();
     const history = useHistory();
-    const location = useLocation<{newComputerSerial: string, comeFrom: string }>();
+    const location = useLocation<{serialNumber: string, comeFrom: string }>();
 
 
     useEffect(() => {
         if (location.state) {
-            setComputerSerial(location.state.newComputerSerial);
+            setComputerSerial(location.state.serialNumber);
         }
     }, [location.state])
 
@@ -81,8 +81,8 @@ const AddComputerPage = () => {
      * Redirige vers la page de confirmation
      */
     function goNextStep() {
-        newComputerInfo.serial = computerSerial;
-        history.push('/scan/add/confirm', {newComputerState: newComputerInfo, comeFrom: location.pathname});
+        newComputerInfo.serialNumber = computerSerial;
+        history.push('/scan/add/confirm', {computer: newComputerInfo, comeFrom: location.pathname});
         setComputerSerial('');
     }
 

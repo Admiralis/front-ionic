@@ -5,6 +5,7 @@ import {useHistory, useLocation} from "react-router";
 import {NewComputer} from "commons/models";
 import {EditComputerComponent} from "./components/EditComputer.component";
 import useComputers from "commons/hooks/computers/useComputers";
+import {Course} from "../../../commons/models";
 
 interface AddComputerFormConfirmComponentProps {
     origin: string;
@@ -15,7 +16,7 @@ const AddComputerFormActions = (props: AddComputerFormConfirmComponentProps) => 
 
     const router = useHistory();
     const handleCancel = () => {
-        router.push(origin, {newComputerState: {} as NewComputer});
+        router.push(origin, {computer: {} as NewComputer});
     };
     return (
         <>
@@ -31,7 +32,7 @@ const AddComputerFormActions = (props: AddComputerFormConfirmComponentProps) => 
  */
 const EditComputerPage = () => {
 
-    const location = useLocation<{ newComputerState: NewComputer, comeFrom: string }>();
+    const location = useLocation<{ computer: NewComputer, comeFrom: string, course: Course }>();
     const [newComputerInfo, setNewComputerInfo] = useState({} as NewComputer);
     const [origin, setOrigin] = useState<string>('');
     const router = useHistory();
@@ -43,13 +44,13 @@ const EditComputerPage = () => {
             return;
         }
 
-        if (!location.state.newComputerState?.comments) {
+        if (!location.state.computer?.comments) {
             setNewComputerInfo({
-                ...location.state.newComputerState,
+                ...location.state.computer,
                 comments: []
             });
         } else {
-            setNewComputerInfo(location.state.newComputerState);
+            setNewComputerInfo(location.state.computer);
         }
 
         if (location.state.comeFrom) {

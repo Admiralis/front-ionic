@@ -24,7 +24,7 @@ const AddCoursePage = () => {
     const [scanning, setScanning] = useState<boolean>(false);
 
 
-    const location = useLocation<{ newComputerSerial: string, comeFrom: string }>();
+    const location = useLocation<{ serialNumber: string, comeFrom: string }>();
     const {autoScan} = useAutoRescan();
     const router = useHistory();
     const {addCourse, courses} = useCourses();
@@ -61,19 +61,19 @@ const AddCoursePage = () => {
      */
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
-        CourseService.findCourseByLabelAndStartDate(course.label, course.startDate).then((foundCourse) => {
-            setCourse(foundCourse)
-            console.log("Course found", foundCourse)
-        }).catch(() => {
-            addCourse(course)
-            console.log(courses)
+        CourseService.saveCourse(course).then((createdCourse) => {
+            setCourse({
+                ...createdCourse,
+                id: createdCourse.id,
+                startDate: new Date(createdCourse.startDate),
+                endDate: createdCourse.endDate ? new Date(createdCourse.endDate) : null
+            })
         })
 
         ComputerService.findComputerBySerial(computerSerial).then((computer) => {
             router.push('/scan/course/confirm', {
-                newComputerState: computer,
-                newCourseState: course,
+                computer: computer,
+                course: course,
                 comeFrom: location.pathname
             })
             setComputerSerial('');
@@ -81,7 +81,6 @@ const AddCoursePage = () => {
             setOpen(true)
         })
     }
-
     return (
         <IonPage>
             <IonContent>
@@ -94,7 +93,7 @@ const AddCoursePage = () => {
                                                      setComputerSerial={setComputerSerial}/>}
                         actions={
                             <IonButton className="green" type="submit"
-                                       disabled={isValidateButtonDisabled(computerSerial, 7)}>
+                                       disabled={isValidateButtonDisabled(computerSerial, 7) || (!course.label || course.label.length < 3) }>
                                 Valider
                             </IonButton>}
 
@@ -106,11 +105,11 @@ const AddCoursePage = () => {
                 setIsOpen={setOpen}
                 onComputerAdd={() => {
                     router.push('/scan/add/confirm', {
-                        newComputerState: {serial: computerSerial},
-                        comeFrom: '/scan/course/confirm'
+                        computer: {serialNumber: computerSerial},
+                        course: course,
+                        comeFrom: router.location.pathname
                     });
                     setOpen(false);
-                    setComputerSerial('');
                 }
                 }
                 onCancel={() => {

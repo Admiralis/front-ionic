@@ -20,7 +20,7 @@ export const ScanMenuActionsComponent = () => {
             label: "Ajouter PC"
         },
         {
-            path: "/scan/retour",
+            path: "/scan/stock",
             label: "Retour stock"
         },
         {
