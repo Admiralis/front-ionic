@@ -1,4 +1,4 @@
-import LoanRepository from "./Loan.repository";
+import LoanRepository from "./Loan.repository.mock";
 import Loan from "../../models/loan/Loan.model";
 
 /**

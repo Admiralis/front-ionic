@@ -61,8 +61,14 @@ const AddCoursePage = () => {
      */
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        addCourse(course)
-
+        CourseService.saveCourse(course).then((createdCourse) => {
+            setCourse({
+                ...createdCourse,
+                id: createdCourse.id,
+                startDate: new Date(createdCourse.startDate),
+                endDate: createdCourse.endDate ? new Date(createdCourse.endDate) : null
+            })
+        })
 
         ComputerService.findComputerBySerial(computerSerial).then((computer) => {
             router.push('/scan/course/confirm', {
