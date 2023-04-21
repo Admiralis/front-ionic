@@ -47,8 +47,8 @@ const CreateCollectiveLoanPage = () => {
 
     useEffect(() => {
         setLoan({
-            start: course.startDate,
-            end: course.endDate ? course.endDate : undefined,
+            startDate: course.startDate,
+            endDate: course.endDate ? course.endDate : undefined,
             deposit: DepositState.UNNECESSARY,
             loanStatus: LoanStatus.IN_PROGRESS,
             loanType: LoanType.COLLECTIVE,

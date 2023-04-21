@@ -1,5 +1,6 @@
-import LoanRepository from "./Loan.repository.mock";
+// import LoanRepository from "./Loan.repository.mock";
 import Loan from "../../models/loan/Loan.model";
+import LoanRepository from "./Loan.repository";
 
 /**
  * Service permettant de gérer les prêts
@@ -10,7 +11,11 @@ class LoanService {
      * Récupère la liste des prêts
      */
     async findLoans(): Promise<Loan[]> {
-        return await LoanRepository.findAll();
+        const loans: Loan[] = await LoanRepository.findAll();
+        loans.forEach((loan: Loan) => {
+            this.convertDates(loan);
+        })
+        return loans;
     }
 
     /**
@@ -18,8 +23,9 @@ class LoanService {
      * @param id
      */
     async findLoanById(id: string): Promise<Loan> {
-        const loan: Promise<Loan> = LoanRepository.findById(id);
+        const loan: Loan = await LoanRepository.findById(id);
         if (loan) {
+            this.convertDates(loan);
             return loan;
         }
         throw new Error("Loan not found");
@@ -30,8 +36,9 @@ class LoanService {
      * @param studentId
      */
     async findLoanByStudentId(studentId: string): Promise<Loan[]> {
-        const loans: Promise<Loan[]> = LoanRepository.findByStudentId(studentId);
+        const loans: Loan[] = await LoanRepository.findByStudentId(studentId);
         if (loans) {
+            loans.forEach(loan => this.convertDates(loan));
             return loans;
         }
         throw new Error("Loan not found");
@@ -42,9 +49,19 @@ class LoanService {
      * @param computerId
      */
     async findLoanByComputerId(computerId: string): Promise<Loan[]> {
-        const loans: Promise<Loan[]> = LoanRepository.findByComputerId(computerId);
+        const loans: Loan[] = await LoanRepository.findByComputerId(computerId);
         if (loans) {
+            loans.forEach(loan => this.convertDates(loan));
             return loans;
+        }
+        throw new Error("Loan not found");
+    }
+
+    async findByComputerIdAndInProgressStatus(computerId: string): Promise<Loan> {
+        const loan: Loan = await LoanRepository.findByComputerIdAndInProgressStatus(computerId);
+        if (loan) {
+            this.convertDates(loan);
+            return loan;
         }
         throw new Error("Loan not found");
     }
@@ -54,8 +71,9 @@ class LoanService {
      * @param courseId
      */
     async findLoanByCourseId(courseId: string): Promise<Loan[]> {
-        const loans: Promise<Loan[]> = LoanRepository.findByCourseId(courseId);
+        const loans: Loan[] = await LoanRepository.findByCourseId(courseId);
         if (loans) {
+            loans.forEach(loan => this.convertDates(loan));
             return loans;
         }
         throw new Error("Loan not found");
@@ -63,27 +81,44 @@ class LoanService {
 
     /**
      * Créé un prêt ou le met à jour s'il existe déjà
-     * @param loan
+     * @param newLoan
      */
-    async saveLoan(loan: Loan): Promise<Loan> {
-        return await LoanRepository.save(loan);
+    async saveLoan(newLoan: Loan): Promise<Loan> {
+        const loan: Loan = await LoanRepository.save(newLoan);
+        return this.convertDates(loan);
     }
 
     /**
      * Ecrase le prêt avec les nouvelles informations
-     * @param loan
+     * @param newLoan
      */
-    async replaceLoan(loan: Loan): Promise<Loan> {
-        return await LoanRepository.replace(loan);
+    async replaceLoan(newLoan: Loan): Promise<Loan> {
+        const loan: Loan = await LoanRepository.replace(newLoan);
+        return this.convertDates(loan);
     }
 
-    async endLoan(loan: Loan): Promise<Loan> {
-        if (loan.id) {
-            return await LoanRepository.endLoan(loan.id);
+    async endLoan(loanToEnd: Loan): Promise<Loan> {
+        if (loanToEnd.id) {
+            const loan: Loan =  await LoanRepository.deleteById(loanToEnd.id);
+            return this.convertDates(loan);
         }
         throw new Error("Loan not found");
     }
 
+    /**
+     * Convertit les dates ISO en objet Date
+     * @param loan
+     * @private
+     */
+    private convertDates(loan: Loan): Loan {
+        loan.startDate = new Date(loan.startDate);
+        loan.endDate = loan.endDate ? new Date(loan.endDate) : undefined;
+        if (loan.course) {
+            loan.course.startDate = new Date(loan.course.startDate);
+            loan.course.endDate = loan.course.endDate ? new Date(loan.course.endDate) : null;
+        }
+        return loan;
+    }
 
 }
 

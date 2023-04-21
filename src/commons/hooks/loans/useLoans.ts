@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import LoanService from "../../services/loan/Loan.service";
+import Loan from "../../models/loan/Loan.model";
 
 /**
  * Hook permettant de récupérer la liste des prêts et d'en ajouter
@@ -29,8 +30,24 @@ const useLoans = () => {
         setIsLoading(true);
         LoanService.endLoan(loan).then(loan => {
             setError(null);
+            getLoans();
+        }).catch(error => {
+            setError(error.message);
+        }).finally(() => {
+            setIsLoading(false);
+        });
+    }
+
+    const getLoans = () => {
+        LoanService.findLoans().then(loans => {
+            setError(null);
+            loans.forEach((loan: Loan) => {
+                loan.startDate = new Date(loan.startDate);
+                loan.endDate = loan.endDate ? new Date(loan.endDate) : undefined;
+                loan.course?.startDate && (loan.course.startDate = new Date(loan.course.startDate));
+                loan.course?.endDate && (loan.course.endDate = new Date(loan.course.endDate));
+            })
             setLoans(loans);
-            console.log(loans)
         }).catch(error => {
             setError(error.message);
         }).finally(() => {
@@ -39,15 +56,8 @@ const useLoans = () => {
     }
 
     useEffect(() => {
-        LoanService.findLoans().then(loans => {
-            setError(null);
-            setLoans(loans);
-        }).catch(error => {
-            setError(error.message);
-        }).finally(() => {
-            setIsLoading(false);
-        });
-    }, [endLoan])
+        getLoans();
+    }, [])
 
     return {loans, isLoading, error, addLoan, endLoan}
 

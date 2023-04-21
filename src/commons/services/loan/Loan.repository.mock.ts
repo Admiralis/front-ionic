@@ -20,8 +20,8 @@ import computerRepository from "../computer/Computer.repository.mock";
 const loans: Loan[] = [
     {
         id: "1",
-        start: new Date("2023-04-01"),
-        end: new Date("2023-06-30"),
+        startDate: new Date("2023-04-01"),
+        endDate: new Date("2023-06-30"),
         deposit: DepositState.UNNECESSARY,
         loanType: LoanType.COLLECTIVE,
         loanStatus: LoanStatus.IN_PROGRESS,
@@ -50,8 +50,8 @@ const loans: Loan[] = [
     },
     {
         id: "2",
-        start: new Date("2023-04-01"),
-        end: new Date("2023-06-30"),
+        startDate: new Date("2023-04-01"),
+        endDate: new Date("2023-06-30"),
         deposit: DepositState.UNNECESSARY,
         loanType: LoanType.COLLECTIVE,
         loanStatus: LoanStatus.IN_PROGRESS,
@@ -74,8 +74,8 @@ const loans: Loan[] = [
     },
     {
         id: "2",
-        start: new Date("2023-04-01"),
-        end: new Date("2023-06-30"),
+        startDate: new Date("2023-04-01"),
+        endDate: new Date("2023-06-30"),
         deposit: DepositState.UNNECESSARY,
         loanType: LoanType.COLLECTIVE,
         loanStatus: LoanStatus.IN_PROGRESS,
@@ -98,8 +98,8 @@ const loans: Loan[] = [
     },
     {
         id: "2",
-        start: new Date("2023-04-01"),
-        end: new Date("2023-06-30"),
+        startDate: new Date("2023-04-01"),
+        endDate: new Date("2023-06-30"),
         deposit: DepositState.PAID,
         loanType: LoanType.INDIVIDUAL,
         loanStatus: LoanStatus.IN_PROGRESS,
@@ -174,7 +174,7 @@ class LoanRepositoryMock {
         if (index !== -1) {
             const oldLoan = loans[index];
             oldLoan.loanStatus = LoanStatus.FINISHED;
-            oldLoan.end = new Date();
+            oldLoan.endDate = new Date();
             loans[index] = oldLoan;
         }
         loan.id = (loans.length + 1).toString();
@@ -204,7 +204,7 @@ class LoanRepositoryMock {
         if (index !== -1) {
             const loan = loans[index];
             loan.loanStatus = LoanStatus.FINISHED;
-            loan.end = new Date();
+            loan.endDate = new Date();
             loans[index] = loan;
 
             loan.computer.id && computerRepository.findById(loan.computer.id).then(computer => {

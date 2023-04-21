@@ -81,7 +81,6 @@ const AddCoursePage = () => {
             setOpen(true)
         })
     }
-
     return (
         <IonPage>
             <IonContent>
@@ -94,7 +93,7 @@ const AddCoursePage = () => {
                                                      setComputerSerial={setComputerSerial}/>}
                         actions={
                             <IonButton className="green" type="submit"
-                                       disabled={isValidateButtonDisabled(computerSerial, 7)}>
+                                       disabled={isValidateButtonDisabled(computerSerial, 7) || (!course.label || course.label.length < 3) }>
                                 Valider
                             </IonButton>}
 
