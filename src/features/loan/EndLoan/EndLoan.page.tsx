@@ -9,6 +9,7 @@ import LoanService from "../../../commons/services/loan/Loan.service";
 import Loan from "../../../commons/models/loan/Loan.model";
 import CourseFormComponent from "../../../commons/components/Forms/CourseForm/CourseForm.component";
 import style from "./EndLoan.module.css";
+import {ComputerStatus} from "../../../commons/models/computer/Computer.model";
 
 function EndLoanPage() {
     const location = useLocation<{ computer: Computer, comeFrom: string }>();
@@ -77,7 +78,7 @@ function EndLoanPage() {
                     <IonButtons className="sticky">
                         <IonButton className="red"
                                    onClick={() => router.push(origin)}>Retour</IonButton>
-                        <IonButton className="green" type="submit" disabled >Clôturer</IonButton>
+                        <IonButton className="green" type="submit" disabled={!loan.course && !loan.student} >Clôturer</IonButton>
                     </IonButtons>
                 </form>
                 <div className={style.padding} />
