@@ -34,7 +34,6 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
     useIonViewDidEnter(() => {
         if (props.autoFocus) {
             const input: HTMLIonInputElement | null = document.querySelector(` #${props.label}`)
-            console.log(input)
             if (input?.id === props.label ) input?.setFocus()
         }
     }, [])

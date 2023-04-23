@@ -38,7 +38,6 @@ class ComputerService {
     }
 
     async computerExistsBySerial(serial: string): Promise<boolean> {
-        console.log("called")
         try {
             await this.findComputerBySerial(serial);
             return Promise.resolve(true);
