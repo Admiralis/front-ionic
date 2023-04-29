@@ -1,26 +1,24 @@
-export enum COMPUTER_PATHS {
-    ROOT = "/computer",
-    NEW_COMPUTER = "/computer/new",
-    EDIT_COMPUTER = "/computer/edit",
+const paths = {
+    scan : {
+        root: '/scan/menu',
+        newComputer: '/scan/new-computer',
+        editComputer: '/scan/edit-computer',
+        newCourse: '/scan/new-course',
+        newStudent: '/scan/new-student',
+        endLoan: '/scan/end-loan',
+    },
+    computers: {
+        root: '/computers',
+        new: '/computers/new',
+        detail: '/computers/:id'
+    },
+    loans: {
+        root: '/loans',
+        detail: '/loans/:id',
+        newCollective: '/loans/new-collective',
+        newIndividual: '/loans/new-individual',
+        end: '/loans/end/:id',
+    }
 }
 
-export enum LOAN_PATHS {
-    ROOT = "/loan",
-    NEW = "/loan/new",
-    EDIT = "/loan/edit",
-    END = "/loan/end",
-}
-
-export enum STUDENT_PATHS {
-
-}
-
-export enum COURSE_PATHS {
-    ROOT = "/course",
-    NEW = "/course/new",
-    EDIT = "/course/edit",
-}
-
-export enum SCAN_PATHS {
-    ROOT = "/scan",
-}
+export default paths;
