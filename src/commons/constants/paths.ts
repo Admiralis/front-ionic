@@ -17,7 +17,7 @@ const paths = {
         detail: '/loans/:id',
         newCollective: '/loans/new-collective',
         newIndividual: '/loans/new-individual',
-        end: '/loans/end/:id',
+        end: '/loans/end',
     }
 }
 

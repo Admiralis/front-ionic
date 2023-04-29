@@ -62,7 +62,7 @@ const App: React.FC = () => (
                         <Route exact path={paths.loans.newCollective} component={CreateCollectiveLoanPage} />
 
                         <Route exact path={paths.scan.endLoan} component={FindComputerPage} />
-                        <Route exact path={paths.loans.end} component={EndLoanPage} />
+                        <Route exact path={paths.loans.end + "/:id"} component={EndLoanPage} />
 
                         <Redirect exact from="/" to={paths.scan.root} />
 
@@ -86,7 +86,7 @@ const App: React.FC = () => (
                             <IonIcon aria-hidden="true" icon={laptop}/>
                             <IonLabel>Parc</IonLabel>
                         </IonTabButton>
-                        <IonTabButton tab="scan" href="/scan">
+                        <IonTabButton tab="scan" href={paths.scan.root}>
                             <IonIcon aria-hidden="true" icon={barcode}/>
                             <IonLabel>Scanner</IonLabel>
                         </IonTabButton>

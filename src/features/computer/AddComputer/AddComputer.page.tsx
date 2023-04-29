@@ -11,6 +11,7 @@ import {ComputerService} from "commons/services/computer";
 import SimpleModalComponent from "commons/components/Modals/SimpleModal/SimpleModal.component";
 import {isValidateButtonDisabled, submitOnEnter} from "commons/utils";
 import useAutoRescan from "commons/hooks/scan/useAutoRescan";
+import paths from "../../../commons/constants/paths";
 
 /**
  * Page d'ajout d'un PC
@@ -82,7 +83,7 @@ const AddComputerPage = () => {
      */
     function goNextStep() {
         newComputerInfo.serialNumber = computerSerial;
-        history.push('/scan/add/confirm', {computer: newComputerInfo, comeFrom: location.pathname});
+        history.push(paths.computers.new, {computer: newComputerInfo, comeFrom: location.pathname});
         setComputerSerial('');
     }
 
