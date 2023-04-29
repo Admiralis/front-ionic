@@ -9,7 +9,7 @@ import * as appPaths from "commons/constants/paths";
 export const ScanMenuActionsComponent = () => {
     const paths = [
         {
-            path: "/scan/individuel",
+            path: appPaths.default.scan.newIndividualLoan,
             label: "Prêt individuel"
         },
         {

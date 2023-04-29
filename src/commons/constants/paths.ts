@@ -5,6 +5,7 @@ const paths = {
         editComputer: '/scan/edit-computer',
         newCourse: '/scan/new-course',
         newStudent: '/scan/new-student',
+        newIndividualLoan: '/scan/new-individual-loan',
         endLoan: '/scan/end-loan',
     },
     computers: {
