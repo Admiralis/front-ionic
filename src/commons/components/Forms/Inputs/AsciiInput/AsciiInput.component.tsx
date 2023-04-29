@@ -41,7 +41,7 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
     return (
         <div className={style.asciiItem}>
             <span className={props.smallText ? style.asciiSmallLabel : style.asciiLabel}>
-                {props.required && <span>*</span>}{props.label}{props.disabled ? <span className={props.smallText? style.littlePrompt : style.prompt }>$ </span> : <span className={props.smallText? style.littlePrompt : style.prompt }>&#62;_ </span>}</span>
+                <span>&#62;</span>{props.label}{props.disabled ? <span className={props.smallText? style.littlePrompt : style.prompt }>$ </span> : <span className={props.smallText? style.littlePrompt : style.prompt }>_{props.required && <span>*</span>}</span>}</span>
             <IonInput
                 id={props.label}
                 value={props.value}

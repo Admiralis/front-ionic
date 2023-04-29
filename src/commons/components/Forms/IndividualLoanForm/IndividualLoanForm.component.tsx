@@ -2,6 +2,7 @@ import React from 'react';
 import {AsciiInputComponent} from "../Inputs/AsciiInput/AsciiInput.component";
 import {AsciiDatePickerComponent} from "../Inputs/AsciiDate/AsciiDate.component";
 import Loan from "../../../models/loan/Loan.model";
+import AutocompleteCourseInputComponent from "../Inputs/AutocompleteCourseInput/AutocompleteCourseInput.component";
 
 interface IndividualLoanComponentProps {
     loan: Loan;
@@ -47,6 +48,7 @@ function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
                 label="Formation"
                 value={loan.course?.label || ''}
             />
+            <AutocompleteCourseInputComponent />
             <AsciiDatePickerComponent label="Date début" value={loan.course?.startDate || new Date()}
                                       onChange={(loan) => {
                                           setLoan({
