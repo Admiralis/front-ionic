@@ -10,14 +10,15 @@ const paths = {
     computers: {
         root: '/computers',
         new: '/computers/new',
-        detail: '/computers/:id'
+        detail: '/computers/',
+        edit: '/computers/',
     },
     loans: {
         root: '/loans',
-        detail: '/loans/:id',
+        detail: '/loans',
         newCollective: '/loans/new-collective',
         newIndividual: '/loans/new-individual',
-        end: '/loans/end',
+        end: '/loans/end/',
     }
 }
 

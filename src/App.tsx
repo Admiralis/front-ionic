@@ -56,29 +56,15 @@ const App: React.FC = () => (
                         <Route exact path={paths.computers.new} component={EditComputerPage} />
 
                         <Route exact path={paths.scan.editComputer} component={FindComputerPage} />
-                        <Route exact path={paths.computers.detail} component={EditComputerPage} />
+                        <Route exact path={paths.computers.detail + ":id"} component={EditComputerPage} />
 
                         <Route exact path={paths.scan.newCourse} component={AddCoursePage} />
                         <Route exact path={paths.loans.newCollective} component={CreateCollectiveLoanPage} />
 
                         <Route exact path={paths.scan.endLoan} component={FindComputerPage} />
-                        <Route exact path={paths.loans.end + "/:id"} component={EndLoanPage} />
+                        <Route exact path={paths.loans.end + ":id"} component={EndLoanPage} />
 
                         <Redirect exact from="/" to={paths.scan.root} />
-
-                        {/*<Route exact path="/scan" component={ScanMenuPage}/>*/}
-
-                        {/*<Route exact path="/scan/add" component={AddComputerPage}/>*/}
-                        {/*<Route exact path="/scan/add/confirm" component={EditComputerPage} />*/}
-
-                        {/*<Route exact path="/scan/edit" component={FindComputerPage} />*/}
-                        {/*<Route exact path="/scan/edit/:id" component={EditComputerPage} />*/}
-
-                        {/*<Route exact path="/scan/course" component={AddCoursePage} />*/}
-                        {/*<Route exact path="/scan/course/confirm" component={CreateCollectiveLoanPage} />*/}
-
-                        {/*<Route exact path="/scan/stock" component={FindComputerPage} />*/}
-                        {/*<Route exact path="/scan/stock/:id" component={EndLoanPage} />*/}
 
                     </IonRouterOutlet>
                     <IonTabBar slot="bottom">

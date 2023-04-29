@@ -33,12 +33,12 @@ const FindComputerPage = () => {
         ComputerService.findComputerBySerial(computerSerial).then((computer) => {
             if (location.pathname === paths.scan.editComputer) {
                 router.push(
-                    paths.computers.root + `/${computerSerial}`,
+                    paths.computers.edit + `${computerSerial}`,
                     {computer: computer, comeFrom: location.pathname}
                 );
             } else if (location.pathname === paths.scan.endLoan ) {
                 router.push(
-                     paths.loans.end + `/${computerSerial}`,
+                     paths.loans.end + `${computerSerial}`,
                     {computer: computer, comeFrom: location.pathname}
                 );
             }
