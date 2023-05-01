@@ -17,13 +17,13 @@ function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponen
     const [isCreateCourseModalOpen, setIsCreateCourseModalOpen] = useState<boolean>(false);
     const [newCourse, setNewCourse] = useState<Course>({startDate: new Date()} as Course);
 
-    const {course, setCourse} = props;
+    const {setCourse, course} = props;
 
     return (
         <>
         <span
             style={{width: '100%', marginLeft: '5%', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-            <AsciiInputComponent label={"Formation"} value={props.course?.label || ''}/>
+            <AsciiInputComponent label={"Formation"} value={course?.label || ''} />
             <IonButtons>
                 <IonButton icon-only className='icon' onClick={() => setIsFindCourseModalOpen(true)}>
                     <IonIcon icon={search}/>

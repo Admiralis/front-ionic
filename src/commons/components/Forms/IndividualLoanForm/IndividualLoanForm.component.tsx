@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {AsciiInputComponent} from "../Inputs/AsciiInput/AsciiInput.component";
 import {AsciiDatePickerComponent} from "../Inputs/AsciiDate/AsciiDate.component";
 import Loan from "../../../models/loan/Loan.model";
@@ -12,6 +12,7 @@ interface IndividualLoanComponentProps {
 function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
 
     const {loan = {} as Loan, setLoan} = props;
+    const [startDate, setStartDate] = useState<Date>(new Date());
 
     return (
         <>
@@ -44,25 +45,38 @@ function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
                 }}
                 required
             />
-            <AutocompleteCourseInputComponent course={loan.course} setCourse={(newCourse) => {
-                setLoan({
-                    ...loan,
-                    course: newCourse
-                })
-            }} />
-            <AsciiDatePickerComponent label="Date début" value={loan.course?.startDate ? new Date(loan.course?.startDate) : new Date()}
-                                      onChange={(loan) => {
-                                          setLoan({
-                                              ...loan,
-                                              startDate: new Date(loan.startDate)
-                                          })
-                                      }}/>
-            <AsciiDatePickerComponent label="Date fin" value={loan.course?.endDate ? new Date(loan.course.endDate) : null} onChange={(loan) => {
-                setLoan({
-                    ...loan,
-                    endDate: new Date(loan.endDate)
-                })
-            }}/>
+            <AutocompleteCourseInputComponent
+                course={loan.course}
+                setCourse={(newCourse) => {
+                    setLoan({
+                        ...loan,
+                        course: newCourse
+                    })
+                }}
+            />
+            <AsciiDatePickerComponent
+                label="Date début"
+                // value={loan.course?.startDate ? new Date(loan.course?.startDate) : new Date()}
+                value={loan?.startDate ? new Date(loan.startDate) : loan.course?.startDate ? new Date (loan.course.startDate) : startDate}
+                onChange={(event) => {
+                    setLoan({
+                        ...loan,
+                        startDate: new Date(event.detail.value!)
+                    })
+                }}
+            />
+            <AsciiDatePickerComponent
+                label="Date fin"
+                min={startDate.toISOString()}
+                max={loan.course?.endDate ? new Date(loan.course.endDate).toISOString() : new Date(startDate.getFullYear() + 3, startDate.getMonth(), startDate.getDate()).toISOString()}
+                value={loan?.endDate ? new Date(loan.endDate) : loan.course?.endDate ? new Date (loan.course.endDate) : null}
+                onChange={(event) => {
+                    setLoan({
+                        ...loan,
+                        endDate: new Date(event.detail.value!)
+                    })
+                }}
+            />
         </>
     );
 }
