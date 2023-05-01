@@ -10,7 +10,7 @@ import SimpleModalComponent from "commons/components/Modals/SimpleModal/SimpleMo
 import {useHistory, useLocation} from "react-router";
 import {isValidateButtonDisabled, submitOnEnter} from "commons/utils";
 import {ComputerService} from "commons/services/computer";
-import paths from "../../../commons/constants/paths";
+import PATHS from "../../../commons/constants/PATHS";
 
 const FindComputerPage = () => {
 
@@ -31,14 +31,14 @@ const FindComputerPage = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         ComputerService.findComputerBySerial(computerSerial).then((computer) => {
-            if (location.pathname === paths.scan.editComputer) {
+            if (location.pathname === PATHS.SCAN.editComputer) {
                 router.push(
-                    paths.computers.edit + `${computerSerial}`,
+                    PATHS.COMPUTERS.edit + `${computerSerial}`,
                     {computer: computer, comeFrom: location.pathname}
                 );
-            } else if (location.pathname === paths.scan.endLoan ) {
+            } else if (location.pathname === PATHS.SCAN.endLoan ) {
                 router.push(
-                     paths.loans.end + `${computerSerial}`,
+                     PATHS.LOANS.end + `${computerSerial}`,
                     {computer: computer, comeFrom: location.pathname}
                 );
             }
@@ -88,7 +88,7 @@ const FindComputerPage = () => {
                 open={open}
                 setIsOpen={setOpen}
                 onComputerAdd={() => {
-                    router.push(paths.computers.new, {
+                    router.push(PATHS.COMPUTERS.new, {
                         computer: {serialNumber: computerSerial},
                         comeFrom: location.pathname
                     });

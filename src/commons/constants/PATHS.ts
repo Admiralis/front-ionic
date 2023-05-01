@@ -1,5 +1,5 @@
-const paths = {
-    scan : {
+const PATHS = {
+    SCAN : {
         root: '/scan/menu',
         newComputer: '/scan/new-computer',
         editComputer: '/scan/edit-computer',
@@ -8,13 +8,13 @@ const paths = {
         newIndividualLoan: '/scan/new-individual-loan',
         endLoan: '/scan/end-loan',
     },
-    computers: {
+    COMPUTERS: {
         root: '/computers',
         new: '/computers/new',
         detail: '/computers/',
         edit: '/computers/',
     },
-    loans: {
+    LOANS: {
         root: '/loans',
         detail: '/loans',
         newCollective: '/loans/new-collective',
@@ -23,4 +23,4 @@ const paths = {
     }
 }
 
-export default paths;
+export default PATHS;

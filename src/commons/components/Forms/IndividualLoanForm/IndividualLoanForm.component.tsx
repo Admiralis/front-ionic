@@ -44,10 +44,6 @@ function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
                 }}
                 required
             />
-            <AsciiInputComponent
-                label="Formation"
-                value={loan.course?.label || ''}
-            />
             <AutocompleteCourseInputComponent />
             <AsciiDatePickerComponent label="Date début" value={loan.course?.startDate || new Date()}
                                       onChange={(loan) => {

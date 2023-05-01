@@ -40,7 +40,7 @@ import CreateCollectiveLoanPage from "./features/loan/CreateCollectiveLoan/Creat
 import EndLoanPage from "./features/loan/EndLoan/EndLoan.page";
 
 /* Constants */
-import paths from "commons/constants/paths";
+import PATHS from "commons/constants/PATHS";
 import CreateIndividualLoanPage from "./features/loan/CreateIndividualLoan/CreateIndividualLoan.page";
 
 setupIonicReact();
@@ -51,24 +51,24 @@ const App: React.FC = () => (
                 <IonTabs>
                     <IonRouterOutlet>
 
-                        <Route exact path={paths.scan.root} component={ScanMenuPage} />
+                        <Route exact path={PATHS.SCAN.root} component={ScanMenuPage} />
 
-                        <Route exact path={paths.scan.newComputer} component={AddComputerPage} />
-                        <Route exact path={paths.computers.new} component={EditComputerPage} />
+                        <Route exact path={PATHS.SCAN.newComputer} component={AddComputerPage} />
+                        <Route exact path={PATHS.COMPUTERS.new} component={EditComputerPage} />
 
-                        <Route exact path={paths.scan.editComputer} component={FindComputerPage} />
-                        <Route exact path={paths.computers.detail + ":id"} component={EditComputerPage} />
+                        <Route exact path={PATHS.SCAN.editComputer} component={FindComputerPage} />
+                        <Route exact path={PATHS.COMPUTERS.detail + ":id"} component={EditComputerPage} />
 
-                        <Route exact path={paths.scan.newCourse} component={AddCoursePage} />
-                        <Route exact path={paths.loans.newCollective} component={CreateCollectiveLoanPage} />
+                        <Route exact path={PATHS.SCAN.newCourse} component={AddCoursePage} />
+                        <Route exact path={PATHS.LOANS.newCollective} component={CreateCollectiveLoanPage} />
 
-                        <Route exact path={paths.scan.endLoan} component={FindComputerPage} />
-                        <Route exact path={paths.loans.end + ":id"} component={EndLoanPage} />
+                        <Route exact path={PATHS.SCAN.endLoan} component={FindComputerPage} />
+                        <Route exact path={PATHS.LOANS.end + ":id"} component={EndLoanPage} />
 
-                        <Route exact path={paths.scan.newIndividualLoan} component={CreateIndividualLoanPage} />
+                        <Route exact path={PATHS.SCAN.newIndividualLoan} component={CreateIndividualLoanPage} />
                         {/* TODO : <Route exact path={paths.loans.newIndividual} component={EditIndividualLoanPage} />*/}
 
-                        <Redirect exact from="/" to={paths.scan.root} />
+                        <Redirect exact from="/" to={PATHS.SCAN.root} />
 
                     </IonRouterOutlet>
                     <IonTabBar slot="bottom">
@@ -76,7 +76,7 @@ const App: React.FC = () => (
                             <IonIcon aria-hidden="true" icon={laptop}/>
                             <IonLabel>Parc</IonLabel>
                         </IonTabButton>
-                        <IonTabButton tab="scan" href={paths.scan.root}>
+                        <IonTabButton tab="scan" href={PATHS.SCAN.root}>
                             <IonIcon aria-hidden="true" icon={barcode}/>
                             <IonLabel>Scanner</IonLabel>
                         </IonTabButton>

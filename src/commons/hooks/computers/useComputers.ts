@@ -35,7 +35,7 @@ const useComputers = () => {
         }).finally(() => setIsLoading(false))
     }
 
-    return {computers, isLoading, error, addComputer}
+    return {computers: computers, isLoading, error, addComputer}
 }
 
 export default useComputers

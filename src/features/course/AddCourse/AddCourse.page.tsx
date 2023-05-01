@@ -10,7 +10,7 @@ import {Simulate} from "react-dom/test-utils";
 import {ComputerService} from "../../../commons/services/computer";
 import CourseService from "../../../commons/services/course/Course.service";
 import useCourses from "../../../commons/hooks/courses/useCourses";
-import paths from "../../../commons/constants/paths";
+import PATHS from "../../../commons/constants/PATHS";
 
 /**
  * Page de création de cours
@@ -72,7 +72,7 @@ const AddCoursePage = () => {
         })
 
         ComputerService.findComputerBySerial(computerSerial).then((computer) => {
-            router.push(paths.loans.newCollective, {
+            router.push(PATHS.LOANS.newCollective, {
                 computer: computer,
                 course: course,
                 comeFrom: location.pathname
@@ -105,7 +105,7 @@ const AddCoursePage = () => {
                 open={open}
                 setIsOpen={setOpen}
                 onComputerAdd={() => {
-                    router.push(paths.computers.new, {
+                    router.push(PATHS.COMPUTERS.new, {
                         computer: {serialNumber: computerSerial},
                         course: course,
                         comeFrom: router.location.pathname

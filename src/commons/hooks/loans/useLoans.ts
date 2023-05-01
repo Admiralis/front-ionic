@@ -63,7 +63,7 @@ const useLoans = () => {
         getLoans();
     }, [])
 
-    return {loans, isLoading, error, addLoan, endLoan}
+    return {loans: loans, isLoading, error, addLoan, endLoan}
 
 };
 
