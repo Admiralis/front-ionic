@@ -45,6 +45,16 @@ class CourseRepository {
         return await response.json();
     }
 
+    async findInProgressByLabel(label?: string): Promise<Course[]> {
+        if (!label) {
+            const response = await fetch(`${this.url}/in-progress`);
+            return await response.json();
+        } else {
+            const response = await fetch(`${this.url}/in-progress?label=${label}`);
+            return await response.json();
+        }
+    }
+
 }
 
 export default new CourseRepository();

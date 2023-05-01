@@ -68,6 +68,14 @@ class CourseService {
         return Promise.resolve(course);
     }
 
+    async findInProgressCoursesByLabel(label: string): Promise<Course[]> {
+        const courses = CourseRepository.findInProgressByLabel(label);
+        if (courses === undefined) {
+            return Promise.resolve([]);
+        }
+        return Promise.resolve(courses);
+    }
+
 }
 
 export default new CourseService();
