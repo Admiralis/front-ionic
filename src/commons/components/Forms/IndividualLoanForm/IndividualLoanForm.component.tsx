@@ -44,15 +44,20 @@ function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
                 }}
                 required
             />
-            <AutocompleteCourseInputComponent />
-            <AsciiDatePickerComponent label="Date début" value={loan.course?.startDate || new Date()}
+            <AutocompleteCourseInputComponent course={loan.course} setCourse={(newCourse) => {
+                setLoan({
+                    ...loan,
+                    course: newCourse
+                })
+            }} />
+            <AsciiDatePickerComponent label="Date début" value={loan.course?.startDate ? new Date(loan.course?.startDate) : new Date()}
                                       onChange={(loan) => {
                                           setLoan({
                                               ...loan,
                                               startDate: new Date(loan.startDate)
                                           })
                                       }}/>
-            <AsciiDatePickerComponent label="Date fin" value={loan.course?.endDate || null} onChange={(loan) => {
+            <AsciiDatePickerComponent label="Date fin" value={loan.course?.endDate ? new Date(loan.course.endDate) : null} onChange={(loan) => {
                 setLoan({
                     ...loan,
                     endDate: new Date(loan.endDate)
