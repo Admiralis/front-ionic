@@ -15,14 +15,9 @@ interface AutocompleteCourseInputComponentProps {
 function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponentProps) {
     const [isFindCourseModalOpen, setIsFindCourseModalOpen] = useState<boolean>(false)
     const [isCreateCourseModalOpen, setIsCreateCourseModalOpen] = useState<boolean>(false);
+    const [newCourse, setNewCourse] = useState<Course>({startDate: new Date()} as Course);
 
     const {course, setCourse} = props;
-
-    useEffect(() => {
-        if (course) {
-            setIsFindCourseModalOpen(false)
-        }
-    }, [course])
 
     return (
         <>
@@ -47,11 +42,8 @@ function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponen
                         {
                             isCreateCourseModalOpen && (
                                 <CourseFormComponent
-                                    setNewCourseInfo={setCourse}
-                                    newCourseInfo={{
-                                        label: '',
-                                        startDate: new Date(),
-                                    } as Course}
+                                    setNewCourseInfo={setNewCourse}
+                                    newCourseInfo={newCourse}
                                 />
                             )
                         }
@@ -86,11 +78,9 @@ function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponen
                                     <IonButton
                                         className='green'
                                         onClick={() => {
-                                            setCourse({
-                                                ...course,
-                                                startDate: new Date()
-                                            } as Course);
+                                            setCourse(newCourse);
                                             setIsCreateCourseModalOpen(false)
+                                            setIsFindCourseModalOpen(false)
                                         }}
                                     >
                                         Créer
