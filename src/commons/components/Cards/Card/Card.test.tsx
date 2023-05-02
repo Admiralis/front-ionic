@@ -51,7 +51,7 @@ describe('Card', () => {
         expect(button).toBeInTheDocument();
     });
 
-    it('sould be collapsed if the button is clicked', async () => {
+    it('should be collapsed if the button is clicked', async () => {
         render(<CardComponent title={'Title'} collapsible={true} content={<p>test</p>}/>);
         const header = screen.getByText('Title')
         const setState = jest.fn();
