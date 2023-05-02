@@ -111,10 +111,14 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}",
+      "!src/**/*.*.mock.{ts,tsx}",
       "!src/**/*.stories.{ts,tsx}",
       "!/node_modules/",
       "!src/index.tsx",
-      "!src/registerServiceWorker.js"
+      "!src/registerServiceWorker.js",
+      "!src/reportWebVitals.ts",
+      "!src/service-worker.ts",
+      "!src/serviceWorkerRegistration.ts"
     ]
   }
 }
