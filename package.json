@@ -107,5 +107,14 @@
     "storybook": "^7.0.2",
     "webpack": "^5.78.0"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/**/*.stories.{ts,tsx}",
+      "!/node_modules/",
+      "!src/index.tsx",
+      "!src/registerServiceWorker.js"
+    ]
+  }
 }
