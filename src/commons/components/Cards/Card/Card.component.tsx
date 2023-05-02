@@ -36,7 +36,7 @@ export default function CardComponent  (props: CardProps) {
 
     return (
         <IonCard>
-            <IonCardHeader onClick={handleCollapse} className={tiny ? styles.header : ''}>
+            <IonCardHeader onClick={handleCollapse} className={tiny ? styles.header : ''} data-testid="header" >
                 <CardButtonsComponent collapsible={collapsible} collapsed={collapsed} small={tiny} />
                 <div>
                     <IonCardTitle className={tiny ? styles.title : ''}>{title}</IonCardTitle>
