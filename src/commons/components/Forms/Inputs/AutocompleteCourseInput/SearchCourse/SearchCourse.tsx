@@ -16,7 +16,7 @@ export function SearchCourse(props: SearchCourseProps) {
 
 
     const handleQueryChange = (e: Event) => {
-        const target = e.target as HTMLIonSearchbarElement;
+        const target: HTMLIonSearchbarElement = e.target as HTMLIonSearchbarElement;
         if (target.value) {
             setQuerry(target.value);
         }

@@ -59,10 +59,12 @@ function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
                 // value={loan.course?.startDate ? new Date(loan.course?.startDate) : new Date()}
                 value={loan?.startDate ? new Date(loan.startDate) : loan.course?.startDate ? new Date (loan.course.startDate) : startDate}
                 onChange={(event) => {
+                    const newStartDate = new Date(event.detail.value!);
                     setLoan({
                         ...loan,
-                        startDate: new Date(event.detail.value!)
+                        startDate: new Date(newStartDate)
                     })
+                    setStartDate(new Date(newStartDate));
                 }}
             />
             <AsciiDatePickerComponent
