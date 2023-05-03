@@ -11,8 +11,8 @@ export function CardAlertComponent(props: CardAlertProps) {
 
     return <>
         {alert ?
-            <div><AlertIconComponent size={small ? 15 : 20}/></div> :
-            <div style={{width: "20px"}}></div>
+            <div data-testid='alert-icon-component' ><AlertIconComponent size={small ? 15 : 20} /></div> :
+            <div style={{width: "20px"}} data-testid="no-alert" ></div>
         }
     </>;
 }
