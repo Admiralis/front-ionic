@@ -12,9 +12,9 @@ export function CardContentComponent(props: CardContentProps) {
     return <>
         {props.collapsible && props.collapsed
             ?
-            <IonCardContent/>
+            <IonCardContent data-testid='collapsed' />
             :
-            <IonCardContent>
+            <IonCardContent data-testid='extended' >
                 <div>
                     {props.content}
                 </div>
