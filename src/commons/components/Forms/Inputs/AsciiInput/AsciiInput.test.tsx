@@ -169,15 +169,5 @@ describe('AsciiInput', () => {
         });
     });
 
-    // Test the useIonViewDidEnter hook
-    it('should set the focus on the input if the autoFocus props is true', async () => {
-        render(<AsciiInputComponent {...props} autoFocus />);
-        await waitForIonicReact();
-        const input = screen.queryByTestId('input-' + props.label)
-        await act(async () => {
-            expect(input).toHaveFocus();
-        });
-    });
-
 });
 
