@@ -16,9 +16,18 @@ describe('CardAlert', () => {
     });
 
     it('should display an alert svg if the alert props is true', () => {
-        render(<CardAlertComponent alert />);
+        render(<CardAlertComponent alert/>);
         const alert = screen.getByTestId('alert-icon-component');
         expect(alert).toBeInTheDocument();
+    });
+
+    it('should have a 15px alert icon if the tiny props is true', () => {
+        render(<CardAlertComponent alert small/>);
+        const alert = screen.getByTestId('alert-icon-component');
+        // get the svg
+        // eslint-disable-next-line testing-library/no-node-access
+        const svg = alert.querySelector('svg');
+        expect(svg).toHaveAttribute('width', '15');
     });
 
 });
