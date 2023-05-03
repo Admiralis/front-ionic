@@ -1,10 +1,11 @@
 import React from 'react';
 import {act, render, screen} from '@testing-library/react';
-import {ionFireEvent as fireEvent, mockIonicReact} from '@ionic/react-test-utils';
+import {ionFireEvent as fireEvent, mockIonicReact, waitForIonicReact} from '@ionic/react-test-utils';
 import {IonInput, setupIonicReact, useIonViewDidEnter} from '@ionic/react';
 
 import {AsciiInputComponent} from "./AsciiInput.component";
 import style from "./AsciiInput.module.css";
+import userEvent from "@testing-library/user-event";
 
 // export function AsciiInputComponent(props: AsciiInputComponentProps) {
 //
@@ -39,7 +40,7 @@ import style from "./AsciiInput.module.css";
 describe('AsciiInput', () => {
     let props: any;
     const onIonChangeMock = jest.fn();
-    const onIonBlurMock = jest.fn();
+    const onBlurMock = jest.fn();
 
     beforeEach(() => {
         setupIonicReact();
@@ -48,7 +49,7 @@ describe('AsciiInput', () => {
             label: 'label',
             value: 'value',
             onIonChange: onIonChangeMock,
-            onBlur: onIonBlurMock,
+            onBlur: onBlurMock,
         }
     });
 
@@ -135,19 +136,19 @@ describe('AsciiInput', () => {
     });
 
     it('should have a smaller prompt if the smallText props is true', () => {
-        render(<AsciiInputComponent {...props} smallText />);
+        render(<AsciiInputComponent {...props} smallText/>);
         const prompt = screen.getByText('_');
         expect(prompt).toHaveClass('littlePrompt');
     });
 
     it('should have a smaller label if the smallText props is true', () => {
-        render(<AsciiInputComponent {...props} smallText />);
+        render(<AsciiInputComponent {...props} smallText/>);
         const label = screen.getByText(props.label);
         expect(label).toHaveClass('asciiSmallLabel');
     });
 
     it('should have a smaller disabled prompt if the smallText props is true', () => {
-        render(<AsciiInputComponent {...props} smallText disabled />);
+        render(<AsciiInputComponent {...props} smallText disabled/>);
         const prompt = screen.getByText('$');
         expect(prompt).toHaveClass('littlePrompt');
     });
@@ -158,6 +159,25 @@ describe('AsciiInput', () => {
         expect(input).toHaveAttribute('id', props.label);
     });
 
+    it('should loose focus if the input is blurred', async () => {
+        render(<AsciiInputComponent {...props} autoFocus/>);
+        await waitForIonicReact();
+        const input = screen.queryByTestId('input-' + props.label) as Element
+        userEvent.click(input);
+        await act(async () => {
+            expect(input).not.toHaveFocus();
+        });
+    });
+
+    // Test the useIonViewDidEnter hook
+    it('should set the focus on the input if the autoFocus props is true', async () => {
+        render(<AsciiInputComponent {...props} autoFocus />);
+        await waitForIonicReact();
+        const input = screen.queryByTestId('input-' + props.label)
+        await act(async () => {
+            expect(input).toHaveFocus();
+        });
+    });
 
 });
 
