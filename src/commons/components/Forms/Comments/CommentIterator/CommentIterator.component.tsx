@@ -62,7 +62,7 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
                     return (
                         <div key={index} className={styles.commentBox}>
                             <AsciiInputComponent
-                                label=""
+                                label={`${index + 1}`}
                                 value={comment.content}
                                 smallText
                                 disabled
@@ -80,6 +80,7 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
                                      onIonChange={(e: any) => setNewComment(e.target.value)}
                                      smallText
                                      onBlur={handleBlur}
+                                     data-testid="comment-input"
                 />
                 <CommentsButtonsComponent
                     action="add"

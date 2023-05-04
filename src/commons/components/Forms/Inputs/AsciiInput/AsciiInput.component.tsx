@@ -50,7 +50,7 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
                 className={props.smallText ? style.asciiSmallInput : style.asciiInput}
                 disabled={props.onIonChange === undefined}
                 onBlur={props.onBlur}
-                data-testid={'input-' + props.label}
+                data-testid={props.label ? 'input-' + props.label : 'input'}
             />
         </div>
     );
