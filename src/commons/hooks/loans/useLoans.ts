@@ -17,46 +17,50 @@ const useLoans = () => {
      * Ajoute un prêt
      * @param loan
      */
-    const addLoan = (loan: any) => {
-        setIsLoading(true);
-        LoanService.saveLoan(loan).then(loan => {
+    const addLoan = async (loan: any) => {
+        try {
+            setIsLoading(true);
             setError(null);
-            setLoans([...loans, loan]);
-        }).catch(error => {
-            setError(error.message);
-        }).finally(() => {
+            const savedLoan: Loan = await LoanService.saveLoan(loan);
+            setLoans([...loans, savedLoan]);
+        } catch (e: any) {
+            setError(e.message);
+        } finally {
             setIsLoading(false);
-        });
+        }
     }
 
     /**
      * Termine un prêt
      * @param loan
      */
-    const endLoan = (loan: any) => {
-        setIsLoading(true);
-        LoanService.endLoan(loan).then(loan => {
+    const endLoan = async (loan: any) => {
+        try {
+            setIsLoading(true);
             setError(null);
+            await LoanService.endLoan(loan);
             getLoans();
-        }).catch(error => {
-            setError(error.message);
-        }).finally(() => {
+        } catch (e: any) {
+            setError(e.message);
+        } finally {
             setIsLoading(false);
-        });
+        }
     }
 
     /**
      * Récupère la liste des prêts
      */
-    const getLoans = () => {
-        LoanService.findLoans().then(loans => {
+    const getLoans = async () => {
+        try {
+            setIsLoading(true);
             setError(null);
+            const loans = await LoanService.findLoans();
             setLoans(loans);
-        }).catch(error => {
-            setError(error.message);
-        }).finally(() => {
+        } catch (e: any) {
+            setError(e.message);
+        } finally {
             setIsLoading(false);
-        });
+        }
     }
 
     useEffect(() => {

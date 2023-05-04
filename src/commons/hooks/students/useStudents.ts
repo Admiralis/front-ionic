@@ -12,32 +12,39 @@ const UseStudents = () => {
     const [error, setError] = React.useState<string | null>(null);
 
     useEffect(() => {
-        StudentService.findStudents().then(students => {
-            setError(null);
-            setStudents(students);
-        }).catch(error => {
-            setError(error.message);
-        }).finally(() => {
-            setIsLoading(false);
-        });
+        getStudents();
     }, [])
 
-    const addStudent = (student: Student) => {
-        setIsLoading(true);
-        StudentService.saveStudent(student).then(student => {
+    const getStudents = async () => {
+        try {
+            setIsLoading(true);
             setError(null);
-            setStudents([...students, student]);
-        }).catch(error => {
-            setError(error.message);
-        }).finally(() => {
+            const students = await StudentService.findStudents();
+            setStudents(students);
+        } catch (e: any) {
+            setError(e.message);
+        } finally {
             setIsLoading(false);
-        });
+        }
+    }
+
+    const addStudent = async (student: Student) => {
+        try {
+            setIsLoading(true);
+            setError(null);
+            const savedStudent: Student = await StudentService.saveStudent(student);
+            setStudents([...students, savedStudent]);
+        } catch (e: any) {
+            setError(e.message);
+        } finally {
+            setIsLoading(false);
+        }
+
     }
 
     return {students, isLoading, error, addStudent}
 
 };
-
 
 
 export default UseStudents;

@@ -11,28 +11,37 @@ const useComputers = () => {
     const [error, setError] = useState<string | null>(null)
 
     useEffect(() => {
-        computerService.findComputers().then((computers) => {
-            setError(null)
-            setComputers(computers)
-            setIsLoading(false)
-        }).catch((e) => {
-            setError(e.message)
-            setIsLoading(false)
-        })
+        getComputers()
     }, [])
+
+    const getComputers = async () => {
+        try {
+            setIsLoading(true)
+            setError(null)
+            const computers = await computerService.findComputers()
+            setComputers(computers)
+        } catch (e: any) {
+            setError(e.message)
+        } finally {
+            setIsLoading(false)
+        }
+    }
 
     /**
      * Ajoute un ordinateur à la liste
      * @param newComputer l'ordinateur à ajouter
      */
-    const addComputer = (newComputer: NewComputer) => {
-        setIsLoading(true)
-        computerService.saveComputer(newComputer).then((newComputer) => {
+    const addComputer = async (newComputer: NewComputer) => {
+        try {
+            setIsLoading(true)
             setError(null)
-            setComputers([...computers, newComputer])
-        }).catch((e) => {
+            const savedComputer: Computer = await computerService.saveComputer(newComputer)
+            setComputers([...computers, savedComputer])
+        } catch (e: any) {
             setError(e.message)
-        }).finally(() => setIsLoading(false))
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     return {computers: computers, isLoading, error, addComputer}
