@@ -26,23 +26,19 @@ const SimpleModalComponent = (props: AlreadyExistsModalComponentProps) => {
     const modal = useRef<HTMLIonModalElement>(null);
     const {isOpen, setIsOpen, title, content, actions, height} = props;
 
-    function dismiss() {
-        modal.current?.dismiss();
-    }
-
     return (
         <IonModal isOpen={isOpen} className={styles.modal} style={{height: height}} showBackdrop onIonModalDidDismiss={() => setIsOpen(false)} >
             <div className={styles.header}>
                     <span className={styles.buttonContainer} >
-                    <LinuxButtonComponent color="red" onClick={() => setIsOpen(false)}/>
+                    <LinuxButtonComponent color="red" onClick={() => setIsOpen(false)} data-testid='LinuxButtonComponent' />
                     </span>
                 {title}
                 <span className={styles.buttonContainer} ></span>
             </div>
-            <div className={styles.body}>
+            <div className={styles.body} data-testid='modal-content' >
                 {content}
             </div>
-            <div className={styles.footer}>
+            <div className={styles.footer} data-testid='modal-actions' >
                 {actions}
             </div>
         </IonModal>

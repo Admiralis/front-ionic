@@ -52,7 +52,7 @@ const LinuxButtonComponent = (props: LinuxButtonProps) => {
     }
 
     return (
-        <button hidden={props.hidden} onClick={handleClick} className={styles.buttonContainer}>
+        <button hidden={props.hidden} onClick={handleClick} className={styles.buttonContainer} data-testid={'lb-' + props.color} >
             <svg width={setSize()} height={setSize()} viewBox="0 0 20 20" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
                 <circle cx="10" cy="10" r="10" fill={setColor()}/>

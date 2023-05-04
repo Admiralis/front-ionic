@@ -14,7 +14,6 @@ function CreateIndividualLoanPage() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(loan);
     }
 
     return (
