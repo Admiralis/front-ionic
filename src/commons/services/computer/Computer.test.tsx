@@ -1,5 +1,3 @@
-import {act} from '@testing-library/react'
-
 import {mockIonicReact} from '@ionic/react-test-utils'
 
 import ComputerService from "./Computer.service";

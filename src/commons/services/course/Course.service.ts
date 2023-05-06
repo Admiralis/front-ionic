@@ -20,7 +20,7 @@ class CourseService {
      */
     async findCourseById(id: string): Promise<Course> {
         const course = CourseRepository.findById(id);
-        if (course) {
+        if (course !== undefined) {
             return course;
         }
         throw new Error("Course not found");
