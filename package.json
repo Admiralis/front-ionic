@@ -119,7 +119,10 @@
       "!src/registerServiceWorker.js",
       "!src/reportWebVitals.ts",
       "!src/service-worker.ts",
-      "!src/serviceWorkerRegistration.ts"
+      "!src/serviceWorkerRegistration.ts",
+      "!src/commons/models/**/*",
+      "!src/commons/services/**/*.repository.ts",
+      "!src/**/index.ts"
     ]
   }
 }
