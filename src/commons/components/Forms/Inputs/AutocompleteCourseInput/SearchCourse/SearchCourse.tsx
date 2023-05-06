@@ -25,6 +25,8 @@ export function SearchCourse(props: SearchCourseProps) {
     useEffect(() => {
         CourseService.findInProgressCoursesByLabel(querry).then((courses: Course[]) => {
             setResults(courses);
+        }).catch((error) => {
+            console.error(error);
         })
     }, [querry])
 
