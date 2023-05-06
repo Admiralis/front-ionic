@@ -1,4 +1,4 @@
 import submitOnEnter from "./submitOnEnter";
-import isValidateButtonDisabled from "./isValidateButtonDisabled";
+import isValidateButtonDisabled from "./isValidateButtonDisabled/isValidateButtonDisabled";
 
 export { submitOnEnter, isValidateButtonDisabled };
