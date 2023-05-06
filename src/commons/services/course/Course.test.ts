@@ -59,28 +59,18 @@ import {Course} from "../../models";
 
 describe('CourseService', () => {
 
+    const mockCourse: Course = {
+        label: 'test',
+        startDate: new Date(),
+        id: '1',
+        endDate: new Date(),
+        place: 'test'
+    }
+
     const findAllMock = jest.fn(() => Promise.resolve([]));
-    const findByIdMock = jest.fn(() => Promise.resolve({
-        label: 'test',
-        startDate: new Date(),
-        id: '1',
-        endDate: new Date(),
-        place: 'test'
-    }));
-    const saveMock = jest.fn(() => Promise.resolve({
-        label: 'test',
-        startDate: new Date(),
-        id: '1',
-        endDate: new Date(),
-        place: 'test'
-    }));
-    const findByLabelAndStartDateMock = jest.fn(() => Promise.resolve({
-        label: 'test',
-        startDate: new Date(),
-        id: '1',
-        endDate: new Date(),
-        place: 'test'
-    }));
+    const findByIdMock = jest.fn(() => Promise.resolve(mockCourse));
+    const saveMock = jest.fn(() => Promise.resolve(mockCourse));
+    const findByLabelAndStartDateMock = jest.fn(() => Promise.resolve(mockCourse));
     const findInProgressByLabelMock = jest.fn(() => Promise.resolve([]));
 
     jest.doMock('./Course.repository', async () => {
@@ -102,57 +92,53 @@ describe('CourseService', () => {
     });
 
     it('should call findAll', async () => {
-        const findCoursesSpy = jest.spyOn(CourseRepository, 'findAll');
+        const findCoursesSpy = jest.spyOn(CourseRepository, 'findAll').mockImplementationOnce(() => Promise.resolve([]));
         await CourseService.findCourses();
         expect(findCoursesSpy).toHaveBeenCalled();
     });
 
     it('should call findById', async () => {
-        const findCourseByIdSpy = jest.spyOn(CourseRepository, 'findById');
+        const findCourseByIdSpy = jest.spyOn(CourseRepository, 'findById').mockResolvedValueOnce(mockCourse);
         await CourseService.findCourseById('1');
         expect(findCourseByIdSpy).toHaveBeenCalled();
     });
 
     it('should call save', async () => {
-        const saveCourseSpy = jest.spyOn(CourseRepository, 'save');
-        await CourseService.saveCourse({
-            label: 'test',
-            startDate: new Date(),
-            id: '1',
-            endDate: new Date(),
-            place: 'test'
-        });
+        const saveCourseSpy = jest.spyOn(CourseRepository, 'save').mockImplementationOnce(
+            () => Promise.resolve(mockCourse)
+        )
+        await CourseService.saveCourse(mockCourse);
         expect(saveCourseSpy).toHaveBeenCalled();
     });
 
     it('should call findByLabelAndStartDate', async () => {
-        const findByLabelAndStartDateSpy = jest.spyOn(CourseRepository, 'findByLabelAndStartDate');
+        const findByLabelAndStartDateSpy = jest.spyOn(CourseRepository, 'findByLabelAndStartDate').mockImplementationOnce(() => Promise.resolve(mockCourse));
 
         await CourseService.findCourseByLabelAndStartDate('test', new Date());
         expect(findByLabelAndStartDateSpy).toHaveBeenCalled();
     });
 
     it('should call findInProgressByLabel', async () => {
-        const findInProgressByLabelSpy = jest.spyOn(CourseRepository, 'findInProgressByLabel');
+        const findInProgressByLabelSpy = jest.spyOn(CourseRepository, 'findInProgressByLabel').mockImplementationOnce(() => Promise.resolve([]));
 
         await CourseService.findInProgressCoursesByLabel('test');
         expect(findInProgressByLabelSpy).toHaveBeenCalled();
     });
 
     it('should throw an error if course not found', async () => {
-        const findCourseByIdSpy = jest.spyOn(CourseRepository, 'findById')
+        const findCourseByIdSpy = jest.spyOn(CourseRepository, 'findById').mockResolvedValueOnce(Promise.reject(new Error("Course not found")));
         await expect(CourseService.findCourseById('2')).rejects.toThrowError("Course not found");
         expect(findCourseByIdSpy).toHaveBeenCalled();
     });
 
     it('should throw an error if the course is not found by label and start date', async () => {
-        const findByLabelAndStartDateSpy = jest.spyOn(CourseRepository, 'findByLabelAndStartDate')
+        const findByLabelAndStartDateSpy = jest.spyOn(CourseRepository, 'findByLabelAndStartDate').mockResolvedValueOnce(Promise.reject(new Error("Ce cours n'existe pas")));
         await expect(CourseService.findCourseByLabelAndStartDate('test', new Date())).rejects.toThrowError("Ce cours n'existe pas");
         expect(findByLabelAndStartDateSpy).toHaveBeenCalled();
     });
 
     it('should return an empty array if no course found', async () => {
-        const findInProgressByLabelSpy = jest.spyOn(CourseRepository, 'findInProgressByLabel')
+        const findInProgressByLabelSpy = jest.spyOn(CourseRepository, 'findInProgressByLabel').mockResolvedValueOnce(Promise.resolve([]));
         await expect(CourseService.findInProgressCoursesByLabel('test')).resolves.toEqual([]);
         expect(findInProgressByLabelSpy).toHaveBeenCalled();
     });
