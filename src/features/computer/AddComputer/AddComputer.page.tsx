@@ -112,7 +112,7 @@ const AddComputerPage = () => {
                             />
                         }
                         actions={
-                            <IonButton className="green" type="submit" disabled={isValidateButtonDisabled(computerSerial, 7)}>
+                            <IonButton className="green" type="submit" disabled={isValidateButtonDisabled(computerSerial, 7)} data-testid="submit-button" >
                                 Ajouter PC
                             </IonButton>
                         }
