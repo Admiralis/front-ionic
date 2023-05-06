@@ -20,9 +20,9 @@ const AddCoursePage = () => {
 
     const [course, setCourse] = React.useState({} as Course)
     const [computerSerial, setComputerSerial] = React.useState("");
-    const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
-    const [open, setOpen] = useState<boolean>(false);
-    const [scanning, setScanning] = useState<boolean>(false);
+    const [autoSubmit, setAutoSubmit] = React.useState<boolean>(false);
+    const [open, setOpen] = React.useState<boolean>(false);
+    const [scanning, setScanning] = React.useState<boolean>(false);
 
 
     const location = useLocation<{ serialNumber: string, comeFrom: string }>();
