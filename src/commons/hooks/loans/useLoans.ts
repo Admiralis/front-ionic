@@ -39,7 +39,7 @@ const useLoans = () => {
             setIsLoading(true);
             setError(null);
             await LoanService.endLoan(loan);
-            getLoans();
+            await getLoans();
         } catch (e: any) {
             setError(e.message);
         } finally {
@@ -64,7 +64,9 @@ const useLoans = () => {
     }
 
     useEffect(() => {
-        getLoans();
+        (async () => {
+            await getLoans();
+        })()
     }, [])
 
     return {loans: loans, isLoading, error, addLoan, endLoan}

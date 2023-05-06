@@ -11,7 +11,9 @@ const useComputers = () => {
     const [error, setError] = React.useState<string | null>(null)
 
     React.useEffect(() => {
-        getComputers()
+        (async () => {
+            await getComputers()
+        })()
     }, [])
 
     const getComputers = async () => {

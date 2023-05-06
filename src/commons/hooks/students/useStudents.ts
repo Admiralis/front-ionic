@@ -12,7 +12,9 @@ const UseStudents = () => {
     const [error, setError] = React.useState<string | null>(null);
 
     useEffect(() => {
-        getStudents();
+        (async () => {
+            await getStudents();
+        })()
     }, [])
 
     const getStudents = async () => {

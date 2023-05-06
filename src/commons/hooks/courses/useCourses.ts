@@ -12,7 +12,9 @@ const UseCourses = () => {
     const [error, setError] = React.useState<string | null>(null);
 
     useEffect(() => {
-        getCourses();
+        (async () => {
+            await getCourses();
+        })()
     }, [])
 
     const getCourses = async () => {
