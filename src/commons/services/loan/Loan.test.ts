@@ -3,6 +3,9 @@ import {mockIonicReact} from '@ionic/react-test-utils'
 import LoanService from "./Loan.service";
 import LoanRepository from "./Loan.repository";
 import Loan from "../../models/loan/Loan.model";
+import {LoanStatus} from "../../models/loan/LoanStatus";
+import {DepositState} from "../../models/loan/DepositState";
+import {LoanType} from "../../models/loan/LoanType";
 
 // class LoanService {
 //
@@ -123,6 +126,76 @@ import Loan from "../../models/loan/Loan.model";
 
 describe('LoanService', () => {
 
+    const individualLoanMock: Loan = {
+        loanType: LoanType.INDIVIDUAL,
+        id: '1',
+        startDate: new Date(),
+        endDate: new Date(),
+        student: {
+            id: '1',
+            firstName: 'John',
+            lastName: 'Doe',
+            course: {
+                id: '1',
+                label: 'Course 1',
+                startDate: new Date(),
+                endDate: new Date(),
+                place: 'Place 1',
+            }
+        },
+        computer: {
+            id: '1',
+            serialNumber: '123456',
+            category: 'Laptop',
+            ram: '8',
+            processor: 'Intel Core i5',
+            condition: 'Good',
+            comments: [
+                {
+                    content: 'Comment 1'
+                }
+            ]
+        },
+        course: {
+            id: '1',
+            label: 'Course 1',
+            startDate: new Date(),
+            endDate: new Date(),
+            place: 'Place 1',
+        },
+        loanStatus: LoanStatus.IN_PROGRESS,
+        deposit: DepositState.UNNECESSARY
+    }
+
+    const collectiveLoanMock: Loan = {
+        loanType: LoanType.COLLECTIVE,
+        id: '2',
+        startDate: new Date(),
+        endDate: new Date(),
+        course: {
+            id: '1',
+            label: 'Course 1',
+            startDate: new Date(),
+            endDate: new Date(),
+            place: 'Place 1',
+        },
+        computer: {
+            id: '1',
+            serialNumber: '123456',
+            category: 'Laptop',
+            ram: '8',
+            processor: 'Intel Core i5',
+            condition: 'Good',
+            comments: [
+                {
+                    content: 'Comment 1'
+                }
+            ]
+        },
+        loanStatus: LoanStatus.FINISHED,
+        deposit: DepositState.UNNECESSARY
+    }
+
     const findLoansMock = jest.fn(() => Promise.resolve([]));
     const findLoanByIdMock = jest.fn(() => Promise.resolve({} as Loan));
     const findLoanByStudentIdMock = jest.fn(() => Promise.resolve([]));
@@ -156,11 +229,71 @@ describe('LoanService', () => {
     });
 
     it('should find all loans', async () => {
-        const findLoansSpy = jest.spyOn(LoanRepository, 'findAll').mockResolvedValue([]);
+        const findLoansSpy = jest.spyOn(LoanRepository, 'findAll').mockResolvedValue([individualLoanMock, collectiveLoanMock]);
         const loans: Loan[] = await LoanService.findLoans();
         expect(findLoansSpy).toHaveBeenCalled();
-        expect(loans).toEqual([]);
+        expect(loans).toEqual([individualLoanMock, collectiveLoanMock]);
     });
 
+    it('should find loan by id', async () => {
+        const findLoanByIdSpy = jest.spyOn(LoanRepository, 'findById').mockResolvedValue(individualLoanMock);
+        const loan: Loan = await LoanService.findLoanById('1');
+        expect(findLoanByIdSpy).toHaveBeenCalled();
+        expect(loan).toEqual(individualLoanMock);
+    });
 
+    it('should find loan by student id', async () => {
+        const findLoanByStudentIdSpy = jest.spyOn(LoanRepository, 'findByStudentId').mockResolvedValue([individualLoanMock]);
+        const loans: Loan[] = await LoanService.findLoanByStudentId('1');
+        expect(findLoanByStudentIdSpy).toHaveBeenCalled();
+        expect(loans).toEqual([individualLoanMock]);
+    });
+
+    it('should find loan by computer id', async () => {
+        const findLoanByComputerIdSpy = jest.spyOn(LoanRepository, 'findByComputerId').mockResolvedValue([individualLoanMock, collectiveLoanMock]);
+        const loans: Loan[] = await LoanService.findLoanByComputerId('123456');
+        expect(findLoanByComputerIdSpy).toHaveBeenCalled();
+        expect(loans).toEqual([individualLoanMock, collectiveLoanMock]);
+    });
+
+    it('should find loan by course id', async () => {
+        const findLoanByCourseIdSpy = jest.spyOn(LoanRepository, 'findByCourseId').mockResolvedValue([individualLoanMock, collectiveLoanMock]);
+        const loans: Loan[] = await LoanService.findLoanByCourseId('1');
+        expect(findLoanByCourseIdSpy).toHaveBeenCalled();
+        expect(loans).toEqual([individualLoanMock, collectiveLoanMock]);
+    });
+
+    it('should find loan by computer id and in progress status', async () => {
+        const findByComputerIdAndInProgressStatusSpy = jest.spyOn(LoanRepository, 'findByComputerIdAndInProgressStatus').mockResolvedValue(individualLoanMock);
+        const loan: Loan = await LoanService.findByComputerIdAndInProgressStatus('1');
+        expect(findByComputerIdAndInProgressStatusSpy).toHaveBeenCalled();
+        expect(loan).toEqual(individualLoanMock);
+    });
+
+    it('should save loan', async () => {
+        const saveLoanSpy = jest.spyOn(LoanRepository, 'save').mockResolvedValue(individualLoanMock);
+        const loan: Loan = await LoanService.saveLoan(individualLoanMock);
+        expect(saveLoanSpy).toHaveBeenCalled();
+        expect(loan).toEqual(individualLoanMock);
+    });
+
+    it('should replace loan', async () => {
+        const replaceLoanSpy = jest.spyOn(LoanRepository, 'replace').mockResolvedValue(individualLoanMock);
+        const loan: Loan = await LoanService.replaceLoan(individualLoanMock);
+        expect(replaceLoanSpy).toHaveBeenCalled();
+        expect(loan).toEqual(individualLoanMock);
+    });
+
+    it('should end loan', async () => {
+        const endLoanSpy = jest.spyOn(LoanRepository, 'deleteById').mockResolvedValue({...individualLoanMock, loanStatus: LoanStatus.FINISHED});
+        const loan: Loan = await LoanService.endLoan(individualLoanMock);
+        expect(endLoanSpy).toHaveBeenCalled();
+        expect(loan).toEqual({...individualLoanMock, loanStatus: LoanStatus.FINISHED});
+    });
+
+    it('should throw error when loan is not found', async () => {
+        const findLoanByIdSpy = jest.spyOn(LoanRepository, 'findById').mockResolvedValue(Promise.reject(new Error ('Loan not found')));
+        await expect(LoanService.findLoanById('3')).rejects.toThrow(new Error ('Loan not found'));
+        expect(findLoanByIdSpy).toHaveBeenCalled();
+    });
 })
