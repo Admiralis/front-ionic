@@ -1,6 +1,7 @@
 import {act, renderHook} from '@testing-library/react'
 
 import useAutoRescan from "./useAutoRescan";
+import {waitForIonicReact} from "@ionic/react-test-utils";
 
 
 // /**
