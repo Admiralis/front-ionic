@@ -37,33 +37,33 @@ describe('ComputerService', () => {
     });
 
     it('should find computer by id', async () => {
-        const findComputerByIdSpy = jest.spyOn(ComputerRepository, 'findById').mockResolvedValueOnce({id: 'ABCDEFG'} as unknown as Computer)
+        const findComputerByIdSpy = jest.spyOn(ComputerRepository, 'findById').mockResolvedValueOnce({id: 'ABCDEFG'} as Computer)
         await ComputerService.findComputerById('ABCDEFG');
         expect(findComputerByIdSpy).toHaveBeenCalled();
     });
 
     it('should find computer by serial', async () => {
-        const findComputerBySerialSpy = jest.spyOn(ComputerRepository, 'findBySerial').mockResolvedValueOnce({serialNumber: 'ABCDEFG'} as unknown as Computer)
+        const findComputerBySerialSpy = jest.spyOn(ComputerRepository, 'findBySerial').mockResolvedValueOnce({serialNumber: 'ABCDEFG'} as Computer)
         await ComputerService.findComputerBySerial('ABCDEFG');
         expect(findComputerBySerialSpy).toHaveBeenCalled();
     });
 
     it('should save computer', async () => {
-        const saveComputerSpy = jest.spyOn(ComputerRepository, 'save').mockResolvedValueOnce({serialNumber: 'ABCDEFG'} as unknown as Computer)
-        await ComputerService.saveComputer({serialNumber: 'ABCDEFG'} as unknown as NewComputer);
+        const saveComputerSpy = jest.spyOn(ComputerRepository, 'save').mockResolvedValueOnce({serialNumber: 'ABCDEFG'} as Computer)
+        await ComputerService.saveComputer({serialNumber: 'ABCDEFG'} as NewComputer);
         expect(saveComputerSpy).toHaveBeenCalled();
     });
 
     it('should find or create computer by serial', async () => {
         const findComputerBySerialSpy = jest.spyOn(ComputerRepository, 'findBySerial').mockResolvedValueOnce(Promise.reject())
         const saveComputerSpy = jest.spyOn(ComputerRepository, 'save');
-        await ComputerService.findOrCreateComputerBySerial({serialNumber: 'ABCDEFG'} as unknown as NewComputer);
+        await ComputerService.findOrCreateComputerBySerial({serialNumber: 'ABCDEFG'} as NewComputer);
         expect(findComputerBySerialSpy).toHaveBeenCalled();
         expect(saveComputerSpy).toHaveBeenCalled();
     });
 
     it('should check if computer exists by serial', async () => {
-        const findComputerBySerialSpy = jest.spyOn(ComputerRepository, 'findBySerial').mockResolvedValueOnce({serialNumber: 'ABCDEFG'} as unknown as Computer)
+        const findComputerBySerialSpy = jest.spyOn(ComputerRepository, 'findBySerial').mockResolvedValueOnce({serialNumber: 'ABCDEFG'} as Computer)
         await ComputerService.computerExistsBySerial('ABCDEFG');
         expect(findComputerBySerialSpy).toHaveBeenCalled();
     });

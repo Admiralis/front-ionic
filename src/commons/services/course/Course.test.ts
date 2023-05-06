@@ -143,4 +143,6 @@ describe('CourseService', () => {
         expect(findInProgressByLabelSpy).toHaveBeenCalled();
     });
 
+
+
 });
