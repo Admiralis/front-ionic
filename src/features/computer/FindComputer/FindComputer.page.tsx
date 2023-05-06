@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React from 'react';
 import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {
     AsciiInputComponent,
@@ -6,7 +6,6 @@ import {
     CodeScannerComponent,
     UnknownComputerModalComponent
 } from "commons/components";
-import SimpleModalComponent from "commons/components/Modals/SimpleModal/SimpleModal.component";
 import {useHistory, useLocation} from "react-router";
 import {isValidateButtonDisabled, submitOnEnter} from "commons/utils";
 import {ComputerService} from "commons/services/computer";
@@ -14,23 +13,24 @@ import PATHS from "../../../commons/constants/PATHS";
 
 const FindComputerPage = () => {
 
-    const [computerSerial, setComputerSerial] = useState("" as string);
-    const [scanning, setScanning] = useState<boolean>(false);
-    const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
-    const [open, setOpen] = useState<boolean>(false);
+    const [computerSerial, setComputerSerial] = React.useState("" as string);
+    const [scanning, setScanning] = React.useState<boolean>(false);
+    const [autoSubmit, setAutoSubmit] = React.useState<boolean>(false);
+    const [open, setOpen] = React.useState<boolean>(false);
     const location = useLocation();
     const router = useHistory();
 
-    useEffect(() => {
+    React.useEffect(() => {
         // Met le numéro de série en toute majuscule
         // La double dépendance assure le bon rafraichissement des données
         computerSerial && setComputerSerial(computerSerial.toUpperCase());
     }, [computerSerial]);
 
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        ComputerService.findComputerBySerial(computerSerial).then((computer) => {
+        try {
+            const computer = await ComputerService.findComputerBySerial(computerSerial);
             if (location.pathname === PATHS.SCAN.editComputer) {
                 router.push(
                     PATHS.COMPUTERS.edit + `${computerSerial}`,
@@ -43,9 +43,9 @@ const FindComputerPage = () => {
                 );
             }
             setComputerSerial('');
-        }).catch(() => {
-            setOpen(true)
-        })
+        } catch (error) {
+            setOpen(true);
+        }
     };
 
     return (
@@ -99,6 +99,7 @@ const FindComputerPage = () => {
                     setOpen(false);
                     setComputerSerial('');
                 }}
+                data-testid="unknown-computer-modal"
             />
         </IonPage>
     );
