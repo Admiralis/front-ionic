@@ -5,19 +5,6 @@ import Loan from "../../models/loan/Loan.model";
 import LoanService from "../../services/loan/Loan.service";
 import {waitForIonicReact} from "@ionic/react-test-utils";
 
-// jest.mock('../../services/loan/Loan.service', () => ({
-//     findLoans: jest.fn(async () => {
-//         return [] as Loan[];
-//     }),
-//     saveLoan: jest.fn(
-//         (newLoan: Loan) => new Promise((resolve) => resolve(newLoan))
-//     ),
-//     endLoan: jest.fn(
-//         (loan: Loan) => new Promise((resolve) => resolve(loan))
-//     )
-// }));
-
-
 describe('useLoans', () => {
 
     jest.spyOn(console, 'error').mockImplementation(() => {
@@ -26,7 +13,6 @@ describe('useLoans', () => {
     let findLoansSpy: jest.SpyInstance;
     let saveLoanSpy: jest.SpyInstance;
     let endLoanSpy: jest.SpyInstance;
-    let useStateSpy: jest.SpyInstance;
 
     beforeEach(() => {
         jest.clearAllMocks();

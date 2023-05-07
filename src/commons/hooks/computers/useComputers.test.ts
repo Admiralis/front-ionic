@@ -1,6 +1,7 @@
 import {act, renderHook, waitFor} from '@testing-library/react'
 import useComputers from "./useComputers";
 import {Computer, NewComputer} from "../../models";
+import ComputerService from "../../services/computer/Computer.service";
 
 jest.mock('../../services/computer/Computer.service', () => ({
     findComputers: jest.fn(async () => {
@@ -12,10 +13,21 @@ jest.mock('../../services/computer/Computer.service', () => ({
     )
 }));
 
+
 describe('useComputers', () => {
+    let findComputersSpy: jest.SpyInstance;
+    let saveComputerSpy: jest.SpyInstance;
 
     beforeEach(() => {
         jest.clearAllMocks();
+
+        findComputersSpy = jest.spyOn(ComputerService, 'findComputers')
+            .mockImplementation(async () => {
+                return [] as Computer[];
+            });
+
+        saveComputerSpy = jest.spyOn(ComputerService, 'saveComputer')
+
     });
 
     it('should return computers, isLoading and error', async () => {
@@ -34,6 +46,34 @@ describe('useComputers', () => {
         });
 
         expect(result.current.computers.length).toEqual(1);
+    });
+
+    it('should set error when findComputers throws error', async () => {
+        findComputersSpy.mockImplementation(async () => {
+            throw new Error('error');
+        });
+
+        const {result} = renderHook(() => useComputers());
+
+        await act(async () => {
+            await result.current.addComputer({} as NewComputer);
+        });
+
+        expect(result.current.error).toEqual('error');
+    });
+
+    it('should set error when saveComputer throws error', async () => {
+        saveComputerSpy.mockImplementation(async () => {
+            throw new Error('error');
+        });
+
+        const {result} = renderHook(() => useComputers());
+
+        await act(async () => {
+            await result.current.addComputer({} as NewComputer);
+        });
+
+        expect(result.current.error).toEqual('error');
     });
 
 });
