@@ -30,9 +30,18 @@ function EndLoanPage() {
     }, [location.state]);
 
     useEffect(() => {
-        computer.id && LoanService.findByComputerIdAndInProgressStatus(computer.id).then(loan => {
-            setLoan(loan);
-        })
+        // computer.id && LoanService.findByComputerIdAndInProgressStatus(computer.id).then(loan => {
+        //     setLoan(loan);
+        // })
+        (async () => {
+            if (!computer.id) return;
+            try {
+                const loan = await LoanService.findByComputerIdAndInProgressStatus(computer.id);
+                setLoan(loan);
+            } catch (e) {
+                console.error(e);
+            }
+        })()
     }, [computer]);
 
     /**
@@ -85,10 +94,11 @@ function EndLoanPage() {
                     <IonButtons className="sticky">
                         <IonButton className="red"
                                    onClick={() => router.push(origin)}>Retour</IonButton>
-                        <IonButton className="green" type="submit" disabled={!loan.course && !loan.student} >Clôturer</IonButton>
+                        <IonButton className="green" type="submit"
+                                   disabled={!loan.course && !loan.student}>Clôturer</IonButton>
                     </IonButtons>
                 </form>
-                <div className={style.padding} />
+                <div className={style.padding}/>
             </IonContent>
         </IonPage>
     );
