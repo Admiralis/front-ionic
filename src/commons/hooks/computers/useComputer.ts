@@ -23,6 +23,7 @@ const useComputer = (serialNumber: string) => {
                 }
             })();
         }
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [serialNumber]);
 
 

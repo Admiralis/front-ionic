@@ -1,48 +1,16 @@
 import React from 'react';
 import {act, render, screen} from '@testing-library/react';
 import {ionFireEvent as fireEvent, mockIonicReact, waitForIonicReact} from '@ionic/react-test-utils';
-import {IonInput, setupIonicReact, useIonViewDidEnter} from '@ionic/react';
+import {setupIonicReact} from '@ionic/react';
 
 import {AsciiInputComponent} from "./AsciiInput.component";
-import style from "./AsciiInput.module.css";
 import userEvent from "@testing-library/user-event";
-import autoMockOn = jest.autoMockOn;
 
-// export function AsciiInputComponent(props: AsciiInputComponentProps) {
-//
-//
-//     // Hook de Ionic qui s'exécute à l'affichage du composant.
-//     // Focus l'input si props.autoFocus est passé
-//     useIonViewDidEnter(() => {
-//         if (props.autoFocus) {
-//             const input: HTMLIonInputElement | null = document.querySelector(` #${props.label}`)
-//             if (input?.id === props.label ) input?.setFocus()
-//         }
-//     }, [])
-//
-//     return (
-//         <div className={style.asciiItem} data-testid='asciiInputComponent'>
-//             <span className={props.smallText ? style.asciiSmallLabel : style.asciiLabel}>
-//                 <span>&#62;</span>{props.label}{props.disabled ? <span className={props.smallText? style.littlePrompt : style.prompt }>$ </span> : <span className={props.smallText? style.littlePrompt : style.prompt }>_{props.required && <span>*</span>}</span>}</span>
-//             <IonInput
-//                 id={props.label}
-//                 value={props.value}
-//                 placeholder={props.placeholder}
-//                 onIonChange={props.onIonChange}
-//                 className={props.smallText ? style.asciiSmallInput : style.asciiInput}
-//                 disabled={props.onIonChange === undefined}
-//                 onBlur={props.onBlur}
-//                 data-testid={'input-' + props.label}
-//             />
-//         </div>
-//     );
-// }
 
 describe('AsciiInput', () => {
     let props: any;
     const onIonChangeMock = jest.fn();
     const onBlurMock = jest.fn();
-    let focusOnInputMock: jest.SpyInstance;
 
     beforeEach(() => {
         setupIonicReact();

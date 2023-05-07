@@ -11,7 +11,7 @@ import {LoanType} from "../../../commons/models/loan/LoanType";
 
 describe('CreateCollectiveLoanPage', () => {
 
-    let useLocation: jest.SpyInstance;
+
     let useState: jest.SpyInstance;
     let useHistory: jest.SpyInstance;
     let useLoans: jest.SpyInstance;
@@ -55,7 +55,7 @@ describe('CreateCollectiveLoanPage', () => {
         }
 
 
-        useLocation = jest.spyOn(require('react-router'), 'useLocation')
+        jest.spyOn(require('react-router'), 'useLocation')
             .mockImplementation(() => ({
                 pathname: '/create-collective-loan',
                 state: {
@@ -135,7 +135,7 @@ describe('CreateCollectiveLoanPage', () => {
     });
 
     it('should not update computer and course if location.state is not defined', async () => {
-        useLocation = jest.spyOn(require('react-router'), 'useLocation')
+        jest.spyOn(require('react-router'), 'useLocation')
             .mockImplementation(() => ({
                 pathname: '/create-collective-loan',
                 state: undefined

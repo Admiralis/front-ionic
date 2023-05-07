@@ -1,9 +1,7 @@
 import ComputerComment from "../../../../models/computer/ComputerComment";
-import React, {useEffect, useRef, useState} from "react";
-import {LinuxButtonComponent} from "../../../Buttons";
+import React, {useEffect, useState} from "react";
 import {AsciiInputComponent} from "../../Inputs/AsciiInput/AsciiInput.component";
 import styles from "./CommentIterator.module.css";
-import {ellipse} from "ionicons/icons";
 import CommentsButtonsComponent from "../../../Buttons/CommentButtons/CommentsButtons.component";
 
 interface CommentIteratorProps {
@@ -23,6 +21,7 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
     useEffect(() => {
         setNewComment("");
         props.setComments && props.setComments(props.comments || []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     /**

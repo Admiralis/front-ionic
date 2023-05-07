@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {IonModal} from "@ionic/react";
 import styles from './SimpleModal.module.css';
 import {LinuxButtonComponent} from "commons/components/index";
@@ -23,7 +23,7 @@ interface AlreadyExistsModalComponentProps {
  * @constructor
  */
 const SimpleModalComponent = (props: AlreadyExistsModalComponentProps) => {
-    const modal = useRef<HTMLIonModalElement>(null);
+    // const modal = useRef<HTMLIonModalElement>(null);
     const {isOpen, setIsOpen, title, content, actions, height} = props;
 
     return (

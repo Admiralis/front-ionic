@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {act, render, screen} from '@testing-library/react';
-import {ionFireEvent, ionFireEvent as fireEvent, mockIonicReact, waitForIonicReact} from '@ionic/react-test-utils';
+import {ionFireEvent, waitForIonicReact} from '@ionic/react-test-utils';
 
 
 import {CommentIteratorComponent} from "./CommentIterator.component";

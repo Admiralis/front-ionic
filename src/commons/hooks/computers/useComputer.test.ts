@@ -1,7 +1,5 @@
-import React, {useEffect} from 'react';
 import {act, renderHook} from '@testing-library/react'
 import useComputer from "./useComputer";
-import * as async_hooks from "async_hooks";
 
 jest.mock('../../services/computer/Computer.service', () => ({
     findComputerBySerial: jest.fn()

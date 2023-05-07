@@ -9,7 +9,6 @@ import LoanService from "../../../commons/services/loan/Loan.service";
 import Loan from "../../../commons/models/loan/Loan.model";
 import CourseFormComponent from "../../../commons/components/Forms/CourseForm/CourseForm.component";
 import style from "./EndLoan.module.css";
-import {ComputerStatus} from "../../../commons/models/computer/Computer.model";
 
 /**
  * Page de clôture de prêt
@@ -21,7 +20,7 @@ function EndLoanPage() {
     const [loan, setLoan] = useState({} as Loan);
 
     const router = useHistory();
-    const {endLoan, loans} = useLoans();
+    const {endLoan} = useLoans();
 
     useEffect(() => {
         if (!location.state) return;
@@ -48,9 +47,9 @@ function EndLoanPage() {
      * Envoi la requête de clôture de prêt et redirige vers la page de recherche d'ordinateur.
      * @param e
      */
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        endLoan(loan)
+        await endLoan(loan)
         router.push(origin)
     }
 

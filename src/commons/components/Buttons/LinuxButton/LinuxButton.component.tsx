@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from "./LinuxButton.module.css";
 
 interface LinuxButtonProps {

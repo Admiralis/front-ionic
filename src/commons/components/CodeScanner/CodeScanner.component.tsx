@@ -21,10 +21,17 @@ interface CodeScannerComponentProps {
 const CodeScannerComponent = (props: CodeScannerComponentProps) => {
 
     useEffect(() => {
-        // Si true, on ouvre la caméra (Android uniquement)
-        if (isPlatform('android') && props.scanning) {
-            startScanning();
-        }
+        // // Si true, on ouvre la caméra (Android uniquement)
+        // if (isPlatform('android') && props.scanning) {
+        //     startScanning();
+        // }
+        (async () => {
+            const allowed = await BarcodeScanner.checkPermission({force: true});
+            if (allowed.granted) {
+                await BarcodeScanner.hideBackground();
+            }
+        })()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.scanning])
 
     /**

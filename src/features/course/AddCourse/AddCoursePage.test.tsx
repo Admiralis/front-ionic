@@ -1,5 +1,5 @@
 import React from 'react';
-import {act, fireEvent, render, screen} from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import {ionFireEvent, mockIonicReact, waitForIonicReact} from '@ionic/react-test-utils';
 
 import {Computer, Course} from "../../../commons/models";

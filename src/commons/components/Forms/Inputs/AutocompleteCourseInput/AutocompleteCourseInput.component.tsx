@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React  from 'react';
 import {IonButton, IonButtons, IonIcon} from "@ionic/react";
 import {AsciiInputComponent} from "../AsciiInput/AsciiInput.component";
 import {Course} from "../../../../models";
@@ -13,9 +13,9 @@ interface AutocompleteCourseInputComponentProps {
 }
 
 function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponentProps) {
-    const [isFindCourseModalOpen, setIsFindCourseModalOpen] = useState<boolean>(false)
-    const [isCreateCourseModalOpen, setIsCreateCourseModalOpen] = useState<boolean>(false);
-    const [newCourse, setNewCourse] = useState<Course>({startDate: new Date()} as Course);
+    const [isFindCourseModalOpen, setIsFindCourseModalOpen] = React.useState<boolean>(false)
+    const [isCreateCourseModalOpen, setIsCreateCourseModalOpen] = React.useState<boolean>(false);
+    const [newCourse, setNewCourse] = React.useState<Course>({startDate: new Date()} as Course);
 
     const {setCourse, course} = props;
 

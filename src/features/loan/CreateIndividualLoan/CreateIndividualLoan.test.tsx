@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {fireEvent, render, screen} from '@testing-library/react';
 import {ionFireEvent, mockIonicReact, waitForIonicReact} from '@ionic/react-test-utils';
 import CreateIndividualLoanPage from "./CreateIndividualLoan.page";

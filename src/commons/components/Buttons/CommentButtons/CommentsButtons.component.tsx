@@ -1,5 +1,4 @@
 import React from 'react';
-import style from './CommentsButtons.module.scss';
 
 interface CommentsButtonsComponentProps {
     action: 'add' | 'remove';

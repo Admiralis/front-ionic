@@ -10,7 +10,6 @@ import {DepositState} from "../../../commons/models/loan/DepositState";
 import {LoanStatus} from "../../../commons/models/loan/LoanStatus";
 import {LoanType} from "../../../commons/models/loan/LoanType";
 import useLoans from "../../../commons/hooks/loans/useLoans";
-import {add} from "ionicons/icons";
 
 /**
  * Page de création d'un prêt collectif

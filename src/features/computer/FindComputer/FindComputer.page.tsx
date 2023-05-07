@@ -7,7 +7,7 @@ import {
     UnknownComputerModalComponent
 } from "commons/components";
 import {useHistory, useLocation} from "react-router";
-import {isValidateButtonDisabled, submitOnEnter} from "commons/utils";
+import {isValidateButtonDisabled} from "commons/utils";
 import {ComputerService} from "commons/services/computer";
 import PATHS from "../../../commons/constants/PATHS";
 
@@ -15,6 +15,7 @@ const FindComputerPage = () => {
 
     const [computerSerial, setComputerSerial] = React.useState("" as string);
     const [scanning, setScanning] = React.useState<boolean>(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [autoSubmit, setAutoSubmit] = React.useState<boolean>(false);
     const [open, setOpen] = React.useState<boolean>(false);
     const location = useLocation();

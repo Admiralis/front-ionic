@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {act, render, screen} from '@testing-library/react';
 import {ionFireEvent as fireEvent, mockIonicReact, waitForIonicReact} from '@ionic/react-test-utils';
 import EndLoanPage from "./EndLoan.page";
