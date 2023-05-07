@@ -25,12 +25,20 @@ const CodeScannerComponent = (props: CodeScannerComponentProps) => {
         // if (isPlatform('android') && props.scanning) {
         //     startScanning();
         // }
+
         (async () => {
-            const allowed = await BarcodeScanner.checkPermission({force: true});
-            if (allowed.granted) {
-                await BarcodeScanner.hideBackground();
+            if (isPlatform('android')) {
+                await startScanning();
             }
         })()
+
+        // (async () => {
+        //     const allowed = await BarcodeScanner.checkPermission({force: true});
+        //     if (allowed.granted) {
+        //         await BarcodeScanner.hideBackground();
+        //     }
+        // })()
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.scanning])
 

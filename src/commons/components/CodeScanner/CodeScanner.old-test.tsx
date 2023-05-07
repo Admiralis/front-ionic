@@ -9,18 +9,29 @@ describe('CodeScannerComponent', () => {
 
     const props: any = {
         setComputerSerial: jest.fn(),
-        setSanning: jest.fn(),
+        setSanning: jest.fn((value: boolean) => {
+            return value
+        }),
         scanning: false,
         setAutoSubmit: jest.fn(),
     }
 
     let mockIsPlatform: (key: string) => boolean;
 
+
     beforeEach(() => {
         mockIonicReact();
+        jest.spyOn(require('react'), 'useState')
+            .mockImplementation((initialState: any) => {
+                return [initialState, jest.fn((newState: any) => {
+                    return newState
+                })]
+            })
     })
 
     it('should render successfully', async () => {
+        mockIsPlatform = jest.fn().mockReturnValue(true);
+        jest.spyOn(IonicReact, 'isPlatform').mockImplementation(mockIsPlatform);
         const {container} = render(<CodeScannerComponent {...props}  />);
         await waitForIonicReact()
         expect(container).toBeTruthy();

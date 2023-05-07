@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render, screen} from '@testing-library/react';
+import {act, fireEvent, render, screen} from '@testing-library/react';
 import {ionFireEvent, mockIonicReact, waitForIonicReact} from '@ionic/react-test-utils';
 import CreateIndividualLoanPage from "./CreateIndividualLoan.page";
 import Loan from "../../../commons/models/loan/Loan.model";
@@ -75,7 +75,9 @@ describe('CreateIndividualLoanPage', () => {
         const {container} = render(<CreateIndividualLoanPage/>);
         await waitForIonicReact();
 
-        expect(container).toBeDefined();
+        await act(async () => {
+            await expect(container).toBeDefined();
+        })
     });
 
     it('should update computerSerial when input is changed', async () => {
@@ -85,7 +87,9 @@ describe('CreateIndividualLoanPage', () => {
         const input = screen.getByTestId('input-SerialNumber');
         ionFireEvent.ionChange(input, computerSerial);
 
-        expect(useState).toHaveBeenCalled();
+        await act(async () => {
+            await expect(useState).toHaveBeenCalled();
+        })
     });
 
     it('should submit the form', async () => {
@@ -96,7 +100,9 @@ describe('CreateIndividualLoanPage', () => {
         const form = container.querySelector('form')!;
         fireEvent.submit(form);
 
-        expect(useState).toHaveBeenCalled();
+        await act(async () => {
+            await expect(useState).toHaveBeenCalled();
+        })
     });
 
 });

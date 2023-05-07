@@ -13,6 +13,7 @@ describe('FindComputerPage', () => {
     let useHistory: jest.SpyInstance;
     let UnknownComputerModalComponent: jest.SpyInstance;
     let ComputerServiceMock: jest.SpyInstance;
+    let isPlatform: jest.SpyInstance;
 
     beforeEach(() => {
         mockIonicReact();
@@ -29,6 +30,10 @@ describe('FindComputerPage', () => {
         UnknownComputerModalComponent = jest.spyOn(require('commons/components/Modals/UnknownComputerModal/UnknownComputerModal.component'), 'default')
             .mockImplementation(() => <div/>);
         ComputerServiceMock = jest.spyOn(ComputerService, 'findComputerBySerial').mockImplementation(() => Promise.resolve({} as Computer));
+
+        isPlatform = jest.spyOn(require('@ionic/react'), 'isPlatform').mockImplementation(() => true);
+
+
     });
 
     afterEach(() => {
