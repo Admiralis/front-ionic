@@ -64,15 +64,15 @@ const CreateCollectiveLoanPage = () => {
         router.push(origin, {reScan: true});
     };
 
-    const handleSubmitAndReScan = (e: any) => {
+    const handleSubmitAndReScan = async (e: any) => {
         e.preventDefault();
-        addLoan(loan)
+        await addLoan(loan)
         router.push(origin, {reScan: true});
     }
 
-    const handleSubmitAndFinish = (e: any) => {
+    const handleSubmitAndFinish = async (e: any) => {
         e.preventDefault();
-        addLoan(loan)
+        await addLoan(loan)
         router.push("/");
     }
 
