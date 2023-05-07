@@ -1,5 +1,5 @@
  import {IonInput, useIonViewDidEnter} from "@ionic/react";
-import React, {useEffect, useRef} from "react";
+import React from "react";
 import style from './AsciiInput.module.css'
 
 interface AsciiInputComponentProps {
@@ -30,12 +30,16 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
 
 
     // Hook de Ionic qui s'exécute à l'affichage du composant.
-    // Focus l'input si props.autoFocus est passé
-    useIonViewDidEnter(() => {
+    function focusOnInput() {
         if (props.autoFocus) {
             const input: HTMLIonInputElement | null = document.querySelector(` #${props.label}`)
-            if (input?.id === props.label ) input?.setFocus()
+            if (input?.id === props.label) input?.setFocus()
         }
+    }
+
+// Focus l'input si props.autoFocus est passé
+    useIonViewDidEnter(() => {
+        focusOnInput();
     }, [])
 
     return (

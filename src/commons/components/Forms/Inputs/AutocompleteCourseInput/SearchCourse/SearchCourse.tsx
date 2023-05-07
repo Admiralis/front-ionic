@@ -11,24 +11,27 @@ export function SearchCourse(props: SearchCourseProps) {
 
     const {setCourse} = props;
 
-    const [querry, setQuerry] = useState<string>('');
+    const [query, setQuery] = useState<string>('');
     const [results, setResults] = useState<Course[]>([]);
 
 
     const handleQueryChange = (e: Event) => {
         const target: HTMLIonSearchbarElement = e.target as HTMLIonSearchbarElement;
         if (target.value) {
-            setQuerry(target.value);
+            setQuery(target.value);
         }
     }
 
     useEffect(() => {
-        CourseService.findInProgressCoursesByLabel(querry).then((courses: Course[]) => {
-            setResults(courses);
-        }).catch((error) => {
-            console.error(error);
-        })
-    }, [querry])
+        (async () => {
+            try {
+                const courses = await CourseService.findInProgressCoursesByLabel(query);
+                setResults(courses);
+            } catch (error) {
+                console.error(error);
+            }
+        })();
+    }, [query])
 
     return (
         <>
@@ -38,12 +41,14 @@ export function SearchCourse(props: SearchCourseProps) {
                         onIonInput={handleQueryChange}
                         debounce={1000}
                         placeholder={"Rechercher une formation"}
-                        onIonClear={() => setQuerry('')}
+                        onIonClear={() => setQuery('')}
+                        data-testid='searchbar'
                     />
-                    <IonList>
+                    <IonList data-testid='course-list'>
                         {
                             results.map((course: Course) => (
                                 <IonButton
+                                    data-testid={'course-button-' + course.id}
                                     key={course.id}
                                     className='green large'
                                     onClick={() => {

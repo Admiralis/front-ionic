@@ -122,7 +122,7 @@
       "!src/serviceWorkerRegistration.ts",
       "!src/commons/models/**/*",
       "!src/commons/services/**/*.repository.ts",
-      "!src/**/index.ts"
+      "!src/**/index.{ts,tsx}"
     ]
   },
   "modulePaths": [

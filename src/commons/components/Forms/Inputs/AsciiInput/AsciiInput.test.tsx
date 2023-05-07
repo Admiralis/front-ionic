@@ -6,6 +6,7 @@ import {IonInput, setupIonicReact, useIonViewDidEnter} from '@ionic/react';
 import {AsciiInputComponent} from "./AsciiInput.component";
 import style from "./AsciiInput.module.css";
 import userEvent from "@testing-library/user-event";
+import autoMockOn = jest.autoMockOn;
 
 // export function AsciiInputComponent(props: AsciiInputComponentProps) {
 //
@@ -41,6 +42,7 @@ describe('AsciiInput', () => {
     let props: any;
     const onIonChangeMock = jest.fn();
     const onBlurMock = jest.fn();
+    let focusOnInputMock: jest.SpyInstance;
 
     beforeEach(() => {
         setupIonicReact();
@@ -51,6 +53,8 @@ describe('AsciiInput', () => {
             onIonChange: onIonChangeMock,
             onBlur: onBlurMock,
         }
+
+
     });
 
     it('should render successfully', () => {
@@ -168,6 +172,5 @@ describe('AsciiInput', () => {
             expect(input).not.toHaveFocus();
         });
     });
-
 });
 
