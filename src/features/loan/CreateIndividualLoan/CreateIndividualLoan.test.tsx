@@ -8,56 +8,6 @@ import {LoanStatus} from "../../../commons/models/loan/LoanStatus";
 import {LoanType} from "../../../commons/models/loan/LoanType";
 import {Computer, Course, Student} from "../../../commons/models";
 
-
-// function CreateIndividualLoanPage() {
-//
-//     const [loan, setLoan] = useState({} as Loan)
-//     const [computerSerial, setComputerSerial] = useState<string>('');
-//
-//     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-//         e.preventDefault();
-//     }
-//
-//     return (
-//         <IonPage>
-//             <IonContent>
-//                 <form className="flex-container" onSubmit={handleSubmit}>
-//                     <CardComponent
-//                         title="Prêt individuel"
-//                         subtitle="Remplissez le formulaire et scannez le PC"
-//                         content={
-//                             <>
-//                                 <IndividualLoanFormComponent
-//                                     loan={loan}
-//                                     setLoan={setLoan}
-//                                 />
-//                                 <HorizontalDividerComponent/>
-//                                 <AsciiInputComponent
-//                                     value={computerSerial}
-//                                     label="SerialNumber"
-//                                     onIonChange={e => {
-//                                         setComputerSerial(e.detail.value!);
-//                                     }}
-//                                     autoFocus
-//                                 />
-//                             </>
-//                         }
-//                         actions={
-//                             <IonButton
-//                                 className="green"
-//                                 type="submit"
-//                                 disabled={isValidateButtonDisabled(computerSerial, 7) || !loan.student?.firstName || !loan.student?.lastName}
-//                             >
-//                                 Chercher PC
-//                             </IonButton>
-//                         }
-//                     />
-//                 </form>
-//             </IonContent>
-//         </IonPage>
-//     );
-// }
-
 describe('CreateIndividualLoanPage', () => {
 
     let useState: jest.SpyInstance;
@@ -105,7 +55,7 @@ describe('CreateIndividualLoanPage', () => {
             loanStatus: LoanStatus.IN_PROGRESS,
             loanType: LoanType.COLLECTIVE,
             startDate: new Date(),
-            student: undefined,
+            student: studentMock,
 
         }
 
