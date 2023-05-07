@@ -10,7 +10,6 @@ const useLoans = () => {
     const [loans, setLoans] = React.useState<any[]>([]);
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
     const [error, setError] = React.useState<string | null>(null);
-    const [loan, setLoan] = React.useState<any>(null);
 
 
     /**
