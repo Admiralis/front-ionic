@@ -28,7 +28,6 @@ const AddCoursePage = () => {
     const location = useLocation<{ serialNumber: string, comeFrom: string }>();
     const {autoScan} = useAutoRescan();
     const router = useHistory();
-    const {addCourse, courses} = useCourses();
 
     useEffect(() => {
         setScanning(autoScan);
@@ -93,8 +92,12 @@ const AddCoursePage = () => {
                                                      computerSerial={computerSerial}
                                                      setComputerSerial={setComputerSerial}/>}
                         actions={
-                            <IonButton className="green" type="submit"
-                                       disabled={isValidateButtonDisabled(computerSerial, 7) || (!course.label || course.label.length < 3) }>
+                            <IonButton
+                                className="green"
+                                type="submit"
+                                disabled={isValidateButtonDisabled(computerSerial, 7) || (!course.label || course.label.length < 3) }
+                                data-testid="submit-button"
+                            >
                                 Valider
                             </IonButton>}
 

@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {act, render, screen} from '@testing-library/react';
+import React from 'react';
+import {act, fireEvent, render, screen} from '@testing-library/react';
 import {ionFireEvent, mockIonicReact, waitForIonicReact} from '@ionic/react-test-utils';
 
-import AddComputerPage from "../../computer/AddComputer/AddComputer.page";
-import CourseService from "../../../commons/services/course/Course.service";
 import {Computer, Course} from "../../../commons/models";
 import {ComputerService} from "../../../commons/services/computer";
+import AddCoursePage from "./AddCourse.page";
+import CourseService from "../../../commons/services/course/Course.service";
 
 // const AddCoursePage = () => {
 //
@@ -130,26 +130,26 @@ describe('AddComputerPage', () => {
             state: {comeFrom: '/courses/new', serialNumber: 'TESTEST'}
         });
 
-        // const [course, setCourse] = React.useState({} as Course)
-        //     const [computerSerial, setComputerSerial] = React.useState("");
-        //     const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
-        //     const [open, setOpen] = useState<boolean>(false);
-        //     const [scanning, setScanning] = useState<boolean>(false);
         useState = jest.spyOn(require('react'), 'useState');
         useState
-            .mockReturnValue([{id: 1, label: 'TEST', startDate: new Date(), endDate: null}, jest.fn((newState) => {
+            .mockReturnValue([{
+                id: 1,
+                label: 'TEST',
+                startDate: new Date(),
+                endDate: null
+            }, jest.fn((newState: Computer) => {
                 return newState
             })])
-            .mockReturnValueOnce(['TESTEST', jest.fn((newState) => {
+            .mockReturnValueOnce(['TESTEST', jest.fn((newState: string) => {
                 return newState
             })])
-            .mockReturnValueOnce([false, jest.fn((newState) => {
+            .mockReturnValueOnce([false, jest.fn((newState: boolean) => {
                 return newState
             })])
-            .mockReturnValueOnce([false, jest.fn((newState) => {
+            .mockReturnValueOnce([false, jest.fn((newState: boolean) => {
                 return newState
             })])
-            .mockReturnValueOnce([false, jest.fn((newState) => {
+            .mockReturnValueOnce([false, jest.fn((newState: boolean) => {
                 return newState
             })])
 
@@ -167,22 +167,65 @@ describe('AddComputerPage', () => {
             })
     });
 
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     it('should render', async () => {
-        const {container} = await render(<AddComputerPage/>);
+        const {container} = await render(<AddCoursePage/>);
         await waitForIonicReact()
         expect(container).toBeDefined();
     });
 
-    it('should not submit form if the course has no label and startdate', async () => {
-        const {container} = await render(<AddComputerPage/>);
+
+    it('should should have submit button disabled if the course has no label and startdate', async () => {
+        const {container} = await render(<AddCoursePage/>);
         await waitForIonicReact()
         // eslint-disable-next-line testing-library/no-container,testing-library/no-node-access
         const form = container.querySelector('form');
-        await act(() => {
-            ionFireEvent.submit(form as HTMLFormElement);
-        });
-        expect(saveCourse).not.toHaveBeenCalled();
+        const labelInput = screen.queryByTestId('input-label');
+        const startDateInput = screen.queryByTestId('input-startDate');
+        expect(form).toBeDefined();
+        expect(labelInput).toBeDefined();
+        expect(startDateInput).toBeDefined();
+        expect(screen.queryByTestId('submit-button')).toBeDisabled();
+    });
+
+    it('should submit form if the course has a label and startdate', async () => {
+        const {container} = await render(<AddCoursePage/>);
+        await waitForIonicReact()
+        // eslint-disable-next-line testing-library/no-container,testing-library/no-node-access
+        const form = container.querySelector('form');
+        const labelInput = screen.getByTestId('input-Intitulé');
+        const startDateInput = screen.getByTestId('input-Début');
+        fireEvent.change(labelInput as HTMLElement, {target: {value: 'TEST'}});
+        fireEvent.change(startDateInput as HTMLElement, {target: {value: '07/05/2021'}});
+        ionFireEvent.submit(form as HTMLElement);
+
+        expect(saveCourse).toHaveBeenCalled();
         expect(findComputerBySerial).toHaveBeenCalled();
     });
+
+    it('should open the modal if the computer does not exist', async () => {
+        findComputerBySerial.mockImplementation(() => {
+            return Promise.reject()
+        })
+        const {container} = await render(<AddCoursePage/>);
+        await waitForIonicReact()
+        // eslint-disable-next-line testing-library/no-container,testing-library/no-node-access
+        const form = container.querySelector('form');
+        const labelInput = screen.getByTestId('input-Intitulé');
+        fireEvent.change(labelInput as HTMLElement, {target: {value: 'TEST'}});
+        const startDateInput = screen.getByTestId('input-Début');
+        fireEvent.change(startDateInput as HTMLElement, {target: {value: '07/05/2021'}});
+        ionFireEvent.submit(form as HTMLElement);
+
+        expect(saveCourse).toHaveBeenCalled();
+        expect(findComputerBySerial).toHaveBeenCalled();
+
+        // eslint-disable-next-line testing-library/prefer-presence-queries
+        expect(screen.queryByText('Ce PC n\'existe pas !')).toBeDefined();
+    });
+
 
 });

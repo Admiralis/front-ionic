@@ -32,6 +32,7 @@ const UnknownComputerModalComponent = (props: UnknownComputerModalComponentProps
                         onComputerAdd
                     }
                     className="green"
+                    data-testid="add-button"
                 >
                     Ajouter
                 </IonButton>
