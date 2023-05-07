@@ -76,7 +76,7 @@ const CodeScannerComponent = (props: CodeScannerComponentProps) => {
         <div>
             {
                 checkAvailable() && <>
-                    {!props.scanning && <IonButton onClick={startScanning} className="green"><IonIcon
+                    {!props.scanning && <IonButton onClick={startScanning} className="green" data-testid='start-button'><IonIcon
                         icon={scanCircleOutline}/></IonButton>}
                     {props.scanning && <IonButton onClick={stopScanning}>Stop</IonButton>}
                 </>
