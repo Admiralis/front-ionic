@@ -5,8 +5,7 @@ import IndividualLoanFormComponent from "commons/components/Forms/IndividualLoan
 import Loan from "commons/models/loan/Loan.model";
 import HorizontalDividerComponent
     from "commons/components/UiElements/HorizontalDivider/HorizontalDivider.component";
-import {isValidateButtonDisabled} from "commons/utils";
-import useLoans from "commons/hooks/loans/useLoans";
+import {isValidateButtonDisabled, submitOnEnter} from "commons/utils";
 import {ComputerService} from "commons/services/computer";
 import PATHS from "../../../commons/constants/PATHS";
 import {useHistory} from "react-router";
@@ -19,27 +18,26 @@ function CreateIndividualLoanPage() {
 
     const router = useHistory();
 
-
-    const goNextStep = () => {
-
-    }
-
     const findComputer = async (serialNumber: string) => {
-
-        ComputerService.computerExistsBySerial(serialNumber).then((computerExists) => {
-            if (computerExists) {
-                goNextStep();
-            } else {
+        ComputerService.findComputerBySerial(computerSerial)
+            .then((computer) => {
+                router.push(PATHS.LOANS.confirmIndividual, {
+                    loan: {
+                        ...loan,
+                        computer: computer
+                    },
+                    comeFrom: router.location.pathname,
+                })
+            })
+            .catch(() => {
                 setOpen(true)
-            }
-        })
-
+            })
     }
+
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         await findComputer(computerSerial);
-        // await addLoan(loan);
     }
 
     React.useEffect(() => {
@@ -66,7 +64,7 @@ function CreateIndividualLoanPage() {
     return (
         <IonPage>
             <IonContent>
-                <form className="flex-container" onSubmit={handleSubmit}>
+                <form className="flex-container" onSubmit={handleSubmit} onKeyDown={submitOnEnter}>
                     <CardComponent
                         title="Prêt individuel"
                         subtitle="Remplissez le formulaire et scannez le PC"
@@ -107,7 +105,8 @@ function CreateIndividualLoanPage() {
                         computer: {serialNumber: computerSerial},
                         comeFrom: router.location.pathname
                     });
-                    setOpen(false);}
+                    setOpen(false);
+                }
                 }
                 onCancel={() => {
                     setOpen(false);

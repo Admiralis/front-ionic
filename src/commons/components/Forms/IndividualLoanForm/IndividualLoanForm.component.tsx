@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {AsciiInputComponent} from "../Inputs/AsciiInput/AsciiInput.component";
 import {AsciiDatePickerComponent} from "../Inputs/AsciiDate/AsciiDate.component";
 import Loan from "../../../models/loan/Loan.model";
