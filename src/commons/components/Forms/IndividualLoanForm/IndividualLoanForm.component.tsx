@@ -12,7 +12,17 @@ interface IndividualLoanComponentProps {
 function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
 
     const {loan = {} as Loan, setLoan} = props;
-    const [startDate, setStartDate] = useState<Date>(new Date());
+    // const [startDate, setStartDate] = useState<Date>(new Date());
+    const today = new Date();
+
+    React.useEffect(() => {
+        if (loan.course?.startDate) {
+            setLoan({
+                ...loan,
+                startDate: loan.course.startDate,
+            })
+        }
+    }, [loan.course])
 
     return (
         <>
@@ -56,21 +66,19 @@ function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
             />
             <AsciiDatePickerComponent
                 label="Date début"
-                // value={loan.course?.startDate ? new Date(loan.course?.startDate) : new Date()}
-                value={loan?.startDate ? new Date(loan.startDate) : loan.course?.startDate ? new Date (loan.course.startDate) : startDate}
+                value={loan.course?.startDate ? new Date(loan.course?.startDate) : new Date()}
+                // value={loan?.startDate ? new Date(loan.startDate) : loan.course?.startDate ? new Date (loan.course.startDate) : new Date()}
                 onChange={(event) => {
-                    const newStartDate = new Date(event.detail.value!);
                     setLoan({
                         ...loan,
-                        startDate: new Date(newStartDate)
+                        startDate: new Date(new Date(event.detail.value!))
                     })
-                    setStartDate(new Date(newStartDate));
                 }}
             />
             <AsciiDatePickerComponent
                 label="Date fin"
-                min={startDate.toISOString()}
-                max={loan.course?.endDate ? new Date(loan.course.endDate).toISOString() : new Date(startDate.getFullYear() + 3, startDate.getMonth(), startDate.getDate()).toISOString()}
+                min={today.toISOString()}
+                max={loan.course?.endDate ? new Date(loan.course.endDate).toISOString() : new Date(today.getFullYear() + 3, today.getMonth(), today.getDate()).toISOString()}
                 value={loan?.endDate ? new Date(loan.endDate) : loan.course?.endDate ? new Date (loan.course.endDate) : null}
                 onChange={(event) => {
                     setLoan({

@@ -19,6 +19,7 @@ const PATHS = {
         detail: '/loans',
         newCollective: '/loans/new-collective',
         newIndividual: '/loans/new-individual',
+        editInvvidualLoan: '/loans/edit-individual-loan',
         end: '/loans/end/',
     }
 }
