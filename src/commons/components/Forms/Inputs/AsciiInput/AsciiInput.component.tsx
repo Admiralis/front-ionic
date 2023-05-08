@@ -1,4 +1,4 @@
- import {IonInput, useIonViewDidEnter} from "@ionic/react";
+import {IonInput, useIonViewDidEnter} from "@ionic/react";
 import React from "react";
 import style from './AsciiInput.module.css'
 
@@ -32,20 +32,23 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
     // Hook de Ionic qui s'exécute à l'affichage du composant.
     function focusOnInput() {
         if (props.autoFocus) {
-            const input: HTMLIonInputElement | null = document.querySelector(` #${props.label}`)
-            if (input?.id === props.label) input?.setFocus()
+            const input: HTMLIonInputElement | null = document.querySelector(` #${props.label}`) as HTMLIonInputElement
+            if (input?.id === props.label) input?.setFocus().then(() => {return})
         }
     }
 
 // Focus l'input si props.autoFocus est passé
     useIonViewDidEnter(() => {
-        focusOnInput();
+        focusOnInput()
     }, [])
 
     return (
         <div className={style.asciiItem} data-testid='asciiInputComponent'>
             <span className={props.smallText ? style.asciiSmallLabel : style.asciiLabel}>
-                <span>&#62;</span>{props.label}{props.disabled ? <span className={props.smallText? style.littlePrompt : style.prompt }>$ </span> : <span className={props.smallText? style.littlePrompt : style.prompt }>_{props.required && <span>*</span>}</span>}</span>
+                <span>&#62;</span>{props.label}{props.disabled ?
+                <span className={props.smallText ? style.littlePrompt : style.prompt}>$ </span> :
+                <span className={props.smallText ? style.littlePrompt : style.prompt}>_{props.required &&
+                    <span>*</span>}</span>}</span>
             <IonInput
                 id={props.label}
                 value={props.value}

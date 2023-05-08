@@ -47,10 +47,11 @@ function EndLoanPage() {
      * Envoi la requête de clôture de prêt et redirige vers la page de recherche d'ordinateur.
      * @param e
      */
-    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        await endLoan(loan)
-        router.push(origin)
+        endLoan(loan).then(() => {
+            router.push(origin)
+        });
     }
 
     return (

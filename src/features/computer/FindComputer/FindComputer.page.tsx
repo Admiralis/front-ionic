@@ -28,7 +28,7 @@ const FindComputerPage = () => {
     }, [computerSerial]);
 
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
         try {
             const computer = await ComputerService.findComputerBySerial(computerSerial);
@@ -52,7 +52,7 @@ const FindComputerPage = () => {
     return (
         <IonPage>
             <IonContent>
-                <form onSubmit={handleSubmit} className="flex-container">
+                <form onSubmit={(event) => handleSubmit(event)} className="flex-container">
                     <CardComponent
                         title="Scannez le PC"
                         content={
