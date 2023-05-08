@@ -47,17 +47,20 @@ function EndLoanPage() {
      * Envoi la requête de clôture de prêt et redirige vers la page de recherche d'ordinateur.
      * @param e
      */
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        endLoan(loan).then(() => {
+        try {
+            await endLoan(loan)
             router.push(origin)
-        });
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     return (
         <IonPage>
             <IonContent>
-                <form className="flex-container" onSubmit={handleSubmit}>
+                <form className="flex-container" onSubmit={async (event) => {await handleSubmit(event)}}>
                     <CardComponent
                         title="Retour au stock"
                         content={

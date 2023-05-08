@@ -64,19 +64,17 @@ const CreateCollectiveLoanPage = () => {
         router.push(origin, {reScan: true});
     };
 
-    const handleSubmitAndReScan = (e: any) => {
+    const handleSubmitAndReScan = async (e: any) => {
         e.preventDefault();
-        addLoan(loan).then(
-            () => router.push(origin, {reScan: true})
-        )
+        await addLoan(loan)
+        router.push(origin, {reScan: true})
 
     }
 
-    const handleSubmitAndFinish = (e: any) => {
+    const handleSubmitAndFinish = async (e: any) => {
         e.preventDefault();
-        addLoan(loan).then(
-            () => router.push("/")
-        )
+        await addLoan(loan)
+        router.push("/")
     }
 
     return (
@@ -112,14 +110,14 @@ const CreateCollectiveLoanPage = () => {
                             <div>
                                 <IonButton className="yellow large"
                                            expand="block"
-                                           onClick={handleSubmitAndFinish}>
+                                           onClick={async (event) => await handleSubmitAndFinish(event)}>
                                     Terminer
                                 </IonButton>
                                 <div>
                                     <IonButton className="red" onClick={handleCancel}>
                                         Annuler
                                     </IonButton>
-                                    <IonButton className="green" onClick={handleSubmitAndReScan}>
+                                    <IonButton className="green" onClick={async (event) => {await handleSubmitAndReScan(event)}}>
                                         PC Suivant
                                     </IonButton>
                                 </div>
