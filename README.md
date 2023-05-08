@@ -1,4 +1,9 @@
-![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Admiralis_front-ionic&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Admiralis_front-ionic&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Admiralis_front-ionic&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Admiralis_front-ionic&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Admiralis_front-ionic&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
 
 
 ---
