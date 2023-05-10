@@ -7,6 +7,7 @@ import {SimpleModalComponent} from "../../../index";
 import CourseFormComponent from "../../CourseForm/CourseForm.component";
 import {SearchCourse} from "./SearchCourse/SearchCourse";
 import styles from './AutocompleteCourseInput.module.css';
+import CourseService from "../../../../services/course/Course.service";
 
 interface AutocompleteCourseInputComponentProps {
     course?: Course;
@@ -19,6 +20,23 @@ function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponen
     const [newCourse, setNewCourse] = React.useState<Course>({startDate: new Date()} as Course);
 
     const {setCourse, course} = props;
+
+    async function handleCourseCreation() {
+        try {
+            const createdCourse = await CourseService.saveCourse(newCourse);
+            setCourse(createdCourse);
+            setIsCreateCourseModalOpen(false)
+            setNewCourse({} as Course)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    React.useEffect(() => {
+        if (course) {
+            setIsFindCourseModalOpen(false)
+        }
+    }, [course])
 
     return (
         <>
@@ -78,10 +96,8 @@ function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponen
                                     </IonButton>
                                     <IonButton
                                         className='green'
-                                        onClick={() => {
-                                            setCourse(newCourse);
-                                            setIsCreateCourseModalOpen(false)
-                                            setIsFindCourseModalOpen(false)
+                                        onClick={async () => {
+                                            await handleCourseCreation();
                                         }}
                                     >
                                         Créer
