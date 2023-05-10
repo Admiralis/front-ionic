@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import {IonButton, IonButtons, IonIcon} from "@ionic/react";
 import {AsciiInputComponent} from "../AsciiInput/AsciiInput.component";
 import {Course} from "../../../../models";
@@ -25,7 +25,7 @@ function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponen
         try {
             const createdCourse = await CourseService.saveCourse(newCourse);
             setCourse(createdCourse);
-            setIsCreateCourseModalOpen(false)
+            setIsCreateCourseModalOpen(false);
             setNewCourse({} as Course)
         } catch (error) {
             console.error(error);
@@ -42,7 +42,7 @@ function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponen
         <>
         <span
             style={{width: '100%', marginLeft: '5%', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-            <AsciiInputComponent label={"Formation"} value={course?.label || ''} />
+            <AsciiInputComponent label={"Formation"} value={course?.label || ''}/>
             <IonButtons>
                 <IonButton icon-only className='icon' onClick={() => setIsFindCourseModalOpen(true)}>
                     <IonIcon icon={search}/>

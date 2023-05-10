@@ -57,7 +57,7 @@ function CreateIndividualLoanPage() {
                 endDate: loan.course.endDate,
             })
         }
-
+    //eslint-disable-next-line
     }, [loan.course?.startDate, loan.course?.endDate])
 
     React.useEffect(() => {

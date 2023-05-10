@@ -22,6 +22,7 @@ function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
                 startDate: loan.course.startDate,
             })
         }
+        //eslint-disable-next-line
     }, [loan.course])
 
     return (
