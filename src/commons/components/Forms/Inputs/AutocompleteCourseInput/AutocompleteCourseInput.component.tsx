@@ -96,9 +96,7 @@ function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponen
                                     </IonButton>
                                     <IonButton
                                         className='green'
-                                        onClick={async () => {
-                                            await handleCourseCreation();
-                                        }}
+                                        onClick={handleCourseCreation}
                                     >
                                         Créer
                                     </IonButton>

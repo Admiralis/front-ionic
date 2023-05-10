@@ -50,7 +50,7 @@ function EditIndividualLoanPage() {
         <div>
             <IonPage>
                 <IonContent>
-                    <form className="flex-container" onSubmit={(event) => handleSubmit(event)}>
+                    <form className="flex-container" onSubmit={handleSubmit}>
 
                         <CardComponent
                             title='Prêt'
@@ -78,8 +78,19 @@ function EditIndividualLoanPage() {
                         />
 
                         <IonButtons className="sticky">
-                            <IonButton onClick={() => router.push(origin)} className="yellow" >Annuler</IonButton>
-                            <IonButton type="submit" className="green" >Valider</IonButton>
+                            <IonButton
+                                onClick={() => router.push(origin)}
+                                className="yellow"
+                                data-testid="cancel-button"
+                            >
+                                Annuler
+                            </IonButton>
+                            <IonButton
+                                type="submit"
+                                className="green"
+                            >
+                                Valider
+                            </IonButton>
                         </IonButtons>
                     </form>
                     <div className={style.padding}/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683723638072" clover="3.2.0">
-  <project timestamp="1683723638072" name="All files">
-    <metrics statements="609" coveredstatements="479" conditionals="229" coveredconditionals="163" methods="203" coveredmethods="153" elements="1041" coveredelements="795" complexity="0" loc="609" ncloc="609" packages="44" files="47" classes="47"/>
+<coverage generated="1683726602774" clover="3.2.0">
+  <project timestamp="1683726602774" name="All files">
+    <metrics statements="607" coveredstatements="498" conditionals="229" coveredconditionals="167" methods="201" coveredmethods="159" elements="1037" coveredelements="824" complexity="0" loc="607" ncloc="607" packages="44" files="47" classes="47"/>
     <package name="src">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="App.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\App.tsx">
@@ -18,16 +18,16 @@
       <metrics statements="3" coveredstatements="3" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
       <file name="CommentsButtons.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Buttons\CommentButtons\CommentsButtons.component.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
-        <line num="14" count="8" type="stmt"/>
-        <line num="16" count="85" type="stmt"/>
-        <line num="18" count="85" type="stmt"/>
+        <line num="14" count="9" type="stmt"/>
+        <line num="16" count="90" type="stmt"/>
+        <line num="18" count="90" type="stmt"/>
       </file>
     </package>
     <package name="src.commons.components.Buttons.LinuxButton">
       <metrics statements="15" coveredstatements="15" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
       <file name="LinuxButton.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Buttons\LinuxButton\LinuxButton.component.tsx">
         <metrics statements="15" coveredstatements="15" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
-        <line num="21" count="19" type="stmt"/>
+        <line num="21" count="20" type="stmt"/>
         <line num="27" count="35" type="stmt"/>
         <line num="28" count="35" type="cond" truecount="2" falsecount="0"/>
         <line num="29" count="23" type="stmt"/>
@@ -48,64 +48,64 @@
       <metrics statements="5" coveredstatements="5" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
       <file name="Card.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Cards\Card\Card.component.tsx">
         <metrics statements="5" coveredstatements="5" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
-        <line num="31" count="176" type="stmt"/>
-        <line num="32" count="175" type="stmt"/>
-        <line num="33" count="175" type="stmt"/>
+        <line num="31" count="191" type="stmt"/>
+        <line num="32" count="190" type="stmt"/>
+        <line num="33" count="190" type="stmt"/>
         <line num="34" count="1" type="stmt"/>
-        <line num="37" count="175" type="stmt"/>
+        <line num="37" count="190" type="stmt"/>
       </file>
     </package>
     <package name="src.commons.components.Cards.components.CardAlert">
       <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
       <file name="CardAlert.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Cards\components\CardAlert\CardAlert.component.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
-        <line num="10" count="178" type="stmt"/>
-        <line num="12" count="178" type="stmt"/>
+        <line num="10" count="193" type="stmt"/>
+        <line num="12" count="193" type="stmt"/>
       </file>
     </package>
     <package name="src.commons.components.Cards.components.CardButtons">
       <metrics statements="1" coveredstatements="1" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
       <file name="CardButtons.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Cards\components\CardButtons\CardButtons.component.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
-        <line num="11" count="179" type="stmt"/>
+        <line num="11" count="194" type="stmt"/>
       </file>
     </package>
     <package name="src.commons.components.Cards.components.CardContent">
       <metrics statements="1" coveredstatements="1" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
       <file name="CardContent.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Cards\components\CardContent\CardContent.component.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
-        <line num="12" count="180" type="stmt"/>
+        <line num="12" count="195" type="stmt"/>
       </file>
     </package>
     <package name="src.commons.components.Forms.Comments">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Comments.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Forms\Comments\Comments.component.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="16" count="6" type="stmt"/>
-        <line num="17" count="44" type="stmt"/>
+        <line num="16" count="7" type="stmt"/>
+        <line num="17" count="49" type="stmt"/>
       </file>
     </package>
     <package name="src.commons.components.Forms.Comments.CommentIterator">
       <metrics statements="21" coveredstatements="19" conditionals="14" coveredconditionals="12" methods="10" coveredmethods="7"/>
       <file name="CommentIterator.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Forms\Comments\CommentIterator\CommentIterator.component.tsx">
         <metrics statements="21" coveredstatements="19" conditionals="14" coveredconditionals="12" methods="10" coveredmethods="7"/>
-        <line num="18" count="7" type="stmt"/>
-        <line num="19" count="57" type="stmt"/>
-        <line num="21" count="57" type="stmt"/>
-        <line num="22" count="24" type="stmt"/>
-        <line num="23" count="24" type="cond" truecount="4" falsecount="0"/>
-        <line num="30" count="57" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
+        <line num="19" count="62" type="stmt"/>
+        <line num="21" count="62" type="stmt"/>
+        <line num="22" count="29" type="stmt"/>
+        <line num="23" count="29" type="cond" truecount="4" falsecount="0"/>
+        <line num="30" count="62" type="stmt"/>
         <line num="31" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="32" count="1" type="stmt"/>
         <line num="34" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="35" count="2" type="stmt"/>
-        <line num="42" count="57" type="stmt"/>
+        <line num="42" count="62" type="stmt"/>
         <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="50" count="57" type="stmt"/>
+        <line num="50" count="62" type="stmt"/>
         <line num="51" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="52" count="1" type="stmt"/>
         <line num="54" count="1" type="stmt"/>
-        <line num="57" count="57" type="stmt"/>
+        <line num="57" count="62" type="stmt"/>
         <line num="61" count="24" type="stmt"/>
         <line num="71" count="0" type="stmt"/>
         <line num="79" count="6" type="stmt"/>
@@ -116,7 +116,7 @@
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="ComputerAddFormComponent.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Forms\ComputerAddForm\ComputerAddFormComponent.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="16" count="18" type="stmt"/>
+        <line num="16" count="19" type="stmt"/>
         <line num="18" count="8" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
@@ -126,8 +126,8 @@
       <metrics statements="6" coveredstatements="6" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5"/>
       <file name="ComputerForm.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Forms\ComputerForm\ComputerForm.component.tsx">
         <metrics statements="6" coveredstatements="6" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5"/>
-        <line num="11" count="18" type="stmt"/>
-        <line num="12" count="57" type="stmt"/>
+        <line num="11" count="19" type="stmt"/>
+        <line num="12" count="62" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
         <line num="33" count="1" type="stmt"/>
@@ -138,7 +138,7 @@
       <metrics statements="7" coveredstatements="5" conditionals="9" coveredconditionals="8" methods="5" coveredmethods="3"/>
       <file name="CourseForm.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Forms\CourseForm\CourseForm.component.tsx">
         <metrics statements="7" coveredstatements="5" conditionals="9" coveredconditionals="8" methods="5" coveredmethods="3"/>
-        <line num="18" count="7" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
         <line num="19" count="34" type="cond" truecount="0" falsecount="1"/>
         <line num="21" count="33" type="stmt"/>
         <line num="24" count="2" type="stmt"/>
@@ -151,14 +151,14 @@
       <metrics statements="13" coveredstatements="9" conditionals="17" coveredconditionals="12" methods="8" coveredmethods="5"/>
       <file name="IndividualLoanForm.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Forms\IndividualLoanForm\IndividualLoanForm.component.tsx">
         <metrics statements="13" coveredstatements="9" conditionals="17" coveredconditionals="12" methods="8" coveredmethods="5"/>
-        <line num="14" count="15" type="cond" truecount="0" falsecount="1"/>
-        <line num="15" count="14" type="stmt"/>
-        <line num="18" count="14" type="cond" truecount="2" falsecount="2"/>
-        <line num="21" count="14" type="stmt"/>
-        <line num="23" count="14" type="cond" truecount="1" falsecount="1"/>
+        <line num="14" count="20" type="cond" truecount="0" falsecount="1"/>
+        <line num="15" count="19" type="stmt"/>
+        <line num="18" count="19" type="cond" truecount="2" falsecount="2"/>
+        <line num="21" count="19" type="stmt"/>
+        <line num="23" count="19" type="cond" truecount="1" falsecount="1"/>
         <line num="24" count="0" type="stmt"/>
-        <line num="30" count="14" type="stmt"/>
-        <line num="39" count="14" type="stmt"/>
+        <line num="30" count="19" type="stmt"/>
+        <line num="39" count="19" type="stmt"/>
         <line num="45" count="1" type="stmt"/>
         <line num="60" count="1" type="stmt"/>
         <line num="73" count="0" type="stmt"/>
@@ -170,10 +170,10 @@
       <metrics statements="5" coveredstatements="4" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="1"/>
       <file name="AsciiDate.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Forms\Inputs\AsciiDate\AsciiDate.component.tsx">
         <metrics statements="5" coveredstatements="4" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="1"/>
-        <line num="26" count="7" type="stmt"/>
-        <line num="28" count="95" type="stmt"/>
-        <line num="30" count="95" type="stmt"/>
-        <line num="32" count="94" type="stmt"/>
+        <line num="26" count="8" type="stmt"/>
+        <line num="28" count="105" type="stmt"/>
+        <line num="30" count="105" type="stmt"/>
+        <line num="32" count="104" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
       </file>
     </package>
@@ -184,33 +184,32 @@
         <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="35" count="0" type="stmt"/>
         <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="41" count="589" type="stmt"/>
+        <line num="41" count="644" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
-        <line num="45" count="589" type="stmt"/>
+        <line num="45" count="644" type="stmt"/>
       </file>
     </package>
     <package name="src.commons.components.Forms.Inputs.AutocompleteCourseInput">
-      <metrics statements="18" coveredstatements="8" conditionals="12" coveredconditionals="12" methods="7" coveredmethods="2"/>
+      <metrics statements="17" coveredstatements="8" conditionals="12" coveredconditionals="12" methods="6" coveredmethods="2"/>
       <file name="AutocompleteCourseInput.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Forms\Inputs\AutocompleteCourseInput\AutocompleteCourseInput.component.tsx">
-        <metrics statements="18" coveredstatements="8" conditionals="12" coveredconditionals="12" methods="7" coveredmethods="2"/>
-        <line num="18" count="15" type="stmt"/>
-        <line num="19" count="15" type="stmt"/>
-        <line num="20" count="15" type="stmt"/>
-        <line num="22" count="15" type="stmt"/>
+        <metrics statements="17" coveredstatements="8" conditionals="12" coveredconditionals="12" methods="6" coveredmethods="2"/>
+        <line num="18" count="20" type="stmt"/>
+        <line num="19" count="20" type="stmt"/>
+        <line num="20" count="20" type="stmt"/>
+        <line num="22" count="20" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
-        <line num="35" count="14" type="stmt"/>
-        <line num="36" count="14" type="cond" truecount="2" falsecount="0"/>
-        <line num="37" count="10" type="stmt"/>
-        <line num="41" count="14" type="stmt"/>
+        <line num="35" count="19" type="stmt"/>
+        <line num="36" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="15" type="stmt"/>
+        <line num="41" count="19" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
         <line num="92" count="0" type="stmt"/>
-        <line num="100" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.commons.components.Forms.Inputs.AutocompleteCourseInput.SearchCourse">
@@ -240,7 +239,7 @@
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="AlertIcon.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Icons\AlertIcon\AlertIcon.component.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="6" count="18" type="stmt"/>
+        <line num="6" count="19" type="stmt"/>
         <line num="7" count="3" type="stmt"/>
         <line num="8" count="3" type="stmt"/>
       </file>
@@ -249,9 +248,9 @@
       <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
       <file name="SimpleModal.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Modals\SimpleModal\SimpleModal.component.tsx">
         <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
-        <line num="25" count="18" type="stmt"/>
-        <line num="27" count="147" type="stmt"/>
-        <line num="29" count="146" type="stmt"/>
+        <line num="25" count="19" type="stmt"/>
+        <line num="27" count="162" type="stmt"/>
+        <line num="29" count="161" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
       </file>
@@ -260,7 +259,7 @@
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="UnknownComputerModal.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\Modals\UnknownComputerModal\UnknownComputerModal.component.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="20" count="18" type="stmt"/>
+        <line num="20" count="19" type="stmt"/>
         <line num="21" count="8" type="stmt"/>
         <line num="23" count="7" type="stmt"/>
       </file>
@@ -269,7 +268,7 @@
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="HorizontalDivider.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\components\UiElements\HorizontalDivider\HorizontalDivider.component.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="4" count="18" type="stmt"/>
+        <line num="4" count="19" type="stmt"/>
         <line num="5" count="15" type="stmt"/>
       </file>
     </package>
@@ -362,7 +361,7 @@
       <metrics statements="32" coveredstatements="32" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
       <file name="useLoans.ts" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\hooks\loans\useLoans.ts">
         <metrics statements="32" coveredstatements="32" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
-        <line num="8" count="4" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
         <line num="10" count="14" type="stmt"/>
         <line num="11" count="14" type="stmt"/>
         <line num="12" count="14" type="stmt"/>
@@ -615,9 +614,9 @@
       </file>
     </package>
     <package name="src.features.computer.EditComputer">
-      <metrics statements="29" coveredstatements="19" conditionals="6" coveredconditionals="3" methods="6" coveredmethods="3"/>
+      <metrics statements="28" coveredstatements="19" conditionals="6" coveredconditionals="3" methods="5" coveredmethods="3"/>
       <file name="EditComputer.page.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\features\computer\EditComputer\EditComputer.page.tsx">
-        <metrics statements="29" coveredstatements="19" conditionals="6" coveredconditionals="3" methods="6" coveredmethods="3"/>
+        <metrics statements="28" coveredstatements="19" conditionals="6" coveredconditionals="3" methods="5" coveredmethods="3"/>
         <line num="13" count="2" type="stmt"/>
         <line num="15" count="2" type="stmt"/>
         <line num="17" count="2" type="stmt"/>
@@ -646,17 +645,16 @@
         <line num="73" count="0" type="stmt"/>
         <line num="75" count="0" type="stmt"/>
         <line num="79" count="2" type="stmt"/>
-        <line num="83" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.features.computer.EditComputer.components">
       <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
       <file name="EditComputer.component.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\features\computer\EditComputer\components\EditComputer.component.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
-        <line num="14" count="5" type="stmt"/>
-        <line num="16" count="43" type="stmt"/>
-        <line num="20" count="43" type="stmt"/>
-        <line num="31" count="16" type="stmt"/>
+        <line num="14" count="6" type="stmt"/>
+        <line num="16" count="48" type="stmt"/>
+        <line num="20" count="48" type="stmt"/>
+        <line num="31" count="21" type="stmt"/>
       </file>
     </package>
     <package name="src.features.computer.FindComputer">
@@ -826,31 +824,31 @@
       </file>
     </package>
     <package name="src.features.loan.EditIndividualLoan">
-      <metrics statements="22" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <metrics statements="22" coveredstatements="19" conditionals="8" coveredconditionals="4" methods="6" coveredmethods="6"/>
       <file name="EditIndividualLoan.page.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\features\loan\EditIndividualLoan\EditIndividualLoan.page.tsx">
-        <metrics statements="22" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
+        <metrics statements="22" coveredstatements="19" conditionals="8" coveredconditionals="4" methods="6" coveredmethods="6"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="31" count="5" type="stmt"/>
+        <line num="33" count="5" type="cond" truecount="1" falsecount="1"/>
         <line num="34" count="0" type="stmt"/>
-        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="37" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="38" count="5" type="stmt"/>
+        <line num="41" count="5" type="cond" truecount="1" falsecount="1"/>
         <line num="42" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
+        <line num="44" count="5" type="stmt"/>
+        <line num="49" count="5" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="71" count="5" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.features.loan.EndLoan">

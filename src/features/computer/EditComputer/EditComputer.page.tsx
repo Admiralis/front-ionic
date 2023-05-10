@@ -80,7 +80,7 @@ const EditComputerPage = () => {
         <div>
             <IonPage>
                 <IonContent>
-                    <form className="flex-container" onSubmit={(event) => handleSubmit(event)}>
+                    <form className="flex-container" onSubmit={handleSubmit}>
                         <CardComponent
                             title="Valider un PC"
                             content={<EditComputerComponent newComputerInfo={newComputerInfo}
