@@ -15,7 +15,7 @@ function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
     const today = new Date();
 
     function computeStartDate() {
-        return loan.course?.startDate && new Date(loan.course?.startDate) > today ? new Date(loan.course?.startDate) : today;
+        return loan.course?.startDate && new Date(loan.course.startDate) > today ? new Date(loan.course.startDate) : today;
     }
 
     React.useEffect(() => {
@@ -26,15 +26,12 @@ function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
                 startDate: computeStartDate(),
                 endDate: new Date(loan.course.endDate),
             })
-            console.log('date de fin', loan.endDate)
-            console.log('date de fin cours : ', loan.course.endDate)
         } else {
             setLoan({
                 ...loan,
                 startDate: computeStartDate(),
                 endDate: undefined,
             })
-            console.log('pas de date de fin')
         }
         //eslint-disable-next-line
     }, [loan.course])
@@ -81,7 +78,6 @@ function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
             />
             <AsciiDatePickerComponent
                 label="Début prêt"
-                // value={loan?.startDate ? new Date(loan.startDate) : loan.course?.startDate ? new Date(loan.course.startDate) : today}
                 value={loan.startDate}
                 onChange={(event) => {
                     setLoan({
