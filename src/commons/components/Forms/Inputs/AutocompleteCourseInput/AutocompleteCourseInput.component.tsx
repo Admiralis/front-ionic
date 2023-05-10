@@ -32,6 +32,7 @@ function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponen
         }
     }
 
+
     React.useEffect(() => {
         if (course) {
             setIsFindCourseModalOpen(false)
