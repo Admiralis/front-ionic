@@ -66,17 +66,21 @@ const EditComputerPage = () => {
      * Passe le paramètre "reScan" à true pour ouvrir automatiquement la caméra sur Android
      * @param e
      */
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
-        addComputer(newComputerInfo);
-        router.push(origin , {reScan: true});
+        try {
+            await addComputer(newComputerInfo);
+            router.push(origin , {reScan: true});
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     return (
         <div>
             <IonPage>
                 <IonContent>
-                    <form className="flex-container" onSubmit={handleSubmit}>
+                    <form className="flex-container" onSubmit={(event) => handleSubmit(event)}>
                         <CardComponent
                             title="Valider un PC"
                             content={<EditComputerComponent newComputerInfo={newComputerInfo}

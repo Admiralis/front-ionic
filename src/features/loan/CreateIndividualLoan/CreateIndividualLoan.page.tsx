@@ -7,8 +7,9 @@ import HorizontalDividerComponent
     from "commons/components/UiElements/HorizontalDivider/HorizontalDivider.component";
 import {isValidateButtonDisabled, submitOnEnter} from "commons/utils";
 import {ComputerService} from "commons/services/computer";
-import PATHS from "../../../commons/constants/PATHS";
+import PATHS from "commons/constants/PATHS";
 import {useHistory} from "react-router";
+import {Student} from "commons/models";
 
 function CreateIndividualLoanPage() {
 
@@ -28,6 +29,7 @@ function CreateIndividualLoanPage() {
                     },
                     comeFrom: router.location.pathname,
                 })
+                loan.student = {} as Student
             })
             .catch(() => {
                 setOpen(true)
@@ -42,23 +44,6 @@ function CreateIndividualLoanPage() {
         e.preventDefault();
         await findComputer(computerSerial);
     }
-
-    React.useEffect(() => {
-        if (loan.course?.startDate) {
-            setLoan({
-                ...loan,
-                startDate: loan.course.startDate,
-            })
-        }
-
-        if (loan.course?.endDate) {
-            setLoan({
-                ...loan,
-                endDate: loan.course.endDate,
-            })
-        }
-    //eslint-disable-next-line
-    }, [loan.course?.startDate, loan.course?.endDate])
 
     React.useEffect(() => {
         setComputerSerial(computerSerial.toUpperCase());

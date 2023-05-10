@@ -38,10 +38,11 @@ import FindComputerPage from "./features/computer/FindComputer/FindComputer.page
 import AddCoursePage from "./features/course/AddCourse/AddCourse.page";
 import CreateCollectiveLoanPage from "./features/loan/CreateCollectiveLoan/CreateCollectiveLoan.page";
 import EndLoanPage from "./features/loan/EndLoan/EndLoan.page";
+import CreateIndividualLoanPage from "./features/loan/CreateIndividualLoan/CreateIndividualLoan.page";
+import EditIndividualLoanPage from "./features/loan/EditIndividualLoan/EditIndividualLoan.page";
 
 /* Constants */
 import PATHS from "commons/constants/PATHS";
-import CreateIndividualLoanPage from "./features/loan/CreateIndividualLoan/CreateIndividualLoan.page";
 
 setupIonicReact();
 
@@ -65,8 +66,9 @@ const App: React.FC = () => (
                         <Route exact path={PATHS.SCAN.endLoan} component={FindComputerPage} />
                         <Route exact path={PATHS.LOANS.end + ":id"} component={EndLoanPage} />
 
+
                         <Route exact path={PATHS.SCAN.newIndividualLoan} component={CreateIndividualLoanPage} />
-                        {/* TODO : <Route exact path={paths.loans.newIndividual} component={EditIndividualLoanPage} />*/}
+                         <Route exact path={PATHS.LOANS.confirmIndividual} component={EditIndividualLoanPage} />
 
                         <Redirect exact from="/" to={PATHS.SCAN.root} />
 

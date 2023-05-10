@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {AsciiInputComponent} from "../Inputs/AsciiInput/AsciiInput.component";
 import {AsciiDatePickerComponent} from "../Inputs/AsciiDate/AsciiDate.component";
 import Loan from "../../../models/loan/Loan.model";
@@ -14,12 +14,27 @@ function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
     const {loan = {} as Loan, setLoan} = props;
     const today = new Date();
 
+    function computeStartDate() {
+        return loan.course?.startDate && new Date(loan.course?.startDate) > today ? new Date(loan.course?.startDate) : today;
+    }
+
     React.useEffect(() => {
-        if (loan.course?.startDate) {
+
+        if (loan.course?.endDate) {
             setLoan({
                 ...loan,
-                startDate: loan.course.startDate,
+                startDate: computeStartDate(),
+                endDate: new Date(loan.course.endDate),
             })
+            console.log('date de fin', loan.endDate)
+            console.log('date de fin cours : ', loan.course.endDate)
+        } else {
+            setLoan({
+                ...loan,
+                startDate: computeStartDate(),
+                endDate: undefined,
+            })
+            console.log('pas de date de fin')
         }
         //eslint-disable-next-line
     }, [loan.course])
@@ -65,21 +80,21 @@ function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
                 }}
             />
             <AsciiDatePickerComponent
-                label="Date début"
-                value={loan.course?.startDate ? new Date(loan.course?.startDate) : new Date()}
-                // value={loan?.startDate ? new Date(loan.startDate) : loan.course?.startDate ? new Date (loan.course.startDate) : new Date()}
+                label="Début prêt"
+                // value={loan?.startDate ? new Date(loan.startDate) : loan.course?.startDate ? new Date(loan.course.startDate) : today}
+                value={loan.startDate}
                 onChange={(event) => {
                     setLoan({
                         ...loan,
-                        startDate: new Date(new Date(event.detail.value!))
+                        startDate: new Date(event.detail.value!)
                     })
                 }}
             />
             <AsciiDatePickerComponent
-                label="Date fin"
+                label="Fin prêt"
                 min={today.toISOString()}
                 max={loan.course?.endDate ? new Date(loan.course.endDate).toISOString() : new Date(today.getFullYear() + 3, today.getMonth(), today.getDate()).toISOString()}
-                value={loan?.endDate ? new Date(loan.endDate) : loan.course?.endDate ? new Date (loan.course.endDate) : null}
+                value={loan?.endDate || null}
                 onChange={(event) => {
                     setLoan({
                         ...loan,
