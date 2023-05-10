@@ -12,7 +12,6 @@ interface IndividualLoanComponentProps {
 function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
 
     const {loan = {} as Loan, setLoan} = props;
-    // const [startDate, setStartDate] = useState<Date>(new Date());
     const today = new Date();
 
     React.useEffect(() => {
