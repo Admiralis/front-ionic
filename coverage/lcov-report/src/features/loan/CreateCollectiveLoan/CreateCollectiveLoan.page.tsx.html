@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>32/32</span>
+                <span class='fraction'>34/34</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>32/32</span>
+                <span class='fraction'>34/34</span>
             </div>
         
             
@@ -203,7 +203,8 @@
 <a name='L138'></a><a href='#L138'>138</a>
 <a name='L139'></a><a href='#L139'>139</a>
 <a name='L140'></a><a href='#L140'>140</a>
-<a name='L141'></a><a href='#L141'>141</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -275,13 +276,14 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">27x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -314,14 +316,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -412,13 +414,14 @@ const CreateCollectiveLoanPage = () =&gt; {
     const handleSubmitAndReScan = async (e: any) =&gt; {
         e.preventDefault();
         await addLoan(loan)
-        router.push(origin, {reScan: true});
+        router.push(origin, {reScan: true})
+&nbsp;
     }
 &nbsp;
     const handleSubmitAndFinish = async (e: any) =&gt; {
         e.preventDefault();
         await addLoan(loan)
-        router.push("/");
+        router.push("/")
     }
 &nbsp;
     return (
@@ -454,14 +457,14 @@ const CreateCollectiveLoanPage = () =&gt; {
                             &lt;div&gt;
                                 &lt;IonButton className="yellow large"
                                            expand="block"
-                                           onClick={handleSubmitAndFinish}&gt;
+                                           onClick={async (event) =&gt; await handleSubmitAndFinish(event)}&gt;
                                     Terminer
                                 &lt;/IonButton&gt;
                                 &lt;div&gt;
                                     &lt;IonButton className="red" onClick={handleCancel}&gt;
                                         Annuler
                                     &lt;/IonButton&gt;
-                                    &lt;IonButton className="green" onClick={handleSubmitAndReScan}&gt;
+                                    &lt;IonButton className="green" onClick={async (event) =&gt; {await handleSubmitAndReScan(event)}}&gt;
                                         PC Suivant
                                     &lt;/IonButton&gt;
                                 &lt;/div&gt;
@@ -490,7 +493,7 @@ export default CreateCollectiveLoanPage;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-05-07T18:31:40.739Z
+                at 2023-05-10T13:00:37.652Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

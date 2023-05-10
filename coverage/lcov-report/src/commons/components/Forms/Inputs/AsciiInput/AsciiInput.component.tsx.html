@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28.57% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/7</span>
+                <span class='fraction'>2/8</span>
             </div>
         
             
@@ -37,9 +37,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/3</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
@@ -123,7 +123,10 @@
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -183,7 +186,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"> import {IonInput, useIonViewDidEnter} from "@ionic/react";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {IonInput, useIonViewDidEnter} from "@ionic/react";
 import React from "react";
 import style from './AsciiInput.module.css'
 &nbsp;
@@ -217,20 +223,23 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
     // Hook de Ionic qui s'exécute à l'affichage du composant.
     function <span class="fstat-no" title="function not covered" >focusOnInput(</span>) {
 <span class="cstat-no" title="statement not covered" >        if (props.autoFocus) {</span>
-            const input: HTMLIonInputElement | null = <span class="cstat-no" title="statement not covered" >document.querySelector(` #${props.label}`)</span>
-<span class="cstat-no" title="statement not covered" >            if (input?.id === props.label) <span class="cstat-no" title="statement not covered" >input?.setFocus()</span></span>
+            const input: HTMLIonInputElement | null = <span class="cstat-no" title="statement not covered" >document.querySelector(` #${props.label}`) as HTMLIonInputElement</span>
+<span class="cstat-no" title="statement not covered" >            if (input?.id === props.label) <span class="cstat-no" title="statement not covered" >input?.setFocus().then(<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >return}</span>)</span></span>
         }
     }
 &nbsp;
 // Focus l'input si props.autoFocus est passé
     useIonViewDidEnter(<span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >        focusOnInput();</span>
+<span class="cstat-no" title="statement not covered" >        focusOnInput()</span>
     }, [])
 &nbsp;
     return (
         &lt;div className={style.asciiItem} data-testid='asciiInputComponent'&gt;
             &lt;span className={props.smallText ? style.asciiSmallLabel : style.asciiLabel}&gt;
-                &lt;span&gt;&amp;#62;&lt;/span&gt;{props.label}{props.disabled ? &lt;span className={props.smallText? style.littlePrompt : style.prompt }&gt;$ &lt;/span&gt; : &lt;span className={props.smallText? style.littlePrompt : style.prompt }&gt;_{props.required &amp;&amp; &lt;span&gt;*&lt;/span&gt;}&lt;/span&gt;}&lt;/span&gt;
+                &lt;span&gt;&amp;#62;&lt;/span&gt;{props.label}{props.disabled ?
+                &lt;span className={props.smallText ? style.littlePrompt : style.prompt}&gt;$ &lt;/span&gt; :
+                &lt;span className={props.smallText ? style.littlePrompt : style.prompt}&gt;_{props.required &amp;&amp;
+                    &lt;span&gt;*&lt;/span&gt;}&lt;/span&gt;}&lt;/span&gt;
             &lt;IonInput
                 id={props.label}
                 value={props.value}
@@ -250,7 +259,7 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-05-07T18:31:40.739Z
+                at 2023-05-10T13:00:37.652Z
             </div>
         <script src="../../../../../../prettify.js"></script>
         <script>

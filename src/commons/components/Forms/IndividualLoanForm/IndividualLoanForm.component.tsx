@@ -68,7 +68,7 @@ function IndividualLoanFormComponent(props: IndividualLoanComponentProps) {
                 required
             />
             <AutocompleteCourseInputComponent
-                course={loan.course}
+                course={loan.course || loan.student?.course}
                 setCourse={(newCourse) => {
                     setLoan({
                         ...loan,

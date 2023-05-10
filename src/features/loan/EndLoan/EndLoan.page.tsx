@@ -9,6 +9,8 @@ import LoanService from "../../../commons/services/loan/Loan.service";
 import Loan from "../../../commons/models/loan/Loan.model";
 import CourseFormComponent from "../../../commons/components/Forms/CourseForm/CourseForm.component";
 import style from "./EndLoan.module.css";
+import IndividualLoanFormComponent
+    from "../../../commons/components/Forms/IndividualLoanForm/IndividualLoanForm.component";
 
 /**
  * Page de clôture de prêt
@@ -79,6 +81,19 @@ function EndLoanPage() {
                                         newCourseInfo={loan.course}
                                         setNewCourseInfo={() => {
                                         }}
+                                    />
+                                }
+                            />
+                        )
+                    }
+                    {
+                        loan.student && (
+                            <CardComponent
+                                title="Prêt en cours"
+                                content={
+                                    <IndividualLoanFormComponent
+                                        loan={loan}
+                                        setLoan={() => {}}
                                     />
                                 }
                             />
