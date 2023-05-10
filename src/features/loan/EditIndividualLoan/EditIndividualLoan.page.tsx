@@ -2,27 +2,30 @@ import React from 'react';
 import {IonButton, IonButtons, IonContent, IonPage} from "@ionic/react";
 import Loan from "commons/models/loan/Loan.model";
 import {useHistory, useLocation} from "react-router";
-import {CardComponent} from "../../../commons/components";
+import {CardComponent} from "commons/components";
 import {EditComputerComponent} from "../../computer/EditComputer/components/EditComputer.component";
-import IndividualLoanFormComponent
-    from "../../../commons/components/Forms/IndividualLoanForm/IndividualLoanForm.component";
+import IndividualLoanFormComponent from "commons/components/Forms/IndividualLoanForm/IndividualLoanForm.component";
 import style from "../EndLoan/EndLoan.module.css";
+import useLoans from "commons/hooks/loans/useLoans";
 
-interface EditIndividualLoanPageProps {
+function EditIndividualLoanPage() {
 
-}
-
-function EditIndividualLoanPage(props: EditIndividualLoanPageProps) {
 
     const [loan, setLoan] = React.useState({} as Loan)
     const [origin, setOrigin] = React.useState<string>('');
 
     const router = useHistory();
     const location = useLocation<{ loan: Loan, comeFrom: string }>();
+    const {addLoan} = useLoans();
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        console.log(loan)
+        try {
+            await addLoan(loan)
+            router.push(origin)
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     React.useEffect(() => {
@@ -73,6 +76,7 @@ function EditIndividualLoanPage(props: EditIndividualLoanPageProps) {
                                 />
                             }
                         />
+
                         <IonButtons className="sticky">
                             <IonButton onClick={() => router.push(origin)} className="yellow" >Annuler</IonButton>
                             <IonButton type="submit" className="green" >Valider</IonButton>
