@@ -1,41 +1,52 @@
 import {Computer, NewComputer} from "../../models";
-import {useEffect, useState} from "react";
+import React from "react";
 import computerService from "../../services/computer/Computer.service";
 
 /**
  * Hook pour gérer les states des ordinateurs
  */
 const useComputers = () => {
-    const [computers, setComputers] = useState<Computer[]>([])
-    const [isLoading, setIsLoading] = useState<boolean>(true)
-    const [error, setError] = useState<string | null>(null)
+    const [computers, setComputers] = React.useState<Computer[]>([])
+    const [isLoading, setIsLoading] = React.useState<boolean>(true)
+    const [error, setError] = React.useState<string | null>(null)
 
-    useEffect(() => {
-        computerService.findComputers().then((computers) => {
-            setError(null)
-            setComputers(computers)
-            setIsLoading(false)
-        }).catch((e) => {
-            setError(e.message)
-            setIsLoading(false)
-        })
+    React.useEffect(() => {
+        (async () => {
+            await getComputers()
+        })()
     }, [])
+
+    const getComputers = async () => {
+        try {
+            setIsLoading(true)
+            setError(null)
+            const computers = await computerService.findComputers()
+            setComputers(computers)
+        } catch (e: any) {
+            setError(e.message)
+        } finally {
+            setIsLoading(false)
+        }
+    }
 
     /**
      * Ajoute un ordinateur à la liste
      * @param newComputer l'ordinateur à ajouter
      */
-    const addComputer = (newComputer: NewComputer) => {
-        setIsLoading(true)
-        computerService.saveComputer(newComputer).then((newComputer) => {
+    const addComputer = async (newComputer: NewComputer) => {
+        try {
+            setIsLoading(true)
             setError(null)
-            setComputers([...computers, newComputer])
-        }).catch((e) => {
+            const savedComputer: Computer = await computerService.saveComputer(newComputer)
+            setComputers([...computers, savedComputer])
+        } catch (e: any) {
             setError(e.message)
-        }).finally(() => setIsLoading(false))
+        } finally {
+            setIsLoading(false)
+        }
     }
 
-    return {computers, isLoading, error, addComputer}
+    return {computers: computers, isLoading, error, addComputer}
 }
 
 export default useComputers

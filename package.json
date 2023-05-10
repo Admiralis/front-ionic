@@ -18,6 +18,7 @@
     "@ionic/pwa-elements": "^3.1.1",
     "@ionic/react": "^6.0.0",
     "@ionic/react-router": "^6.0.0",
+    "@ionic/react-test-utils": "^0.4.0",
     "@storybook/preset-typescript": "^3.0.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^13.3.0",
@@ -54,11 +55,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)\" --watchAll --coverage",
+    "test:ci": "react-scripts test --transformIgnorePatterns \"node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)\" --coverage ",
     "eject": "react-scripts eject",
     "dev": "ionic capacitor run android -l --external --consolelogs",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "lint": "eslint --fix --ext .ts,.tsx ."
   },
   "eslintConfig": {
     "extends": [
@@ -107,5 +110,25 @@
     "storybook": "^7.0.2",
     "webpack": "^5.78.0"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/**/*.*.mock.{ts,tsx}",
+      "!src/**/*.stories.{ts,tsx}",
+      "!/node_modules/",
+      "!src/index.tsx",
+      "!src/registerServiceWorker.js",
+      "!src/reportWebVitals.ts",
+      "!src/service-worker.ts",
+      "!src/serviceWorkerRegistration.ts",
+      "!src/commons/models/**/*",
+      "!src/commons/services/**/*.repository.ts",
+      "!src/**/index.{ts,tsx}",
+      "!src/commons/components/CodeScanner/*"
+    ]
+  },
+  "modulePaths": [
+    "<rootDir>/src/"
+  ]
 }

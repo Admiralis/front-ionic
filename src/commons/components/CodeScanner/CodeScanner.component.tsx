@@ -21,10 +21,25 @@ interface CodeScannerComponentProps {
 const CodeScannerComponent = (props: CodeScannerComponentProps) => {
 
     useEffect(() => {
-        // Si true, on ouvre la caméra (Android uniquement)
-        if (isPlatform('android') && props.scanning) {
-            startScanning();
-        }
+        // // Si true, on ouvre la caméra (Android uniquement)
+        // if (isPlatform('android') && props.scanning) {
+        //     startScanning();
+        // }
+
+        (async () => {
+            if (isPlatform('android')) {
+                await startScanning();
+            }
+        })()
+
+        // (async () => {
+        //     const allowed = await BarcodeScanner.checkPermission({force: true});
+        //     if (allowed.granted) {
+        //         await BarcodeScanner.hideBackground();
+        //     }
+        // })()
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.scanning])
 
     /**
@@ -76,7 +91,7 @@ const CodeScannerComponent = (props: CodeScannerComponentProps) => {
         <div>
             {
                 checkAvailable() && <>
-                    {!props.scanning && <IonButton onClick={startScanning} className="green"><IonIcon
+                    {!props.scanning && <IonButton onClick={startScanning} className="green" data-testid='start-button'><IonIcon
                         icon={scanCircleOutline}/></IonButton>}
                     {props.scanning && <IonButton onClick={stopScanning}>Stop</IonButton>}
                 </>

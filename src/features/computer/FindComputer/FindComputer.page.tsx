@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React from 'react';
 import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {
     AsciiInputComponent,
@@ -6,51 +6,54 @@ import {
     CodeScannerComponent,
     UnknownComputerModalComponent
 } from "commons/components";
-import SimpleModalComponent from "commons/components/Modals/SimpleModal/SimpleModal.component";
 import {useHistory, useLocation} from "react-router";
-import {isValidateButtonDisabled, submitOnEnter} from "commons/utils";
+import {isValidateButtonDisabled} from "commons/utils";
 import {ComputerService} from "commons/services/computer";
+import PATHS from "../../../commons/constants/PATHS";
 
 const FindComputerPage = () => {
 
-    const [computerSerial, setComputerSerial] = useState("" as string);
-    const [scanning, setScanning] = useState<boolean>(false);
-    const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
-    const [open, setOpen] = useState<boolean>(false);
+    const [computerSerial, setComputerSerial] = React.useState("" as string);
+    const [scanning, setScanning] = React.useState<boolean>(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [autoSubmit, setAutoSubmit] = React.useState<boolean>(false);
+    const [open, setOpen] = React.useState<boolean>(false);
     const location = useLocation();
     const router = useHistory();
 
-    useEffect(() => {
+    React.useEffect(() => {
         // Met le numéro de série en toute majuscule
         // La double dépendance assure le bon rafraichissement des données
         computerSerial && setComputerSerial(computerSerial.toUpperCase());
     }, [computerSerial]);
 
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
-        ComputerService.findComputerBySerial(computerSerial).then((computer) => {
-            if (location.pathname === '/scan/edit') {
+        try {
+            const computer = await ComputerService.findComputerBySerial(computerSerial);
+            if (location.pathname === PATHS.SCAN.editComputer) {
                 router.push(
-                    `/scan/edit/${computerSerial}`,
+                    PATHS.COMPUTERS.edit + `${computerSerial}`,
                     {computer: computer, comeFrom: location.pathname}
                 );
-            } else if (location.pathname === '/scan/stock') {
+            } else if (location.pathname === PATHS.SCAN.endLoan ) {
                 router.push(
-                    `/scan/stock/${computerSerial}`,
+                     PATHS.LOANS.end + `${computerSerial}`,
                     {computer: computer, comeFrom: location.pathname}
                 );
             }
+        } catch (error) {
+            setOpen(true);
+        } finally {
             setComputerSerial('');
-        }).catch(() => {
-            setOpen(true)
-        })
+        }
     };
 
     return (
         <IonPage>
             <IonContent>
-                <form onSubmit={handleSubmit} className="flex-container">
+                <form onSubmit={(event) => handleSubmit(event)} className="flex-container">
                     <CardComponent
                         title="Scannez le PC"
                         content={
@@ -87,7 +90,7 @@ const FindComputerPage = () => {
                 open={open}
                 setIsOpen={setOpen}
                 onComputerAdd={() => {
-                    router.push('/scan/add/confirm', {
+                    router.push(PATHS.COMPUTERS.new, {
                         computer: {serialNumber: computerSerial},
                         comeFrom: location.pathname
                     });
@@ -98,6 +101,7 @@ const FindComputerPage = () => {
                     setOpen(false);
                     setComputerSerial('');
                 }}
+                data-testid="unknown-computer-modal"
             />
         </IonPage>
     );

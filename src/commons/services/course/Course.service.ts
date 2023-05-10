@@ -20,7 +20,7 @@ class CourseService {
      */
     async findCourseById(id: string): Promise<Course> {
         const course = CourseRepository.findById(id);
-        if (course) {
+        if (course !== undefined) {
             return course;
         }
         throw new Error("Course not found");
@@ -68,6 +68,15 @@ class CourseService {
         return Promise.resolve(course);
     }
 
+    async findInProgressCoursesByLabel(label: string): Promise<Course[]> {
+        const courses = CourseRepository.findInProgressByLabel(label);
+        if (courses === undefined) {
+            return Promise.resolve([]);
+        }
+        return Promise.resolve(courses);
+    }
+
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default new CourseService();

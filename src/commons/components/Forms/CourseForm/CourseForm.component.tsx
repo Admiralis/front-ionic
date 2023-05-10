@@ -2,6 +2,7 @@ import React from 'react';
 import {Course} from "../../../models";
 import {AsciiInputComponent} from "../Inputs/AsciiInput/AsciiInput.component";
 import {AsciiDatePickerComponent} from "../Inputs/AsciiDate/AsciiDate.component";
+import styles from './CourseForm.module.css';
 
 interface CourseFormComponentProps {
     newCourseInfo: Course;
@@ -17,7 +18,7 @@ interface CourseFormComponentProps {
 const CourseFormComponent = (props: CourseFormComponentProps) => {
     const {newCourseInfo = {} as Course, setNewCourseInfo} = props
 
-    return <>
+    return <div className={styles.courseForm}>
         <AsciiInputComponent label="Intitulé" value={newCourseInfo.label || ""}
                              onIonChange={(e: any) => {
                                  setNewCourseInfo({
@@ -59,7 +60,7 @@ const CourseFormComponent = (props: CourseFormComponentProps) => {
                              }}
         />
 
-    </>;
+    </div>;
 };
 
 export default CourseFormComponent;

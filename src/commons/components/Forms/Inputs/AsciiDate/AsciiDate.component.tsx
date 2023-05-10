@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {AsciiInputComponent} from "../AsciiInput/AsciiInput.component";
 import {IonButton, IonButtons, IonDatetime, IonIcon} from "@ionic/react";
 import {calendar} from "ionicons/icons";
 import SimpleModalComponent from "../../../Modals/SimpleModal/SimpleModal.component";
-import styles from './AsciiDate.module.css'
 
 interface AsciiDatePickerComponentProps {
     label: string
@@ -26,13 +25,9 @@ interface AsciiDatePickerComponentProps {
  */
 export const AsciiDatePickerComponent = (props: AsciiDatePickerComponentProps) => {
 
-    const [isDatePickerOpen, setDatePickerOpen] = useState<boolean>(false)
+    const [isDatePickerOpen, setDatePickerOpen] = React.useState<boolean>(false)
 
     const {label, value, onChange, required, min, max} = props
-
-    // useEffect(() => {
-    //     setDatePickerOpen(false)
-    // }, [onChange])
 
     return (
         <>

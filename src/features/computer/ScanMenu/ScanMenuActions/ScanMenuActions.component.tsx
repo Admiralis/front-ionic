@@ -1,5 +1,6 @@
 import {IonButton} from "@ionic/react";
 import React from "react";
+import * as APP_PATHS from "commons/constants/PATHS";
 
 /**
  * Actions que peut faire l'utilisateur sur la page de menu
@@ -8,23 +9,23 @@ import React from "react";
 export const ScanMenuActionsComponent = () => {
     const paths = [
         {
-            path: "/scan/individuel",
+            path: APP_PATHS.default.SCAN.newIndividualLoan,
             label: "Prêt individuel"
         },
         {
-            path: "/scan/course",
+            path: APP_PATHS.default.SCAN.newCourse,
             label: "Prêt collectif"
         },
         {
-            path: "/scan/add",
+            path: APP_PATHS.default.SCAN.newComputer,
             label: "Ajouter PC"
         },
         {
-            path: "/scan/stock",
+            path: APP_PATHS.default.SCAN.endLoan,
             label: "Retour stock"
         },
         {
-            path: "/scan/edit",
+            path: APP_PATHS.default.SCAN.editComputer,
             label: "Editer PC"
         },
         {

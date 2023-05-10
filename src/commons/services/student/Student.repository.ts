@@ -41,7 +41,7 @@ const students: Student[] = [
     {
         id: "4",
         firstName: "Jill",
-        lastName: "Pinguin",
+        lastName: "Penguin",
         course: {
             id: "9",
             label: "POE Admin Linux",
@@ -114,4 +114,5 @@ class StudentRepository {
 
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default new StudentRepository();

@@ -9,7 +9,8 @@ import LoanService from "../../../commons/services/loan/Loan.service";
 import Loan from "../../../commons/models/loan/Loan.model";
 import CourseFormComponent from "../../../commons/components/Forms/CourseForm/CourseForm.component";
 import style from "./EndLoan.module.css";
-import {ComputerStatus} from "../../../commons/models/computer/Computer.model";
+import IndividualLoanFormComponent
+    from "../../../commons/components/Forms/IndividualLoanForm/IndividualLoanForm.component";
 
 /**
  * Page de clôture de prêt
@@ -21,7 +22,7 @@ function EndLoanPage() {
     const [loan, setLoan] = useState({} as Loan);
 
     const router = useHistory();
-    const {endLoan, loans} = useLoans();
+    const {endLoan} = useLoans();
 
     useEffect(() => {
         if (!location.state) return;
@@ -30,25 +31,38 @@ function EndLoanPage() {
     }, [location.state]);
 
     useEffect(() => {
-        computer.id && LoanService.findByComputerIdAndInProgressStatus(computer.id).then(loan => {
-            setLoan(loan);
-        })
+        // computer.id && LoanService.findByComputerIdAndInProgressStatus(computer.id).then(loan => {
+        //     setLoan(loan);
+        // })
+        (async () => {
+            if (!computer.id) return;
+            try {
+                const loan = await LoanService.findByComputerIdAndInProgressStatus(computer.id);
+                setLoan(loan);
+            } catch (e) {
+                console.error(e);
+            }
+        })()
     }, [computer]);
 
     /**
      * Envoi la requête de clôture de prêt et redirige vers la page de recherche d'ordinateur.
      * @param e
      */
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        endLoan(loan)
-        router.push(origin)
+        try {
+            await endLoan(loan)
+            router.push(origin)
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     return (
         <IonPage>
             <IonContent>
-                <form className="flex-container" onSubmit={handleSubmit}>
+                <form className="flex-container" onSubmit={async (event) => {await handleSubmit(event)}}>
                     <CardComponent
                         title="Retour au stock"
                         content={
@@ -73,6 +87,19 @@ function EndLoanPage() {
                         )
                     }
                     {
+                        loan.student && (
+                            <CardComponent
+                                title="Prêt en cours"
+                                content={
+                                    <IndividualLoanFormComponent
+                                        loan={loan}
+                                        setLoan={() => {}}
+                                    />
+                                }
+                            />
+                        )
+                    }
+                    {
                         !loan.course && !loan.student && (
                             <CardComponent
                                 title="Prêt en cours"
@@ -85,10 +112,11 @@ function EndLoanPage() {
                     <IonButtons className="sticky">
                         <IonButton className="red"
                                    onClick={() => router.push(origin)}>Retour</IonButton>
-                        <IonButton className="green" type="submit" disabled={!loan.course && !loan.student} >Clôturer</IonButton>
+                        <IonButton className="green" type="submit"
+                                   disabled={!loan.course && !loan.student}>Clôturer</IonButton>
                     </IonButtons>
                 </form>
-                <div className={style.padding} />
+                <div className={style.padding}/>
             </IonContent>
         </IonPage>
     );

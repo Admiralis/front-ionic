@@ -1,5 +1,5 @@
- import {IonInput, useIonViewDidEnter} from "@ionic/react";
-import React, {useEffect, useRef} from "react";
+import {IonInput, useIonViewDidEnter} from "@ionic/react";
+import React from "react";
 import style from './AsciiInput.module.css'
 
 interface AsciiInputComponentProps {
@@ -30,18 +30,25 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
 
 
     // Hook de Ionic qui s'exécute à l'affichage du composant.
-    // Focus l'input si props.autoFocus est passé
-    useIonViewDidEnter(() => {
+    function focusOnInput() {
         if (props.autoFocus) {
-            const input: HTMLIonInputElement | null = document.querySelector(` #${props.label}`)
-            if (input?.id === props.label ) input?.setFocus()
+            const input: HTMLIonInputElement | null = document.querySelector(` #${props.label}`) as HTMLIonInputElement
+            if (input?.id === props.label) input?.setFocus().then(() => {return})
         }
+    }
+
+// Focus l'input si props.autoFocus est passé
+    useIonViewDidEnter(() => {
+        focusOnInput()
     }, [])
 
     return (
-        <div className={style.asciiItem}>
+        <div className={style.asciiItem} data-testid='asciiInputComponent'>
             <span className={props.smallText ? style.asciiSmallLabel : style.asciiLabel}>
-                {props.required && <span>*</span>}{props.label}{props.disabled ? <span className={props.smallText? style.littlePrompt : style.prompt }>$ </span> : <span className={props.smallText? style.littlePrompt : style.prompt }>&#62;_ </span>}</span>
+                <span>&#62;</span>{props.label}{props.disabled ?
+                <span className={props.smallText ? style.littlePrompt : style.prompt}>$ </span> :
+                <span className={props.smallText ? style.littlePrompt : style.prompt}>_{props.required &&
+                    <span>*</span>}</span>}</span>
             <IonInput
                 id={props.label}
                 value={props.value}
@@ -50,6 +57,7 @@ export function AsciiInputComponent(props: AsciiInputComponentProps) {
                 className={props.smallText ? style.asciiSmallInput : style.asciiInput}
                 disabled={props.onIonChange === undefined}
                 onBlur={props.onBlur}
+                data-testid={props.label ? 'input-' + props.label : 'input'}
             />
         </div>
     );

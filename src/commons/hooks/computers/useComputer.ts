@@ -10,14 +10,20 @@ const useComputer = (serialNumber: string) => {
 
     useEffect(() => {
         if (serialNumber !== computer?.serialNumber) {
-            setIsLoading(true);
-            setComputer(null);
-            computerService.findComputerBySerial(serialNumber).then((computer) => {
-                setComputer(computer);
-            }).catch((e) => {
-                setError(e.message)
-            }).finally(() => setIsLoading(false));
+            (async () => {
+                try {
+                    setIsLoading(true);
+                    setComputer(null);
+                    const computer = await computerService.findComputerBySerial(serialNumber);
+                    setComputer(computer);
+                } catch (e: any) {
+                    setError(e.message);
+                } finally {
+                    setIsLoading(false);
+                }
+            })();
         }
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [serialNumber]);
 
 

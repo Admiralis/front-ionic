@@ -13,11 +13,6 @@ const meta: Meta<typeof LinuxButtonComponent> = {
             defaultValue: "",
             description: 'Couleur du bouton'
         },
-        size: {
-            control: 'radio',
-            options: ["small", "medium"],
-            defaultValue: "medium",
-        },
         hidden: {
             control: 'boolean',
             defaultValue: false,

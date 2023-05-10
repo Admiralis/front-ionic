@@ -12,33 +12,39 @@ const UseCourses = () => {
     const [error, setError] = React.useState<string | null>(null);
 
     useEffect(() => {
-        CourseService.findCourses().then(courses => {
-            setError(null);
-            setCourses(courses);
-        }).catch(error => {
-            setError(error.message);
-        }).finally(() => {
-            setIsLoading(false);
-        });
+        (async () => {
+            await getCourses();
+        })()
     }, [])
+
+    const getCourses = async () => {
+        try {
+            setIsLoading(true);
+            setError(null);
+            const courses = await CourseService.findCourses();
+            setCourses(courses);
+        } catch (e: any) {
+            setError(e.message);
+        } finally {
+            setIsLoading(false);
+        }
+    }
 
     /**
      * Ajoute un cours à la liste
      * @param newCourse
      */
-    const addCourse = (newCourse: Course) => {
-        setIsLoading(true);
-        CourseService.saveCourse(newCourse).then(course => {
-            setError(null);
-            const newCourses =  courses.filter(c => c.id !== course.id);
-            newCourses.push(course);
-            setCourses(newCourses);
-            return course;
-        }).catch(error => {
-            setError(error.message);
-        }).finally(() => {
-            setIsLoading(false);
-        });
+    const addCourse = async (newCourse: Course) => {
+            try {
+                setIsLoading(true);
+                setError(null);
+                const savedCourse: Course = await CourseService.saveCourse(newCourse);
+                setCourses([...courses, savedCourse]);
+            } catch (e: any) {
+                setError(e.message);
+            } finally {
+                setIsLoading(false);
+            }
     }
 
     return {courses, isLoading, error, addCourse}

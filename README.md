@@ -1,5 +1,8 @@
-![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
-
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Admiralis_front-ionic&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Admiralis_front-ionic&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Admiralis_front-ionic&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Admiralis_front-ionic&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=Admiralis_front-ionic)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
 
 ---
 
@@ -37,6 +40,23 @@ npm install
 
 ### Développement
 
-```bash
-npm run dev
-```
+Pour démarrer le projet en mode développement : 
+
+- Clonez le backend du projet : `git clone https://github.com/Admiralis/backend --recurse`
+- Démarrez le backend en suivant les instructions du README.md
+
+- Clonez la gateway du projet : `git clone https://github.com/Admiralis/dev_stack`
+- Démarrez la gateway en suivant les instructions du README.md
+
+- Clonez le front du projet : `git clone https://github.com/Admiralis/front-ionic`
+- Démarrez le front PWA avec `npm run dev` ou le web uniquement avec `npm start`
+
+Le projet sera alors accessible sur `localhost:80`
+Le backend sera accessible sur `localhost:80/api`
+
+
+### Production
+
+> Le projet est en cours de développement, il n'est pas encore prêt pour la production.
+
+A terme : Un repository 'admiralis' sera créé, contenant un docker-compose.yml permettant de lancer le projet en production.
