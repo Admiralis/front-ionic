@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Course} from "../../../../../models";
 import CourseService from "../../../../../services/course/Course.service";
 import {IonButton, IonContent, IonList, IonSearchbar} from "@ionic/react";
+import styles from "./SearchCourse.module.css";
 
 interface SearchCourseProps {
     setCourse: (newCourse: Course) => void;
@@ -35,7 +36,7 @@ export function SearchCourse(props: SearchCourseProps) {
 
     return (
         <>
-            <IonContent>
+            <IonContent className={styles.content}>
                 <>
                     <IonSearchbar
                         onIonInput={handleQueryChange}
@@ -43,8 +44,9 @@ export function SearchCourse(props: SearchCourseProps) {
                         placeholder={"Rechercher une formation"}
                         onIonClear={() => setQuery('')}
                         data-testid='searchbar'
+                        class={styles.searchbar}
                     />
-                    <IonList data-testid='course-list'>
+                    <IonList data-testid='course-list' className={styles.ionList} >
                         {
                             results.map((course: Course) => (
                                 <IonButton

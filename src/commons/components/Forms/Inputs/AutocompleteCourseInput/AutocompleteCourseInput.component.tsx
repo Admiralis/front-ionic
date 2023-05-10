@@ -6,6 +6,7 @@ import {search} from "ionicons/icons";
 import {SimpleModalComponent} from "../../../index";
 import CourseFormComponent from "../../CourseForm/CourseForm.component";
 import {SearchCourse} from "./SearchCourse/SearchCourse";
+import styles from './AutocompleteCourseInput.module.css';
 
 interface AutocompleteCourseInputComponentProps {
     course?: Course;
@@ -35,7 +36,7 @@ function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponen
                 setIsOpen={setIsFindCourseModalOpen}
                 title={"Rechercher une formation"}
                 content={
-                    <>
+                    <span className={styles.form}>
                         {
                             !isCreateCourseModalOpen && <SearchCourse setCourse={setCourse}/>
                         }
@@ -47,7 +48,7 @@ function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponen
                                 />
                             )
                         }
-                    </>
+                    </span>
                 }
                 actions={
                     <>
@@ -68,12 +69,12 @@ function AutocompleteCourseInputComponent(props: AutocompleteCourseInputComponen
                                 <IonButtons>
 
                                     <IonButton
-                                        className='red'
+                                        className='yellow'
                                         onClick={() => {
                                             setIsCreateCourseModalOpen(false)
                                         }}
                                     >
-                                        Annuler
+                                        Rechercher
                                     </IonButton>
                                     <IonButton
                                         className='green'

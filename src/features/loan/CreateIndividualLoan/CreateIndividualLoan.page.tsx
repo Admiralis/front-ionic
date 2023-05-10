@@ -18,8 +18,8 @@ function CreateIndividualLoanPage() {
 
     const router = useHistory();
 
-    const findComputer = async (serialNumber: string) => {
-        ComputerService.findComputerBySerial(computerSerial)
+    const findComputer = (serialNumber: string) => {
+        ComputerService.findComputerBySerial(serialNumber)
             .then((computer) => {
                 router.push(PATHS.LOANS.confirmIndividual, {
                     loan: {
@@ -31,6 +31,9 @@ function CreateIndividualLoanPage() {
             })
             .catch(() => {
                 setOpen(true)
+            })
+            .finally(() => {
+                setComputerSerial('');
             })
     }
 

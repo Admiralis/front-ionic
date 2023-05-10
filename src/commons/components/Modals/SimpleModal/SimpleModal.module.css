@@ -22,9 +22,7 @@
 .body {
     font-family: "Courier New", serif;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
     background: #193549;
     font-size: 1.5em;
     height: 100%
@@ -50,4 +48,5 @@ ion-modal {
     justify-content: center;
     align-items: center;
     background: #142C3E;
+    height: 20%;
 }

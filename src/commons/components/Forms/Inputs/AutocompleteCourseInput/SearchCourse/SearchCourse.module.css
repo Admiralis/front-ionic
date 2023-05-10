@@ -1,0 +1,27 @@
+ion-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #193549;
+}
+
+.content {
+    --background: #193549;
+    --color: #CCCCCC;
+}
+
+.ionList {
+    --background: #193549;
+    --color: #CCCCCC;
+}
+
+ion-searchbar div {
+    font-family: "Courier New", Courier, monospace;
+    text-transform: none;
+    --ion-background-color: #303030;
+    background-color: #303030;
+    text-align: start;
+    height: 30px;
+    border-radius: 10px;
+}

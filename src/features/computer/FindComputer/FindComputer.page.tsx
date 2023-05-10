@@ -43,9 +43,10 @@ const FindComputerPage = () => {
                     {computer: computer, comeFrom: location.pathname}
                 );
             }
-            setComputerSerial('');
         } catch (error) {
             setOpen(true);
+        } finally {
+            setComputerSerial('');
         }
     };
 
