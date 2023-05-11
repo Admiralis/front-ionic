@@ -50,7 +50,7 @@ class ComputerRepository {
      */
     async replace(computer: Computer): Promise<Computer> {
         const response = await fetch(`${this.url}/${computer.id}`, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },

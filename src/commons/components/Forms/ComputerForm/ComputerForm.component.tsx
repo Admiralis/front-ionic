@@ -11,15 +11,15 @@ interface ComputerFormComponentProps {
 export const ComputerFormComponent = (props: ComputerFormComponentProps) => {
     return (
         <>
-            <AsciiInputComponent label="Catégorie" value={props.newComputerInfo.category || ""}
-                                 onIonChange={(e: any) => {
+            {/*<AsciiInputComponent label="Catégorie" value={props.newComputerInfo.category || ""}*/}
+            {/*                     onIonChange={(e: any) => {*/}
 
-                                     props.setNewComputerInfo({
-                                         ...props.newComputerInfo,
-                                         category: e.detail.value!
-                                     })
-                                 }}
-            />
+            {/*                         props.setNewComputerInfo({*/}
+            {/*                             ...props.newComputerInfo,*/}
+            {/*                             category: e.detail.value!*/}
+            {/*                         })*/}
+            {/*                     }}*/}
+            {/*/>*/}
             <AsciiInputComponent label="RAM" value={props.newComputerInfo.ram || ""}
                                  onIonChange={(e: any) => {
                                      props.setNewComputerInfo({

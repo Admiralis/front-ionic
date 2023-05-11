@@ -30,6 +30,10 @@ class ComputerService {
         return await ComputerRepository.save(computer);
     }
 
+    async updateComputer(computer: Computer): Promise<Computer> {
+        return await ComputerRepository.replace(computer);
+    }
+
     async findOrCreateComputerBySerial(computer: NewComputer): Promise<Computer> {
         try {
             return await this.findComputerBySerial(computer.serialNumber);

@@ -6,6 +6,8 @@ import {NewComputer} from "commons/models";
 import {EditComputerComponent} from "./components/EditComputer.component";
 import useComputers from "commons/hooks/computers/useComputers";
 import {Course} from "../../../commons/models";
+import PATHS from "../../../commons/constants/PATHS";
+import {ComputerService} from "../../../commons/services/computer";
 
 interface AddComputerFormConfirmComponentProps {
     origin: string;
@@ -69,7 +71,8 @@ const EditComputerPage = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
-            await addComputer(newComputerInfo);
+            location.pathname === PATHS.COMPUTERS.new &&  await addComputer(newComputerInfo);
+            location.pathname === PATHS.COMPUTERS.edit + newComputerInfo.serialNumber &&  await ComputerService.updateComputer(newComputerInfo);
             router.push(origin , {reScan: true});
         } catch (e) {
             console.error(e);
@@ -82,7 +85,7 @@ const EditComputerPage = () => {
                 <IonContent>
                     <form className="flex-container" onSubmit={handleSubmit}>
                         <CardComponent
-                            title="Valider un PC"
+                            title={location.pathname === '/computers/' + newComputerInfo.serialNumber ? 'Modifier un PC' : 'Ajouter un PC'}
                             content={<EditComputerComponent newComputerInfo={newComputerInfo}
                                                             setNewComputerInfo={setNewComputerInfo}/>}
                             actions={<AddComputerFormActions origin={origin} />}
