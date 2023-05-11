@@ -1,7 +1,7 @@
 import Loan from "../../models/loan/Loan.model";
 
 class LoanRepository {
-    url = "http://localhost/api/loans";
+    url = `http://${localStorage.getItem('ip')}/api/loans` || "http://localhost/api/loans";
 
     /**
      * Récupère la liste des prêts

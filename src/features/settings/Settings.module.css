@@ -1,0 +1,20 @@
+.statusContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.statusContainer span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 0.5em;
+}
+
+.statusContainer span p {
+    width: 100%
+}
+

@@ -1,9 +1,121 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {IonButton, IonContent, IonPage} from "@ionic/react";
+import {AsciiInputComponent, CardComponent, LinuxButtonComponent} from "../../commons/components";
+import styles from './Settings.module.css';
 
 function SettingsPage() {
+
+    const [ip, setIp] = React.useState<string>(localStorage.getItem('ip') || '');
+    const [loanStatus, setLoanStatus] = React.useState<boolean>(false);
+    const [courseStatus, setCourseStatus] = React.useState<boolean>(false);
+    const [computerStatus, setComputerStatus] = React.useState<boolean>(false);
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        localStorage.setItem('ip', ip);
+        testConnection();
+    }
+
+    function testConnection() {
+
+        fetch(`http://${ip}/api/loans`).then((response) => {
+            if (response.status === 200) {
+                setLoanStatus(true);
+            }
+        }).catch((error) => {
+            console.error(error);
+            setLoanStatus(false);
+        });
+
+        fetch(`http://${ip}/api/courses`).then((response) => {
+            if (response.status === 200) {
+                setCourseStatus(true);
+            }
+        }).catch((error) => {
+            console.error(error);
+            setCourseStatus(false);
+        });
+
+        fetch(`http://${ip}/api/computers`).then((response) => {
+            if (response.status === 200) {
+                setComputerStatus(true);
+            }
+        }).catch((error) => {
+            console.error(error);
+            setComputerStatus(false);
+        });
+    }
+
+    React.useEffect(() => {
+        localStorage.getItem('ip') && setIp(localStorage.getItem('ip') as string);
+        testConnection();
+    }, [localStorage])
+
     return (
-        <div></div>
+        <IonPage>
+            <IonContent>
+                <form className='flex-container' onSubmit={handleSubmit}>
+                    <CardComponent
+                        title='Paramètres'
+                        content={
+                            <>
+                                <p>Saisissez l'adresse du serveur</p>
+                                <AsciiInputComponent
+                                    label="IP"
+                                    value={ip}
+                                    onIonChange={(event) => {
+                                        setIp(event.detail.value || '');
+                                    }}
+                                    placeholder='ex: 192.198.0.10'
+                                />
+                                <div className={styles.statusContainer} >
+                                    {computerStatus && (
+                                        <span>
+                                            <p>API computers</p>
+                                            <LinuxButtonComponent/>
+                                        </span>
+                                    )}
+                                    {
+                                        !computerStatus && (
+                                            <span>
+                                                <p>API computers</p>
+                                                <LinuxButtonComponent color={"red"}/>
+                                            </span>
+                                        )
+                                    }
+                                    {loanStatus && (
+                                        <span>
+                                            <p>API loans</p>
+                                            <LinuxButtonComponent/>
+                                        </span>
+                                    )}
+                                    {!loanStatus && (
+                                        <span>
+                                            <p>API loans</p>
+                                            <LinuxButtonComponent color={"red"}/>
+                                        </span>
+                                    )}
+                                    {courseStatus && (
+                                        <span>
+                                            <p>API courses</p>
+                                            <LinuxButtonComponent/>
+                                        </span>
+                                    )}
+                                    {!courseStatus && (
+                                        <span>
+                                            <p>API courses</p>
+                                            <LinuxButtonComponent color={"red"}/>
+                                        </span>
+                                    )}
+                                </div>
+                            </>
+                        }
+                        actions={
+                            <IonButton className='green large' type="submit">Valider</IonButton>
+                        }
+                    />
+                </form>
+            </IonContent>
+        </IonPage>
     );
 }
 

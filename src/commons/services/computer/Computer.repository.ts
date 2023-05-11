@@ -1,7 +1,7 @@
 import {Computer} from "../../models";
 
 class ComputerRepository {
-    private url = 'http://localhost/api/computers';
+    private url = `http://${localStorage.getItem('ip')}/api/computers` ||  'http://localhost/api/computers';
 
     /**
      * Récupère la liste des ordinateurs
