@@ -117,7 +117,13 @@ function SettingsPage() {
                             </>
                         }
                         actions={
-                            <IonButton className='green large' type="submit">Valider</IonButton>
+                            <IonButton
+                                className='green large'
+                                type="submit"
+                                data-testid="button-submit"
+                            >
+                                Valider
+                            </IonButton>
                         }
                     />
                 </form>
