@@ -7,15 +7,17 @@ function NotFoundPage() {
         <IonPage>
             <IonContent>
                 <div className='flex-container'>
-                    <CardComponent title='404' content={
-                        <>
-                            <p>¯\_(ツ)_/¯</p>
-                            <p>Tu t'es perdu ?</p>
-                        </>
-                    }
-                    actions={
-                        <IonButton className='green large' routerLink="/">Retour à l'accueil</IonButton>
-                    }
+                    <CardComponent
+                        title='404'
+                        content={
+                            <>
+                                <p>¯\_(ツ)_/¯</p>
+                                <p>Tu t'es perdu ?</p>
+                            </>
+                        }
+                        actions={
+                            <IonButton className='green large' routerLink="/">Retour à l'accueil</IonButton>
+                        }
                     />
                 </div>
             </IonContent>
