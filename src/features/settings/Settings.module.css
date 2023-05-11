@@ -1,9 +1,11 @@
 .statusContainer {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: column;
     width: 100%;
+    min-width: 340px;
+    margin: 3%;
 }
 
 .statusContainer span {
@@ -15,6 +17,8 @@
 }
 
 .statusContainer span p {
-    width: 100%
+    width: 100%;
+    min-width: 200px;
+    margin-top: 3%;
 }
 

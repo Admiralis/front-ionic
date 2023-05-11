@@ -55,6 +55,53 @@ function SettingsPage() {
             <IonContent>
                 <form className='flex-container' onSubmit={handleSubmit}>
                     <CardComponent
+                        title='Statut'
+                        content={
+                            <>
+                                <div className={styles.statusContainer} >
+                                    {computerStatus && (
+                                        <span>
+                                            <LinuxButtonComponent/>
+                                            <p>API computers</p>
+                                        </span>
+                                    )}
+                                    {
+                                        !computerStatus && (
+                                            <span>
+                                                <LinuxButtonComponent color={"red"}/>
+                                                <p>API computers</p>
+                                            </span>
+                                        )
+                                    }
+                                    {loanStatus && (
+                                        <span>
+                                            <LinuxButtonComponent/>
+                                            <p>API loans</p>
+                                        </span>
+                                    )}
+                                    {!loanStatus && (
+                                        <span>
+                                            <LinuxButtonComponent color={"red"}/>
+                                            <p>API loans</p>
+                                        </span>
+                                    )}
+                                    {courseStatus && (
+                                        <span>
+                                            <LinuxButtonComponent/>
+                                            <p>API courses</p>
+                                        </span>
+                                    )}
+                                    {!courseStatus && (
+                                        <span>
+                                            <LinuxButtonComponent color={"red"}/>
+                                            <p>API courses</p>
+                                        </span>
+                                    )}
+                                </div>
+                            </>
+                        }
+                    />
+                    <CardComponent
                         title='Paramètres'
                         content={
                             <>
@@ -67,46 +114,6 @@ function SettingsPage() {
                                     }}
                                     placeholder='ex: 192.198.0.10'
                                 />
-                                <div className={styles.statusContainer} >
-                                    {computerStatus && (
-                                        <span>
-                                            <p>API computers</p>
-                                            <LinuxButtonComponent/>
-                                        </span>
-                                    )}
-                                    {
-                                        !computerStatus && (
-                                            <span>
-                                                <p>API computers</p>
-                                                <LinuxButtonComponent color={"red"}/>
-                                            </span>
-                                        )
-                                    }
-                                    {loanStatus && (
-                                        <span>
-                                            <p>API loans</p>
-                                            <LinuxButtonComponent/>
-                                        </span>
-                                    )}
-                                    {!loanStatus && (
-                                        <span>
-                                            <p>API loans</p>
-                                            <LinuxButtonComponent color={"red"}/>
-                                        </span>
-                                    )}
-                                    {courseStatus && (
-                                        <span>
-                                            <p>API courses</p>
-                                            <LinuxButtonComponent/>
-                                        </span>
-                                    )}
-                                    {!courseStatus && (
-                                        <span>
-                                            <p>API courses</p>
-                                            <LinuxButtonComponent color={"red"}/>
-                                        </span>
-                                    )}
-                                </div>
                             </>
                         }
                         actions={
