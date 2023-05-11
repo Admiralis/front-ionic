@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683726715167" clover="3.2.0">
-  <project timestamp="1683726715167" name="All files">
-    <metrics statements="606" coveredstatements="497" conditionals="229" coveredconditionals="167" methods="200" coveredmethods="158" elements="1035" coveredelements="822" complexity="0" loc="606" ncloc="606" packages="44" files="47" classes="47"/>
+<coverage generated="1683741059689" clover="3.2.0">
+  <project timestamp="1683741059689" name="All files">
+    <metrics statements="606" coveredstatements="493" conditionals="229" coveredconditionals="165" methods="200" coveredmethods="157" elements="1035" coveredelements="815" complexity="0" loc="606" ncloc="606" packages="44" files="47" classes="47"/>
     <package name="src">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="App.tsx" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\App.tsx">
@@ -203,13 +203,13 @@
         <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
-        <line num="35" count="19" type="stmt"/>
-        <line num="36" count="19" type="cond" truecount="2" falsecount="0"/>
-        <line num="37" count="15" type="stmt"/>
-        <line num="41" count="19" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="92" count="0" type="stmt"/>
+        <line num="36" count="19" type="stmt"/>
+        <line num="37" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="15" type="stmt"/>
+        <line num="42" count="19" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.commons.components.Forms.Inputs.AutocompleteCourseInput.SearchCourse">
@@ -555,21 +555,21 @@
       <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
       <file name="isValidateButtonDisabled.ts" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\utils\isValidateButtonDisabled\isValidateButtonDisabled.ts">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="5" count="18" type="cond" truecount="2" falsecount="0"/>
-        <line num="6" count="14" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="13" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
       </file>
     </package>
     <package name="src.commons.utils.submitOnEnter">
-      <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <metrics statements="5" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="submitOnEnter.ts" path="D:\_Dev\_Projects\Admiralis\front-ionic\src\commons\utils\submitOnEnter\submitOnEnter.ts">
-        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="8" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
+        <metrics statements="5" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.features.computer.AddComputer">
