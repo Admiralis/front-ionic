@@ -1,7 +1,8 @@
 import React from 'react';
-import {IonButton, IonContent, IonPage} from "@ionic/react";
+import {IonButton, IonContent, IonLoading, IonPage} from "@ionic/react";
 import {AsciiInputComponent, CardComponent, LinuxButtonComponent} from "../../commons/components";
 import styles from './Settings.module.css';
+import {submitOnEnter} from "../../commons/utils";
 
 function SettingsPage() {
 
@@ -9,39 +10,47 @@ function SettingsPage() {
     const [loanStatus, setLoanStatus] = React.useState<boolean>(false);
     const [courseStatus, setCourseStatus] = React.useState<boolean>(false);
     const [computerStatus, setComputerStatus] = React.useState<boolean>(false);
+    const [isLoading, setLoading] = React.useState<boolean>(false);
+
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         localStorage.setItem('ip', ip);
+        setLoading(true);
         testConnection();
     }
 
     function testConnection() {
-
         fetch(`http://${ip}/api/loans`).then((response) => {
             if (response.status === 200) {
                 setLoanStatus(true);
+                setLoading(false)
             }
         }).catch((error) => {
             console.error(error);
             setLoanStatus(false);
+            setLoading(false)
         });
 
         fetch(`http://${ip}/api/courses`).then((response) => {
             if (response.status === 200) {
                 setCourseStatus(true);
+                setLoading(false)
             }
         }).catch((error) => {
             console.error(error);
             setCourseStatus(false);
+            setLoading(false)
         });
 
         fetch(`http://${ip}/api/computers`).then((response) => {
             if (response.status === 200) {
                 setComputerStatus(true);
+                setLoading(false)
             }
         }).catch((error) => {
             console.error(error);
             setComputerStatus(false);
+            setLoading(false)
         });
     }
 
@@ -53,12 +62,13 @@ function SettingsPage() {
     return (
         <IonPage>
             <IonContent>
-                <form className='flex-container' onSubmit={handleSubmit}>
+                <form className='flex-container' onSubmit={handleSubmit} onKeyDown={submitOnEnter}>
+                    <IonLoading message="Tentative de connection..." spinner="circles" isOpen={isLoading}/>
                     <CardComponent
                         title='Statut'
                         content={
                             <>
-                                <div className={styles.statusContainer} >
+                                <div className={styles.statusContainer}>
                                     {computerStatus && (
                                         <span>
                                             <LinuxButtonComponent/>

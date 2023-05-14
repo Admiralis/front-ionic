@@ -1,8 +1,6 @@
 import {Redirect, Route} from 'react-router-dom';
 import {
     IonApp,
-    IonIcon,
-    IonLabel,
     IonRouterOutlet,
     IonTabBar,
     IonTabButton,
@@ -10,7 +8,6 @@ import {
     setupIonicReact
 } from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
-import {barcode, laptop, settings} from 'ionicons/icons';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -47,6 +44,8 @@ import SettingsPage from "./features/settings/Settings.page";
 /* Constants */
 import PATHS from "commons/constants/PATHS";
 import NotFoundPage from "./features/404/NotFound.page";
+import useCheckAPIConnection from "./commons/hooks/connection/useCheckAPIConnection";
+import {useHistory} from "react-router";
 
 setupIonicReact();
 
@@ -63,7 +62,7 @@ function CodebarIconComponent() {
     return <svg width="40" height="41" viewBox="0 0 40 41" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
         <rect x="0.5" y="1" width="39" height="39" rx="19.5" fill="#193549" stroke="#CCCCCC"/>
-        <g clip-path="url(#clip0_401_2644)">
+        <g clipPath="url(#clip0_401_2644)">
             <path
                 d="M10 11.125C10 10.9592 10.0658 10.8003 10.1831 10.6831C10.3003 10.5658 10.4592 10.5 10.625 10.5H14.375C14.5408 10.5 14.6997 10.5658 14.8169 10.6831C14.9342 10.8003 15 10.9592 15 11.125C15 11.2908 14.9342 11.4497 14.8169 11.5669C14.6997 11.6842 14.5408 11.75 14.375 11.75H11.25V14.875C11.25 15.0408 11.1842 15.1997 11.0669 15.3169C10.9497 15.4342 10.7908 15.5 10.625 15.5C10.4592 15.5 10.3003 15.4342 10.1831 15.3169C10.0658 15.1997 10 15.0408 10 14.875V11.125ZM25 11.125C25 10.9592 25.0658 10.8003 25.1831 10.6831C25.3003 10.5658 25.4592 10.5 25.625 10.5H29.375C29.5408 10.5 29.6997 10.5658 29.8169 10.6831C29.9342 10.8003 30 10.9592 30 11.125V14.875C30 15.0408 29.9342 15.1997 29.8169 15.3169C29.6997 15.4342 29.5408 15.5 29.375 15.5C29.2092 15.5 29.0503 15.4342 28.9331 15.3169C28.8158 15.1997 28.75 15.0408 28.75 14.875V11.75H25.625C25.4592 11.75 25.3003 11.6842 25.1831 11.5669C25.0658 11.4497 25 11.2908 25 11.125ZM10.625 25.5C10.7908 25.5 10.9497 25.5658 11.0669 25.6831C11.1842 25.8003 11.25 25.9592 11.25 26.125V29.25H14.375C14.5408 29.25 14.6997 29.3158 14.8169 29.4331C14.9342 29.5503 15 29.7092 15 29.875C15 30.0408 14.9342 30.1997 14.8169 30.3169C14.6997 30.4342 14.5408 30.5 14.375 30.5H10.625C10.4592 30.5 10.3003 30.4342 10.1831 30.3169C10.0658 30.1997 10 30.0408 10 29.875V26.125C10 25.9592 10.0658 25.8003 10.1831 25.6831C10.3003 25.5658 10.4592 25.5 10.625 25.5ZM29.375 25.5C29.5408 25.5 29.6997 25.5658 29.8169 25.6831C29.9342 25.8003 30 25.9592 30 26.125V29.875C30 30.0408 29.9342 30.1997 29.8169 30.3169C29.6997 30.4342 29.5408 30.5 29.375 30.5H25.625C25.4592 30.5 25.3003 30.4342 25.1831 30.3169C25.0658 30.1997 25 30.0408 25 29.875C25 29.7092 25.0658 29.5503 25.1831 29.4331C25.3003 29.3158 25.4592 29.25 25.625 29.25H28.75V26.125C28.75 25.9592 28.8158 25.8003 28.9331 25.6831C29.0503 25.5658 29.2092 25.5 29.375 25.5ZM15 15.5H16.25V16.75H15V15.5Z"
                 fill="#CCCCCC"/>
@@ -96,7 +95,12 @@ function WheelIconComponent() {
     </svg>;
 }
 
-const App: React.FC = () => (
+const App: React.FC = () => {
+
+    const ip: number = localStorage.getItem('ip')?.length || 0;
+    console.log(ip);
+
+    return (
         <IonApp>
             <IonReactRouter>
                 <IonTabs>
@@ -122,14 +126,12 @@ const App: React.FC = () => (
 
                         <Route exact path={PATHS.SETTINGS.root} component={SettingsPage}/>
 
-                        <Redirect exact from="/" to={PATHS.SCAN.root}/>
+                        <Redirect exact path="/" to={PATHS.SCAN.root}/>
 
                         <Route component={NotFoundPage}/>
-
-
                     </IonRouterOutlet>
                     <IonTabBar slot="bottom">
-                        <IonTabButton tab="Stock" href="/tab1">
+                        <IonTabButton tab="stock" href="/stock">
                             <ComputerIconComponent/>
 
                         </IonTabButton>
@@ -144,7 +146,7 @@ const App: React.FC = () => (
                 </IonTabs>
             </IonReactRouter>
         </IonApp>
-    )
-;
+    );
+};
 
 export default App;
