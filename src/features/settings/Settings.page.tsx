@@ -15,14 +15,22 @@ function SettingsPage() {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         localStorage.setItem('ip', ip);
-        setLoading(true);
         testConnection();
     }
 
     function testConnection() {
-        fetch(`http://${ip}/api/loans`).then((response) => {
+
+        setLoading(true);
+        setLoanStatus(false);
+        setCourseStatus(false);
+        setComputerStatus(false);
+
+        fetch(`http://${ip}/api/loans/status/health`).then((response) => {
             if (response.status === 200) {
                 setLoanStatus(true);
+                setLoading(false)
+            } else {
+                setLoanStatus(false);
                 setLoading(false)
             }
         }).catch((error) => {
@@ -31,9 +39,12 @@ function SettingsPage() {
             setLoading(false)
         });
 
-        fetch(`http://${ip}/api/courses`).then((response) => {
+        fetch(`http://${ip}/api/courses/status/health`).then((response) => {
             if (response.status === 200) {
                 setCourseStatus(true);
+                setLoading(false)
+            } else {
+                setLoanStatus(false);
                 setLoading(false)
             }
         }).catch((error) => {
@@ -42,9 +53,12 @@ function SettingsPage() {
             setLoading(false)
         });
 
-        fetch(`http://${ip}/api/computers`).then((response) => {
+        fetch(`http://${ip}/api/computers/status/health`).then((response) => {
             if (response.status === 200) {
                 setComputerStatus(true);
+                setLoading(false)
+            } else {
+                setLoanStatus(false);
                 setLoading(false)
             }
         }).catch((error) => {
@@ -59,11 +73,15 @@ function SettingsPage() {
         testConnection();
     }, [localStorage])
 
+    React.useEffect(() => {
+
+    }, [loanStatus, courseStatus, computerStatus])
+
     return (
         <IonPage>
             <IonContent>
                 <form className='flex-container' onSubmit={handleSubmit} onKeyDown={submitOnEnter}>
-                    <IonLoading message="Tentative de connection..." spinner="circles" isOpen={isLoading}/>
+                    <IonLoading message="Tentative de connection..." spinner="circles" isOpen={isLoading} duration={5000} />
                     <CardComponent
                         title='Statut'
                         content={
@@ -131,6 +149,7 @@ function SettingsPage() {
                                 className='green large'
                                 type="submit"
                                 data-testid="button-submit"
+                                disabled={ip === ''}
                             >
                                 Valider
                             </IonButton>

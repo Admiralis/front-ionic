@@ -44,8 +44,6 @@ import SettingsPage from "./features/settings/Settings.page";
 /* Constants */
 import PATHS from "commons/constants/PATHS";
 import NotFoundPage from "./features/404/NotFound.page";
-import useCheckAPIConnection from "./commons/hooks/connection/useCheckAPIConnection";
-import {useHistory} from "react-router";
 
 setupIonicReact();
 
@@ -96,9 +94,6 @@ function WheelIconComponent() {
 }
 
 const App: React.FC = () => {
-
-    const ip: number = localStorage.getItem('ip')?.length || 0;
-    console.log(ip);
 
     return (
         <IonApp>
