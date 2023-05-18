@@ -27,7 +27,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import React from "react";
+import React, {Dispatch} from "react";
 
 /* Pages */
 import ScanMenuPage from "./features/computer/ScanMenu/ScanMenu.page";
@@ -44,6 +44,8 @@ import SettingsPage from "./features/settings/Settings.page";
 /* Constants */
 import PATHS from "commons/constants/PATHS";
 import NotFoundPage from "./features/404/NotFound.page";
+import useCheckAPIConnection from "./commons/hooks/connection/useCheckApiConnection";
+import useCheckApiConnection from "./commons/hooks/connection/useCheckApiConnection";
 
 setupIonicReact();
 
@@ -93,54 +95,95 @@ function WheelIconComponent() {
     </svg>;
 }
 
+
+
+export const LoanConnectionStatusContext = React.createContext({
+    isLoanApiConnected: false,
+    setLoanApiConnected: (() => {}) as Dispatch<boolean>
+});
+export const CourseConnectionStatusContext = React.createContext({
+    isCourseApiConnected: false,
+    setCourseApiConnected: (() => {}) as Dispatch<boolean>
+});
+export const ComputerConnectionStatusContext = React.createContext({
+    isComputerApiConnected: false,
+    setComputerApiConnected: (() => {}) as Dispatch<boolean>
+});
+
+const withConnectionStatus = (Component: React.FC) => (props: any) => {
+    const {isLoanApiConnected} = useCheckApiConnection();
+    if (!isLoanApiConnected) return <SettingsPage/>;
+    return <Component {...props}/>;
+
+}
+
 const App: React.FC = () => {
 
+    const {
+        isLoanApiConnected,
+        setLoanApiConnected,
+        isCourseApiConnected,
+        setCourseApiConnected,
+        isComputerApiConnected,
+        setComputerApiConnected,
+    } = useCheckAPIConnection();
+
     return (
-        <IonApp>
-            <IonReactRouter>
-                <IonTabs>
-                    <IonRouterOutlet>
-
-                        <Route exact path={PATHS.SCAN.root} component={ScanMenuPage}/>
-
-                        <Route exact path={PATHS.SCAN.newComputer} component={AddComputerPage}/>
-                        <Route exact path={PATHS.COMPUTERS.new} component={EditComputerPage}/>
-
-                        <Route exact path={PATHS.SCAN.editComputer} component={FindComputerPage}/>
-                        <Route exact path={PATHS.COMPUTERS.detail + ":id"} component={EditComputerPage}/>
-
-                        <Route exact path={PATHS.SCAN.newCourse} component={AddCoursePage}/>
-                        <Route exact path={PATHS.LOANS.newCollective} component={CreateCollectiveLoanPage}/>
-
-                        <Route exact path={PATHS.SCAN.endLoan} component={FindComputerPage}/>
-                        <Route exact path={PATHS.LOANS.end + ":id"} component={EndLoanPage}/>
 
 
-                        <Route exact path={PATHS.SCAN.newIndividualLoan} component={CreateIndividualLoanPage}/>
-                        <Route exact path={PATHS.LOANS.confirmIndividual} component={EditIndividualLoanPage}/>
+        <LoanConnectionStatusContext.Provider value={{ isLoanApiConnected, setLoanApiConnected }}>
+            <CourseConnectionStatusContext.Provider value={{isCourseApiConnected, setCourseApiConnected}}>
+                <ComputerConnectionStatusContext.Provider value={{isComputerApiConnected, setComputerApiConnected}}>
+                    <IonApp>
+                        <IonReactRouter>
+                            <IonTabs>
+                                <IonRouterOutlet>
 
-                        <Route exact path={PATHS.SETTINGS.root} component={SettingsPage}/>
+                                    <Route exact path={PATHS.SCAN.root} component={withConnectionStatus(ScanMenuPage)}/>
 
-                        <Redirect exact path="/" to={PATHS.SCAN.root}/>
+                                    <Route exact path={PATHS.SCAN.newComputer} component={AddComputerPage}/>
+                                    <Route exact path={PATHS.COMPUTERS.new} component={EditComputerPage}/>
 
-                        <Route component={NotFoundPage}/>
-                    </IonRouterOutlet>
-                    <IonTabBar slot="bottom">
-                        <IonTabButton tab="stock" href="/stock">
-                            <ComputerIconComponent/>
+                                    <Route exact path={PATHS.SCAN.editComputer} component={FindComputerPage}/>
+                                    <Route exact path={PATHS.COMPUTERS.detail + ":id"} component={EditComputerPage}/>
 
-                        </IonTabButton>
-                        <IonTabButton tab="scan" href={PATHS.SCAN.root}>
-                            <CodebarIconComponent/>
+                                    <Route exact path={PATHS.SCAN.newCourse} component={AddCoursePage}/>
+                                    <Route exact path={PATHS.LOANS.newCollective} component={CreateCollectiveLoanPage}/>
 
-                        </IonTabButton>
-                        <IonTabButton tab="settigns" href={PATHS.SETTINGS.root}>
-                            <WheelIconComponent/>
-                        </IonTabButton>
-                    </IonTabBar>
-                </IonTabs>
-            </IonReactRouter>
-        </IonApp>
+                                    <Route exact path={PATHS.SCAN.endLoan} component={FindComputerPage}/>
+                                    <Route exact path={PATHS.LOANS.end + ":id"} component={EndLoanPage}/>
+
+
+                                    <Route exact path={PATHS.SCAN.newIndividualLoan}
+                                           component={CreateIndividualLoanPage}/>
+                                    <Route exact path={PATHS.LOANS.confirmIndividual}
+                                           component={EditIndividualLoanPage}/>
+
+                                    <Route exact path={PATHS.SETTINGS.root} component={SettingsPage}/>
+
+                                    <Redirect exact path="/" to={PATHS.SCAN.root}/>
+
+                                    <Route component={NotFoundPage}/>
+                                </IonRouterOutlet>
+                                <IonTabBar slot="bottom">
+                                    <IonTabButton tab="stock" href="/stock">
+                                        <ComputerIconComponent/>
+
+                                    </IonTabButton>
+                                    <IonTabButton tab="scan" href={PATHS.SCAN.root}>
+                                        <CodebarIconComponent/>
+
+                                    </IonTabButton>
+                                    <IonTabButton tab="settigns" href={PATHS.SETTINGS.root}>
+                                        <WheelIconComponent/>
+                                    </IonTabButton>
+                                </IonTabBar>
+                            </IonTabs>
+                        </IonReactRouter>
+                    </IonApp>
+                </ComputerConnectionStatusContext.Provider>
+            </CourseConnectionStatusContext.Provider>
+        </LoanConnectionStatusContext.Provider>
     );
 };
 
