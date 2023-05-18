@@ -1,24 +1,17 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {IonButton, IonContent, IonLoading, IonPage} from "@ionic/react";
 import {AsciiInputComponent, CardComponent, LinuxButtonComponent} from "../../commons/components";
 import styles from './Settings.module.css';
 import {submitOnEnter} from "../../commons/utils";
-import {ComputerConnectionStatusContext, CourseConnectionStatusContext, LoanConnectionStatusContext} from "../../App";
 import useCheckApiConnection from "../../commons/hooks/connection/useCheckApiConnection";
 
 function SettingsPage() {
 
-    const {setLoanApiConnected} = useContext(LoanConnectionStatusContext);
-    const {setCourseApiConnected} = useContext(CourseConnectionStatusContext);
-    const {setComputerApiConnected} = useContext(ComputerConnectionStatusContext);
-
     const [ipInput, setIpInput] = React.useState<string>(localStorage.getItem('ip') || '');
 
-
     const {
-        isComputerApiConnected: isComputerConnected,
-        isLoanApiConnected: isLoanConnected,
-        isCourseApiConnected: isCourseConnected,
+        setLoanApiConnected,
+        isLoanApiConnected,
         isLoading,
         ip,
         setIp
@@ -26,30 +19,22 @@ function SettingsPage() {
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-
         setLoanApiConnected(false);
-        setCourseApiConnected(false);
-        setComputerApiConnected(false);
         await testConnection();
     }
 
     async function testConnection() {
         try {
             setIp(ipInput);
-            localStorage.setItem('ip', ip);
-            setLoanApiConnected(isLoanConnected);
-            setCourseApiConnected(isCourseConnected);
-            setComputerApiConnected(isComputerConnected);
+            setLoanApiConnected(true);
         } catch {
             setLoanApiConnected(false);
-            setCourseApiConnected(false);
-            setComputerApiConnected(false);
         }
     }
 
     React.useEffect(() => {
 
-    }, [isComputerConnected, isLoanConnected, isCourseConnected])
+    }, [isLoanApiConnected])
 
 
     return (
@@ -63,42 +48,16 @@ function SettingsPage() {
                         content={
                             <>
                                 <div className={styles.statusContainer}>
-                                    {isComputerConnected && (
+                                    {isLoanApiConnected && (
                                         <span>
                                             <LinuxButtonComponent/>
-                                            <p>API computers</p>
+                                            <p>API</p>
                                         </span>
                                     )}
-                                    {
-                                        !isComputerConnected && (
-                                            <span>
-                                                <LinuxButtonComponent color={"red"}/>
-                                                <p>API computers</p>
-                                            </span>
-                                        )
-                                    }
-                                    {isLoanConnected && (
-                                        <span>
-                                            <LinuxButtonComponent/>
-                                            <p>API loans</p>
-                                        </span>
-                                    )}
-                                    {!isLoanConnected && (
+                                    {!isLoanApiConnected && (
                                         <span>
                                             <LinuxButtonComponent color={"red"}/>
-                                            <p>API loans</p>
-                                        </span>
-                                    )}
-                                    {isCourseConnected && (
-                                        <span>
-                                            <LinuxButtonComponent/>
-                                            <p>API courses</p>
-                                        </span>
-                                    )}
-                                    {!isCourseConnected && (
-                                        <span>
-                                            <LinuxButtonComponent color={"red"}/>
-                                            <p>API courses</p>
+                                            <p>API</p>
                                         </span>
                                     )}
                                 </div>
@@ -125,7 +84,7 @@ function SettingsPage() {
                                 className='green large'
                                 type="submit"
                                 data-testid="button-submit"
-                                disabled={ip === ''}
+                                disabled={ipInput === ''}
                             >
                                 Valider
                             </IonButton>
