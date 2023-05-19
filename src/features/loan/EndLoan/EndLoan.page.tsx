@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {IonButton, IonButtons, IonContent, IonPage} from "@ionic/react";
+import {IonButton, IonButtons, IonContent, IonPage, IonToast} from "@ionic/react";
 import {useHistory, useLocation} from "react-router";
 import {Computer} from "../../../commons/models";
 import {EditComputerComponent} from "../../computer/EditComputer/components/EditComputer.component";
@@ -20,6 +20,8 @@ function EndLoanPage() {
     const [computer, setComputer] = useState({} as Computer);
     const [origin, setOrigin] = useState<string>('');
     const [loan, setLoan] = useState({} as Loan);
+    const [toastMessage, setToastMessage] = useState<string>('');
+    const [isToastOpen, setToastOpen] = useState<boolean>(false);
 
     const router = useHistory();
     const {endLoan} = useLoans();
@@ -53,9 +55,13 @@ function EndLoanPage() {
         e.preventDefault();
         try {
             await endLoan(loan)
+            setToastMessage('Prêt clôturé ! ');
+            setToastOpen(true);
             router.push(origin)
         } catch (e) {
             console.error(e);
+            setToastMessage('Oops, une erreur est survenue ! Vérifiez la connexion au serveur et réessayez.');
+            setToastOpen(true);
         }
     }
 
@@ -118,6 +124,13 @@ function EndLoanPage() {
                 </form>
                 <div className={style.padding}/>
             </IonContent>
+            <IonToast
+                isOpen={isToastOpen}
+                message={toastMessage}
+                duration={3000}
+                onDidDismiss={() => setToastOpen(false)}
+                position="top"
+            />
         </IonPage>
     );
 }

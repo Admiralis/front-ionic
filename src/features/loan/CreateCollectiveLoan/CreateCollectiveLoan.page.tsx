@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {IonButton, IonContent, IonPage} from "@ionic/react";
+import {IonButton, IonContent, IonPage, IonToast} from "@ionic/react";
 import {useHistory, useLocation} from "react-router";
 import {Computer, Course} from "../../../commons/models";
 import {EditComputerComponent} from "../../computer/EditComputer/components/EditComputer.component";
@@ -22,6 +22,8 @@ const CreateCollectiveLoanPage = () => {
     const [loan, setLoan] = useState({} as Loan)
     const [showModal, setShowModal] = useState(false);
     const [origin, setOrigin] = useState<string>('');
+    const [toastMessage, setToastMessage] = useState<string>('');
+    const [isToastOpen, setIsToastOpen] = useState<boolean>(false);
 
     const router = useHistory();
     const location = useLocation<{ comeFrom: string, computer: Computer, course: Course }>();
@@ -66,15 +68,28 @@ const CreateCollectiveLoanPage = () => {
 
     const handleSubmitAndReScan = async (e: any) => {
         e.preventDefault();
-        await addLoan(loan)
-        router.push(origin, {reScan: true})
+        try {
+            await addLoan(loan)
+            setToastMessage("Prêt ajouté")
+            setIsToastOpen(true)
+            router.push(origin, {reScan: true})
+
+        } catch (e) {
+            console.log(e)
+        }
 
     }
 
     const handleSubmitAndFinish = async (e: any) => {
         e.preventDefault();
-        await addLoan(loan)
-        router.push("/")
+        try {
+            await addLoan(loan)
+            setToastMessage("Prêt ajouté")
+            setIsToastOpen(true)
+            router.push("/")
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     return (
@@ -133,6 +148,12 @@ const CreateCollectiveLoanPage = () => {
                 content={
                 <p>{error}</p>
             }
+            />
+            <IonToast
+                isOpen={isToastOpen}
+                onDidDismiss={() => setIsToastOpen(false)}
+                message={toastMessage}
+                duration={3000}
             />
         </IonPage>
     );

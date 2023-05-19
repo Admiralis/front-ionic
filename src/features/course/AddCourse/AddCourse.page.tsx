@@ -70,8 +70,6 @@ const AddCoursePage = () => {
                 startDate: new Date(createdCourse.startDate),
                 endDate: createdCourse.endDate ? new Date(createdCourse.endDate) : null
             })
-            setToastMessage(`Le cours ${createdCourse.label} a bien été créé !`);
-            setToastOpen(true);
         }).catch(
             () => {
                 setToastMessage(`Ooops ! Le cours ${course.label} n'a pas pu être créé !`);
@@ -135,6 +133,7 @@ const AddCoursePage = () => {
                 message={toastMessage}
                 duration={3000}
                 onDidDismiss={() => setToastOpen(false)}
+                position="top"
             />
         </IonPage>
     );
