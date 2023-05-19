@@ -52,7 +52,7 @@ const App: React.FC = () => {
                         <Route exact path={PATHS.SCAN.editComputer} component={WRAPPED_PAGES.findComputer}/>
                         <Route exact path={PATHS.COMPUTERS.detail + ":id"} component={WRAPPED_PAGES.editComputer}/>
 
-                        <Route exact path={PATHS.SCAN.newCourse} component={WRAPPED_PAGES.addComputer}/>
+                        <Route exact path={PATHS.SCAN.newCourse} component={WRAPPED_PAGES.addCourse}/>
                         <Route exact path={PATHS.LOANS.newCollective} component={WRAPPED_PAGES.createCollectiveLoan}/>
 
                         <Route exact path={PATHS.SCAN.endLoan} component={WRAPPED_PAGES.findComputer}/>

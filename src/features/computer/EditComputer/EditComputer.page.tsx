@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {IonButton, IonContent, IonPage} from "@ionic/react";
+import {IonButton, IonContent, IonPage, IonToast} from "@ionic/react";
 import {CardComponent} from "commons/components";
 import {useHistory, useLocation} from "react-router";
 import {NewComputer} from "commons/models";
@@ -37,6 +37,10 @@ const EditComputerPage = () => {
     const location = useLocation<{ computer: NewComputer, comeFrom: string, course: Course }>();
     const [newComputerInfo, setNewComputerInfo] = useState({} as NewComputer);
     const [origin, setOrigin] = useState<string>('');
+    const [isToastOpen, setIsToastOpen] = useState<boolean>(false);
+    const [toastMessage, setToastMessage] = useState<string>('');
+
+
     const router = useHistory();
     const {addComputer} = useComputers();
 
@@ -71,11 +75,21 @@ const EditComputerPage = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
-            location.pathname === PATHS.COMPUTERS.new &&  await addComputer(newComputerInfo);
-            location.pathname === PATHS.COMPUTERS.edit + newComputerInfo.serialNumber &&  await ComputerService.updateComputer(newComputerInfo);
+            if (location.pathname === PATHS.COMPUTERS.new) {
+                await addComputer(newComputerInfo);
+                setToastMessage(`Le PC ${newComputerInfo.serialNumber} a bien été ajouté !`);
+                setIsToastOpen(true);
+            }
+            if (location.pathname === PATHS.COMPUTERS.edit + newComputerInfo.serialNumber) {
+                await ComputerService.updateComputer(newComputerInfo);
+                setToastMessage(`Le PC ${newComputerInfo.serialNumber} a bien été modifié !`);
+                setIsToastOpen(true);
+            }
             router.push(origin , {reScan: true});
         } catch (e) {
             console.error(e);
+            setToastMessage(`Une erreur est survenue ! Vérifiez la connection API et réessayez.`);
+            setIsToastOpen(true);
         }
     }
 
@@ -91,6 +105,13 @@ const EditComputerPage = () => {
                             actions={<AddComputerFormActions origin={origin} />}
                         />
                     </form>
+                    <IonToast
+                        isOpen={isToastOpen}
+                        message={toastMessage}
+                        duration={3000}
+                        onDidDismiss={() => setIsToastOpen(false)}
+                    />
+
                 </IonContent>
             </IonPage>
         </div>
