@@ -1,6 +1,6 @@
 {
   "name": "front-ionic",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@capacitor-community/barcode-scanner": "^3.0.1",
