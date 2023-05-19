@@ -27,6 +27,10 @@ const FindComputerPage = () => {
         computerSerial && setComputerSerial(computerSerial.toUpperCase());
     }, [computerSerial]);
 
+    React.useEffect(() => {
+        setComputerSerial('');
+    }, [])
+
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
@@ -45,8 +49,6 @@ const FindComputerPage = () => {
             }
         } catch (error) {
             setOpen(true);
-        } finally {
-            setComputerSerial('');
         }
     };
 

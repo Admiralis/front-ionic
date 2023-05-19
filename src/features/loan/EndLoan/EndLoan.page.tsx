@@ -33,9 +33,6 @@ function EndLoanPage() {
     }, [location.state]);
 
     useEffect(() => {
-        // computer.id && LoanService.findByComputerIdAndInProgressStatus(computer.id).then(loan => {
-        //     setLoan(loan);
-        // })
         (async () => {
             if (!computer.id) return;
             try {
