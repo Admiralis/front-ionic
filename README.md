@@ -2,7 +2,6 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Admiralis_front-ionic&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Admiralis_front-ionic&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Admiralis_front-ionic&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=Admiralis_front-ionic)](https://sonarcloud.io/summary/new_code?id=Admiralis_front-ionic)
 
 ---
 
