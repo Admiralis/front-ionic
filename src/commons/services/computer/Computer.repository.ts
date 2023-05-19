@@ -1,7 +1,7 @@
 import {Computer} from "../../models";
 
 class ComputerRepository {
-    private url = 'http://localhost/api/computers';
+    private url = `http://${localStorage.getItem('ip')}/api/computers` ||  'http://localhost/api/computers';
 
     /**
      * Récupère la liste des ordinateurs
@@ -50,7 +50,7 @@ class ComputerRepository {
      */
     async replace(computer: Computer): Promise<Computer> {
         const response = await fetch(`${this.url}/${computer.id}`, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },

@@ -1,5 +1,5 @@
 import React from 'react';
-import {IonButton, IonContent, IonPage} from "@ionic/react";
+import {IonButton, IonContent, IonPage, IonToast} from "@ionic/react";
 import {CardComponent, UnknownComputerModalComponent} from "../../../commons/components";
 import {Course} from "../../../commons/models";
 import AddCourseComponent from "./AddCourse.component";
@@ -23,7 +23,8 @@ const AddCoursePage = () => {
     const [open, setOpen] = React.useState<boolean>(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [scanning, setScanning] = React.useState<boolean>(false);
-
+    const [isToastOpen, setToastOpen] = React.useState<boolean>(false);
+    const [toastMessage, setToastMessage] = React.useState<string>("");
 
     const location = useLocation<{ serialNumber: string, comeFrom: string }>();
     const {autoScan} = useAutoRescan();
@@ -69,7 +70,12 @@ const AddCoursePage = () => {
                 startDate: new Date(createdCourse.startDate),
                 endDate: createdCourse.endDate ? new Date(createdCourse.endDate) : null
             })
-        })
+        }).catch(
+            () => {
+                setToastMessage(`Ooops ! Le cours ${course.label} n'a pas pu être créé !`);
+                setToastOpen(true);
+            }
+        )
 
         ComputerService.findComputerBySerial(computerSerial).then((computer) => {
             router.push(PATHS.LOANS.newCollective, {
@@ -79,7 +85,7 @@ const AddCoursePage = () => {
             })
             setComputerSerial('');
         }).catch(() => {
-            setOpen(true)
+            setOpen(true);
         })
     }
     return (
@@ -121,6 +127,13 @@ const AddCoursePage = () => {
                     setOpen(false);
                     setComputerSerial('');
                 }}
+            />
+            <IonToast
+                isOpen={isToastOpen}
+                message={toastMessage}
+                duration={3000}
+                onDidDismiss={() => setToastOpen(false)}
+                position="top"
             />
         </IonPage>
     );

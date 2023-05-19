@@ -1,5 +1,5 @@
 import React from 'react';
-import {IonButton, IonButtons, IonContent, IonPage} from "@ionic/react";
+import {IonButton, IonButtons, IonContent, IonPage, IonToast} from "@ionic/react";
 import Loan from "commons/models/loan/Loan.model";
 import {useHistory, useLocation} from "react-router";
 import {CardComponent} from "commons/components";
@@ -13,6 +13,8 @@ function EditIndividualLoanPage() {
 
     const [loan, setLoan] = React.useState({} as Loan)
     const [origin, setOrigin] = React.useState<string>('');
+    const [toastMessage, setToastMessage] = React.useState<string>('');
+    const [isToastOpen, setToastOpen] = React.useState<boolean>(false);
 
     const router = useHistory();
     const location = useLocation<{ loan: Loan, comeFrom: string }>();
@@ -22,9 +24,13 @@ function EditIndividualLoanPage() {
         e.preventDefault();
         try {
             await addLoan(loan)
+            setToastMessage('Prêt enregistré ! ');
+            setToastOpen(true);
             router.push(origin)
         } catch (e) {
             console.error(e);
+            setToastMessage('Oops, une erreur est survenue ! Vérifiez la connexion au serveur et réessayez.');
+            setToastOpen(true);
         }
     }
 
@@ -95,6 +101,13 @@ function EditIndividualLoanPage() {
                     </form>
                     <div className={style.padding}/>
                 </IonContent>
+                <IonToast
+                    isOpen={isToastOpen}
+                    message={toastMessage}
+                    duration={3000}
+                    onDidDismiss={() => setToastOpen(false)}
+                    position="top"
+                />
             </IonPage>
         </div>
     );

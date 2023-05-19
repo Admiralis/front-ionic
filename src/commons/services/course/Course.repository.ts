@@ -1,7 +1,7 @@
 import {Course} from "../../models";
 
 class CourseRepository {
-    private url = 'http://localhost/api/courses';
+    private url = `http://${localStorage.getItem('ip')}/api/courses` || 'http://localhost/api/courses';
 
     /**
      * Récupère la liste des cours

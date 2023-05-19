@@ -83,7 +83,9 @@ export const CommentIteratorComponent = (props: CommentIteratorProps) => {
                 />
                 <CommentsButtonsComponent
                     action="add"
-                    onClick={() => addComment()}
+                    onClick={() => {
+                        addComment()
+                    }}
                 />
             </div>
         </>

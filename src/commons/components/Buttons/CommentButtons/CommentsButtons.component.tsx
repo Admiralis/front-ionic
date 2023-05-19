@@ -13,10 +13,16 @@ interface CommentsButtonsComponentProps {
  */
 const CommentsButtonsComponent = (props: CommentsButtonsComponentProps) => {
 
-    const {action, onClick} = props;
+    const {action, onClick = () => {}} = props;
+
+    const handleClick = (e: any) => {
+        e.stopPropagation();
+        e.preventDefault();
+        onClick()
+    }
 
     return (
-        <button onClick={onClick} style={{marginTop: "4%", marginLeft: '3%'}} >
+        <button onClick={handleClick} style={{marginTop: "4%", marginLeft: '3%'}} >
             {action === 'remove' &&
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" data-testid="comment-rm-button" >
                     <path

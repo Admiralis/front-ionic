@@ -21,6 +21,9 @@ const PATHS = {
         newIndividual: '/loans/new-individual',
         confirmIndividual: '/loans/confirm-individual',
         end: '/loans/end/',
+    },
+    SETTINGS: {
+        root: '/settings',
     }
 }
 

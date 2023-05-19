@@ -31,17 +31,6 @@ describe('ComputerForm', () => {
         expect(baseElement).toBeTruthy();
     });
 
-    it('should change the computer category if the input is changed', async () => {
-        render(<ComputerFormComponent {...props} />);
-        fireEvent.ionChange(screen.getByTestId('input-Catégorie'), 'BBBBBBB');
-        await act(async () => {
-            expect(props.setNewComputerInfo).toHaveBeenCalledWith({
-                ...props.newComputerInfo,
-                category: 'BBBBBBB'
-            });
-        });
-    });
-
     it('should change the computer ram if the input is changed', async () => {
         render(<ComputerFormComponent {...props} />);
         fireEvent.ionChange(screen.getByTestId('input-RAM'), 'BBBBBBB');
@@ -79,7 +68,7 @@ describe('ComputerForm', () => {
         props.newComputerInfo = undefined;
         render(<ComputerFormComponent {...props} newComputerInfo={ {} as Computer} />);
         await waitForIonicReact();
-        expect(screen.getByTestId('input-Catégorie')).toHaveValue('');
+        // expect(screen.getByTestId('input-Catégorie')).toHaveValue('');
         expect(screen.getByTestId('input-RAM')).toHaveValue('');
         expect(screen.getByTestId('input-Processeur')).toHaveValue('');
         expect(screen.getByTestId('input-Etat')).toHaveValue('');

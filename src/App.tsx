@@ -1,16 +1,6 @@
 import {Redirect, Route} from 'react-router-dom';
-import {
-    IonApp,
-    IonIcon,
-    IonLabel,
-    IonRouterOutlet,
-    IonTabBar,
-    IonTabButton,
-    IonTabs,
-    setupIonicReact
-} from '@ionic/react';
+import {IonApp, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, setupIonicReact} from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
-import {barcode, laptop, settings} from 'ionicons/icons';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -31,66 +21,72 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import React from "react";
-import ScanMenuPage from "./features/computer/ScanMenu/ScanMenu.page";
-import AddComputerPage from "./features/computer/AddComputer/AddComputer.page";
-import EditComputerPage from "./features/computer/EditComputer/EditComputer.page";
-import FindComputerPage from "./features/computer/FindComputer/FindComputer.page";
-import AddCoursePage from "./features/course/AddCourse/AddCourse.page";
-import CreateCollectiveLoanPage from "./features/loan/CreateCollectiveLoan/CreateCollectiveLoan.page";
-import EndLoanPage from "./features/loan/EndLoan/EndLoan.page";
-import CreateIndividualLoanPage from "./features/loan/CreateIndividualLoan/CreateIndividualLoan.page";
-import EditIndividualLoanPage from "./features/loan/EditIndividualLoan/EditIndividualLoan.page";
 
 /* Constants */
 import PATHS from "commons/constants/PATHS";
+import NotFoundPage from "./features/404/NotFound.page";
+
+/* Icons */
+import {CodebarIconComponent, ComputerIconComponent, WheelIconComponent} from "./commons/components/Icons";
+
+/* Wrapper and pages */
+import WRAPPED_PAGES from "./features/pages.wrapper";
+import SettingsPage from "./features/settings/Settings.page";
 
 setupIonicReact();
 
-const App: React.FC = () => (
+
+const App: React.FC = () => {
+
+    return (
         <IonApp>
             <IonReactRouter>
                 <IonTabs>
                     <IonRouterOutlet>
 
-                        <Route exact path={PATHS.SCAN.root} component={ScanMenuPage} />
+                        <Route exact path={PATHS.SCAN.root} component={WRAPPED_PAGES.scanMenu}/>
 
-                        <Route exact path={PATHS.SCAN.newComputer} component={AddComputerPage} />
-                        <Route exact path={PATHS.COMPUTERS.new} component={EditComputerPage} />
+                        <Route exact path={PATHS.SCAN.newComputer} component={WRAPPED_PAGES.addComputer}/>
+                        <Route exact path={PATHS.COMPUTERS.new} component={WRAPPED_PAGES.editComputer}/>
 
-                        <Route exact path={PATHS.SCAN.editComputer} component={FindComputerPage} />
-                        <Route exact path={PATHS.COMPUTERS.detail + ":id"} component={EditComputerPage} />
+                        <Route exact path={PATHS.SCAN.editComputer} component={WRAPPED_PAGES.findComputer}/>
+                        <Route exact path={PATHS.COMPUTERS.detail + ":id"} component={WRAPPED_PAGES.editComputer}/>
 
-                        <Route exact path={PATHS.SCAN.newCourse} component={AddCoursePage} />
-                        <Route exact path={PATHS.LOANS.newCollective} component={CreateCollectiveLoanPage} />
+                        <Route exact path={PATHS.SCAN.newCourse} component={WRAPPED_PAGES.addCourse}/>
+                        <Route exact path={PATHS.LOANS.newCollective} component={WRAPPED_PAGES.createCollectiveLoan}/>
 
-                        <Route exact path={PATHS.SCAN.endLoan} component={FindComputerPage} />
-                        <Route exact path={PATHS.LOANS.end + ":id"} component={EndLoanPage} />
+                        <Route exact path={PATHS.SCAN.endLoan} component={WRAPPED_PAGES.findComputer}/>
+                        <Route exact path={PATHS.LOANS.end + ":id"} component={WRAPPED_PAGES.endLoan}/>
 
 
-                        <Route exact path={PATHS.SCAN.newIndividualLoan} component={CreateIndividualLoanPage} />
-                         <Route exact path={PATHS.LOANS.confirmIndividual} component={EditIndividualLoanPage} />
+                        <Route exact path={PATHS.SCAN.newIndividualLoan}
+                               component={WRAPPED_PAGES.createIndividualLoan}/>
+                        <Route exact path={PATHS.LOANS.confirmIndividual}
+                               component={WRAPPED_PAGES.editIndividualLoan}/>
 
-                        <Redirect exact from="/" to={PATHS.SCAN.root} />
+                        <Route exact path={PATHS.SETTINGS.root} component={SettingsPage}/>
 
+                        <Redirect exact path="/" to={PATHS.SCAN.root}/>
+
+                        <Route component={NotFoundPage}/>
                     </IonRouterOutlet>
                     <IonTabBar slot="bottom">
-                        <IonTabButton tab="tab1" href="/tab1">
-                            <IonIcon aria-hidden="true" icon={laptop}/>
-                            <IonLabel>Parc</IonLabel>
+                        <IonTabButton tab="stock" href="/stock">
+                            <ComputerIconComponent/>
+
                         </IonTabButton>
                         <IonTabButton tab="scan" href={PATHS.SCAN.root}>
-                            <IonIcon aria-hidden="true" icon={barcode}/>
-                            <IonLabel>Scanner</IonLabel>
+                            <CodebarIconComponent/>
+
                         </IonTabButton>
-                        <IonTabButton tab="tab3" href="/tab3">
-                            <IonIcon aria-hidden="true" icon={settings}/>
-                            <IonLabel>Paramètres</IonLabel>
+                        <IonTabButton tab="settigns" href={PATHS.SETTINGS.root}>
+                            <WheelIconComponent/>
                         </IonTabButton>
                     </IonTabBar>
                 </IonTabs>
             </IonReactRouter>
         </IonApp>
-    )
-;
+    );
+};
 
 export default App;
