@@ -18,7 +18,7 @@ import CreateIndividualLoanPage from "./loan/CreateIndividualLoan/CreateIndividu
 import EditIndividualLoanPage from "./loan/EditIndividualLoan/EditIndividualLoan.page";
 import EndLoanPage from "./loan/EndLoan/EndLoan.page";
 
-const WrappedPages = {
+const WRAPPED_PAGES = {
     scanMenu: withConnectionStatus(ScanMenuPage),
     addComputer: withConnectionStatus(AddComputerPage),
     editComputer: withConnectionStatus(EditComputerPage),
@@ -30,4 +30,4 @@ const WrappedPages = {
     endLoan: withConnectionStatus(EndLoanPage),
 }
 
-export default WrappedPages;
+export default WRAPPED_PAGES;

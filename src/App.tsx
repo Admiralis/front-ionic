@@ -30,7 +30,7 @@ import NotFoundPage from "./features/404/NotFound.page";
 import {CodebarIconComponent, ComputerIconComponent, WheelIconComponent} from "./commons/components/Icons";
 
 /* Wrapper and pages */
-import WrappedPages from "./features/pages.wrapper";
+import WRAPPED_PAGES from "./features/pages.wrapper";
 import SettingsPage from "./features/settings/Settings.page";
 
 setupIonicReact();
@@ -44,25 +44,25 @@ const App: React.FC = () => {
                 <IonTabs>
                     <IonRouterOutlet>
 
-                        <Route exact path={PATHS.SCAN.root} component={WrappedPages.scanMenu}/>
+                        <Route exact path={PATHS.SCAN.root} component={WRAPPED_PAGES.scanMenu}/>
 
-                        <Route exact path={PATHS.SCAN.newComputer} component={WrappedPages.addComputer}/>
-                        <Route exact path={PATHS.COMPUTERS.new} component={WrappedPages.editComputer}/>
+                        <Route exact path={PATHS.SCAN.newComputer} component={WRAPPED_PAGES.addComputer}/>
+                        <Route exact path={PATHS.COMPUTERS.new} component={WRAPPED_PAGES.editComputer}/>
 
-                        <Route exact path={PATHS.SCAN.editComputer} component={WrappedPages.findComputer}/>
-                        <Route exact path={PATHS.COMPUTERS.detail + ":id"} component={WrappedPages.editComputer}/>
+                        <Route exact path={PATHS.SCAN.editComputer} component={WRAPPED_PAGES.findComputer}/>
+                        <Route exact path={PATHS.COMPUTERS.detail + ":id"} component={WRAPPED_PAGES.editComputer}/>
 
-                        <Route exact path={PATHS.SCAN.newCourse} component={WrappedPages.addComputer}/>
-                        <Route exact path={PATHS.LOANS.newCollective} component={WrappedPages.createCollectiveLoan}/>
+                        <Route exact path={PATHS.SCAN.newCourse} component={WRAPPED_PAGES.addComputer}/>
+                        <Route exact path={PATHS.LOANS.newCollective} component={WRAPPED_PAGES.createCollectiveLoan}/>
 
-                        <Route exact path={PATHS.SCAN.endLoan} component={WrappedPages.findComputer}/>
-                        <Route exact path={PATHS.LOANS.end + ":id"} component={WrappedPages.endLoan}/>
+                        <Route exact path={PATHS.SCAN.endLoan} component={WRAPPED_PAGES.findComputer}/>
+                        <Route exact path={PATHS.LOANS.end + ":id"} component={WRAPPED_PAGES.endLoan}/>
 
 
                         <Route exact path={PATHS.SCAN.newIndividualLoan}
-                               component={WrappedPages.createIndividualLoan}/>
+                               component={WRAPPED_PAGES.createIndividualLoan}/>
                         <Route exact path={PATHS.LOANS.confirmIndividual}
-                               component={WrappedPages.editIndividualLoan}/>
+                               component={WRAPPED_PAGES.editIndividualLoan}/>
 
                         <Route exact path={PATHS.SETTINGS.root} component={SettingsPage}/>
 
