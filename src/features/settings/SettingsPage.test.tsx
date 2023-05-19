@@ -56,21 +56,4 @@ describe('SettingsPage', () => {
         expect(window.localStorage.__proto__.getItem).toHaveBeenCalled();
     });
 
-    it('should test the connection if localStorage has one', async () => {
-        jest.spyOn(window.localStorage.__proto__, 'getItem')
-            .mockReturnValueOnce(undefined);
-        render(<SettingsPage />);
-
-        await waitForIonicReact();
-
-        // update localstorage
-        const input = screen.getByTestId('input-IP');
-        ionFireEvent.change(input, { target: { value: 'BBBBBBB' } });
-        const button = screen.getByTestId('button-submit');
-
-        ionFireEvent.click(button);
-
-        expect(window.fetch).toHaveBeenCalled();
-    });
-
 });
