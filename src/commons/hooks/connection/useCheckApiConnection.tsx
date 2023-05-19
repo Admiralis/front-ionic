@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Vérifie la connection à l'API.
+ * Ne vérifie que l'API des prêts car il n'est pas nécessaire en l'état de vérifier les autres.
+ */
 function useCheckApiConnection() {
     const [isLoanApiConnected, setLoanApiConnected] = React.useState<boolean>(!!localStorage.getItem('ip'));
     const [isLoading, setLoading] = React.useState<boolean>(false);
