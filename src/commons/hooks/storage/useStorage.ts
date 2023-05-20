@@ -4,6 +4,7 @@ import React from "react";
 function useStorage() {
 
     const storage = new Storage();
+
     (async () => {
         await storage.create();
     })();

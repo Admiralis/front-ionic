@@ -3,12 +3,11 @@ import useCheckApiConnection from "../../hooks/connection/useCheckApiConnection"
 import {Redirect} from "react-router-dom";
 import PATHS from "../../constants/PATHS";
 import useStorage from "../../hooks/storage/useStorage";
+import {useHistory} from "react-router";
 
 export const withConnectionStatus = (Component: React.FC) => (props: any) => {
 
-    const {isConnected} = useCheckApiConnection();
-
-    if (!isConnected) return <Redirect to={PATHS.SETTINGS.root}/>;
+    useCheckApiConnection();
 
     return <Component {...props}/>;
 

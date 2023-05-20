@@ -1,5 +1,6 @@
 import React from 'react';
 import useStorage from "../storage/useStorage";
+import {useHistory} from "react-router";
 
 /**
  * Vérifie la connection à l'API.
@@ -10,7 +11,7 @@ function useCheckApiConnection() {
     const [isConnected, setConnected] = React.useState<boolean>(false);
     const [isLoading, setLoading] = React.useState<boolean>(false);
     const [ip, setIp] = React.useState<string>('');
-
+    const router = useHistory();
 
     async function testConnection() {
 
@@ -36,7 +37,7 @@ function useCheckApiConnection() {
 
     React.useEffect(() => {
         (async () => {
-            !isConnected && ip && await testConnection();
+            ip && await testConnection();
         })();
     }, [ip])
 
@@ -46,13 +47,13 @@ function useCheckApiConnection() {
             const isConnected = await storage.get('isConnected');
             setIp(ip);
             setConnected(isConnected);
+            if (!isConnected) router.push('/settings')
         })();
     }, [])
 
 
     return {
         isConnected,
-        setConnected,
         isLoading,
         setIp,
         ip
