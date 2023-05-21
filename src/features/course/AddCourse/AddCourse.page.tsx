@@ -10,6 +10,7 @@ import {Simulate} from "react-dom/test-utils";
 import {ComputerService} from "../../../commons/services/computer";
 import CourseService from "../../../commons/services/course/Course.service";
 import PATHS from "../../../commons/constants/PATHS";
+import CodeScannerComponent from "../../../commons/components/CodeScanner/CodeScanner.component";
 
 /**
  * Page de création de cours
@@ -109,6 +110,14 @@ const AddCoursePage = () => {
                             </IonButton>}
 
                     />
+                    <span className="scan-button">
+                        <CodeScannerComponent
+                            setComputerSerial={setComputerSerial}
+                            scanning={scanning}
+                            setScanning={setScanning}
+                            setAutoSubmit={setAutoSubmit}
+                        />
+                    </span>
                 </form>
             </IonContent>
             <UnknownComputerModalComponent
