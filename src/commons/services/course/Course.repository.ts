@@ -6,8 +6,6 @@ class CourseRepository {
 
     set url(url: string) {
         this._url = url;
-        console.log(this._url);
-        console.log(url);
     }
 
     get url(): string {
