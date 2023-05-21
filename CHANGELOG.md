@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://github.com/Admiralis/front-ionic/compare/v1.0.0...v1.1.0) (2023-05-21)
+
+
+### Features
+
+* recirection automatique set IP :sparkles: ([eb6cbb1](https://github.com/Admiralis/front-ionic/commit/eb6cbb10f79c573cd4da5efb93014ca8182ee3c5))
+* WIP - autoredirect ([1250efc](https://github.com/Admiralis/front-ionic/commit/1250efc9cc3090120d536a48855eac3f7208e810))
+
+
+### Bug Fixes
+
+* flow quick computer creation :bug: ([3021b4c](https://github.com/Admiralis/front-ionic/commit/3021b4c9b3ec985180c96ad0f42c4673a5fe33e6))
+* unnable to set IP in repo :bug: ([f64cf19](https://github.com/Admiralis/front-ionic/commit/f64cf196cc3991dc0796da094c79162546632253))
+
 ## 1.0.0 (2023-05-19)
 
 
