@@ -1,8 +1,12 @@
 import React from 'react';
 import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {CardComponent} from "../../commons/components";
+import {useHistory} from "react-router";
 
 function NotFoundPage() {
+
+    const router = useHistory();
+
     return (
         <IonPage>
             <IonContent>
@@ -16,7 +20,7 @@ function NotFoundPage() {
                             </>
                         }
                         actions={
-                            <IonButton className='green large' routerLink="/">Retour à l'accueil</IonButton>
+                            <IonButton className='green large' onClick={() => router.push('/')}>Retour à l'accueil</IonButton>
                         }
                     />
                 </div>

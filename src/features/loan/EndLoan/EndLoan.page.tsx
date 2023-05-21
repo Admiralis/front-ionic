@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {IonButton, IonButtons, IonContent, IonPage, IonToast} from "@ionic/react";
+import {IonButton, IonButtons, IonContent, IonLoading, IonPage, IonToast} from "@ionic/react";
 import {useHistory, useLocation} from "react-router";
 import {Computer} from "../../../commons/models";
 import {EditComputerComponent} from "../../computer/EditComputer/components/EditComputer.component";
@@ -22,9 +22,10 @@ function EndLoanPage() {
     const [loan, setLoan] = useState({} as Loan);
     const [toastMessage, setToastMessage] = useState<string>('');
     const [isToastOpen, setToastOpen] = useState<boolean>(false);
+    const [toastColor, setToastColor] = useState('success');
 
     const router = useHistory();
-    const {endLoan} = useLoans();
+    const {endLoan, error} = useLoans();
 
     useEffect(() => {
         if (!location.state) return;
@@ -39,7 +40,9 @@ function EndLoanPage() {
                 const loan = await LoanService.findByComputerIdAndInProgressStatus(computer.id);
                 setLoan(loan);
             } catch (e) {
-                console.error(e);
+                setToastMessage('Oops, une erreur est survenue ! Vérifiez la connexion au serveur et réessayez.');
+                setToastColor('danger');
+                setToastOpen(true);
             }
         })()
     }, [computer]);
@@ -52,12 +55,19 @@ function EndLoanPage() {
         e.preventDefault();
         try {
             await endLoan(loan)
+            if (error) {
+                setToastMessage('Oops, une erreur est survenue ! Vérifiez la connexion au serveur et réessayez.');
+                setToastColor('danger');
+                setToastOpen(true);
+                return;
+            }
             setToastMessage('Prêt clôturé ! ');
+            setToastColor('success')
             setToastOpen(true);
             router.push(origin)
         } catch (e) {
-            console.error(e);
             setToastMessage('Oops, une erreur est survenue ! Vérifiez la connexion au serveur et réessayez.');
+            setToastColor('danger')
             setToastOpen(true);
         }
     }
@@ -70,15 +80,15 @@ function EndLoanPage() {
                         title="Retour au stock"
                         content={
                             <EditComputerComponent
-                                newComputerInfo={computer}
-                                setNewComputerInfo={setComputer}
+                                computer={computer}
+                                setComputer={setComputer}
                             />
                         }
                     />
                     {
                         loan.course && (
                             <CardComponent
-                                title="Prêt en cours"
+                                title="Action"
                                 content={
                                     <CourseFormComponent
                                         newCourseInfo={loan.course}
@@ -92,7 +102,7 @@ function EndLoanPage() {
                     {
                         loan.student && (
                             <CardComponent
-                                title="Prêt en cours"
+                                title="Emprunteur"
                                 content={
                                     <IndividualLoanFormComponent
                                         loan={loan}
@@ -112,12 +122,21 @@ function EndLoanPage() {
                             />
                         )
                     }
-                    <IonButtons className="sticky">
-                        <IonButton className="red"
-                                   onClick={() => router.push(origin)}>Retour</IonButton>
-                        <IonButton className="green" type="submit"
-                                   disabled={!loan.course && !loan.student}>Clôturer</IonButton>
-                    </IonButtons>
+                    <div className="sticky">
+                        <IonButton
+                            className="red"
+                            onClick={() => router.push(origin)}
+                        >
+                            Retour
+                        </IonButton>
+                        <IonButton
+                            className="green"
+                            type="submit"
+                            disabled={!loan.course && !loan.student}
+                        >
+                            Clôturer
+                        </IonButton>
+                    </div>
                 </form>
                 <div className={style.padding}/>
             </IonContent>
@@ -127,6 +146,7 @@ function EndLoanPage() {
                 duration={3000}
                 onDidDismiss={() => setToastOpen(false)}
                 position="top"
+                color={toastColor}
             />
         </IonPage>
     );

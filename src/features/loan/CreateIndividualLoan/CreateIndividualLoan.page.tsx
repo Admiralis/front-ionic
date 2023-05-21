@@ -42,6 +42,7 @@ function CreateIndividualLoanPage() {
             })
             .finally(() => {
                 setComputerSerial('')
+                setScanning(false)
             })
     }
 
@@ -53,10 +54,6 @@ function CreateIndividualLoanPage() {
     React.useEffect(() => {
         setComputerSerial(computerSerial.toUpperCase());
     }, [computerSerial])
-
-    React.useEffect(() => {
-        setComputerSerial('')
-    }, [])
 
     React.useEffect(() => {
         setScanning(autoScan);

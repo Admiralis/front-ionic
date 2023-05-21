@@ -23,7 +23,7 @@ const UnknownComputerModalComponent = (props: UnknownComputerModalComponentProps
     return <SimpleModalComponent
         isOpen={open}
         setIsOpen={setIsOpen}
-        content={<p>Ce PC n'existe pas !</p>}
+        content={<p>Ce PC n'existe pas ou la connexion au serveur n'a pas pu être établie</p>}
         title={<p>¯\_(ツ)_/¯</p>}
         actions={
             <>

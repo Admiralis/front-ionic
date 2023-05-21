@@ -26,6 +26,7 @@ const AddCoursePage = () => {
     const [scanning, setScanning] = React.useState<boolean>(false);
     const [isToastOpen, setToastOpen] = React.useState<boolean>(false);
     const [toastMessage, setToastMessage] = React.useState<string>("");
+    const [toastColor, setToastColor] = React.useState<string>("");
 
     const location = useLocation<{ serialNumber: string, comeFrom: string }>();
     const {autoScan} = useAutoRescan();
@@ -74,6 +75,7 @@ const AddCoursePage = () => {
         }).catch(
             () => {
                 setToastMessage(`Ooops ! Le cours ${course.label} n'a pas pu être créé !`);
+                setToastColor("danger");
                 setToastOpen(true);
             }
         )
@@ -145,6 +147,7 @@ const AddCoursePage = () => {
                 duration={3000}
                 onDidDismiss={() => setToastOpen(false)}
                 position="top"
+                color={toastColor}
             />
         </IonPage>
     );

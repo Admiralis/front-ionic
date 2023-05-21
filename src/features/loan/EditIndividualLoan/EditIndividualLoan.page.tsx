@@ -1,5 +1,5 @@
 import React from 'react';
-import {IonButton, IonButtons, IonContent, IonPage, IonToast} from "@ionic/react";
+import {IonButton, IonButtons, IonContent, IonLoading, IonPage, IonToast} from "@ionic/react";
 import Loan from "commons/models/loan/Loan.model";
 import {useHistory, useLocation} from "react-router";
 import {CardComponent} from "commons/components";
@@ -15,21 +15,30 @@ function EditIndividualLoanPage() {
     const [origin, setOrigin] = React.useState<string>('');
     const [toastMessage, setToastMessage] = React.useState<string>('');
     const [isToastOpen, setToastOpen] = React.useState<boolean>(false);
+    const [toastColor, setToastColor] = React.useState('success')
 
     const router = useHistory();
     const location = useLocation<{ loan: Loan, comeFrom: string }>();
-    const {addLoan} = useLoans();
+    const {addLoan, error, isLoading} = useLoans();
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         try {
             await addLoan(loan)
+            if (error) {
+                setToastMessage('Oops, une erreur est survenue ! Vérifiez la connexion au serveur et réessayez.');
+                setToastColor('danger')
+                setToastOpen(true);
+                return;
+            }
             setToastMessage('Prêt enregistré ! ');
+            setToastColor('success')
             setToastOpen(true);
             router.push(origin)
         } catch (e) {
             console.error(e);
             setToastMessage('Oops, une erreur est survenue ! Vérifiez la connexion au serveur et réessayez.');
+            setToastColor('danger')
             setToastOpen(true);
         }
     }
@@ -72,8 +81,8 @@ function EditIndividualLoanPage() {
                             title='Ordinateur'
                             content={
                                 <EditComputerComponent
-                                    newComputerInfo={loan.computer || {serialNumber: ''} as Loan['computer']}
-                                    setNewComputerInfo={(newComputer) => {
+                                    computer={loan.computer || {serialNumber: ''} as Loan['computer']}
+                                    setComputer={(newComputer) => {
                                         setLoan({
                                             ...loan,
                                             computer: newComputer
@@ -83,7 +92,7 @@ function EditIndividualLoanPage() {
                             }
                         />
 
-                        <IonButtons className="sticky">
+                        <div className="sticky">
                             <IonButton
                                 onClick={() => router.push(origin)}
                                 className="yellow"
@@ -97,7 +106,7 @@ function EditIndividualLoanPage() {
                             >
                                 Valider
                             </IonButton>
-                        </IonButtons>
+                        </div>
                     </form>
                     <div className={style.padding}/>
                 </IonContent>
@@ -107,6 +116,13 @@ function EditIndividualLoanPage() {
                     duration={3000}
                     onDidDismiss={() => setToastOpen(false)}
                     position="top"
+                    color={toastColor}
+                />
+                <IonLoading
+                    isOpen={isLoading}
+                    message={'Chargement...'}
+                    spinner="bubbles"
+                    duration={5000}
                 />
             </IonPage>
         </div>
