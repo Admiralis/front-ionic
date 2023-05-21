@@ -1,7 +1,20 @@
 import {Course} from "../../models";
-
 class CourseRepository {
-    private url = `http://${localStorage.getItem('ip')}/api/courses` || 'http://localhost/api/courses';
+
+
+    private _url: string = 'http://localhost/api/courses';
+
+    set url(url: string) {
+        this._url = url;
+        console.log(this._url);
+        console.log(url);
+    }
+
+    get url(): string {
+        return this._url;
+    }
+
+
 
     /**
      * Récupère la liste des cours

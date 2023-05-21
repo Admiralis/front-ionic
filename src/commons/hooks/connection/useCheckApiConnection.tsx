@@ -1,6 +1,9 @@
 import React from 'react';
 import useStorage from "../storage/useStorage";
 import {useHistory} from "react-router";
+import ComputerRepository from "../../services/computer/Computer.repository";
+import CourseRepository from "../../services/course/Course.repository";
+import LoanRepository from "../../services/loan/Loan.repository";
 
 /**
  * Vérifie la connection à l'API.
@@ -23,6 +26,9 @@ function useCheckApiConnection() {
                     (async () => {
                         await storage.set('ip', ip)
                         await storage.set('isConnected', true)
+                        ComputerRepository.url = `http://${ip}/api/computers`
+                        CourseRepository.url = `http://${ip}/api/courses`
+                        LoanRepository.url = `http://${ip}/api/loans`
                     })()
                     setConnected(true);
                 }
