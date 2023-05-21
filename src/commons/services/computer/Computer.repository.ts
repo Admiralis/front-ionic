@@ -1,7 +1,17 @@
 import {Computer} from "../../models";
-
 class ComputerRepository {
-    private url = `http://${localStorage.getItem('ip')}/api/computers` ||  'http://localhost/api/computers';
+
+    private _url: string = 'http://localhost/api/computers';
+
+    set url(url: string) {
+        this._url = url;
+        console.log(this._url);
+        console.log(url);
+    }
+
+    get url(): string {
+        return this._url;
+    }
 
     /**
      * Récupère la liste des ordinateurs

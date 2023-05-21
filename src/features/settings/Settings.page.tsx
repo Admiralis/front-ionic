@@ -4,37 +4,33 @@ import {AsciiInputComponent, CardComponent, LinuxButtonComponent} from "../../co
 import styles from './Settings.module.css';
 import {submitOnEnter} from "../../commons/utils";
 import useCheckApiConnection from "../../commons/hooks/connection/useCheckApiConnection";
+import useStorage from "../../commons/hooks/storage/useStorage";
 
 function SettingsPage() {
 
-    const [ipInput, setIpInput] = React.useState<string>(localStorage.getItem('ip') || '');
+    const {storage} = useStorage();
 
     const {
-        setLoanApiConnected,
-        isLoanApiConnected,
+        isConnected,
         isLoading,
-        ip,
-        setIp
+        setIp,
+        ip
     } = useCheckApiConnection();
+
+    const [ipInput, setIpInput] = React.useState<string>(ip ||'');
+
+    React.useEffect(() => {
+        storage.get('ip').then((ip) => {
+            setIpInput(ip || '')
+        })
+    }, [])
+
+
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        setLoanApiConnected(false);
-        await testConnection();
+        setIp(ipInput)
     }
-
-    async function testConnection() {
-        try {
-            setIp(ipInput);
-            setLoanApiConnected(true);
-        } catch {
-            setLoanApiConnected(false);
-        }
-    }
-
-    React.useEffect(() => {
-
-    }, [isLoanApiConnected])
 
 
     return (
@@ -48,13 +44,13 @@ function SettingsPage() {
                         content={
                             <>
                                 <div className={styles.statusContainer}>
-                                    {isLoanApiConnected && (
+                                    {isConnected && (
                                         <span>
                                             <LinuxButtonComponent/>
                                             <p>API</p>
                                         </span>
                                     )}
-                                    {!isLoanApiConnected && (
+                                    {!isConnected && (
                                         <span>
                                             <LinuxButtonComponent color={"red"}/>
                                             <p>API</p>

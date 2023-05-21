@@ -37,23 +37,5 @@ describe('SettingsPage', () => {
         expect(useStateMock).toHaveBeenCalled();
     });
 
-    it('should have an IP if localStorage has one', async () => {
-        jest.spyOn(window.localStorage.__proto__, 'getItem')
-            .mockReturnValueOnce('AAAAAAA');
-        render(<SettingsPage />);
-
-        await waitForIonicReact();
-        expect(screen.getByTestId('input-IP')).toHaveValue('AAAAAAA');
-    });
-
-    it('should update localStorage when submitting', async () => {
-        render(<SettingsPage />);
-        const input = screen.getByTestId('input-IP');
-        ionFireEvent.change(input, { target: { value: 'BBBBBBB' } });
-        const button = screen.getByTestId('button-submit');
-        ionFireEvent.click(button);
-        await waitForIonicReact();
-        expect(window.localStorage.__proto__.getItem).toHaveBeenCalled();
-    });
 
 });

@@ -34,9 +34,6 @@ function CreateIndividualLoanPage() {
             .catch(() => {
                 setOpen(true)
             })
-            .finally(() => {
-                setComputerSerial('');
-            })
     }
 
 
@@ -48,6 +45,10 @@ function CreateIndividualLoanPage() {
     React.useEffect(() => {
         setComputerSerial(computerSerial.toUpperCase());
     }, [computerSerial])
+
+    React.useEffect(() => {
+        setComputerSerial('')
+    }, [])
 
     return (
         <IonPage>
