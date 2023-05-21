@@ -41,9 +41,9 @@ const FindComputerPage = () => {
                     PATHS.COMPUTERS.edit + `${computerSerial}`,
                     {computer: computer, comeFrom: location.pathname}
                 );
-            } else if (location.pathname === PATHS.SCAN.endLoan ) {
+            } else if (location.pathname === PATHS.SCAN.endLoan) {
                 router.push(
-                     PATHS.LOANS.end + `${computerSerial}`,
+                    PATHS.LOANS.end + `${computerSerial}`,
                     {computer: computer, comeFrom: location.pathname}
                 );
             }
@@ -80,13 +80,15 @@ const FindComputerPage = () => {
                                 Valider
                             </IonButton>}
                     />
+                    <span className="scan-button">
+                        <CodeScannerComponent
+                            setComputerSerial={setComputerSerial}
+                            scanning={scanning}
+                            setScanning={setScanning}
+                            setAutoSubmit={setAutoSubmit}
+                        />
+                    </span>
                 </form>
-                <CodeScannerComponent
-                    setComputerSerial={setComputerSerial}
-                    scanning={scanning}
-                    setScanning={setScanning}
-                    setAutoSubmit={setAutoSubmit}
-                />
             </IonContent>
             <UnknownComputerModalComponent
                 open={open}
