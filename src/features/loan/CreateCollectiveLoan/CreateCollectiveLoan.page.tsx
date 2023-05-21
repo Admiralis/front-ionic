@@ -76,6 +76,8 @@ const CreateCollectiveLoanPage = () => {
 
         } catch (e) {
             console.log(e)
+        } finally {
+            setComputer({} as Computer)
         }
 
     }

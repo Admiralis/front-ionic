@@ -84,9 +84,11 @@ const AddCoursePage = () => {
                 course: course,
                 comeFrom: location.pathname
             })
-            setComputerSerial('');
+
         }).catch(() => {
             setOpen(true);
+        }).finally(() => {
+            setComputerSerial("");
         })
     }
     return (

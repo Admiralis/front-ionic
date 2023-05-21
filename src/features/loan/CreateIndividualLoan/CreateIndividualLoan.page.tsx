@@ -40,8 +40,10 @@ function CreateIndividualLoanPage() {
             .catch(() => {
                 setOpen(true)
             })
+            .finally(() => {
+                setComputerSerial('')
+            })
     }
-
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
