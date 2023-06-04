@@ -20,15 +20,15 @@ function useCheckApiConnection() {
 
         setLoading(true);
 
-        fetch(`http://${ip}/api/loans/status/health`)
+        fetch(`https://${ip}/api/loans/status/health`)
             .then((response) => {
                 if (response.status === 200) {
                     (async () => {
                         await storage.set('ip', ip)
                         await storage.set('isConnected', true)
-                        ComputerRepository.url = `http://${ip}/api/computers`
-                        CourseRepository.url = `http://${ip}/api/courses`
-                        LoanRepository.url = `http://${ip}/api/loans`
+                        ComputerRepository.url = `https://${ip}/api/computers`
+                        CourseRepository.url = `https://${ip}/api/courses`
+                        LoanRepository.url = `https://${ip}/api/loans`
                     })()
                     setConnected(true);
                 }
