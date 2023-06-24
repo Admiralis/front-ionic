@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {AsciiInputComponent, CardComponent, UnknownComputerModalComponent} from "commons/components";
 import IndividualLoanFormComponent from "commons/components/Forms/IndividualLoanForm/IndividualLoanForm.component";
@@ -10,12 +10,18 @@ import {ComputerService} from "commons/services/computer";
 import PATHS from "commons/constants/PATHS";
 import {useHistory} from "react-router";
 import {Student} from "commons/models";
+import CodeScannerComponent from "../../../commons/components/CodeScanner/CodeScanner.component";
+import useAutoRescan from "../../../commons/hooks/scan/useAutoRescan";
+import {Simulate} from "react-dom/test-utils";
 
 function CreateIndividualLoanPage() {
 
     const [loan, setLoan] = React.useState({} as Loan)
     const [computerSerial, setComputerSerial] = React.useState<string>('');
     const [open, setOpen] = React.useState<boolean>(false);
+    const [scanning, setScanning] = useState<boolean>(false);
+    const {autoScan} = useAutoRescan();
+    const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
 
     const router = useHistory();
 
@@ -34,8 +40,11 @@ function CreateIndividualLoanPage() {
             .catch(() => {
                 setOpen(true)
             })
+            .finally(() => {
+                setComputerSerial('')
+                setScanning(false)
+            })
     }
-
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -47,8 +56,17 @@ function CreateIndividualLoanPage() {
     }, [computerSerial])
 
     React.useEffect(() => {
-        setComputerSerial('')
-    }, [])
+        setScanning(autoScan);
+    }, [autoScan])
+
+    React.useEffect(() => {
+        // Soumet automatiquement le formulaire si un code a été scanné
+        if (autoSubmit) {
+            setScanning(false);
+            setAutoSubmit(false)
+            Simulate.submit(document.querySelector('form') as HTMLFormElement)
+        }
+    }, [autoSubmit])
 
     return (
         <IonPage>
@@ -84,6 +102,14 @@ function CreateIndividualLoanPage() {
                             </IonButton>
                         }
                     />
+                    <span className="scan-button">
+                        <CodeScannerComponent
+                            setComputerSerial={setComputerSerial}
+                            scanning={scanning}
+                            setScanning={setScanning}
+                            setAutoSubmit={setAutoSubmit}
+                        />
+                    </span>
                 </form>
             </IonContent>
             <UnknownComputerModalComponent

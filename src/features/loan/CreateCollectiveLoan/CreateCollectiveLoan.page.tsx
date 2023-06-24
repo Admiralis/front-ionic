@@ -24,6 +24,7 @@ const CreateCollectiveLoanPage = () => {
     const [origin, setOrigin] = useState<string>('');
     const [toastMessage, setToastMessage] = useState<string>('');
     const [isToastOpen, setIsToastOpen] = useState<boolean>(false);
+    const [toastColor, setToastColor] = React.useState('success')
 
     const router = useHistory();
     const location = useLocation<{ comeFrom: string, computer: Computer, course: Course }>();
@@ -58,10 +59,6 @@ const CreateCollectiveLoanPage = () => {
         })
     }, [computer, course])
 
-    useEffect(() => {
-        error && setShowModal(true)
-    }, [error])
-
     const handleCancel = () => {
         router.push(origin, {reScan: true});
     };
@@ -70,12 +67,12 @@ const CreateCollectiveLoanPage = () => {
         e.preventDefault();
         try {
             await addLoan(loan)
-            setToastMessage("Prêt ajouté")
-            setIsToastOpen(true)
-            router.push(origin, {reScan: true})
-
+            showToaster(!!error)
+            !error && router.push(origin, {reScan: true})
         } catch (e) {
-            console.log(e)
+            showToaster(true)
+        } finally {
+            setComputer({} as Computer)
         }
 
     }
@@ -84,11 +81,28 @@ const CreateCollectiveLoanPage = () => {
         e.preventDefault();
         try {
             await addLoan(loan)
-            setToastMessage("Prêt ajouté")
-            setIsToastOpen(true)
-            router.push("/")
+            showToaster(!!error)
+            if (!error) {
+                router.push("/scan/menu")
+            }
         } catch (e) {
-            console.log(e)
+            showToaster(true)
+        } finally {
+            setComputer({} as Computer)
+            setLoan({} as Loan)
+            setCourse({} as Course)
+        }
+    }
+
+    const showToaster = (error: boolean) => {
+        if (error) {
+            setToastMessage("Une erreur est survenue. Vérifiez la connection à l'API")
+            setToastColor("danger")
+            setIsToastOpen(true)
+        } else {
+            setToastMessage("Prêt ajouté")
+            setToastColor("success")
+            setIsToastOpen(true)
         }
     }
 
@@ -113,8 +127,8 @@ const CreateCollectiveLoanPage = () => {
                         title="Ordinateur"
                         content={
                             <EditComputerComponent
-                                newComputerInfo={computer}
-                                setNewComputerInfo={setComputer}
+                                computer={computer}
+                                setComputer={setComputer}
                             />
                         }
                     />
@@ -123,16 +137,21 @@ const CreateCollectiveLoanPage = () => {
                         title="Actions"
                         content={
                             <div>
-                                <IonButton className="yellow large"
-                                           expand="block"
-                                           onClick={async (event) => await handleSubmitAndFinish(event)}>
+                                <IonButton
+                                    className="yellow"
+                                    expand="block"
+                                    onClick={async (event) => await handleSubmitAndFinish(event)}
+                                >
                                     Terminer
                                 </IonButton>
                                 <div>
                                     <IonButton className="red" onClick={handleCancel}>
                                         Annuler
                                     </IonButton>
-                                    <IonButton className="green" onClick={async (event) => {await handleSubmitAndReScan(event)}}>
+                                    <IonButton
+                                        className="green"
+                                        onClick={async (event) => {await handleSubmitAndReScan(event)}}
+                                    >
                                         PC Suivant
                                     </IonButton>
                                 </div>
@@ -154,6 +173,7 @@ const CreateCollectiveLoanPage = () => {
                 onDidDismiss={() => setIsToastOpen(false)}
                 message={toastMessage}
                 duration={3000}
+                color={toastColor}
             />
         </IonPage>
     );

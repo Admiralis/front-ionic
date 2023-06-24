@@ -10,6 +10,7 @@ import {Simulate} from "react-dom/test-utils";
 import {ComputerService} from "../../../commons/services/computer";
 import CourseService from "../../../commons/services/course/Course.service";
 import PATHS from "../../../commons/constants/PATHS";
+import CodeScannerComponent from "../../../commons/components/CodeScanner/CodeScanner.component";
 
 /**
  * Page de création de cours
@@ -25,6 +26,7 @@ const AddCoursePage = () => {
     const [scanning, setScanning] = React.useState<boolean>(false);
     const [isToastOpen, setToastOpen] = React.useState<boolean>(false);
     const [toastMessage, setToastMessage] = React.useState<string>("");
+    const [toastColor, setToastColor] = React.useState<string>("");
 
     const location = useLocation<{ serialNumber: string, comeFrom: string }>();
     const {autoScan} = useAutoRescan();
@@ -73,6 +75,7 @@ const AddCoursePage = () => {
         }).catch(
             () => {
                 setToastMessage(`Ooops ! Le cours ${course.label} n'a pas pu être créé !`);
+                setToastColor("danger");
                 setToastOpen(true);
             }
         )
@@ -83,9 +86,11 @@ const AddCoursePage = () => {
                 course: course,
                 comeFrom: location.pathname
             })
-            setComputerSerial('');
+
         }).catch(() => {
             setOpen(true);
+        }).finally(() => {
+            setComputerSerial("");
         })
     }
     return (
@@ -109,6 +114,14 @@ const AddCoursePage = () => {
                             </IonButton>}
 
                     />
+                    <span className="scan-button">
+                        <CodeScannerComponent
+                            setComputerSerial={setComputerSerial}
+                            scanning={scanning}
+                            setScanning={setScanning}
+                            setAutoSubmit={setAutoSubmit}
+                        />
+                    </span>
                 </form>
             </IonContent>
             <UnknownComputerModalComponent
@@ -134,6 +147,7 @@ const AddCoursePage = () => {
                 duration={3000}
                 onDidDismiss={() => setToastOpen(false)}
                 position="top"
+                color={toastColor}
             />
         </IonPage>
     );

@@ -24,7 +24,7 @@ describe('EditComputerComponent', () => {
     });
 
     it('should render', async () => {
-        const {container} = await render(<EditComputerComponent newComputerInfo={newComputerInfoMock} setNewComputerInfo={setNewComputerInfoMock}/>);
+        const {container} = await render(<EditComputerComponent computer={newComputerInfoMock} setComputer={setNewComputerInfoMock}/>);
         await waitForIonicReact()
         await act(async () => {
             expect(container).toBeDefined();
