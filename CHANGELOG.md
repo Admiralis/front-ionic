@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/Admiralis/front-ionic/compare/v1.1.0...v1.2.0) (2023-06-24)
+
+
+### Features
+
+* scan feature ([42f7ca7](https://github.com/Admiralis/front-ionic/commit/42f7ca7d53832f014014f16a45dabcf4008042ad))
+
 ## [1.1.0](https://github.com/Admiralis/front-ionic/compare/v1.0.0...v1.1.0) (2023-05-21)
 
 
